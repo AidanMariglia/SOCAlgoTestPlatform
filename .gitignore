@@ -280,3 +280,4 @@ TSWLatexianTemp*
 
 #PYTHON
 venv/
+__pycache__/*
