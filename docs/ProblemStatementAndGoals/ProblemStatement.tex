@@ -7,9 +7,8 @@
 
 \author{\authname}
 
-\date{}
+\date{September 24, 2024}
 
-\input{../Comments}
 \input{../Common}
 
 \begin{document}
@@ -18,76 +17,103 @@
 
 \begin{table}[hp]
 \caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
+\begin{tabularx}{\textwidth}{lp{2cm}lp{3cm}lp{6cm}}
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+September 24, 2024 & Declan Benjamin Nathan Aidan & Completed problem statement and goals\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Problem Statement}
 
-\wss{You should check your problem statement with the
-\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
-{problem statement checklist}.} 
-
-\wss{You can change the section headings, as long as you include the required
-information.}
-
 \subsection{Problem}
+
+Battery state of charge (SOC) estimation is challenging, requiring specialized algorithms. Standardized testing is necessary to determine the accuracy and performance of proposed approaches. Building off of an existing solution for running SOC algorithms against a test suite, a cloud-based platform will be developed to streamline accepting and running user-submitted algorithms. The current solution has a convoluted submission process, which fails regularly, and executes the tests in serial. 
 
 \subsection{Inputs and Outputs}
 
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
+\textbf{Inputs:} \newline
+User developed algorithms, either as matlab or python code. \newline \newline
+\textbf{Outputs:} \newline
+Algorithm performance or resulting error, history of user submissions, rankings of algorithm performance.
 
 \subsection{Stakeholders}
 
+\begin{itemize}
+    \item Dr. spencer smith
+    \item Dr. Phil Kollmeyer
+    \item Developers of the project
+    \item Battery Engineering Research students
+    \item Students taking battery engineering class
+\end{itemize}
+
 \subsection{Environment}
 
-\wss{Hardware and software environment}
+\subsubsection{Software}
+The software environment of the system will be Docker containers built for each component.
+
+\subsubsection{Hardware}
+The docker containers will be run on AWS, either ECS or EKS. The hardware details of this service are abstracted away from the user.
 
 \section{Goals}
 
+\begin{itemize}
+    \item The final product can test multiple algorithm submissions in parallel - since each algorithm takes approximately an hour to complete, running them in parallel will help reduce the overall time required to run all algorithms.
+    \item The final product generates reports and compares algorithm performance - the reports will summarize the performance of the submitted algorithm and compare it with other submitted algorithms, helping users understand and visualize their results.
+    \item The final product can handle any error encountered throughout the algorithm’s runtime - this will minimize the software’s crashes and downtime and overall, it will increase the reliability of the software. It will make debugging much easier and as a result, improve the user experience.
+    \item The final product is secure and prevents malware attacks - secure software is necessary to protect users’ sensitive data as well as keep the software’s integrity and availability.
+\end{itemize}
+
 \section{Stretch Goals}
+
+Python Implementation of SOC Estimation Algorithm Testing Tool: Currently this tool is Matlab-based and this programming language is more niche and is mainly used in academic roles. For future development, it would be beneficial to have the testing tool and backend written in a programming language like Python that is widely known and used. Also, Matlab is not open-source and requires a license to be used, so translating to the open-source programming language of Python will allow this testing tool to be accessible to everyone.  
 
 \section{Challenge Level and Extras}
 
-\wss{State your expected challenge level (advanced, general or basic).  The
-challenge can come through the required domain knowledge, the implementation or
-something else.  Usually the greater the novelty of a project the greater its
-challenge level.  You should include your rationale for the selected level.
-Approval of the level will be part of the discussion with the instructor for
-approving the project.  The challenge level, with the approval (or request) of
-the instructor, can be modified over the course of the term.}
+The expected challenge level for this project is general. This challenge level is justified firstly by the fact that the technologies and domain knowledge required based on the expected implementation are relatively simple, especially when considering the experience that our group has with web applications and cloud development. Additionally, the problem being solved is not particularly novel, since although the problem itself isn’t something that is very commonly solved, the requirements/expected solution of a cloud-based web application is something that is a very common solution to problems in the software industry. \newline \newline
+As an extra for the project we will include thorough user guides/walkthroughs as a part of the final webapp, similar to the way github presents their tutorials.
 
-\wss{Teams may wish to include extras as either potential bonus grades, or to
-make up for a less advanced challenge level.  Potential extras include usability
-testing, code walkthroughs, user documentation, formal proof, GenderMag
-personas, Design Thinking, etc.  Normally the maximum number of extras will be
-two.  Approval of the extras will be part of the discussion with the instructor
-for approving the project.  The extras, with the approval (or request) of the
-instructor, can be modified over the course of the term.}
 
 \newpage{}
 
 \section*{Appendix --- Reflection}
 
-\wss{Not required for CAS 741}
-
-\input{../Reflection.tex}
+\subsection*{Nathan Uy}
 
 \begin{enumerate}
-    \item What went well while writing this deliverable? 
-    \item What pain points did you experience during this deliverable, and how
-    did you resolve them?
-    \item How did you and your team adjust the scope of your goals to ensure
-    they are suitable for a Capstone project (not overly ambitious but also of
-    appropriate complexity for a senior design project)?
+    \item Writing the problem statement allowed me to understand the scope of the project and its impact on stakeholders.
+    \item Coming up with the extras for the project was challenging as it needed to be both useful and fun. So it required going through a lot of options and evaluating each of them.
 \end{enumerate}  
+
+\subsection*{Declan Young}
+
+\begin{enumerate}
+    \item When writing this deliverable I thought that our group did a great job on collaborating to agree on what the problem that we are solving is, so that the details could be described in a clear and concise way. Since the rest of this deliverable depended on and was based on the problem, it was crucial that we all had the same understanding of the problem.
+    \item The main pain point we encountered for this deliverable was determining what stretch goals would be most suitable for our project. We resolved this by brainstorming as a group to create a list of possible stretch goals, from which we picked the goal that seemed most reasonable while staying interesting and closely related to the problem being solved.
+\end{enumerate}  
+
+\subsection*{Aidan Mariglia}
+
+\begin{enumerate}
+    \item Defining the problem statement happened quite easily while writing this deliverable. The existing project pitch, along with the information we gained while meeting with Dr. Kollmeyer provided us the necessary background to define the problem well.
+    \item Determining stretch goals/extras was the worst sticking point of this deliverable. The existing problem was well contained, which added to this difficulty.
+\end{enumerate}  
+
+\subsection*{Benjamin Dubois}
+
+\begin{enumerate}
+    \item During this deliverable, I found that the team was on the same page for all of the required fields and this helped us to complete the deliverable as efficiently as possible. When brainstorming goals and the problem statement, we were able to make decisions very quickly as we all had the same idea of the problem and main goals. 
+    \item The main pain point that we encountered during this deliverable was determining the stretch goals and extras. This was difficult as some features are hard to determine how long they will take at this moment, so it is difficult to know which features we can easily include in the timeline and which ones will need to be stretch goals. To resolve this, we created a list of the major development features we wanted to complete, and any features that seemed less significant were added to stretch goals or extras. 
+\end{enumerate}  
+
+\subsection*{Team}
+
+\begin{enumerate}
+\setcounter{enumi}{2}
+    \item We adjusted our project’s scope to make it suitable for a Capstone project by firstly determining the scope of that project required to complete the project at the most basic level. We then added to this scope to make the project more complex and the scope more broad, until a point was reached where we felt that any more additions would be overwhelming and difficult to complete with the given time and resources. We increased the scope by adding extras to our project, as well as adding stretch goals that we hope to complete.
+ 
+\end{enumerate} 
 
 \end{document}
