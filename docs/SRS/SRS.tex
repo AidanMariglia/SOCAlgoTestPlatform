@@ -47,6 +47,7 @@
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
 2024-10-11 & 1.0 & Revision 0\\
+2024-10-19 & 1.1 & Adding requirement identifiers \\
 \bottomrule
 \end{tabularx}
 
@@ -164,7 +165,7 @@ The current system exists as a Matlab script running on a McMaster server, liste
 \subsection{Partner or Collaborative Applications}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{./partner_applications.png}
+    \includegraphics[width=1\linewidth]{partner_applications.png}
 \end{figure}
 \subsection{Off-the-Shelf Software}
 
@@ -236,13 +237,13 @@ involved in the Project}
 \subsection{The Current Situation}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{./currentstate.png}
+    \includegraphics[width=1\linewidth]{currentstate.png}
 \end{figure}
 
 \subsection{The Context of the Work}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{./context.png}
+    \includegraphics[width=0.5\linewidth]{context.png}
 \end{figure}
 \subsection{Work Partitioning}
 
@@ -380,53 +381,63 @@ System receives the new algorithm results and updates the leaderboard table in t
 
 \section{Functional Requirements}
 \subsection{Functional Requirements}
+\textbf{FR-1}
 \begin{itemize}
     \item The system shall allow users to submit algorithms to be tested. \hfill \break
     Fit criterion: Users should be able to upload an algorithm to the system and receive confirmation of their upload.
 \end{itemize}
+\textbf{FR-2}
 \begin{itemize}
     \item The system shall report the results of submitted algorithms when their testing is complete. \hfill \break
     Fit criterion: Users should be able to view the result of their algorithm somewhere in the interface of the system after it has been completed.
 \end{itemize}
+\textbf{FR-3}
 \begin{itemize}
     \item The system shall allow for multiple submissions from users to run in parallel. \hfill \break
     Fit criterion: Users should be able to submit more than one algorithm for testing and see that the execution of all submissions is underway.
 \end{itemize}
+\textbf{FR-4}
+
 \begin{itemize}
-    \item The system shall have user accounts. 
-    \begin{itemize}
-        \item The system shall allow users to make a new account. \hfill \break
-        Fit criterion: Users should be able to provide a username and password and in return gain access to a new account corresponding to those values.
-    \end{itemize}
-    \begin{itemize}
-        \item The system shall have a user login page. \hfill \break
-        Fit criterion: Users should be able to navigate to a page in the system where they can provide a username and password to authenticate under an account.
-    \end{itemize}
-    \begin{itemize}
-        \item The system shall segregate data based on the logged users. \hfill \break
-        Fit criterion: Users should not be able to see the private data of users and vice versa
-    \end{itemize}
+    \item The system shall allow users to make a new account. \hfill \break
+    Fit criterion: Users should be able to provide a username and password and in return gain access to a new account corresponding to those values.
 \end{itemize}
+\textbf{FR-5}
+\begin{itemize}
+    \item The system shall have a user login page. \hfill \break
+    Fit criterion: Users should be able to navigate to a page in the system where they can provide a username and password to authenticate under an account.
+\end{itemize}
+\textbf{FR-6}
+\begin{itemize}
+    \item The system shall segregate data based on the logged users. \hfill \break
+    Fit criterion: Users should not be able to see the private data of users and vice versa
+\end{itemize}
+\textbf{FR-7}
 \begin{itemize}
     \item The system shall save algorithm results in individual user accounts. \hfill \break
     Fit criterion: Users should be able to view their previous submissions anytime in the future.
 \end{itemize}
+\textbf{FR-8}
 \begin{itemize}
     \item The system shall have a leaderboard feature that is accessible to all users. \hfill \break
     Fit criterion: Users should be able to view a list of all submissions from other users.
 \end{itemize}
+\textbf{FR-9}
 \begin{itemize}
     \item The system shall have categorization in its leaderboard based on certain criteria. \hfill \break
     Fit criterion: Users should be able to select the type of algorithm they are interested in and only view results of that type.
 \end{itemize}
+\textbf{FR-10}
 \begin{itemize}
     \item The system shall allow users to sort through the leaderboards based on criteria. \hfill \break
     Fit criterion: Users should be able to view results in order of lowest run time to highest or other criteria.
 \end{itemize}
+\textbf{FR-11}
 \begin{itemize}
     \item The system shall display the progress of running algorithms to users. \hfill \break
     Fit criterion: Users should be able to view if a submission is accepted, pending, executed, or finished.
 \end{itemize}
+\textbf{FR-12}
 \begin{itemize}
     \item The system shall notify users in case of an exception in their algorithm. \hfill \break
     Fit criterion: Users should receive a notification if their algorithm fails to execute successfully.
@@ -434,12 +445,14 @@ System receives the new algorithm results and updates the leaderboard table in t
 
 \section{Look and Feel Requirements}
 \subsection{Appearance Requirements}
+\textbf{LFR-1}
 \begin{itemize}
     \item The system’s appearance should look similar to a website called Kaggle. \hfill \break
     Fit criterion: Users should recognize similarities between the system and Kaggle.
 \end{itemize}
 
 \subsection{Style Requirements}
+\textbf{SR-1}
 \begin{itemize}
     \item The system should use the same styles i.e. colour, background colour, user-interface structure, etc. as the Kaggle website. \hfill \break
     Fit criterion: Users should see the same styles as the Kaggle website when using the system.
@@ -448,6 +461,7 @@ System receives the new algorithm results and updates the leaderboard table in t
 
 \section{Usability and Humanity Requirements}
 \subsection{Ease of Use Requirements}
+\textbf{EUR-1}
 \begin{itemize}
     \item All tasks that can be completed with the system should have a similar workflow.\hfill \break
     Fit criterion: Users should be able to follow the same workflow when viewing a submission in progress or one that is already completed.
@@ -455,32 +469,55 @@ System receives the new algorithm results and updates the leaderboard table in t
 \subsection{Personalization and Internationalization Requirements}
 N/A - No personalization or internationalization was mentioned by the client.
 \subsection{Learning Requirements}
+\textbf{LR-1}
 \begin{itemize}
     \item The system shall have detailed documentation for all core functionality. \hfill \break
     Fit criterion: Users should be able to easily find documentation which walks them through the steps involved in submitting an algorithm and viewing the results.
+\end{itemize}
+\textbf{LR-2}
+\begin{itemize}
     \item The system shall display hints for new/unused features for a specific user. \hfill \break
     Fit criterion: The user should be able to see a hint indicating how to use a new feature.
 \end{itemize}
+
 \subsection{Understandability and Politeness Requirements}
+\textbf{UPR-1}
 \begin{itemize}
     \item The system shall use universally used symbols when appropriate to ease understanding
+\end{itemize}
+\textbf{UPR-2}
+\begin{itemize}
     \item The system shall use an intuitive user interface and use consistent terminology.
+\end{itemize}
+\textbf{UPR-3}
+\begin{itemize}
     \item The system shall provide visual feedback to indicate whether certain actions were successful or not.
+\end{itemize}
+\textbf{UPR-4}
+\begin{itemize}
     \item The system shall provide walkthroughs for any complex use cases.
 \end{itemize}
 
 \subsection{Accessibility Requirements}
+\textbf{AR-1}
 \begin{itemize}
     \item The system shall have a colour-blind mode
 \end{itemize}
 
 \section{Performance Requirements}
 \subsection{Speed and Latency Requirements}
+\textbf{SLR-1}
 \begin{itemize}
 \item The product shall display the results of algorithms in less than 2 seconds after it is requested \hfill \break
 Fit Criteria: Users should see a result after selecting an algorithm to view in under 2 seconds
+\end{itemize}
+\textbf{SLR-2}
+\begin{itemize}
 \item The product shall display the Leaderboards table in less than 3 seconds after it is requested \hfill \break
 Fit Criteria: Users should see the leaderboards after selecting that view in under 3 seconds
+\end{itemize}
+\textbf{SLR-3}
+\begin{itemize}
 \item Sorting or filtering the leaderboard should not take more than 3 seconds \hfill \break
 Fit Criteria: Users should see leaderboard content change in under 3 seconds after making a change to filtering criteria
 \end{itemize}
@@ -489,27 +526,35 @@ Fit Criteria: Users should see leaderboard content change in under 3 seconds aft
 \subsection{Safety-Critical Requirements}
 N/A - we are building a web application without any interaction with the physical world
 \subsection{Precision or Accuracy Requirements}
+\textbf{PAR-1}
 \begin{itemize}
     \item Events in the system will be tracked using standard UTC timestamp
 \end{itemize}
 \subsection{Robustness or Fault-Tolerance Requirements}
+\textbf{RR-1}
 \begin{itemize}
     \item The system should be able to handle any types of errors during run-time.
+\end{itemize}
+\textbf{RR-2}
+\begin{itemize}
     \item Errors arising from one users interactions with the system should be isolated from other users interactions
 \end{itemize}
 
 \subsection{Capacity Requirements}
+\textbf{CR-1}
 \begin{itemize}
     \item The system shall support concurrent requests from a few hundred users \hfill \break
     Fit criterion: Users should not see a difference in performance when there is one current user or one hundred current users.
 \end{itemize}
 
 \subsection{Scalability or Extensibility Requirements}
+\textbf{SR-1}
 \begin{itemize}
     \item The system shall automatically scale its execution backend corresponding to the number of user requests
 \end{itemize}
 
 \subsection{Longevity Requirements}
+\textbf{LR-1}
 \begin{itemize}
     \item The system shall be free of memory leaks and uncapped caches so that restarts will not be required
 \end{itemize}
@@ -519,15 +564,15 @@ N/A - we are building a web application without any interaction with the physica
 N/A - The product shall work in any environment with an internet connection.
 
 \subsection{Wider Environment Requirements}
-N/A - The product shall work in any environment with an internet connection.
 
-\subsection{Requirements for Interfacing with Adjacent Systems}
+\textbf{WER-1}
 \begin{itemize}
     \item The system shall adhere to the best practices in data privacy to protect user information \hfill \break
     Fit criterion: The system shall have secure login methods and keep any data from being accessed externally.
 \end{itemize}
 
 \subsection{Productization Requirements}
+\textbf{PR-1}
 \begin{itemize}
     \item The product shall be deployable on AWS and accessible to the users through the web.
 \end{itemize}
@@ -537,16 +582,22 @@ N/A - there will not be regular releases for this project, and maintenance will 
 
 \section{Maintainability and Support Requirements}
 \subsection{Maintenance Requirements}
+\textbf{MR-1}
 \begin{itemize}
     \item If a likely change is made to the finished software, it will take at most 10\% of the original development time, assuming the same development resources are available (Example from a lecture that Dr. Smith said we can use if we do not think of anything else)
 \end{itemize}
 \subsection{Supportability Requirements}
+\textbf{SUR-1}
 The product must be self-supporting with all the necessary information provided in the user documentation and/or user guides.
 
 \subsection{Adaptability Requirements}
+\textbf{ADR-1}
 \begin{itemize}
     \item The product shall work under all major operating systems such as macOS, Linux and Windows. \hfill \break
     Fit criterion: Users should be able to access the system and its functionality on any of the above-listed operating systems.
+\end{itemize}
+\textbf{ADR-2}
+\begin{itemize}
     \item The product shall be compatible with all major browsers like Chrome, Safari, Microsoft Edge, Opera, and Firefox. \hfill \break
     Fit criterion: Users should be able to access the system and its functionality on any of the above browsers.
 \end{itemize}
@@ -554,42 +605,63 @@ The product must be self-supporting with all the necessary information provided 
 
 \section{Security Requirements}
 \subsection{Access Requirements}
+\textbf{ACR-1}
 \begin{itemize}
     \item The system shall verify the credentials passed onto the login screen before giving access to the system. \hfill \break
     Fit criterion: A valid email and password combination should be passed in by the user before the user can access the system.
+\end{itemize}
+\textbf{ACR-2}
+\begin{itemize}
     \item The system shall allow only verified users to view information about other accounts. \hfill \break
     Fit criterion: Non-logged-in users should not be able to view information about other users.
+\end{itemize}
+\textbf{ACR-3}
+\begin{itemize}
     \item The system shall allow only administrators to see the emails of users. \hfill \break
     Fit criterion: Non-admin users should not have access to the emails of other users.
 \end{itemize}
 
 \subsection{Integrity Requirements}
+\textbf{IR-1}
 \begin{itemize}
     \item The database shall prevent incorrect data from being introduced.
+\end{itemize}
+\textbf{IR-2}
+\begin{itemize}
     \item The database shall be regularly backed up in case of any failure
 \end{itemize}
 
 \subsection{Privacy Requirements}
+\textbf{PRR-1}
 \begin{itemize}
     \item The product shall collect, store and use the user’s email address for the login verification process only.
+\end{itemize}
+\textbf{PRR-2}
+\begin{itemize}
     \item The product shall not share its users’ email addresses with third parties under any circumstance. 
 \end{itemize}
 \subsection{Audit Requirements}
 N/A - The use of the product will not involve any sensitive data. It will also not be subject to any government regulations so auditing requirements are not needed.
 
 \subsection{Immunity Requirements}
+\textbf{IR-1}
 \begin{itemize}
     \item The product shall ensure that only verified users are allowed to submit algorithms
+\end{itemize}
+\textbf{IR-2}
+\begin{itemize}
     \item The product shall ensure that user-submitted algorithms are executed in a secure and isolated environment and prevent malicious actions.
 \end{itemize}
 
 \section{Cultural Requirements}
 \subsection{Cultural Requirements}
+\textbf{CUR-1}
 \begin{itemize}
     \item The product shall not be offensive to any group of people.
 \end{itemize}
 
 \section{Compliance Requirements}
+\textbf{LGR-1}
 \subsection{Legal Requirements}
 \begin{itemize}
     \item In compliance with the Matlab End-user license agreement. \hfill \break
@@ -597,6 +669,7 @@ N/A - The use of the product will not involve any sensitive data. It will also n
 
 \end{itemize}
 \subsection{Standards Compliance Requirements}
+\textbf{SCR-1}
 \begin{itemize}
     \item General Data Protection Regulation compliance should be the target for user data. \hfill \break
     Fit criteria: The system must ensure only necessary data are collected from users and that the data are processed and stored per GDPR. 
@@ -725,10 +798,10 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 \begin{enumerate}
   \item What knowledge and skills will the team collectively need to acquire to
   successfully complete this capstone project?  Examples of possible knowledge
-  to acquire include domain specific knowledge from the domain of your
-  application, or software engineering knowledge, mechatronics knowledge or
+  to acquire include domain-specific knowledge from the domain of your
+  application, software engineering knowledge, mechatronics knowledge or
   computer science knowledge.  Skills may be related to technology, or writing,
-  or presentation, or team management, etc.  You should look to identify at
+  or presentation, team management, etc.  You should look to identify at
   least one item for each team member.
   \item For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
@@ -743,11 +816,11 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 \end{itemize} 
 \textbf{Declan Young}
 \begin{itemize}
-    \item Developing knowledge of best practices for both frontend and backend development to ensure that the two work together seamlessly is another critical aspect of the success of this capstone project. Since there are multiple component that must work together in order for the application being developed to function efficiently and effectively, it will be important to ensure that each perform as expected individually, but also when iterating with each other. 
+    \item Developing knowledge of best practices for both frontend and backend development to ensure that the two work together seamlessly is another critical aspect of the success of this capstone project. Since there are multiple components that must work together in order for the application being developed to function efficiently and effectively, it will be important to ensure that each performs as expected individually, but also when iterating with each other. 
 \end{itemize} 
 \textbf{Benjamin Dubois}
 \begin{itemize}
-    \item Knowledge of configuring and maintaining a server will be crucial for our success in this capstone project. For this project we will be developing a server that will allow for submissions to be tested in parallel and the majority of our project depends on this being successful as this is the number one requirement of our stakeholders.
+    \item Knowledge of configuring and maintaining a server will be crucial for our success in this capstone project. For this project, we will be developing a server that will allow for submissions to be tested in parallel and the majority of our project depends on this being successful as this is the number one requirement of our stakeholders.
 \end{itemize}
 \textbf{Aidan Mariglia}
 \begin{itemize}
@@ -760,7 +833,7 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 \textbf{Best practices for both frontend and backend}
 \begin{itemize}
     \item The first approach that can be used is referencing documentation, textbooks, research or other references on best practices to ensure that both the frontend and backend are developed properly. Additionally, using this information will allow our group to acquire a significant amount of knowledge and skills regarding these topics, which will allow us to make more informed decisions on less standard topics and issues related to these fields that we are encountering throughout the duration of the project.
-    \item Another approach is by experimenting with different technologies to see how different frontend and backend frameworks and technologies interact with each other. This will give us examples for different approaches to frontend and backend development, which we can apply to each iteration of the project.
+    \item Another approach is experimenting with different technologies to see how different frontend and backend frameworks and technologies interact with each other. This will give us examples of different approaches to frontend and backend development, which we can apply to each iteration of the project.
 \end{itemize}
 \textbf{Knowledge of configuring and maintaining a server}
 \begin{itemize}
