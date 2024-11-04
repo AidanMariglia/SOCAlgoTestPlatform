@@ -2,6 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{float}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -30,457 +31,945 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2024-11-03 & 0.0 & Added initial VnV plan\\
 \bottomrule
 \end{tabularx}
 
 ~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
-
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
 
 \newpage
 
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
-
-\newpage
-
-\section{Symbols, Abbreviations, and Acronyms}
-
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
-  \bottomrule
-\end{tabular}\\
-
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+This document outlines the plans in place for the validation and verification of the Battery SOC Algorithm testing tool. It will give details regarding the plans that are in place to verify and validate each stage of the development process of the application, from the requirements to the completion of the software. Additionally, detailed descriptions of the necessary tests for both functional and non-functional requirements to be fulfilled by the system are included, to ensure that the final product is both complete and correct.
 
 \section{General Information}
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+The Battery SOC Algorithm testing tool will be tested. The tool allows for the submission of user algorithms, attempting to provide battery state of charge estimations. The algorithms will be run against a series of tests, and the results reported back to the user. A leaderboard with various filtering and sorting options will be provided to view the results of different algorithm submissions.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
-
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
-
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+The main objective of this verification and validation plan is to ensure that the battery SOC algorithm testing tool can accurately evaluate the correctness and performance of the submitted algorithms and provide a user-friendly experience. In addition, we must ensure that the system is scalable and can handle high concurrent user submissions. \\
+\newline Due to time constraints, some objectives will be out of scope, namely:
+\begin{itemize}
+    \item A comprehensive usability testing - this will require significant time and diverse user demographics. Instead, we will focus on using design best practices and have our primary users provide us with feedback.
+\end{itemize}
+We will first prioritize the correctness of the algorithm performance reports. Then, the load-handling capacity will be our second priority and the usability assessment will be the least among our top priorities. Any dependencies and external libraries will be assumed to have already been verified by their implementation team.
 
 \subsection{Challenge Level and Extras}
 
-\wss{State the challenge level (advanced, general, basic) for your project.
-Your challenge level should exactly match what is included in your problem
-statement.  This should be the challenge level agreed on between you and the
-course instructor.  You can use a pull request to update your challenge level
-(in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
-VnV planning exercise.}
-
-\wss{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.
-You can use a pull request to update your extras (in TeamComposition.csv or
-Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+The challenge level for this project is general since the technologies and domain knowledge required are simple and the problem itself is not novel enough to constitute an advanced challenge level. As an extra for this project, we will include thorough user guides and walkthroughs as part of the final application.
 
 \subsection{Relevant Documentation}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.  You can create BibTeX entries for your
-  documents and within those entries include a hyperlink to the documents.}
-
-\citet{SRS}
-
-\wss{Don't just list the other documents.  You should explain why they are relevant and 
-how they relate to your VnV efforts.}
+\begin{itemize}
+    \item Software Requirements Specification Document 
+    \begin{itemize}
+        \item The SRS is needed in order to understand the system requirements and verify that the software meets its intended goals
+        \item \url{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/SRS/SRS.pdf}
+    \end{itemize}
+    \item Module Guide and Modular Interface Specification
+    \begin{itemize}
+        \item Both design documents are needed to verify the design of the system. Each design element should link to the requirements to ensure that all requirements are accounted for and there are no missing functionalities.
+        \item \url{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/Design/SoftArchitecture/MG.pdf}
+        \item \url{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}
+    \end{itemize}
+\end{itemize}
 
 \section{Plan}
 
-\wss{Introduce this section.  You can provide a roadmap of the sections to
-  come.}
+This section contains the validation and verification plan for our application. It will outline the team responsible for verification and validation, as well as the plans that this team will carry out to verify the SRS, the design, the verification and validation plan itself, the implementation and the software. The tools that will be used for this verification are also briefly described in this section.
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+\begin{table}[h]
+\caption{Verification and Validation Team}
+\begin{tabularx}{\textwidth}{|p{3cm}|X|}
+\hline \textbf{Team Member} & \textbf{Roles}\\
+\hline
+Aidan Mariglia & Tester/QA Analyst - develop and execute test plans and review relevant documentation \\
+\hline
+Nathan Uy & Tester/QA Analyst - develop and execute test plans and review relevant documentation \\
+\hline
+Ben Bubois & Tester/QA Analyst - develop and execute test plans and review relevant documentation \\
+\hline
+Declan Young & Tester/QA Analyst - develop and execute test plans and review relevant documentation \\
+\hline
+Dr. Kollmeyer/Atjen & Both supervisors will oversee the verification process and ensure all requirements are followed and completed. \\
+\hline
+\end{tabularx}
+\end{table}
 
 \subsection{SRS Verification Plan}
 
-\wss{List any approaches you intend to use for SRS verification.  This may
-  include ad hoc feedback from reviewers, like your classmates (like your
-  primary reviewer), or you may plan for something more rigorous/systematic.}
+\textbf{Meeting Plan:}\\
+At a weekly check-in, the key requirements related to solving our problem statement will be presented, alongside a brief justification for the requirement. At this point, our supervisor can audit the requirement. For less important non-functional requirements, they can be briefly discussed to see if they are reasonable and well-suited to the problem statement.\\
+\newline \textbf{Peer Review:}\\
+Issues are created by peers with regards to the integrity of the SRS. They will be reviewed by team members, and if they are valid feedback they will be integrated into the SRS. \\
+\newline \textbf{Requirement Audit Checklist}
+\begin{itemize}
+    \item Does the requirement satisfy part of the problem statement?
+    \item Does the requirement assume implementation details?
+    \item Is the requirement necessary?
+    \item Is the requirement reasonable?
+\end{itemize}
 
-\wss{If you have a supervisor for the project, you shouldn't just say they will
-read over the SRS.  You should explain your structured approach to the review.
-Will you have a meeting?  What will you present?  What questions will you ask?
-Will you give them instructions for a task-based inspection?  Will you use your
-issue tracker?}
-
-\wss{Maybe create an SRS checklist?}
 
 \subsection{Design Verification Plan}
 
-\wss{Plans for design verification}
+\textbf{Checklist:}\\
+In order for the design of our application to be reviewed by our classmates, we will make a checklist that contains they key considerations and principles that our design should adhere to. The following checklist questions will be used for this step of verification:
+\begin{itemize}
+    \item Does the design follow best practices for design patterns?
+    \item Are the specifications of the design abstract?
+    \item Does the design contain all necessary exception handling?
+\end{itemize}
+This checklist will be implemented as a GitHub issue template that any person that is verifying the application’s design can create. This stage of verification should ideally reveal any more apparent issues with the design, so that they can be resolved before the more exhaustive walkthrough of the design.\\
+\newline \textbf{Design Document Walkthrough:}\\
+\newline In order for the design to be reviewed by our supervisors/stakeholders, we will have a detailed walkthrough of the design of our application and all related documentation. By performing this step of verification we ideally should be able to reveal any errors, missed considerations or ambiguities that were missed in the other stages of verification, such as the checklist. It is most suitable to use a walkthrough with the supervisors rather than other tools, as these groups of people are very knowledgeable about the system being created and therefore should be able to provide the greatest amount of insight and criticism about the design by going through it thoroughly.\\
+\newline This stage of verification should reveal any fundamental issues with the design of the application. Additionally, for each issue that is encountered during the walkthrough, having the supervisors and stakeholders present will be very beneficial to determining the correct solution efficiently.
 
-\wss{The review will include reviews by your classmates}
 
-\wss{Create a checklists?}
 
 \subsection{Verification and Validation Plan Verification Plan}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+To ensure that we have an effective Verification and Validation plan, it is essential to verify the plan itself by:
+\begin{itemize}
+    \item Conducting an internal review - we as a team will systematically examine the VnV plan to ensure that all our artifacts are verified, and are aligned with the project requirements.
+    \item Peer review -  colleagues will review our plan and check for any inconsistencies or anything that is missing in our plan. By having different perspectives, peers might be able to spot more potential issues.
+    \item Supervisor review - At a high level, supervisors will assess the plan to ensure it is sufficient to verify and validate that the system will achieve the project goals.
+    \item Mutation testing - we will modify test cases/requirements and see if the changes are detected. This will ensure that the verification plan can effectively find faults in the system.
+\end{itemize}
+\textbf{Checklist:}
+\begin{itemize}
+    \item The objectives of the VnV report are clearly defined
+    \item There is a detailed plan on how each artifact is going to be verified. It must be consistent throughout and complete
+    \item All requirements, both functional and non-functional are accounted for.
+    \item There is a traceability matrix for requirements and the verification/validation tests
+    \item Usability survey questions exist and are well-structured.
+\end{itemize}
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
-
-\wss{The final class presentation in CAS 741 could be used as a code
-walkthrough.  There is also a possibility of using the final presentation (in
-CAS741) for a partial usability survey.}
+Refer to section 3 of this document for detailed tests for each requirement and section 4 for the unit tests.
 
 \subsection{Automated Testing and Verification Tools}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
+\textbf{Code Linting:}
+\begin{itemize}
+    \item Autopep8 - This linter will be run with pre-commit to ensure that all Python code conforms to the PEP8 standard
+\end{itemize}
+\textbf{Unit Testing:}
+\begin{itemize}
+    \item Pytest - This unit testing framework will be used to unit test all of the application’s back-end code.
+\end{itemize}
+\textbf{Automated Integration/End to End Testing:}
+\begin{itemize}
+    \item Postman - API testing tool
+    \item Selenium - An automated testing framework that will be used to test the application end-to-end, from the front end
+\end{itemize}
+\textbf{Profiling Tool:}
+\begin{itemize}
+    \item Memray - python memory profiling tool. Will be used to evaluate system memory usage and detect memory leaks.
+\end{itemize}
+\textbf{Code coverage:}
+\begin{itemize}
+    \item Pytest-cov - Coverage reporting tool which integrates with pytest and provides flexible converge reporting for unit tests.
+\end{itemize}
+\textbf{CI/CD:}
+\begin{itemize}
+    \item GitHub actions - This CI/CD platform will be used to run workflows in order to test the following aspects of the system (as described above):
+    \begin{itemize}
+        \item Linting
+        \item Unit testing
+    \end{itemize}
+\end{itemize}
 
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
-
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
-
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
-
-\wss{This section might reference back to the SRS verification section.}
+Currently there are no formal plans for validation. Informal review of requirements happens on a weekly bases during a 30 minute sync up meeting. Through this process we incrementally discover new requirements, as well as refine existing ones. As the project progresses this process will switch from requirements capture/refinement to validation, where small parts of the system can be observed and validated.
 
 \section{System Tests}
 
-\wss{There should be text between all headings, even if it is just a roadmap of
-the contents of the subsections.}
+This section outlines the necessary tests for the application, in order for all requirements ( functional and non-functional) to be completely verified. A traceability matrix will also be included to link all system tests to their related requirements.
 
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
-
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
-
-\subsubsection{Area of Testing1}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
+This section covers all system tests for the functional requirements. The tests are divided into the following subsections: Algorithm Submission, Results Reporting, Parallel Execution, Account Creation, User Login, Data Segregation, Save Results, Leaderboard Access, Leaderboard Categorization, Sort Leaderboards, Execution Progress, Error Notification. As described in the SRS Section 9, the tests for these different areas of the system should cover all functional requirements of the system.
 		
-\paragraph{Title for Test}
+\paragraph{Algorithm Submission}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{FR1-ST1\\}
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs.  Output is not how you
-are going to return the results of the test.  The output is the expected
-result.}
+\underline{Control:} Manual
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+\underline{Initial State:} The algorithm submission page
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+\underline{Input:} A valid algorithm 
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+\underline{Output:} Success notification from the system
 
-How test will be performed: 
+\underline{Test Case Derivation:} The success notification will be output to the screen by the system if the upload of the algorithm was successful and the algorithm file is valid, therefore this notification is expected when a valid file is submitted. 
+
+\underline{How test will be performed:} A valid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the success notification is displayed on the page. If the success notification is displayed, the test passes.
+					
+\item{FR1-ST2\\}
+
+\underline{Control:} Manual
+
+\underline{Initial State:} The algorithm submission page
+
+\underline{Input:} An invalid algorithm
+
+\underline{Output:} Error notification from the system
+
+\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was successful, but the algorithm file is invalid. Therefore, this notification is expected when submitting an invalid file.  
+
+\underline{How test will be performed:} An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\paragraph{Results Reporting}
 
-...
+\begin{enumerate}
+
+\item{FR2-ST1\\}
+
+\underline{Control:} Manual
+
+\underline{Initial State:} The algorithm submission page
+
+\underline{Input:} A valid algorithm 
+
+\underline{Output:} Success/result data returned from the system
+
+\underline{Test Case Derivation:} The results of a successful test will be displayed after the algorithm execution was successful. Therefore, when submitting a successful algorithm we should expect the result of the algorithm execution to be displayed. 
+
+\underline{How test will be performed:} A tester will use an example algorithm, and submit it through the interface. After an appropriate amount of time has passed if the result is displayed, the test passes. If it does not, it was a failure.
+					
+\item{FR2-ST2\\}
+
+\underline{Control:} Manual
+
+\underline{Initial State:} The algorithm submission page
+
+\underline{Input:} An invalid algorithm
+
+\underline{Output:} Result data indicating the algorithm’s execution has failed
+
+\underline{Test Case Derivation:} When the system receives an invalid algorithm or algorithm with an error in it, it should return a result to the user indicating that the algorithm’s execution as failed, as well as additional details regarding the execution (time etc). 
+
+\underline{How test will be performed:} The tester will use an input algorithm that contains an error, and submit it through the user interface. After a short period of time the execution will fail, and this result will be displayed to the user. 
+
+\end{enumerate}
+
+\paragraph{Parallel Execution}
+
+\begin{enumerate}
+					
+\item{FR3-ST1\\}
+
+\underline{Control:} Automatic 
+
+\underline{Initial State:} Running system with no jobs queued
+
+\underline{Input:} Two valid algorithms
+
+\underline{Output:} Both algorithms execute concurrently
+
+\underline{Test Case Derivation:} In order to confirm that jobs can be run in parallel, two jobs should be sent in simultaneously. The tests should both be executed independently of each other concurrently. 
+
+\underline{How test will be performed:} Requests will be made to the API with both algorithms, the id’s of the submissions will be recorded. The status of the submissions will both be checked in the database, and they should both be in progress.
+
+\end{enumerate}
+
+\paragraph{Account Creation}
+
+\begin{enumerate}
+
+\item{FR4-ST1\\}
+
+\underline{Control:} Manual
+
+\underline{Initial State:} Account creation screen
+
+\underline{Input:} New Username and password
+
+\underline{Output:} Success message
+
+\underline{Test Case Derivation:} When creating a new account, the user provides the new information. As a result, the system for which the account is being created needs only to respond with confirmation that the creation was successful, the username and password should then function for the system.
+
+\underline{How test will be performed:} A tester will submit an account creation request with their username and password, and wait for a response. If a success message is received, then the test is successful.
+					
+\item{FR4-ST2\\}
+
+\underline{Control:} Manual
+
+\underline{Initial State:} Account creation screen
+
+\underline{Input:} Existing username and password
+
+\underline{Output:} Account already exists error
+
+\underline{Test Case Derivation:} When a user attempts to create an account with credentials for which an account already exists, account creation should fail. 
+
+\underline{How test will be performed:} The person testing will attempt to create an account with the same username as an existing account. The test is successful if the response is that an account with the specific credentials already exists.
+
+\end{enumerate}
+
+\paragraph{User Login}
+
+\begin{enumerate}
+
+\item{FR5-ST1\\}
+
+\underline{Control:} Automatic
+
+\underline{Initial State:} Login screen
+
+\underline{Input:} Valid user credentials
+
+\underline{Output:} User is logged into their account
+
+\underline{Test Case Derivation:} If a user provides valid credentials to the system on the log in screen, the system should allow the user access to their account
+
+\underline{How test will be performed:} An automated testing tool (ex. Selenium) will be used to populate the username/password fields with valid credentials. It will then validate that the user is logged in after attempting to log in with those credentials.
+					
+\item{FR5-ST2\\}
+
+\underline{Control:} Automatic
+
+\underline{Initial State:} Login screen
+
+\underline{Input:} Invalid user credentials
+
+\underline{Output:} Login error returned (invalid username/password)
+
+\underline{Test Case Derivation:} If a user provides invalid credentials to the system on the log in screen, the system should throw an error and refuse the user access to that account
+
+\underline{How test will be performed:} An automated testing tool (ex. Selenium) will be used to populate the username/password fields with invalid credentials. It will then validate that the user is not logged and that the login error is displayed, after attempting a log in with those credentials.
+
+\end{enumerate}
+
+\paragraph{Data Segregation}
+
+\begin{enumerate}
+
+\item{FR6-ST1\\}
+
+\underline{Control:} Automatic
+
+\underline{Initial State:} Algorithm submissions/results
+
+\underline{Input:} Valid user credentials, and the id of a submission corresponding to that user
+
+\underline{Output:} The details of the submission being requested
+
+\underline{Test Case Derivation:} Since the submission being requested does belong to the user requesting it, the submission’s details should be returned
+
+\underline{How test will be performed:} An automated testing tool (ex. Selenium) will be used to login with valid user credentials, and retrieve a past submission for the user that is currently logged in. Since this submission is associated with the user, the submission results should be returned.
+					
+\item{FR6-ST2\\}
+
+\underline{Control:} Automatic
+
+\underline{Initial State:} Algorithm submissions/result
+
+\underline{Input:} Valid user credentials, and a submission corresponding to a different user
+
+\underline{Output:} None
+
+\underline{Test Case Derivation:} Since the submission being requested does not belong to the user requesting it, no result should be returned (it does not exist for that user).
+
+\underline{How test will be performed:} An automated testing tool (ex. Selenium) will be used to login with valid user credentials, and retrieve a past submission for a different user than the one that is logged in. Since this submission is not associated with the user, no result should be returned.
+
+\end{enumerate}
+
+\paragraph{Save Results}
+
+\begin{enumerate}
+
+\item{FR7-ST1\\}
+
+\underline{Control:} Automatic
+
+\underline{Initial State:} Algorithm result screen
+
+\underline{Input:} The result of an algorithm to save
+
+\underline{Output:} The algorithm has been saved successfully
+
+\underline{Test Case Derivation:} If a user saves the result of an algorithm's execution, the system should output that the algorithm has been saved successfully.
+
+\underline{How test will be performed:} An automatic testing tool will submit an algorithm. Once the execution is completed, it will attempt to save the result. Once saved, the system should respond with that save success message. Additionally, the tool will attempt to retrieve the result and validate the result to ensure that it was saved successfully.
+
+\end{enumerate}
+
+\paragraph{Leaderboard Access}
+
+\begin{enumerate}
+
+\item{FR8-ST1\\}
+
+\underline{Control:} Manual
+
+\underline{Initial State:} AThe user logged in on the home screen
+
+\underline{Input:} The user navigates to the leaderboard screen
+
+\underline{Output:} Leaderboard becomes visible with submissions from other users
+
+\underline{Test Case Derivation:} The leaderboard should be available to all authenticated users, the system should return the relevant data when requested.
+
+\underline{How test will be performed:} A tester will log in and from the home page navigate to the leaderboard page. From there they will confirm that relevant data is being displayed. If the data is present then the test passes, if there is no relevant data present or errors navigating to the page, the test fails.
+
+\end{enumerate}
+
+\paragraph{Leaderboard Categorization}
+
+\begin{enumerate}
+
+\item{FR9-ST1\\}
+
+\underline{Control:} Manual
+
+\underline{Initial State:} The user logged in on the leaderboard screen
+
+\underline{Input:} User attempts to view the leaderboard for algorithms of type SOC
+
+\underline{Output:} Leaderboard with only the result for algorithms of type SOC
+
+\underline{Test Case Derivation:} When the user attempts to view the leaderboard for only algorithms of type SOC, only SOC algorithms should be displayed, with algorithms of all other types being filtered out.
+
+\underline{How test will be performed:} While logged in as a test user, we will navigate to the leaderboard page and apply the filter for algorithms of type SOC. After applyinf this filter we will ensure that only algorithms of type SOC are displayed.
+
+\end{enumerate}
+
+\paragraph{Sort Leaderboards}
+
+\begin{enumerate}
+
+\item{FR10-ST1\\}
+
+\underline{Control:} Automatic
+
+\underline{Initial State:} A non-empty and unsorted leaderboard exists in the system with at least 2 items.
+
+\underline{Input:} A sorting criteria from the user
+
+\underline{Output:} A sorted leaderboard based on the sorting criteria submitted
+
+\underline{Test Case Derivation:} The system will sort the leaderboard according to the sort criteria submitted.
+
+\underline{How test will be performed:} Initialize a mock database with a table that has unsorted data. The data can include properties that are the same among different entries. Then, call the sorting algorithm with different sort criteria. Compare the output with the expected sorted table.
+
+\end{enumerate}
+
+\paragraph{Execution Progress}
+
+\begin{enumerate}
+
+\item{FR11-ST1\\}
+
+\underline{Control:} Manual 
+
+\underline{Initial State:} The algorithm submission page
+
+\underline{Input:} A valid/invalid algorithm is submitted
+
+\underline{Output:} Display the progress of execution giving updates at each stage.
+
+\underline{Test Case Derivation:} The system will display the progress of the executing algorithm, which includes all the important steps during the algorithm’s runtime. 
+
+\underline{How test will be performed:} An algorithm is submitted manually through the submission page of our user interface and throughout the algorithm’s execution, we will monitor the output display for progress updates. The test passes if all the expected progress messages are displayed in the correct order and are being output at around the same time it is expected to be displayed.
+
+\end{enumerate}
+
+\paragraph{Error Notification}
+
+\begin{enumerate}
+
+\item{FR12-ST1\\}
+
+\underline{Control:} Manual 
+
+\underline{Initial State:} The algorithm submission page
+
+\underline{Input:} An algorithm that will throw an exception
+
+\underline{Output:} Failure notification from the system
+
+\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the execution of the algorithm is unsuccessful, therefore this notification is expected when a faulty algorithm is submitted.
+
+\underline{How test will be performed:} An algorithm that will throw an exception will be manually submitted through the submission page of our user interface. We will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy.}
-
-\wss{For some nonfunctional tests, you won't be setting a target threshold for
-passing the test, but rather describing the experiment you will do to measure
-the quality for different inputs.  For instance, you could measure speed versus
-the problem size.  The output of the test isn't pass/fail, but rather a summary
-table or graph.}
-
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
-
-\wss{If you introduce static tests in your plan, you need to provide details.
-How will they be done?  In cases like code (or document) walkthroughs, who will
-be involved? Be specific.}
-
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+This section covers all system tests for the non-functional requirements. The tests are divided into the following subsections: Look and Feel, Learning, Usability, Speed and Latency, Authentication, Database Integrity, Robustness or Fault Tolerance, Capacity, Scalability/Extensibility, and Adaptability. As described in sections 10-17 of the SRS, the tests for these different areas of the system should cover all non-functional requirements of the system.
+  
+\paragraph{Look and Feel}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{NFR1-ST1\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+\underline{Type:} Manual
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+\underline{Initial State:} The website is open in a web browser
+
+\underline{Input/Condition:} The user navigates the entire website
+
+\underline{Output/Result:} Summary of appearance, styles and designs that resemble the website Kaggle and those that do not.
+
+\underline{How test will be performed:} 
+A user will load both our website and Kaggle in the same browser. He/she will then compare our website’s look and feel with Kaggle’s and list down all elements that are similar and more importantly, elements that are not similar.
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\paragraph{Learning}
 
-...
+\begin{enumerate}
+
+\item{NFR2-ST1\\}
+
+\underline{Type:} Manual
+
+\underline{Initial State:} The user has access to the documentation of the website and the website itself
+
+\underline{Input/Condition:} The user checks for the documentation of specific functionality.
+
+\underline{Output/Result:} A detailed documentation exists for the specified functionality and the user confirms that it is complete and clear.
+
+\underline{How test will be performed:} 
+A new user will use the documentation to search how to use a specific core functionality of the program. The documentation should be sufficient for the user to start using the functionality without needing further assistance.
+
+\item{NFR2-ST2\\}
+
+\underline{Type:} Manual
+
+\underline{Initial State:} The user is logged in to the website
+
+\underline{Input/Condition:} User accesses a feature for the first time
+
+\underline{Output/Result:} Tooltips/hints are shown to the user on how to use the feature and the user can proceed with his/her task.
+
+\underline{How test will be performed:} 
+A user of the website will attempt to use a feature he/she has not used before and confirm that the hints allow them to proceed with their task without needing further assistance.
+
+\end{enumerate}
+
+\paragraph{Usability }
+
+\begin{enumerate}
+
+\item{NFR3-ST1\\}
+
+\underline{Type:} Manual
+
+\underline{Initial State:} The website is open in a web browser
+
+\underline{Input/Condition:} The user navigates the entire website
+
+\underline{Output/Result:} The user will list down all unfamiliar symbols encountered on the website or any ambiguous symbols that can cause confusion
+
+\underline{How test will be performed:} 
+A user will explore the entire website and evaluate the clarity of the symbols/icons encountered.
+
+\item{NFR3-ST2\\}
+
+\underline{Type:} Manual
+
+\underline{Initial State:} The website is open in a web browser
+
+\underline{Input/Condition:} The user skims through all the terminologies used in the website.
+
+\underline{Output/Result:} The user notes all inconsistencies in the terminologies used.
+
+\underline{How test will be performed:} 
+A user will go through different parts of the website, noting any inconsistencies in terminology.
+
+\item{NFR3-ST3\\}
+
+\underline{Type:} Manual
+
+\underline{Initial State:} The user is logged in to the website
+
+\underline{Input/Condition:} The user performs an action on the website (like submit an algorithm)
+
+\underline{Output/Result:} The user either sees a message indicating the action was successful/unsuccessful or at least a loading icon if there is latency. 
+
+\underline{How test will be performed:} 
+A user will submit an algorithm through the algorithm submission page and confirm that a success/failure message was displayed on the screen after submission. In the case of a delay, a loading icon is displayed.
+
+\item{NFR3-ST4\\}
+
+\underline{Type:} Manual
+
+\underline{Initial State:} The user is logged in to the website
+
+\underline{Input/Condition:} The user encounters a complex use case
+
+\underline{Output/Result:} A walkthrough guide exists for that use case and the user is able to complete his/her task using only the walkthrough successfully.
+
+\underline{How test will be performed:} 
+A user will try to follow the walkthrough for a complex use case and confirm that the use case can be completed without needing further assistance.
+
+\end{enumerate}
+
+\paragraph{Speed and Latency}
+
+\begin{enumerate}
+
+\item{NFR4-ST1\\}
+
+\underline{Type: Functional} 
+
+\underline{Initial State: The user is logged in to the website} 
+
+\underline{Input/Condition:  A request for the leaderboard (sorted/filtered and unsorted/unfiltered)/algorithm submission result is made} 
+
+\underline{Output/Result: The result is returned in less than 3 seconds} 
+
+\underline{How test will be performed: Use a Postman collection to make the specified requests. Use Postman tests to ensure that the response time is less than 3 seconds for each request} 
+
+\end{enumerate}
+
+\paragraph{Authentication}
+
+\begin{enumerate}
+
+\item{NFR5-ST1\\}
+
+\underline{Type:} Functional/Manual
+
+\underline{Initial State:} The login page is open
+
+\underline{Input/Condition:} Valid credentials/Invalid credentials
+
+\underline{Output/Result:} If valid credentials are passed in, then the website's main page is displayed and access is granted. Otherwise, access is denied and an error message is displayed indicating an invalid username/password was provided.
+
+\underline{How test will be performed:} 
+Attempt logging in using valid credentials and verify that the user logs in to the account that corresponds to the provided credentials. Also, attempt to log in with an invalid credential and verify that an error message is displayed and the user is not granted access.
+
+\item{NFR5-ST2\\}
+
+\underline{Type:} Manual
+
+\underline{Initial State:} The user is logged in
+
+\underline{Input/Condition:} A user attempts to view another user’s email address
+
+\underline{Output/Result:} If the user has an admin role, the other user’s email is displayed when viewing their account. If the user does not have an admin role, the other user’s email is not displayed when viewing their account. 
+
+\underline{How test will be performed:}
+Log in as an admin user and check if users’ emails can be viewed. Then, log in as a non-admin user and attempt to view users’ emails and ensure they are not visible.
+
+\end{enumerate}
+
+\paragraph{Database Integrity}
+
+\begin{enumerate}
+
+\item{NFR6-ST1\\}
+
+\underline{Type:} Functional 
+
+\underline{Initial State:} The database is initialized
+
+\underline{Input/Condition:} Invalid data (data that do not follow the proper schema)  
+
+\underline{Output/Result:} The database rejects the input and returns an error message that states invalid data.
+
+
+\underline{How test will be performed:} 
+Try to insert to the tables in the database some data that do not follow the tables’ schema. Verify that for each incorrect data input, there is an error message returned and the table does not save any of the incorrect data.
+
+\item{NFR6-ST2\\}
+
+\underline{Type:} Manual 
+
+\underline{Initial State:} The database is populated.
+
+\underline{Input/Condition:} The database has scheduled backups 
+
+\underline{Output/Result:} The backup files are created and stored and can be accessed
+
+
+\underline{How test will be performed:} After a backup has been scheduled for the database, ensure that the backup files are complete by attempting to restore from the backup and there are no data loss.
+
+
+\end{enumerate}
+
+\paragraph{Robustness or Fault Tolerance}
+
+\begin{enumerate}
+
+\item{NFR7-ST1\\}
+
+\underline{Type:} Manual
+
+\underline{Initial State:} Logged into the website for two different users
+
+\underline{Input/Condition:} Submit an algorithm that causes an error for one of the users
+
+\underline{Output/Result:} The error is only displayed for the user it was created for, but is not for the other user that is logged in
+
+\underline{How test will be performed:} 
+Log in to the accounts for two separate users. Submit an algorithm for one of the logged-in users. Ensure that the error that occurs/is displayed is only for the user that submitted the algorithm that causes it. The state of the other account should not be impacted by the error at all.
+
+\end{enumerate}
+
+\paragraph{Capacity}
+
+\begin{enumerate}
+
+\item{NFR8-ST1\\}
+
+\underline{Type:} Functional
+
+\underline{Initial State:} Logged into the website for 500 users
+
+\underline{Input/Condition:} Submit an algorithm for each of the 500 users
+
+\underline{Output/Result:} The execution of all of the algorithms should be executed concurrently immediately after submission
+
+\underline{How test will be performed:} 
+Use selenium to log into the accounts for 500 users. Submit an algorithm for all 500 users at the same time. The status of the execution for all 500 submissions should be validated to be in progress after submission.
+
+\end{enumerate}
+
+\paragraph{Scalability or Extensibility}
+
+\begin{enumerate}
+
+\item{NFR9-ST1\\}
+
+\underline{Type:} Functinal
+
+\underline{Initial State:} Logged into the website for 500 users
+
+\underline{Input/Condition:} Submit an algorithm for each of the 500 users
+
+\underline{Output/Result:} The number of resources used of the backend should be 50 times that of when 1 job is submitted (Resources should scale every 10 jobs)
+
+\underline{How test will be performed:} 
+Log into the accounts for 500 users. Submit an algorithm for all 500 users at the same time. Monitor the number of resources used in the backend to ensure it has scaled resources correctly.
+
+\end{enumerate}
+
+\paragraph{Adaptability}
+
+\begin{enumerate}
+
+\item{NFR10-ST1\\}
+
+\underline{Type:} Functional
+
+\underline{Initial State:} N/A
+
+\underline{Input/Condition:} Run all existing tests, for Safari, Microsoft Edge, Google Chrome and Firefox. 
+
+\underline{Output/Result:} All tests should pass.
+
+\underline{How test will be performed:} 
+Use Selenium to run all automated tests for each of the compatible browsers for our application
+
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+\begin{table}[H]
+    \centering
+    \caption{Traceability Between Test Cases and Requirements} \label{TblTraceability}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Test Case} & \textbf{Requirements} \\ 
+        \hline
+        Algorithm Submission & FR-1 \\ 
+        \hline
+        Results Reporting & FR-2 \\ 
+         \hline
+        Parallel Execution & FR-3 \\ 
+         \hline
+        Account Creation & FR-4 \\ 
+        \hline
+        User Login & FR-5 \\ 
+         \hline
+        Data Segregation & FR-6 \\ 
+        \hline
+        Save Results & FR-7 \\ 
+         \hline
+        Leaderboard Access & FR-8 \\ 
+         \hline
+        Leaderboard Categorization & FR-9 \\ 
+         \hline
+        Sort Leaderboard & FR-10 \\ 
+         \hline
+        Execution Progress & FR-11 \\ 
+         \hline
+        Error Notification & FR-12 \\ 
+         \hline
+        Look and Feel & LFR-1, SR-1 \\ 
+         \hline
+        Learning & LR-1, LR-2 \\
+         \hline
+        Usability & UPR-1, UPR-2, UPR-3, UPR-4 \\ 
+         \hline
+        Speed and Latency & SLR-1, SLR-2, SLR-3 \\ 
+         \hline
+        Authentication & ACR-1,ACR-2 \\
+         \hline
+        Database Integrity & IR-1, IR-2 \\ 
+         \hline
+        Robustness or Fault Tolerance & RR-1 \\ 
+         \hline
+        Capacity & CR-1 \\
+         \hline
+        Scalability or Extensibility & SR-1 \\
+         \hline
+        Adaptability & ADR-1 \\
+        \hline
+        
+    \end{tabular}
+\end{table}
 
-\section{Unit Test Description}
+% \section{Unit Test Description}
 
-\wss{This section should not be filled in until after the MIS (detailed design
-  document) has been completed.}
+% \wss{This section should not be filled in until after the MIS (detailed design
+%   document) has been completed.}
 
-\wss{Reference your MIS (detailed design document) and explain your overall
-philosophy for test case selection.}  
+% \wss{Reference your MIS (detailed design document) and explain your overall
+% philosophy for test case selection.}  
 
-\wss{To save space and time, it may be an option to provide less detail in this section.  
-For the unit tests you can potentially layout your testing strategy here.  That is, you 
-can explain how tests will be selected for each module.  For instance, your test building 
-approach could be test cases for each access program, including one test for normal behaviour 
-and as many tests as needed for edge cases.  Rather than create the details of the input 
-and output here, you could point to the unit testing code.  For this to work, you code 
-needs to be well-documented, with meaningful names for all of the tests.}
+% \wss{To save space and time, it may be an option to provide less detail in this section.  
+% For the unit tests you can potentially layout your testing strategy here.  That is, you 
+% can explain how tests will be selected for each module.  For instance, your test building 
+% approach could be test cases for each access program, including one test for normal behaviour 
+% and as many tests as needed for edge cases.  Rather than create the details of the input 
+% and output here, you could point to the unit testing code.  For this to work, you code 
+% needs to be well-documented, with meaningful names for all of the tests.}
 
-\subsection{Unit Testing Scope}
+% \subsection{Unit Testing Scope}
 
-\wss{What modules are outside of the scope.  If there are modules that are
-  developed by someone else, then you would say here if you aren't planning on
-  verifying them.  There may also be modules that are part of your software, but
-  have a lower priority for verification than others.  If this is the case,
-  explain your rationale for the ranking of module importance.}
+% \wss{What modules are outside of the scope.  If there are modules that are
+%   developed by someone else, then you would say here if you aren't planning on
+%   verifying them.  There may also be modules that are part of your software, but
+%   have a lower priority for verification than others.  If this is the case,
+%   explain your rationale for the ranking of module importance.}
 
-\subsection{Tests for Functional Requirements}
+% \subsection{Tests for Functional Requirements}
 
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
+% \wss{Most of the verification will be through automated unit testing.  If
+%   appropriate specific modules can be verified by a non-testing based
+%   technique.  That can also be documented in this section.}
 
-\subsubsection{Module 1}
+% \subsubsection{Module 1}
 
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+% \wss{Include a blurb here to explain why the subsections below cover the module.
+%   References to the MIS would be good.  You will want tests from a black box
+%   perspective and from a white box perspective.  Explain to the reader how the
+%   tests were selected.}
 
-\begin{enumerate}
+% \begin{enumerate}
 
-\item{test-id1\\}
+% \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-Initial State: 
+% Initial State: 
 					
-Input: 
+% Input: 
 					
-Output: \wss{The expected result for the given inputs}
+% Output: \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+% Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+% How test will be performed: 
 					
-\item{test-id2\\}
+% \item{test-id2\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-Initial State: 
+% Initial State: 
 					
-Input: 
+% Input: 
 					
-Output: \wss{The expected result for the given inputs}
+% Output: \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+% Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+% How test will be performed: 
 
-\item{...\\}
+% \item{...\\}
     
-\end{enumerate}
+% \end{enumerate}
 
-\subsubsection{Module 2}
+% \subsubsection{Module 2}
 
-...
+% ...
 
-\subsection{Tests for Nonfunctional Requirements}
+% \subsection{Tests for Nonfunctional Requirements}
 
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
+% \wss{If there is a module that needs to be independently assessed for
+%   performance, those test cases can go here.  In some projects, planning for
+%   nonfunctional tests of units will not be that relevant.}
 
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
+% \wss{These tests may involve collecting performance data from previously
+%   mentioned functional tests.}
 
-\subsubsection{Module ?}
+% \subsubsection{Module ?}
 		
-\begin{enumerate}
+% \begin{enumerate}
 
-\item{test-id1\\}
+% \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-Initial State: 
+% Initial State: 
 					
-Input/Condition: 
+% Input/Condition: 
 					
-Output/Result: 
+% Output/Result: 
 					
-How test will be performed: 
+% How test will be performed: 
 					
-\item{test-id2\\}
+% \item{test-id2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+% Type: Functional, Dynamic, Manual, Static etc.
 					
-Initial State: 
+% Initial State: 
 					
-Input: 
+% Input: 
 					
-Output: 
+% Output: 
 					
-How test will be performed: 
+% How test will be performed: 
 
-\end{enumerate}
+% \end{enumerate}
 
-\subsubsection{Module ?}
+% \subsubsection{Module ?}
 
-...
+% ...
 
-\subsection{Traceability Between Test Cases and Modules}
+% \subsection{Traceability Between Test Cases and Modules}
 
-\wss{Provide evidence that all of the modules have been considered.}
+% \wss{Provide evidence that all of the modules have been considered.}
 				
 \bibliographystyle{plainnat}
 
@@ -490,21 +979,29 @@ How test will be performed:
 
 \section{Appendix}
 
-This is where you can place additional information.
-
-\subsection{Symbolic Parameters}
-
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
-
 \subsection{Usability Survey Questions?}
 
-\wss{This is a section that would be appropriate for some projects.}
+General Usability: Rank from 1-5 (1 being the lowest and 5 being the highest)
+\begin{itemize}
+    \item How easy was it to navigate the website?
+    \item How would you rate the overall design and layout of the website?
+    \item How satisfied are you with the leaderboard search and filtering options?
+\end{itemize}
+Provide specific responses to each
+\begin{itemize}
+    \item What was your biggest pain point navigating 
+    the website?
+    \item Was there any task you were unable to do, even after hints were provided by the website and after looking through the documentation/walkthroughs provided?
+\end{itemize}
+List some items
+\begin{itemize}
+    \item Could you list any confusing terminologies used on the website?
+    \item Could you list any unfamiliar symbols encountered on the website?
+\end{itemize}
+
 
 \newpage{}
 \section*{Appendix --- Reflection}
-
-\wss{This section is not required for CAS 741}
 
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.
@@ -525,5 +1022,67 @@ graduate attribute of Lifelong Learning.
   mastering the skill?  Of the identified approaches, which will each team
   member pursue, and why did they make this choice?
 \end{enumerate}
+
+\subsection*{Nathan Uy}
+
+\begin{enumerate}
+    \item Writing the tests for functional requirements went well because we have very well-defined functional requirements and it is clearly defined what is expected from the system, so coming up with tests and ensuring completeness of tests were straightforward.
+    \item Writing the tests for non-functional requirements was challenging. Firstly, we had many NFRs and had to trim it down first to include only the important ones. In addition, some of our NFRs are very hard to measure quantitatively like usability and maintainability. So, it was quite challenging to come up with metrics to assess them.
+
+\end{enumerate}  
+
+\subsection*{Declan Young}
+
+\begin{enumerate}
+    \item During this deliverable, writing the system tests went well. I think that because we have already spent a significant amount of time creating and refining the requirements, it was easy to determine how we will test the system to ensure that it fulfills all of them. Additionally, since all the tests we made were directly traced to requirements, it was fairly clear what tests were needed to test the entirety of the system.
+    \item One of the pain points during this deliverable was writing the verification and validation plans for the different aspects of the project. I think this was the case because verifying many aspects of the project, such as the SRS or the VnV itself is not very straightforward, and is very difficult to do in a complete manner. We resolved this pain point by considering all of the different suitable methods of verification for each aspect of the project, and picking those that we thought were most appropriate based on their effectiveness and feasibility. Another pain point was determining what testing tools to use. Since there is such a large number of different testing tools, each one being suitable for different applications. To resolve this pain point, we did research for tools that useful in the specific applications we will be doing, and narrowed the available options down based on experience we had with them and ease of use in order to select the best options.
+\end{enumerate}  
+
+\subsection*{Aidan Mariglia}
+
+\begin{enumerate}
+    \item During the work on this deliverable, collaborating as a team went very well. Now that we have a few deliverables under our belt, the team was very effective at applying working strategies such as meeting early, dividing work into discrete chunks, discussing early the levels of importance for different sections and key points which the team wanted to make. These strategies have been refined through working on previous deliverables, and now result in a more efficient working process.
+    \item Effectively choosing an area to focus on for this deliverable caused difficulty. A result of complete past deliverables, the team realized that putting an even effort across the board was not effective due to the size and time constraints associated with the deliverable. As a result we decided to single out what we thought was the most important part of the deliverable, and put an increased effort there, even if it meant a reduced effort in other areas. It was difficult however to agree on what was the most important area of this deliverable. In the end we decided it was the system tests.
+
+\end{enumerate}  
+
+\subsection*{Benjamin Dubois}
+
+\begin{enumerate}
+    \item During this deliverable creating the checklist to ensure the effectiveness of our verification and validation plan went well and we were able to quickly agree on the items and create this list. I believe this went well as we had previously discussed how we were going to ensure the effectiveness of tests and already had a clear idea of what we needed to complete to ensure this. 
+    \item The largest pain point when completing this deliverable was creating the non-functional requirement tests. This is because we had some non-functional requirements like “The appearance of the system should look similar to Kaggle” that are hard to test as they can be very subjective from person to person. Unlike the functional requirements that only had one correct output that could be tested, it was much harder to find tests that ensured these non-functional requirements were fulfilled. 
+\end{enumerate}  
+
+\subsection*{Team}
+
+\begin{enumerate}
+\setcounter{enumi}{2}
+    \item It will be necessary for our team to acquire the following skills in order to complete the verification and validation of our project:
+    \begin{itemize}
+        \item Proficiency in the testing technologies mentioned in this document (pytest, selenium)
+        \item Knowledge of different types of testing specifically: unit testing, integration testing, usability testing, performance testing and load testing.
+        \item Skills in conducting surveys, interviews and feedback from users to improve the design/usability of the software.
+        \item Project management skills will be necessary to manage our limited time, effectively track results/issues and allocate tasks.
+    \end{itemize}
+    \item Two approaches for acquiring the skills mentioned above are:
+    \begin{itemize}
+        \item For proficiency in testing technologies, one way to be proficient is by registering for online courses/tutorials and doing hands-on exercises to apply the knowledge. Another is by going through the documentation for the technologies and making use of community forums like Stack Overflow. 
+        \begin{itemize}
+            \item The team decided to pursue making use of the documentation available online as it is more efficient and most of the tools are already well documented.
+        \end{itemize}
+        \item For acquiring knowledge of different types of testing, one way to master the skill is by watching online tutorials for each testing type. There are many free resources online and this way, each member can study at their own pace. Another way to master the skill is by discussing amongst ourselves and sharing our knowledge about the subject. This way, our team cohesion and collaboration is enhanced further.
+        \begin{itemize}
+            \item The team decided to pursue the latter option since it would likely take less time compared to individually spending time to learn from a course. It also allows sharing of knowledge among the team, peer support, and team problem-solving, ultimately strengthening the team’s cohesion.
+        \end{itemize}
+        \item One way to learn how to be effective at writing and conducting surveys is by watching videos on how professionals do surveys. Another is by actually conducting surveys ourselves among our peers and reflecting on what went right and what we could improve on.
+        \begin{itemize}
+            \item The team decided to pursue the latter approach as it is more engaging and hands-on learning.
+        \end{itemize}
+        \item One way to gain project management skills is by attending courses that go over the fundamentals of project management and methodologies like Agile, Scrum, etc. Another is by gaining experience working on a project.
+        \begin{itemize}
+            \item The team decided to pursue using our experience from our internships to discuss and learn from each other about effective project management strategies that we have observed in the workplace and try to implement those in our own projects due to the time constraints of this project.
+        \end{itemize}
+    \end{itemize}
+\end{enumerate} 
 
 \end{document}
