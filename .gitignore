@@ -281,3 +281,6 @@ TSWLatexianTemp*
 #pycache
 __pycache__
 venv
+
+# db
+src/build/tmp/db/

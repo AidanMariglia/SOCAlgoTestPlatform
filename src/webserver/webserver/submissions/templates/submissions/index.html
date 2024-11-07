@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission and Results</title>
+    <style>
+        /* Basic styling for the form and results */
+        .container {
+            width: 80%;
+            margin: auto;
+            font-family: Arial, sans-serif;
+        }
+        .submission-box {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            font-size: 1.1em;
+        }
+        .submit-button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .results-list {
+            margin-top: 20px;
+            padding: 0;
+            list-style: none;
+        }
+        .result-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Submit Your Code</h1>
+        
+        <!-- Submission Form -->
+         <!-- need to see how to make this post to the index, since we are
+          creating a submission-->
+        <form method="POST" action="{% url 'index' %}">
+            <!-- not sure about the token either-->
+            {% csrf_token %}
+            <textarea name="submission" class="submission-box" placeholder="Enter your MATLAB code here..."></textarea>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+
+        <!-- Results List -->
+        <h2>Previous Submissions</h2>
+        <ul class="results-list">
+            {% for result in results %}
+                <li class="result-item">
+                    <small>Submitted at: {{ result.submitted_at }}</small><br>
+                    <pre>{{ result.body|truncatewords:50 }}</pre>  <!-- Only show a snippet of the code -->
+                    <p>Status: {{ result.status.name }}</p>
+                </li>
+            {% empty %}
+                <p>No submissions available.</p>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
