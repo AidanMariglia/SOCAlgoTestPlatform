@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres:17.0
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    # volumes:
+      # uncomment this line to persist db
+      # - ./tmp/db:/var/lib/postgresql/data
