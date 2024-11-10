@@ -1,4 +1,5 @@
 from django.db import models
+from .utils import validate_file_extension
 
 # Create your models here.
 class SubmissionStatus(models.Model):
@@ -14,7 +15,7 @@ class Submission(models.Model):
     # and make that default, but im not sure how to preload
     # data into the submissionstatus model yet
     status = models.ForeignKey(SubmissionStatus, null=True, on_delete=models.SET_NULL)
-    body = models.TextField()
+    file = models.FileField(upload_to='uploads/', validators=[validate_file_extension])
     result = models.TextField(blank=True)
-    submitted_at = models.DateTimeField(auto_now_add=True)
+    submitted_at = models.DateTimeField(null=True) #null for now. Giving me issues
     completed_at = models.DateTimeField(null=True)
