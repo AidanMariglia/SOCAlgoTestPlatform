@@ -6,8 +6,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 def index(request: HttpRequest):
-    if request.method == 'POST':
-        return HttpResponse("Hello, world. You're at the polls index.")
+    return render(request, 'index.html')
 
 def register(request: HttpRequest):
     if request.method == 'POST':

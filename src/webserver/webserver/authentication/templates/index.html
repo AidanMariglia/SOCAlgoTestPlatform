@@ -1,0 +1,70 @@
+<style>
+    .content-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-left: 320px; 
+    height: 100vh;
+    width: calc(100% - 200px); 
+  }
+</style>
+
+{% extends "login_page.html" %}
+
+{% block title %}
+  <title>Homepage</title>
+{% endblock %}
+
+{% block content %}
+  <div class="content-wrapper">
+    <div class="container mt-5">
+      <h1 class="text-center">Welcome to SOCAlgoTest</h1>
+      <p class="lead text-center">
+        Explore our platform to submit algorithms and see where you rank on the leaderboard
+      </p>
+
+      <div class="row mt-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Create an Account</h5>
+              <p class="card-text">
+                New here? Sign up and submit your algorithms today
+              </p>
+              <a href="/authentication/register" class="btn btn-secondary">Get Started</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Submit Your Algorithm</h5>
+              <p class="card-text">
+                Contribute your algorithms to our database and get your results.
+              </p>
+              <a href="{% url 'submissionsPage' %}" class="btn btn-secondary">Submit Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Leaderboard</h5>
+              <p class="card-text">
+                Check out some of the best algorithms and see where you rank.
+              </p>
+              <a href="/leaderboard" class="btn btn-secondary">View Leaderboard</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <h2>About Us</h2>
+        <p>
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

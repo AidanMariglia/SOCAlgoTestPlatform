@@ -1,26 +1,87 @@
 <style>
-  /* Global styles */
   body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f7fc;
+    background-color: #f9f9f9;
     margin: 0;
     padding: 0;
+    height: 100vh;
+  }
+
+  .container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .sidebar {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+  }
+
+  .sidebar-nav {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .sidebar-nav li {
+    margin: 15px 0;
+  }
+
+  .sidebar-nav .nav-link {
+    color: #ddd;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .sidebar-nav .nav-link:hover {
+    color: #8b8b8b;
+  }
+
+  .sidebar-nav .logout-btn {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .sidebar-nav .logout-btn:hover {
+    color: #8b8b8b;
+  }
+
+  h1, h2, h3 {
+    font-weight: 600;
+    color: #333;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .content-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
-    position: relative; 
+    margin-left: 425px; 
+    height: 100vh;
+    width: calc(100% - 425px); 
   }
 
   .login-container {
-    position:absolute; right:660px; top:400px;
-    width: 200%;
-    max-width: 1000px; 
+    width: 100%;
+    max-width: 500px; 
     background-color: #fff;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center; 
+    text-align: center;
   }
 
   h2 {
@@ -84,12 +145,12 @@
   }
 
   .form-actions .primary-btn {
-    background-color: #696969;  /* Blue background */
-    color: white;  /* White text for contrast */
+    background-color: #696969; 
+    color: white;  
   }
 
   .form-actions .primary-btn:hover {
-    background-color: #515151;  /* Darker blue on hover */
+    background-color: #515151;  
   }
 
   .forgot-password-link {
@@ -106,7 +167,12 @@
     text-decoration: underline;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
+    .content-wrapper {
+      margin-left: 0;
+      padding-top: 30px;
+    }
+
     .login-container {
       width: 90%;
       padding: 30px;
@@ -126,44 +192,45 @@
 {% extends "login_page.html" %}
 
 {% block content %}
-  <div class="login-container">
-    <h2>Login</h2>
+  <div class="content-wrapper">
+    <div class="login-container">
+      <h2>Login</h2>
 
-    {% if form.errors %}
-      <div class="error-message">
-        <p>Your username and password didn't match. Please try again.</p>
-      </div>
-    {% endif %}
+      {% if form.errors %}
+        <div class="error-message">
+          <p>Your username and password didn't match. Please try again.</p>
+        </div>
+      {% endif %}
 
-    {% if next %}
-      <div class="info-message">
-        {% if user.is_authenticated %}
-          <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
-        {% else %}
-          <p>Please login to see this page.</p>
-        {% endif %}
-      </div>
-    {% endif %}
+      {% if next %}
+        <div class="info-message">
+          {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+          {% else %}
+            <p>Please login to see this page.</p>
+          {% endif %}
+        </div>
+      {% endif %}
 
-    <form method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-      <div class="form-group">
-        <label for="{{ form.username.id_for_label }}">Username</label>
-        {{ form.username }}
-      </div>
-      
-      <div class="form-group">
-        <label for="{{ form.password.id_for_label }}">Password</label>
-        {{ form.password }}
-      </div>
-      
-      <div class="form-actions">
-        <input type="submit" value="Login" class="btn primary-btn">
-        <input type="hidden" name="next" value="{{ next }}">
-      </div>
-    </form>
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="{{ form.username.id_for_label }}">Username</label>
+          {{ form.username }}
+        </div>
+        
+        <div class="form-group">
+          <label for="{{ form.password.id_for_label }}">Password</label>
+          {{ form.password }}
+        </div>
+        
+        <div class="form-actions">
+          <input type="submit" value="Login" class="btn primary-btn">
+          <input type="hidden" name="next" value="{{ next }}">
+        </div>
+      </form>
 
-    <p class="forgot-password-link"><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+      <p class="forgot-password-link"><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+    </div>
   </div>
-
 {% endblock %}

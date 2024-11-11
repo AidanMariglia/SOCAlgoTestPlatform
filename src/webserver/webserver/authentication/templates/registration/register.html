@@ -1,148 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "Login_page.html" %}
+
+{% block title %}
   <title>Registration Form</title>
-  <style>
-    /* Global styles */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f7fc;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+{% endblock %}
 
-    .form-container {
-      background-color: #fff;
-      padding: 20px 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 800px; /* Increased width for a horizontal layout */
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    /* Form styles */
-    form {
-      display: flex;
-      flex-wrap: wrap;  /* Ensures fields wrap to new rows if needed */
-      gap: 20px;  /* Adds space between fields */
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-      width: 48%;  /* Makes each input field take up half the form width */
-    }
-
-    label {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 5px;
-    }
-
-    input {
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      transition: border-color 0.3s ease;
-    }
-
-    input:focus {
-      border-color: #4caf50;
-      outline: none;
-    }
-
-    button {
-      background-color: #696969;
-      color: white;
-      font-size: 16px;
-      padding: 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;  /* Full width button */
-      margin-bottom: 10px;  /* Adds space between buttons */
-    }
-
-    button:hover {
-      background-color: #515151;
-    }
-
-    /* Additional styling for the "Return to Login" button */
-    .return-button {
-      background-color: #f1f1f1;
-      color: #333;
-      border: 1px solid #ddd;
-      font-size: 16px;
-      padding: 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;  /* Full width button */
-    }
-
-    .return-button:hover {
-      background-color: #e0e0e0;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      .form-container {
-        width: 90%;
-      }
-
-      div {
-        width: 100%;  /* Stacks fields vertically on smaller screens */
-      }
-
-      button, .return-button {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="form-container">
-    <h2>Register</h2>
-    <form method="POST">
-      {% csrf_token %}
-      <div>
-        <label for="username">Username*</label>
-        <input type="text" name="username" required>
-      </div>
-      <div>
-        <label for="email">Email*</label>
-        <input type="email" name="email" required>
-      </div>
-      <div>
-        <label for="password">Password*</label>
-        <input type="password" name="password" required>
-      </div>
-      <div>
-        <label for="first_name">First Name</label>
-        <input type="text" name="first_name">
-      </div>
-      <div>
-        <label for="last_name">Last Name</label>
-        <input type="text" name="last_name">
-      </div>
-      <button type="submit">Register</button>
-      <!-- Return to Login Button -->
-      <button type="button" class="return-button" onclick="window.location.href='/accounts/login';">Return to Login</button>
-    </form>
+{% block content %}
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="col-sm-8 col-md-6 col-lg-6 form-container" style="margin-left: 450px;">
+      <h2 class="text-center">Create An Account</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="username" class="form-label">Username*</label>
+          <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email*</label>
+          <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password*</label>
+          <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="first_name" class="form-label">First Name</label>
+          <input type="text" name="first_name" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="last_name" class="form-label">Last Name</label>
+          <input type="text" name="last_name" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-secondary w-100 mb-2">Register</button>
+      </form>
+    </div>
   </div>
-</body>
-</html>
+{% endblock %}

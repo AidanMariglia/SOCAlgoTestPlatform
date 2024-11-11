@@ -59,7 +59,7 @@
       }
 
       .sidebar-nav .logout-btn {
-        color: #8b8b8b;
+        color: #ffffff;
         text-decoration: none;
         font-size: 16px;
       }
@@ -106,8 +106,10 @@
             <ul class="sidebar-nav">
               <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
               <li><a href="/authentication/register" class="nav-link">Create Account</a></li>
+              <li><a href="/accounts/login" class="nav-link">Login</a></li>
               {% if user.is_authenticated %}
                 <li><a href="/submissions/submissionsPage" class="nav-link">Submit An Algorithm</a></li>
+                <li><a href="/leaderboard" class="nav-link">View Leaderboard</a></li>
                 <li><span class="nav-link">User: {{ user.get_username }}</span></li>
                 <li>
                   <form id="logout-form" method="post" action="{% url 'logout' %}">
@@ -117,6 +119,7 @@
                 </li>
               {% else %}
                 <li><a href="{% url 'login' %}?next=/submissions/submissionsPage" class="nav-link">Submit An Algorithm</a></li>
+                <li><a href="{% url 'login' %}?next=/leaderboard" class="nav-link">View Leaderboard</a></li>
               {% endif %}
             </ul>
           {% endblock %}
