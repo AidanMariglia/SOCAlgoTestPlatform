@@ -5,6 +5,7 @@ from django.db import migrations
 statuses = [ 
     {"name": "pending", "description": "placeholder"},
     {"name": "failed", "description": "placeholder"},
+    {"name": "completed", "description": "submission has been completed"}
 ]
 
 def create_statuses(apps, schema_editor):

@@ -19,3 +19,4 @@ class Submission(models.Model):
     result = models.TextField(blank=True)
     submitted_at = models.DateTimeField(null=True) #null for now. Giving me issues
     completed_at = models.DateTimeField(null=True)
+    result = models.TextField(max_length=1024)

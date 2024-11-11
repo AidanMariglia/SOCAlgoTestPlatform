@@ -2,16 +2,22 @@ from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from .models import Submission, SubmissionStatus
 from .forms import FileUploadForm
+from .tasks import run_submission
 from django.utils import timezone
 
 def index(request: HttpRequest):
     if request.method == 'POST':
         form = FileUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            submission = form.save(commit=False)
+            submission: Submission = form.save(commit=False)
             submission.status = SubmissionStatus.objects.get(name="pending")
             submission.submitted_at = timezone.now()
             submission.save()
+
+            # once submission is successfulled stored in db,
+            # create a task to execute it
+
+            run_submission(submission.id)
             return redirect('submissionsPage')
     else:
         form = FileUploadForm()
