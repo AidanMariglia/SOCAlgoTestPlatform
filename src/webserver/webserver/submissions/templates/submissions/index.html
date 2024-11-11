@@ -1,66 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Submission and Results</title>
     <style>
-        /* Basic styling for the form and results */
-        .container {
-            width: 80%;
-            margin: auto;
-            font-family: Arial, sans-serif;
-        }
-        .submission-box {
-            width: 100%;
-            height: 200px;
-            padding: 10px;
-            font-size: 1.1em;
-        }
-        .submit-button {
-            margin-top: 10px;
-            padding: 8px 16px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-        .results-list {
-            margin-top: 20px;
-            padding: 0;
-            list-style: none;
-        }
-        .result-item {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 80%;
+        max-width: 600px;
+        margin: 3rem auto;
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
+      h1 {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: #333;
+        text-align: center;
+      }
+      .submission-box {
+        width: 100%;
+        height: 200px;
+        padding: 15px;
+        font-size: 1em;
+        border: 2px dashed #d0d4d9;
+        border-radius: 8px;
+        background-color: #f7f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+      .submission-box:hover {
+        background-color: #e9ecef;
+      }
+      .submit-button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 1rem;
+        font-size: 1em;
+        font-weight: 500;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .submit-button:hover {
+        background-color: #0056b3;
+      }
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .submissions-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #3b8d99;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease;
+      }
+      .submissions-link:hover {
+        background-color: #2c6d75;
+      }
+      .error-message {
+        color: red;
+        margin-top: 5px;
+        font-size: 0.9em;
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Submit Your Code</h1>
-        
-        <!-- Submission Form -->
-         <!-- need to see how to make this post to the index, since we are
-          creating a submission-->
-        <form method="POST" action="{% url 'index' %}">
-            <!-- not sure about the token either-->
-            {% csrf_token %}
-            <textarea name="submission" class="submission-box" placeholder="Enter your MATLAB code here..."></textarea>
-            <button type="submit" class="submit-button">Submit</button>
-        </form>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const allowedExtensions = ["m", "mat"];
+        const fileInput = document.querySelector('input[type="file"]');
+        const errorMessage = document.getElementById("file-error");
 
-        <!-- Results List -->
-        <h2>Previous Submissions</h2>
-        <ul class="results-list">
-            {% for result in results %}
-                <li class="result-item">
-                    <small>Submitted at: {{ result.submitted_at }}</small><br>
-                    <pre>{{ result.body|truncatewords:50 }}</pre>  <!-- Only show a snippet of the code -->
-                    <p>Status: {{ result.status.name }}</p>
-                </li>
-            {% empty %}
-                <p>No submissions available.</p>
-            {% endfor %}
-        </ul>
+        fileInput.addEventListener("change", function () {
+          const filePath = fileInput.value;
+          const fileExtension = filePath.split(".").pop().toLowerCase();
+
+          if (!allowedExtensions.includes(fileExtension)) {
+            errorMessage.textContent =
+              "File not supported. Please upload a MATLAB (.mat or .m) file.";
+            errorMessage.style.display = "block";
+
+            // Clear file input
+            fileInput.value = "";
+
+            // Hide the error message after 3 seconds
+            setTimeout(function () {
+              errorMessage.style.display = "none";
+            }, 3000);
+          } else {
+            errorMessage.style.display = "none";
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Link submissions page -->
+      <a href="{% url 'submissionsPage' %}" class="submissions-link"
+        >View All Submissions</a
+      >
+
+      <h1>Submit Your Code</h1>
+
+      <!-- Submission Form -->
+      <!-- need to see how to make this post to the index, since we are
+          creating a submission-->
+      <form
+        method="POST"
+        enctype="multipart/form-data"
+        action="{% url 'index' %}"
+      >
+        <!-- not sure about the token either-->
+        {% csrf_token %} {{ form.as_p }}
+        <div id="file-error" class="error-message" style="display: none"></div>
+        <button type="submit" class="submit-button">Upload</button>
+      </form>
     </div>
-</body>
+  </body>
 </html>
