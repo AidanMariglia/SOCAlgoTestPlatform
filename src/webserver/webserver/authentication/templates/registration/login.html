@@ -1,0 +1,169 @@
+<style>
+  /* Global styles */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    position: relative; 
+  }
+
+  .login-container {
+    position:absolute; right:660px; top:400px;
+    width: 200%;
+    max-width: 1000px; 
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+  }
+
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px; 
+  }
+
+  .error-message,
+  .info-message {
+    background-color: #ffdddd;
+    color: #d8000c;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+  }
+
+  .info-message {
+    background-color: #d9edf7;
+    color: #31708f;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 15px; 
+    font-size: 18px; 
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input:focus {
+    border-color: #696969;
+    outline: none;
+  }
+
+  .form-actions {
+    text-align: center;
+    background-color: #696969;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    font-size: 18px;  
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .form-actions .primary-btn {
+    background-color: #696969;  /* Blue background */
+    color: white;  /* White text for contrast */
+  }
+
+  .form-actions .primary-btn:hover {
+    background-color: #515151;  /* Darker blue on hover */
+  }
+
+  .forgot-password-link {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  .forgot-password-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .forgot-password-link a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .login-container {
+      width: 90%;
+      padding: 30px;
+    }
+
+    h2 {
+      font-size: 22px;
+    }
+
+    .form-group input,
+    .btn {
+      font-size: 16px;
+    }
+  }
+</style>
+
+{% extends "login_page.html" %}
+
+{% block content %}
+  <div class="login-container">
+    <h2>Login</h2>
+
+    {% if form.errors %}
+      <div class="error-message">
+        <p>Your username and password didn't match. Please try again.</p>
+      </div>
+    {% endif %}
+
+    {% if next %}
+      <div class="info-message">
+        {% if user.is_authenticated %}
+          <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+        {% else %}
+          <p>Please login to see this page.</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+      </div>
+      
+      <div class="form-group">
+        <label for="{{ form.password.id_for_label }}">Password</label>
+        {{ form.password }}
+      </div>
+      
+      <div class="form-actions">
+        <input type="submit" value="Login" class="btn primary-btn">
+        <input type="hidden" name="next" value="{{ next }}">
+      </div>
+    </form>
+
+    <p class="forgot-password-link"><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+  </div>
+
+{% endblock %}
