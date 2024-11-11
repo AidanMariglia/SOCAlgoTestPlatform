@@ -76,13 +76,20 @@ WSGI_APPLICATION = 'webserver.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# can pass the default as the second option instead of doing this malarchy
+host = os.environ.get("SOC_DB_HOST")
+
+if not host:
+    host = "127.0.0.1"
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'SOC',
         'USER': 'root',
         'PASSWORD': 'password',
-        'HOST': "127.0.0.1"
+        'HOST': host
     }
 }
 
