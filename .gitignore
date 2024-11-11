@@ -285,5 +285,7 @@ venv
 # db
 src/build/tmp/db/
 
-#
+
+# uploaded files
+
 src/webserver/webserver/media/uploads
