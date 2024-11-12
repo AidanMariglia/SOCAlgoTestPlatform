@@ -6,6 +6,39 @@ services:
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
+    networks:
+      - service_net
     # volumes:
       # uncomment this line to persist db
       # - ./tmp/db:/var/lib/postgresql/data
+
+  django:
+    build:
+      context: ..
+      dockerfile: build/Dockerfile
+      target: server
+    ports:
+      - "8000:8000"
+    environment:
+      SOC_DB_HOST: db
+    volumes:
+      - ../webserver/webserver/media:/app/media
+    networks:
+      - service_net
+
+  django-workers:
+    build:
+      context: ..
+      dockerfile: build/Dockerfile
+      target: workers 
+    environment:
+      - SOC_DB_HOST=db
+    volumes:
+      - ../webserver/webserver/media:/app/media
+    networks:
+      - service_net
+
+
+networks:
+  service_net:
+    driver: bridge

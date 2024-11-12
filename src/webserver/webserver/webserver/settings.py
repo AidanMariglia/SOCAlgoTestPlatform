@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'workers',
 ]
 
 MIDDLEWARE = [
@@ -75,13 +76,20 @@ WSGI_APPLICATION = 'webserver.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# can pass the default as the second option instead of doing this malarchy
+host = os.environ.get("SOC_DB_HOST")
+
+if not host:
+    host = "127.0.0.1"
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'SOC',
         'USER': 'root',
         'PASSWORD': 'password',
-        'HOST': "127.0.0.1"
+        'HOST': host
     }
 }
 
@@ -129,3 +137,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# WORKERS SETTINGS
+
+# run 3 workers at once for now
+WORKERS_CONCURRENCY = 3
+# run tasks for 180 seconds max
+WORKERS_TIMEOUT = 180
