@@ -4,7 +4,9 @@ from .models import Submission, SubmissionStatus
 from .forms import FileUploadForm
 from .tasks import run_submission
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request: HttpRequest):
     if request.method == 'POST':
         form = FileUploadForm(request.POST, request.FILES)
@@ -12,6 +14,7 @@ def index(request: HttpRequest):
             submission: Submission = form.save(commit=False)
             submission.status = SubmissionStatus.objects.get(name="pending")
             submission.submitted_at = timezone.now()
+            submission.user = request.user
             submission.save()
 
             # once submission is successfulled stored in db,
@@ -23,7 +26,8 @@ def index(request: HttpRequest):
         form = FileUploadForm()
     return render(request, "submissions/index.html", {"form": form})
 
+@login_required
 def submissionsPage(request: HttpRequest):
-    submissions = Submission.objects.all()
+    submissions = Submission.objects.filter(user=request.user)
 
     return render(request, "submissions/submissions.html", {"submissions": submissions})

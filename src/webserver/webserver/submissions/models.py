@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from .utils import validate_file_extension
 
 # Create your models here.
@@ -8,6 +9,8 @@ class SubmissionStatus(models.Model):
 
     def __str__(self):
         return self.name
+
+User = get_user_model()
 
 class Submission(models.Model):
     # todo. I don't want this to be nullable
@@ -20,3 +23,4 @@ class Submission(models.Model):
     submitted_at = models.DateTimeField(null=True) #null for now. Giving me issues
     completed_at = models.DateTimeField(null=True)
     result = models.TextField(max_length=1024)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
