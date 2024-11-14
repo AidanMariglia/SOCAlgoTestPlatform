@@ -4,7 +4,9 @@ from .models import Submission, SubmissionStatus
 from .forms import FileUploadForm
 from .tasks import run_submission
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request: HttpRequest):
     if request.method == 'POST':
         form = FileUploadForm(request.POST, request.FILES)
@@ -23,6 +25,7 @@ def index(request: HttpRequest):
         form = FileUploadForm()
     return render(request, "submissions/index.html", {"form": form})
 
+@login_required
 def submissionsPage(request: HttpRequest):
     submissions = Submission.objects.all()
 
