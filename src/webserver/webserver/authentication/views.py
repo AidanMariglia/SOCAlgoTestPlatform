@@ -5,8 +5,8 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-def index(request: HttpRequest):
-    return render(request, 'index.html')
+def home(request: HttpRequest):
+    return render(request, 'home.html')
 
 def register(request: HttpRequest):
     if request.method == 'POST':
