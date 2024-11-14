@@ -43,9 +43,9 @@
                 Contribute your algorithms to our database and get your results.
               </p>
               {% if user.is_authenticated %}
-                <a href="/submissions/submissionsPage" class="btn btn-secondary">Submit Now</a>
+                <a href="/submissions/" class="btn btn-secondary">Submit Now</a>
               {% else %}
-                <a href="{% url 'login' %}?next=/submissions/submissionsPage" class="btn btn-secondary">Submit Now</a>
+                <a href="{% url 'login' %}?next=/submissions/" class="btn btn-secondary">Submit Now</a>
               {% endif %}
             </div>
           </div>
