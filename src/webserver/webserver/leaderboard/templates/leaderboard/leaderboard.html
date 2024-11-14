@@ -1,0 +1,49 @@
+<style>
+  h1 {
+    text-align: center;
+    padding: 50px;
+    color: black;
+  }
+  table {
+    text-align: center;
+    width: 100%;
+    color: black;
+    padding: 50px;
+  }
+  th {
+    text-align: center;
+    padding: 25px;
+  }
+  td {
+    text-align: center;
+    padding: 25px;
+  }
+  tr > td {
+    border: 2px solid black;
+  }
+</style>
+
+{% extends "login_page.html" %} {% block title %}
+<title>Algorithm Leaderboard</title>
+{% endblock %} {% block content %}
+<div>
+  <h1>Leaderboard</h1>
+  <table>
+    <tr>
+      <th>User</th>
+      <th>Submitted At</th>
+      <th>Result</th>
+    </tr>
+    <tbody>
+      {% for result in results %}
+      <tr>
+        <td>{{ result.user }}</td>
+        <td>{{ result.submitted_at }}</td>
+        <td>{{ result.result }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
