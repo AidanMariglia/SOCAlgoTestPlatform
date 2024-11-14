@@ -8,7 +8,7 @@ down:
 	docker compose down
 
 workers:
-	docker compose up -d --force-recreate django-workers 
+	docker compose up -d --build django-workers 
 
 server:
-	docker compose up -d --force-recreate django 
+	docker compose up -d  --build django 
