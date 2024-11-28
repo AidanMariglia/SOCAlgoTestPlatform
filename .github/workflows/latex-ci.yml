@@ -1,0 +1,25 @@
+name: Build latex files
+
+on:
+  push:
+    paths:
+      - "**/*.tex"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up latex
+        uses: dante-ev/latex-action@latest
+
+      - name: Compile new or updated latex files
+        run: |
+          CHANGED_LATEX_FILES=$(git diff --name-only HEAD^ HEAD | grep '\.tex$')
+          for FILE in $CHANGED_LATEX_FILES; do
+            echo "Compiling $FILE"
+            latexmk -pdf -interaction=nonstopmode -halt-on-error "$FILE" && echo "$FILE compiled successfully" || echo "Failed to compile $FILE"
+          done
