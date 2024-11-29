@@ -33,7 +33,7 @@ jobs:
 
       - name: Compile new or updated latex files
         run: |
-          CHANGED_LATEX_FILES=$(git diff --name-only HEAD^ HEAD | grep '\.tex$')
+          CHANGED_LATEX_FILES=$(git diff --name-only origin/main HEAD | grep '\.tex$')
           echo "Changed files: $CHANGED_LATEX_FILES"
           for FILE in $CHANGED_LATEX_FILES; do
             echo "Compiling $FILE"
