@@ -8,30 +8,27 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: kjarosh/latex:2024.4
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Cache Git installation
-        uses: actions/cache@v3
+      - name: Cache latex
+        uses: actions/cache@v4
         with:
-          path: ~/.cache/git
-          key: ${{ runner.os }}-git-${{ hashFiles('**/*.yaml') }}
+          path: ~/.texlive
+          key: ${{ runner.os }}-latex-texfile
           restore-keys: |
-            ${{ runner.os }}-git-
+            ${{ runner.os }}-latex-
 
-      - name: Install Git
+      - name: Install latex #if not cached
         run: |
-          run: |
-          if ! command -v git &> /dev/null; then
-            echo "Installing Git"
+          if ! [ -d ~/.texlive ]; then
+            echo "Installing latex"
             sudo apt-get update
-            sudo apt-get install -y git
+            sudo apt-get install -y texlive-full
           else
-            echo "Git is already installed"
+            echo "Latex cache found"
           fi
 
       - name: Compile new or updated latex files
