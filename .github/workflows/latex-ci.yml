@@ -13,22 +13,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up latex
-        uses: dante-ev/latex-action@latest
-
-      - name: List changed latex files
+      - name: install latex
         run: |
-          CHANGED_LATEX_FILES=$(git diff --name-only origin/main HEAD | grep '\.tex$')
-          if [ -z "$CHANGED_LATEX_FILES" ]; then
-            echo "No latex files were changed."
-            exit 0
-          fi
-          echo "Changed latex files: $CHANGED_LATEX_FILES"
+          sudo apt-get update
+          sudo apt-get install -y texlive-full
 
       - name: Compile new or updated latex files
         run: |
           CHANGED_LATEX_FILES=$(git diff --name-only HEAD^ HEAD | grep '\.tex$')
-          echo "$CHANGED_LATEX_FILES"
+          echo "Changed files: $CHANGED_LATEX_FILES"
           for FILE in $CHANGED_LATEX_FILES; do
             echo "Compiling $FILE"
             latexmk -pdf -interaction=nonstopmode -halt-on-error "$FILE" && echo "$FILE compiled successfully" || echo "Failed to compile $FILE"
