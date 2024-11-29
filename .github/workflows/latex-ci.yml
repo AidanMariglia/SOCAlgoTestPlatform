@@ -11,24 +11,25 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Cache latex
-        uses: actions/cache@v4
+        id: cache-latex
+        uses: actions/cache@v3
         with:
-          path: ~/.texlive
+          path: ~/.texfile
           key: ${{ runner.os }}-latex-texfile
           restore-keys: |
             ${{ runner.os }}-latex-
 
-      - name: Install latex #if not cached
+      - name: Install latex if not cached
         run: |
-          if ! [ -d ~/.texlive ]; then
-            echo "Installing latex"
+          if steps.cache-latex.outputs.cache-hit == "true" ]; then
+            echo "Cache found. Skip latex installation"
+          else
+            echo "Installing LaTeX..."
             sudo apt-get update
             sudo apt-get install -y texlive-full
-          else
-            echo "Latex cache found"
           fi
 
       - name: Compile new or updated latex files
