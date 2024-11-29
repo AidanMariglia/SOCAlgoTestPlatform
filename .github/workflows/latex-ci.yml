@@ -13,7 +13,26 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+
+      - name: Cache Git installation
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/git
+          key: ${{ runner.os }}-git-${{ hashFiles('**/*.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-git-
+
+      - name: Install Git
+        run: |
+          run: |
+          if ! command -v git &> /dev/null; then
+            echo "Installing Git"
+            sudo apt-get update
+            sudo apt-get install -y git
+          else
+            echo "Git is already installed"
+          fi
 
       - name: Compile new or updated latex files
         run: |
