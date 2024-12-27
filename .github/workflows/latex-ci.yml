@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
 
       - name: Cache latex
         id: cache-latex
@@ -26,19 +24,18 @@ jobs:
 
       - name: Install latex if not cached
         run: |
-          if steps.cache-latex.outputs.cache-hit == "true" ]; then
+          if steps.cache-latex.outputs.cache-hit == "true"; then
             echo "Cache found. Skip latex installation"
           else
             echo "Installing LaTeX..."
             sudo apt-get update
-            sudo apt-get install -y texlive-full
+            sudo apt-get install -y texlive-full latexmk
           fi
 
       - name: Compile new or updated latex files
         run: |
-          CHANGED_LATEX_FILES=$(git diff --name-only HEAD^ HEAD | grep '\.tex$')
-          echo "Changed files: $CHANGED_LATEX_FILES"
-          for FILE in $CHANGED_LATEX_FILES; do
-            echo "Compiling $FILE"
-            latexmk -pdf -interaction=nonstopmode -halt-on-error "$FILE" && echo "$FILE compiled successfully" || echo "Failed to compile $FILE"
-          done
+          git diff --name-only HEAD^ HEAD | grep '\.tex$' > updated_tex_files.txt
+          while read -r file; do
+            echo "Compiling $file"
+            latexmk -pdf -interaction=nonstopmode -halt-on-error "$file" || exit 1
+          done < updated_tex_files.txt
