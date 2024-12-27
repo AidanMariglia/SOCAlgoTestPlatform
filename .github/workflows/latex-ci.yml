@@ -39,6 +39,10 @@ jobs:
         run: |
           git diff --name-only HEAD^ HEAD | grep '\.tex$' > updated_tex_files.txt
           while read -r file; do
-            echo "Compiling $file"
-            latexmk -pdf -interaction=nonstopmode -halt-on-error "$file" || exit 1
+            dirname=$(dirname "$file")
+            filename=$(basename "$file")
+            cd "$dirname"
+            echo "Compiling $filename"
+            latexmk -pdf -interaction=nonstopmode -halt-on-error "$filename" || exit 1
+            cd ../../
           done < updated_tex_files.txt
