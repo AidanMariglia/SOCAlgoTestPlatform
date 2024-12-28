@@ -2,4 +2,6 @@
 
 The folders and files for this folder are as follows:
 
-Describe ...
+**VnVPlan.pdf**: Contains the pdf file of Verification and Validation Plan
+**VnVPlan.tex**: Contains the tex file of Verification and Validation Plan
+**Makefile**: Makefile to compile VnVPlan.tex
