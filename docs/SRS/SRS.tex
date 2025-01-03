@@ -46,8 +46,9 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
-2024-10-11 & 1.0 & Revision 0\\
-2024-10-19 & 1.1 & Adding requirement identifiers \\
+2024-10-11 & 0.0 & Revision 0\\
+2024-10-19 & 0.1 & Adding requirement identifiers \\
+2024-10-19 & 0.2 & Fix directories \\
 \bottomrule
 \end{tabularx}
 
@@ -165,7 +166,7 @@ The current system exists as a Matlab script running on a McMaster server, liste
 \subsection{Partner or Collaborative Applications}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{partner_applications.png}
+    \includegraphics[width=1\linewidth]{diagrams/partner_applications.png}
 \end{figure}
 \subsection{Off-the-Shelf Software}
 
@@ -237,13 +238,13 @@ involved in the Project}
 \subsection{The Current Situation}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{currentstate.png}
+    \includegraphics[width=1\linewidth]{diagrams/currentstate.png}
 \end{figure}
 
 \subsection{The Context of the Work}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{context.png}
+    \includegraphics[width=0.5\linewidth]{diagrams/context.png}
 \end{figure}
 \subsection{Work Partitioning}
 
@@ -317,7 +318,7 @@ System receives the new algorithm results and updates the leaderboard table in t
 \subsection{Business Data Model}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{Class.png}
+    \includegraphics[width=1\linewidth]{diagrams/Class.png}
 \end{figure}
 \subsection{Data Dictionary}
 \begin{table}[H]
@@ -345,7 +346,7 @@ System receives the new algorithm results and updates the leaderboard table in t
 \subsection{Product Boundary}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{Use.png}
+    \includegraphics[width=1\linewidth]{diagrams/Use.png}
 \end{figure}
 \subsection{Product Use Case Table}
 \begin{table}[H]
@@ -425,7 +426,7 @@ System receives the new algorithm results and updates the leaderboard table in t
 \textbf{FR-9}
 \begin{itemize}
     \item The system shall have categorization in its leaderboard based on certain criteria. \hfill \break
-    Fit criterion: Users should be able to select the type (general method used to implement the SOC estimation algorithm) of algorithm they are interested in and only view results of that type.
+    Fit criterion: Users should be able to select the type of algorithm they are interested in and only view results of that type.
 \end{itemize}
 \textbf{FR-10}
 \begin{itemize}
