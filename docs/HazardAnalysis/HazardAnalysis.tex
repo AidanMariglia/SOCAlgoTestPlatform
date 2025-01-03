@@ -46,6 +46,8 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 2024-10-19 & Benjamin Dubois, Nathan Uy, Aidan Mariglia, Declan Young & Added initial hazard analysis\\
+\midrule
+2024-10-19 & Nathan Uy & Fixed a failure mode\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -55,6 +57,8 @@
 \tableofcontents
 
 \listoftables
+
+\listoffigures
 
 ~\newpage
 
@@ -131,7 +135,7 @@ The assumptions made will be minimized, however, like many web-based systems a l
         \end{enumerate}
         & SR-4 SR-5 & H2-1\\
         \cline{2-7}
-        & Too many jobs are running at once & Significant cost/use of resources & 
+        & Job starvation/rejection & Significant cost/use of resources. Some jobs are not processed. & 
         \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
             \item Insufficient server resources
             \item High user volume
