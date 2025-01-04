@@ -22,15 +22,17 @@ jobs:
         with:
           path: |
             /usr/share/texlive
-            /usr/bin
           key: ${{ runner.os }}-latex-texfile
           restore-keys: |
             ${{ runner.os }}-latex-
 
       - name: Install latex if not cached
         run: |
-          if [ ${{ steps.cache-latex.outputs.cache-hit }} == 'true' ]; then
-            echo "Cache found. Skip latex installation"
+          if ${{ steps.cache-latex.outputs.cache-hit }} == 'true'; then
+            echo "Cache found. Skip texlive-full installation"
+            echo "Installing latexmk"
+            sudo apt-get update
+            sudo apt-get install -y latexmk
           else
             echo "Installing LaTeX..."
             sudo apt-get update
