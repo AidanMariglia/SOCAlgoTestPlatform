@@ -20,7 +20,7 @@ jobs:
         id: cache-latex
         uses: actions/cache@v3
         with:
-          path: /usr/local/texlive
+          path: /usr/bin/latexmk
           key: ${{ runner.os }}-latex-texfile
           restore-keys: |
             ${{ runner.os }}-latex-
@@ -34,11 +34,6 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y texlive-full latexmk
           fi
-
-      - name: Check LaTeX installation paths
-        run: |
-          echo "Checking for LaTeXmk:"
-          which latexmk
 
       - name: Compile new or updated latex files
         run: |
