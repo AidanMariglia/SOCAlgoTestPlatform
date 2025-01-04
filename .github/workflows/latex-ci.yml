@@ -27,7 +27,7 @@ jobs:
 
       - name: Install latex if not cached
         run: |
-          if steps.cache-latex.outputs.cache-hit == "true"; then
+          if steps.cache.outputs.cache-hit == "true"; then
             echo "Cache found. Skip latex installation"
           else
             echo "Installing LaTeX..."
