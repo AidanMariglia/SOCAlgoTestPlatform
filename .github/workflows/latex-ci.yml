@@ -35,12 +35,6 @@ jobs:
             sudo apt-get install -y texlive-full latexmk
           fi
 
-      - name: Check LaTeX installation paths
-        run: |
-          echo "Listing directories for LaTeX installation:"
-          dpkg -L texlive-full
-          sudo find /usr -name "texmf.cnf"
-
       - name: Compile new or updated latex files
         run: |
           git diff --name-only HEAD^ HEAD | grep '\.tex$' > updated_tex_files.txt
