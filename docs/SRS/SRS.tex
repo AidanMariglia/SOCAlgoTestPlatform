@@ -46,8 +46,11 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
-2024-10-11 & 1.0 & Revision 0\\
-2024-10-19 & 1.1 & Adding requirement identifiers \\
+2024-10-11 & 0.0 & Revision 0\\
+2024-10-19 & 0.1 & Adding requirement identifiers \\
+2024-10-19 & 0.2 & Fix directories \\
+2025-01-04 & 0.3 & Added specific deliverables and deadlines to section 21.1 \\
+2025-01-04 & 0.4 & Fixed non-verifiable requirements in section 11.4  \\
 \bottomrule
 \end{tabularx}
 
@@ -165,7 +168,7 @@ The current system exists as a Matlab script running on a McMaster server, liste
 \subsection{Partner or Collaborative Applications}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{partner_applications.png}
+    \includegraphics[width=1\linewidth]{diagrams/partner_applications.png}
 \end{figure}
 \subsection{Off-the-Shelf Software}
 
@@ -237,13 +240,13 @@ involved in the Project}
 \subsection{The Current Situation}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{currentstate.png}
+    \includegraphics[width=1\linewidth]{diagrams/currentstate.png}
 \end{figure}
 
 \subsection{The Context of the Work}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{context.png}
+    \includegraphics[width=0.5\linewidth]{diagrams/context.png}
 \end{figure}
 \subsection{Work Partitioning}
 
@@ -317,7 +320,7 @@ System receives the new algorithm results and updates the leaderboard table in t
 \subsection{Business Data Model}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{Class.png}
+    \includegraphics[width=1\linewidth]{diagrams/Class.png}
 \end{figure}
 \subsection{Data Dictionary}
 \begin{table}[H]
@@ -345,7 +348,7 @@ System receives the new algorithm results and updates the leaderboard table in t
 \subsection{Product Boundary}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{Use.png}
+    \includegraphics[width=1\linewidth]{diagrams/Use.png}
 \end{figure}
 \subsection{Product Use Case Table}
 \begin{table}[H]
@@ -390,11 +393,15 @@ System receives the new algorithm results and updates the leaderboard table in t
 \begin{itemize}
     \item The system shall report the results of submitted algorithms when their testing is complete. \hfill \break
     Fit criterion: Users should be able to view the result of their algorithm somewhere in the interface of the system after it has been completed.
+    \break
+    Depends on: FR-1
 \end{itemize}
 \textbf{FR-3}
 \begin{itemize}
     \item The system shall allow for multiple submissions from users to run in parallel. \hfill \break
     Fit criterion: Users should be able to submit more than one algorithm for testing and see that the execution of all submissions is underway.
+    \break
+    Depends on: FR-1
 \end{itemize}
 \textbf{FR-4}
 
@@ -410,12 +417,14 @@ System receives the new algorithm results and updates the leaderboard table in t
 \textbf{FR-6}
 \begin{itemize}
     \item The system shall segregate data based on the logged users. \hfill \break
-    Fit criterion: Users should not be able to see the private data of users and vice versa
+    Fit criterion: Users should not be able to see the private data of users and vice versa. \\
+    Depends on: FR-4
 \end{itemize}
 \textbf{FR-7}
 \begin{itemize}
     \item The system shall save algorithm results in individual user accounts. \hfill \break
-    Fit criterion: Users should be able to view their previous submissions anytime in the future.
+    Fit criterion: Users should be able to view their previous submissions anytime in the future. \\
+    Depends on: FR-4
 \end{itemize}
 \textbf{FR-8}
 \begin{itemize}
@@ -425,12 +434,14 @@ System receives the new algorithm results and updates the leaderboard table in t
 \textbf{FR-9}
 \begin{itemize}
     \item The system shall have categorization in its leaderboard based on certain criteria. \hfill \break
-    Fit criterion: Users should be able to select the type (general method used to implement the SOC estimation algorithm) of algorithm they are interested in and only view results of that type.
+    Fit criterion: Users should be able to select the type of algorithm they are interested in and only view results of that type. \\
+    Depends on: FR-8
 \end{itemize}
 \textbf{FR-10}
 \begin{itemize}
     \item The system shall allow users to sort through the leaderboards based on criteria. \hfill \break
-    Fit criterion: Users should be able to view results in order of lowest run time to highest or other criteria.
+    Fit criterion: Users should be able to view results in order of lowest run time to highest or other criteria. \\
+    Depends on: FR-8
 \end{itemize}
 \textbf{FR-11}
 \begin{itemize}
@@ -483,11 +494,13 @@ N/A - No personalization or internationalization was mentioned by the client.
 \subsection{Understandability and Politeness Requirements}
 \textbf{UPR-1}
 \begin{itemize}
-    \item The system shall use universally used symbols when appropriate to ease understanding
+    \item The system shall use universally used symbols when appropriate to ease understanding. \\
+    Fit criterion: At least 90\% of users should be able to correctly identify the meaning of all symbols without explanation. 
 \end{itemize}
 \textbf{UPR-2}
 \begin{itemize}
-    \item The system shall use an intuitive user interface and use consistent terminology.
+    \item The system shall use an intuitive user interface and use consistent terminology. \\
+    Fit criterion: The terminology used on each page should be consistent with each other and at least 80\% of users should be able to navigate through each stage of the system without external assistance. 
 \end{itemize}
 \textbf{UPR-3}
 \begin{itemize}
@@ -723,15 +736,21 @@ Inhibit the New Product}
 \subsection{Project Planning}
 \textbf{Task List:}
 \begin{itemize}
-    \item Problem Description
-    \item SRS document
-    \item Hazard Analysis
-    \item VnV plan
-    \item POC
-    \item Design Document
-    \item Product Revision 0
-    \item VnV Report
-    \item Final Revision
+    \item Problem Description (Required by September 23, 2024)
+    \item SRS document (Required by October 9, 2024)
+    \item Hazard Analysis (Required by October 23, 2024)
+    \item VnV plan (Required by November 1, 2024)
+    \item Create Django Framework (Required by November 11, 2024)
+    \item Configure Submissions Within Django Framework (Required by November 11, 2024)
+    \item Configure Leaderboard Feature Within Django Framework (Required by November 11, 2024)
+    \item Configure User Accounts and Registration Within Django Framework (Required by November 11, 2024)
+    \item POC (Required by November 11, 2024)
+    \item Design Document (Required by January 15, 2025)
+    \item Design to Look Similar to Kaggle (Required by February 3, 2025)
+    \item Product Revision 0 (Required by February 3, 2025)
+    \item VnV Report (Required by March 7, 2025)
+    \item Create Tutorial Videos (Required by April 2, 2025)
+    \item Final Revision (Required by April 2, 2025)
 \end{itemize}
 
 \subsection{Planning of the Development Phases}

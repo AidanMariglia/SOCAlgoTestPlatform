@@ -238,6 +238,34 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{How test will be performed:} An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
 
+\item{FR1-ST3\\}
+
+\underline{Control:} Manual
+
+\underline{Initial State:} The algorithm submission page
+
+\underline{Input:} An algorithm that exceeds the maximum file size
+
+\underline{Output:} Error notification from the system
+
+\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of the size of the file.
+
+\underline{How test will be performed:} An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+
+\item{FR1-ST4\\}
+
+\underline{Control:} Manual
+
+\underline{Initial State:} The algorithm submission page
+
+\underline{Input:} An algorithm file with an unsupported file type (not .m)
+
+\underline{Output:} Error notification from the system
+
+\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of an invalid type of file being uploaded.
+
+\underline{How test will be performed:} An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+
 \end{enumerate}
 
 \paragraph{Results Reporting}
@@ -452,7 +480,7 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{Test Case Derivation:} When the user attempts to view the leaderboard for only algorithms of type SOC, only SOC algorithms should be displayed, with algorithms of all other types being filtered out.
 
-\underline{How test will be performed:} While logged in as a test user, we will navigate to the leaderboard page and apply the filter for algorithms of type SOC. After applyinf this filter we will ensure that only algorithms of type SOC are displayed.
+\underline{How test will be performed:} While logged in as a test user, we will navigate to the leaderboard page and apply the filter for algorithms of type SOC. After applying this filter we will ensure that only algorithms of type SOC are displayed.
 
 \end{enumerate}
 
@@ -464,7 +492,7 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{Control:} Automatic
 
-\underline{Initial State:} A non-empty and unsorted leaderboard exists in the system with at least 2 items.
+\underline{Initial State:} A non-empty and unsorted leaderboard exists in the system with at least 10 items.
 
 \underline{Input:} A sorting criteria from the user
 
