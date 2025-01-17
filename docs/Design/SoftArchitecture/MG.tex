@@ -46,8 +46,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+01/07/2025 & 0.1 & revision 0 design\\
 \bottomrule
 \end{tabularx}
 
@@ -74,7 +73,6 @@ This section records information for easy reference.
   SRS & Software Requirements Specification\\
   \progname & Explanation of program name\\
   UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
   \bottomrule
 \end{tabular}\\
 
@@ -139,7 +137,8 @@ modules. Section \ref{SecMD} gives a detailed description of the
 modules. Section \ref{SecTM} includes two traceability matrices. One checks
 the completeness of the design against the requirements provided in the SRS. The
 other shows the relation between anticipated changes and the modules. Section
-\ref{SecUse} describes the use relation between modules.
+\ref{SecUse} describes the use relation between modules. Section
+\ref{UI} includes the screenshots of the User Interface. Section \ref{Timeline} includes a link to the tasks related to the design, who it is assigned to and the expected completion time.
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
@@ -157,16 +156,12 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acTest}:] The tests and test data that the Matlab models are being tested against
+\item[\refstepcounter{acnum} \actheacnum \label{acLeaderboard}:] The categories in the leaderboard
+\item[\refstepcounter{acnum} \actheacnum \label{acDisplay}:] How the models' performance is displayed to the user
+\item[\refstepcounter{acnum} \actheacnum \label{acExecute}:] How the model is executed e.g. execution progress reports, error handling, etc. 
+\item[\refstepcounter{acnum} \actheacnum \label{acLanguage}:] The programming language of the models submitted by the user
 \end{description}
-
-\wss{Anticipated changes relate to changes that would be made in requirements,
-design or implementation choices.  They are not related to changes that are made
-at run-time, like the values of parameters.}
 
 \subsection{Unlikely Changes} \label{SecUchange}
 
@@ -179,8 +174,12 @@ decisions will be changed.
 
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+  (Input: file, mouse, keyboard, Output: monitor screen).
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] User log-in
+\item[\refstepcounter{ucnum} \uctheucnum
+\label{ucIO}:] Database Management System
+\item[\refstepcounter{ucnum} \uctheucnum
+\label{ucIO}:] API Communication
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -191,34 +190,60 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{mA}:] App Module
+\item [\refstepcounter{mnum} \mthemnum \label{mUA}:] User Authentication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mLI}:] Login Module
+\item [\refstepcounter{mnum} \mthemnum \label{mRG}:] Registration Module
+\item [\refstepcounter{mnum} \mthemnum \label{mDM}:] Database Management Module
+\item [\refstepcounter{mnum} \mthemnum \label{mWS}:] Web Server Module
+\item [\refstepcounter{mnum} \mthemnum \label{mI}:] Intro Module
+\item [\refstepcounter{mnum} \mthemnum \label{mH}:] Home Module
+\item [\refstepcounter{mnum} \mthemnum \label{mME}:] Model Execution Module
+\item [\refstepcounter{mnum} \mthemnum \label{mTD}:] Test Data Module
+\item [\refstepcounter{mnum} \mthemnum \label{mTA}:] Test Algorithm Module
+\item [\refstepcounter{mnum} \mthemnum \label{mS}:] Submit Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSN}:] Submission Module
+\item [\refstepcounter{mnum} \mthemnum \label{mL}:] Leaderboard Module
+\item [\refstepcounter{mnum} \mthemnum \label{mR}:] Results Module
+\item [\refstepcounter{mnum} \mthemnum \label{mACP}:] Admin Control Panel Module
+
+
+
 \end{description}
 
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
 \toprule
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+{Hardware-Hiding Module}
+& \mref{mHH}\\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{10}{0.3\textwidth}{Behaviour-Hiding Module} 
+& \mref{mLI}\\
+& \mref{mRG}\\
+& \mref{mI}\\
+& \mref{mH}\\
+& \mref{mTA}\\
+& \mref{mS}\\
+& \mref{mSN}\\
+& \mref{mL}\\
+& \mref{mR}\\
+& \mref{mACP}\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{6}{0.3\textwidth}{Software Decision Module} 
+& \mref{mA}\\
+& \mref{mUA}\\
+& \mref{mDM}\\
+& \mref{mWS}\\
+& \mref{mME}\\
+& \mref{mTD}\\
 \bottomrule
 
 \end{tabular}
@@ -231,13 +256,6 @@ actually be implemented.
 The design of the system is intended to satisfy the requirements developed in
 the SRS. In this stage, the system is decomposed into modules. The connection
 between requirements and modules is listed in Table~\ref{TblRT}.
-
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
 
 \section{Module Decomposition} \label{SecMD}
 
@@ -275,21 +293,98 @@ to be implemented.
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+\item[Implemented By:] Software Engineering
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Login Module (\mref{mLI})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:] Display logic.
+\item[Services:] Render the login page and authentication messages
+\item[Implemented By:] Login
+\item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Registration Module (\mref{mRG})}
+
+\begin{description}
+\item[Secrets:] Display logic.
+\item[Services:] Render registration page and authentication messages
+\item[Implemented By:] Registration
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{Intro Module (\mref{mI})}
+
+\begin{description}
+\item[Secrets:] Display logic.
+\item[Services:] Render intro page
+\item[Implemented By:] Intro
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{Home Module (\mref{mH})}
+
+\begin{description}
+\item[Secrets:] Display logic.
+\item[Services:] Render home page
+\item[Implemented By:] Home
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{Test Algorithm Module (\mref{mTA})}
+
+\begin{description}
+\item[Secrets:] The test algorithm
+\item[Services:] Executes tests on the submitted models and evaluates results
+\item[Implemented By:] TestAlgorithm
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{Submit Module (\mref{mS})}
+
+\begin{description}
+\item[Secrets:] Display logic and error handling.
+\item[Services:] Render the submit model page and accept only Matlab files
+\item[Implemented By:] Submit
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{Submission Module (\mref{mSN})}
+
+\begin{description}
+\item[Secrets:] Display logic.
+\item[Services:] Render a model's detailed result including graphical representations
+\item[Implemented By:] Submission
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{Leaderboard Module (\mref{mL})}
+
+\begin{description}
+\item[Secrets:] Sorting/Filtering Algorithm choice
+\item[Services:] Displays results of previous submissions, provides sorting and filtering options
+\item[Implemented By:] Leaderboard
+\item[Type of Module:] library
+\end{description}
+
+\subsubsection{Results Module (\mref{mR})}
+
+\begin{description}
+\item[Secrets:] Display logic.
+\item[Services:] Render all user's submission results
+\item[Implemented By:] Result
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{Admin Control Panel Module (\mref{mACP})}
+
+\begin{description}
+\item[Secrets:] Admin related logic
+\item[Services:] Authorization and Execution of admin actions, 
+\item[Implemented By:] django.contrib.admin
+\item[Type of Module:] Library
+\end{description}
 
 
 \subsection{Software Decision Module}
@@ -302,10 +397,62 @@ to be implemented.
   do not provide direct interaction with the user. 
   % Changes in these modules are more likely to be motivated by a desire to
   % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Implemented By:] Software Engineering
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{App Module (\mref{mA})}
+
+\begin{description}
+\item[Secrets:] All secrets of child modules
+\item[Services:] Implement all requirements
+\item[Implemented By:] All modules
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{User Authentication Module (\mref{mUA})}
+
+\begin{description}
+\item[Secrets:] Logic for authentication mechanism and password management. 
+\item[Services:] User login/logout, User registration, password recovery/reset.
+\item[Implemented By:] django.contrib.auth
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Database Management Module (\mref{mDM})}
+
+\begin{description}
+\item[Secrets:]The types and structure of retained data. The storage and access methods for retained data
+\item[Services:]Stores and retrieves data which needs to be retained long term.
+\item[Implemented By:] Postgresql and data library.
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Web Server Module (\mref{mWS})}
+
+\begin{description}
+\item[Secrets:] Routing of modules
+\item[Services:] Handle routing of requests
+\item[Implemented By:] Web Server
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{Model Execution Module (\mref{mME})}
+
+\begin{description}
+\item[Secrets:] Method of executing model. 
+\item[Services:] Executing use submitted models against the test suite.
+\item[Implemented By:] Matlab
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Test Data Module (\mref{mTD})}
+
+\begin{description}
+\item[Secrets:] The test data's format.
+\item[Services:] Provides the data that the model will be tested against.
+\item[Implemented By:] TestData
+\item[Type of Module:] Record
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -320,17 +467,27 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR1 & \mref{mWS}, \mref{mS}\\
+FR2 & \mref{mWS}, \mref{mTD}, \mref{mTA}, \mref{mSN}\\
+FR3 & \mref{mME}\\
+FR4 & \mref{mWS}, \mref{mRG}\\
+FR5 & \mref{mWS}, \mref{mLI}\\
+FR6 & \mref{mUA}, \mref{mDM}\\
+FR7 & \mref{mDM}\\
+FR8 & \mref{mUA}, \mref{mWS}, \mref{mL}\\
+FR9 & \mref{mL}\\
+FR10 & \mref{mL}\\
+FR11 & \mref{mWS}, \mref{mME}, \mref{mR}\\
+FR12 & \mref{mWS}, \mref{mME}, \mref{mR}\\
+LR1 & \mref{mI}, \mref{mH} \\
+LR2 & \mref{mI}, \mref{mH}\\
+UPR4 & \mref{mI}, \mref{mH}\\
+SLR1 & \mref{mSN}\\
+SLR2 & \mref{mL}\\
+SLR3 & \mref{mL}\\
+RR1 & \mref{mME}\\
+IR1 & \mref{mDM}\\
+IMR1 & \mref{mUA}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -343,18 +500,11 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acTest} & \mref{mTD}, \mref{mTA}\\
+\acref{acLeaderboard} & \mref{mL}\\
+\acref{acDisplay} & \mref{mS},\mref{mSN}\\
+\acref{acExecute} & \mref{mME}\\
+\acref{acLanguage} & \mref{mME}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -374,38 +524,89 @@ the modules. It can be seen that the graph is a directed acyclic graph
 system, and modules in the higher level of the hierarchy are essentially simpler
 because they use modules from the lower levels.
 
-\wss{The uses relation is not a data flow diagram.  In the code there will often
-be an import statement in module A when it directly uses module B.  Module B
-provides the services that module A needs.  The code for module A needs to be
-able to see these services (hence the import statement).  Since the uses
-relation is transitive, there is a use relation without an import, but the
-arrows in the diagram typically correspond to the presence of import statement.}
-
-\wss{If module A uses module B, the arrow is directed from A to B.}
-
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{Use_Hierarchy.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
 
 %\section*{References}
 
-\section{User Interfaces}
+\section{User Interfaces} \label{UI}
 
-\wss{Design of user interface for software and hardware.  Attach an appendix if
-needed. Drawings, Sketches, Figma}
+Refer to Appendix 1 - 10 (\ref{Appendix}) for screenshots of the various views for the design of the User Interface.
 
-\section{Design of Communication Protocols}
+\begin{itemize}
+    \item \ref{Appendix 1}: Intro Page
+    \item \ref{Appendix 2}: Registration Page
+    \item \ref{Appendix 3}: Login Page
+    \item \ref{Appendix 4}: Home Page
+    \item \ref{Appendix 5}: Submit Page
+    \item \ref{Appendix 6}: Results Page
+    \item \ref{Appendix 7}: Submission Page
+    \item \ref{Appendix 8}: Leaderboard Page
+    \item \ref{Appendix 9}: Leaderboard Page (with sorting)
+    \item \ref{Appendix 10}: Leaderboard Page (with filtering)
+\end{itemize}
 
-\wss{If appropriate}
+\section{Timeline} \label{Timeline}
 
-\section{Timeline}
+Refer to the Project Board to view all tasks related to the design described in this document - \url{https://github.com/users/AidanMariglia/projects/1}.\\ \\ All tasks explain the necessary work for completion as well as who is responsible for the task.
 
-\wss{Schedule of tasks and who is responsible}
+\section{Appendix}\label{Appendix}
 
-\wss{You can point to GitHub if this information is included there}
+\subsection{Appendix 1} \label{Appendix 1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{.//Interface/Intro.png}
+\end{figure}
+\subsection{Appendix 2} \label{Appendix 2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{.//Interface/Registration.png}
+\end{figure}
+\subsection{Appendix 3} \label{Appendix 3}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{.//Interface/Login.png}
+\end{figure}
+\subsection{Appendix 4} \label{Appendix 4}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Interface/Home.png}
+\end{figure}
+\subsection{Appendix 5} \label{Appendix 5}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{.//Interface/Submit.png}
+\end{figure}
+\subsection{Appendix 6} \label{Appendix 6}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{.//Interface/Results.png}
+\end{figure}
+\subsection{Appendix 7} \label{Appendix 7}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{.//Interface/Submission.png}
+\end{figure}
+\subsection{Appendix 8} \label{Appendix 8}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{.//Interface/Leaderboard.png}
+\end{figure}
+\subsection{Appendix 9} \label{Appendix 9}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{.//Interface/Sorting.png}
+\end{figure}
+\subsection{Appendix 10} \label{Appendix 10}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{.//Interface/Filtering.png}
+\end{figure}
+
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}
