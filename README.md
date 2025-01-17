@@ -1,4 +1,4 @@
-# Project Name
+# SOCAlgoTestPlatform
 
 **Developer Names**: Declan Young, Nathan Uy, Aidan Mariglia, Ben Dubois
 
