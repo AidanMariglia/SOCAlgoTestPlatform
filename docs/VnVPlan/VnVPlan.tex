@@ -32,6 +32,8 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 2024-11-03 & 0.0 & Added initial VnV plan\\
+\midrule
+2025-01-02 & 0.1 & Address peer review\\
 \bottomrule
 \end{tabularx}
 
@@ -250,7 +252,7 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of the size of the file.
 
-\underline{How test will be performed:} An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+\underline{How test will be performed:} A model that exceeds the maximum file size will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
 
 \item{FR1-ST4\\}
 
@@ -264,7 +266,7 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of an invalid type of file being uploaded.
 
-\underline{How test will be performed:} An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+\underline{How test will be performed:} A model with a .py extension will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
 
 \end{enumerate}
 
@@ -999,6 +1001,9 @@ Use Selenium to run all automated tests for each of the compatible browsers for 
 
 % \wss{Provide evidence that all of the modules have been considered.}
 				
+\bibliographystyle{plainnat}
+
+\bibliography{../../refs/References}
 
 \newpage
 
@@ -1020,7 +1025,7 @@ Provide specific responses to each
 \end{itemize}
 List some items
 \begin{itemize}
-    \item Could you list any confusing terminologies used on the website?
+    \item Could you list any inconsistent terminologies used on the website?
     \item Could you list any unfamiliar symbols encountered on the website?
 \end{itemize}
 
