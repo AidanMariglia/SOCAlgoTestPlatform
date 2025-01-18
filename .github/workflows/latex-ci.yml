@@ -1,0 +1,52 @@
+name: Build latex files
+
+on:
+  push:
+    paths:
+      - "**/*.tex"
+      - "docs/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Cache latex
+        id: cache-latex
+        uses: actions/cache@v3
+        with:
+          path: |
+            /usr/share/texlive
+          key: ${{ runner.os }}-latex-texfile
+          restore-keys: |
+            ${{ runner.os }}-latex-
+
+      - name: Install latex if not cached
+        run: |
+          if ${{ steps.cache-latex.outputs.cache-hit }} == 'true'; then
+            echo "Cache found. Skip texlive-full installation"
+            echo "Installing latexmk"
+            sudo apt-get update
+            sudo apt-get install -y latexmk
+          else
+            echo "Installing LaTeX..."
+            sudo apt-get update
+            sudo apt-get install -y texlive-full latexmk
+          fi
+
+      - name: Compile new or updated latex files
+        run: |
+          git diff --name-only HEAD^ HEAD | grep '\.tex$' > updated_tex_files.txt
+          while read -r file; do
+            dirname=$(dirname "$file")
+            filename=$(basename "$file")
+            cd "$dirname"
+            echo "Compiling $filename"
+            latexmk -pdf -interaction=nonstopmode -halt-on-error "$filename" || exit 1
+            cd ../../
+          done < updated_tex_files.txt
