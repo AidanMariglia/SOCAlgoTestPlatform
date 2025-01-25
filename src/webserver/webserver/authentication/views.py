@@ -28,9 +28,10 @@ def register(request: HttpRequest):
         # Update additional fields
         user.first_name = first_name
         user.last_name = last_name
+        user.is_active = False
         user.save()
 
-        messages.success(request, "Registration successful!")
+        messages.success(request, "Registration request successful. Please wait to be accepted!")
         return redirect('login')  # Redirect to the login page after successful registration
 
     return render(request, 'registration/register.html')

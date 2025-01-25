@@ -206,6 +206,8 @@
         <div class="info-message">
           {% if user.is_authenticated %}
             <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+          {% elif not user.is_active %}
+            <p>Waiting for admin approval</p>
           {% else %}
             <p>Please login to see this page.</p>
           {% endif %}
