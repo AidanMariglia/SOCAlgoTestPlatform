@@ -111,6 +111,9 @@
                 <li><a href="/submissions/" class="nav-link">Submit An Algorithm</a></li>
                 <li><a href="/leaderboard" class="nav-link">View Leaderboard</a></li>
                 <li><span class="nav-link">User: {{ user.get_username }}</span></li>
+                {% if user.is_staff %}
+                <li><a href="/authentication/users" class="nav-link">Users</a></li>
+                {% endif %}
                 <li>
                   <form id="logout-form" method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
