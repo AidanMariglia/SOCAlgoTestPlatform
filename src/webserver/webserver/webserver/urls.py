@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.shortcuts import redirect
 
 urlpatterns = [
-    path('', lambda req: redirect('/home/homepage')),
+    path('', lambda req: redirect('/home/intro')),
     path('home/', include('home.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path("submissions/", include("submissions.urls")),

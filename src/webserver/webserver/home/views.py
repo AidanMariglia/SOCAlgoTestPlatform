@@ -9,4 +9,4 @@ def home(request: HttpRequest):
     return render(request, 'home.html')
 
 def homePage(request: HttpRequest):
-    return render(request, 'homepage.html')
+    return render(request, 'intro.html')
