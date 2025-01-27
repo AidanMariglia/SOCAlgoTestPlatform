@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOCAlgoTestingPlatform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+        .navbar .title {
+            color: blue;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .navbar .links {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+            gap: 25px;
+        }
+        .navbar .links a {
+            text-decoration: none;
+            color: black;
+            font-weight: normal;
+        }
+        .navbar .signout {
+            text-decoration: none;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .video-placeholder {
+            width: 100%;
+            max-width: 500px;
+            height: 280px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f1f1;
+        }
+        .faq {
+            font-weight: bold;
+        }
+        .title a {
+            text-decoration: none;
+            color: #20BEFF;
+        }
+</style>
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="title">
+            <a href="/home">SOCAlgoTestingPlatform</a>
+        </div>
+        <div class="links">
+            <a href="/leaderboard">View Leaderboard</a>
+            <a href="/submissions">Submit Model</a>
+            <a href="/submissions/submissionsPage">View Submissions</a>
+        </div>
+        <a href="/home/homePage" class="signout">Sign Out</a>
+    </div>
+
+    <div class="content-wrapper">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>
