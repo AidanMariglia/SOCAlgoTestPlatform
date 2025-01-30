@@ -1,0 +1,72 @@
+<style>
+    .content-wrapper {
+    display: flex;
+    justify-content: left;
+    margin-left: 10%; 
+    height: 100vh;
+    width: calc(100% - 200px); 
+  }
+
+    .welcome-section {
+    display: flex;
+    align-items: left; 
+    gap: 20px; 
+  }
+
+    .welcome-text {
+    flex: 1;
+    text-align: center;
+  }
+
+    .welcome-image img {
+    max-width: 500px;
+    height: auto;
+    margin-left: 60%;
+  }
+</style>
+
+{% extends "Webpage_Base.html" %}
+
+{% block title %}
+  <title>Homepage</title>
+{% endblock %}
+
+{% load static %}
+<img src="/media/images/Battery_Home.jpg" alt="Welcome Image">
+
+{% block content %}
+<div class="container">
+    <div class="section" style="display: flex; align-items: center; text-align: left;">
+      <h1 style="color: #20BEFF;">Welcome, User!</h1>
+    </div>
+
+    <div class="section" style="display: flex; align-items: center; text-align: left;">
+      <div style="flex: 1;">
+        <h2 style="text-align: center;">
+          A repository for easy visualization, analysis,<br>and comparison of battery data across institutions.
+        </h2>
+      </div>
+      <div>
+          <img src="/media/images/Battery_Home.jpg" alt="Battery Graphic" style="max-width: 500px; height: auto; border-radius: 8px;">
+      </div>
+    </div>
+
+    <div class="section" style="background-color: #e9f5ff; padding: 2rem; border-radius: 8px; margin: 2rem auto; display: flex; align-items: center; gap: 1rem;">
+        <div class="video-placeholder" style="width: 100%; max-width: 600px; height: 300px; background: #ddd; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+            <p>Video Placeholder</p>
+        </div>
+        <div style="flex: 1; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <h2>Take a Tour of our Platform!</h2>
+            <p>Want to learn how to submit your MATLAB models, compete on the leaderboard, and analyze your results? Our step-by-step walkthrough video shows you how it all works!</p>
+        </div>
+    </div>
+
+    <div class="section" style="text-align: left; padding: 10px">
+        <h2 style="margin-left: 80px;">Frequently Asked Questions</h2>
+        <p><strong>Q: How should I credit the data that I downloaded?</strong></p>
+        <p>A: [Answer goes here]</p>
+        <p><strong>Q: How should I credit the data that I downloaded?</strong></p>
+        <p>A: [Answer goes here]</p>
+    </div>
+</div>
+{% endblock %}

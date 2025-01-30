@@ -5,9 +5,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-def home(request: HttpRequest):
-    return render(request, 'home.html')
-
 def register(request: HttpRequest):
     if request.method == 'POST':
         # Get form data from the POST request
