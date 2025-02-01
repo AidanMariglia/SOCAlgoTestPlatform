@@ -289,3 +289,6 @@ src/build/tmp/db/
 # uploaded files
 
 src/webserver/webserver/media/uploads
+
+# matlab secret files
+mlSource
