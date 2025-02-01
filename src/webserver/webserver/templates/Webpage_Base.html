@@ -34,6 +34,9 @@
             color: black;
             font-weight: normal;
         }
+        .navbar .links a.active {
+            text-decoration: underline;
+        }
         .navbar .signout {
             text-decoration: none;
             color: black;
@@ -75,9 +78,6 @@
             text-decoration: none;
             color: #20BEFF;
         }
-        .active {
-            text-decoration: underline;
-        }
 </style>
     </style>
 </head>
@@ -88,11 +88,10 @@
             <a href="/home">SOCAlgoTestingPlatform</a>
         </div>
         <div class="links">
-            <a href="/leaderboard">View Leaderboard</a>
-            <a href="/submissions/" class="{% if request.path == '/submissions/' %}active{% endif %}">Submit Model</a>
-            <a href="/submissions/submissionsPage">View Submissions</a>
+            <a href="/leaderboard" class="{% if request.path == '/leaderboard/' %}active{% endif %}">View Leaderboard</a>
+            <a href="/submissions" class="{% if request.path == '/submissions/' %}active{% endif %}">Submit Model</a>
+            <a href="/submissions/submissionsPage" class="{% if request.path == '/submissions/submissionsPage' %}active{% endif %}">View Submissions</a>
         </div>
-        <p>Current path: {{ request.path }}</p>
         <a href="/home/intro" class="signout">Sign Out</a>
     </div>
 
