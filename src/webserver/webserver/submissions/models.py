@@ -24,3 +24,4 @@ class Submission(models.Model):
     completed_at = models.DateTimeField(null=True)
     result = models.TextField(max_length=1024)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    model_name = models.TextField(max_length=32)
