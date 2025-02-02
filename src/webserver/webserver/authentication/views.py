@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from authentication.models import CustomUser
 
 User = get_user_model()
 
@@ -21,7 +22,7 @@ def register(request: HttpRequest):
             return redirect('register')
 
         # Create user and save to the database
-        user = User.objects.create_user(username, email, password)
+        user = CustomUser.objects.create_user(username, email, password)
         
         # Update additional fields
         user.first_name = first_name
