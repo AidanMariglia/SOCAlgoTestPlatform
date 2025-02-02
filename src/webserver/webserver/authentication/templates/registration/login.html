@@ -84,6 +84,31 @@
     text-align: center;
   }
 
+  .tab-container a:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  .tab-container a:link {
+    text-decoration: none;
+  }
+
+  .tab-container {
+      display: flex;
+      justify-content: center; 
+      gap: 120px;  
+      color: black; 
+      text-decoration: none; 
+  } 
+
+  .tab-container a.intro {
+      font-weight: bold;
+  } 
+
+  .tab-container a.register {
+      color: grey
+  } 
+
   h2 {
     color: #333;
     margin-bottom: 20px;
@@ -186,15 +211,23 @@
     .btn {
       font-size: 16px;
     }
+
   }
 </style>
-
-{% extends "Webpage_Base.html" %}
 
 {% block content %}
   <div class="content-wrapper">
     <div class="login-container">
-      <h2>Login</h2>
+
+      <h2 style="color: #20BEFF;">SOCAlgoTestingPlatform</h2>
+      <h1>Welcome!</h1>
+
+      <div class="tab-container">
+        <a href="/accounts/login" class="intro">Sign In</a>
+        <a href="/authentication/register" class="register">Register</a>
+      </div>
+
+      <hr style="border: 1px solid black; margin-bottom: 30px;">
 
       {% if form.errors %}
         <div class="error-message">
@@ -202,32 +235,17 @@
         </div>
       {% endif %}
 
-      {% if next %}
-        <div class="info-message">
-          {% if user.is_authenticated %}
-            <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
-          {% else %}
-            <p>Please login to see this page.</p>
-          {% endif %}
-        </div>
-      {% endif %}
-
       <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        <div class="form-group">
-          <label for="{{ form.username.id_for_label }}">Username</label>
-          {{ form.username }}
+        <div class="input-group" style="margin-bottom: 30px;">
+          <input type="text" name="username" placeholder="Username" required style="width: 100%; height: 50px; font-size: 18px; padding: 10px; text-align: center;">
         </div>
         
-        <div class="form-group">
-          <label for="{{ form.password.id_for_label }}">Password</label>
-          {{ form.password }}
+        <div class="input-group" style="margin-bottom: 20px;">
+          <input type="password" name="password" placeholder="Password" required style="width: 100%; height: 50px; font-size: 18px; padding: 10px; text-align: center;">
         </div>
         
-        <div class="form-actions">
-          <input type="submit" value="Login" class="btn primary-btn">
-          <input type="hidden" name="next" value="/submissions/">
-        </div>
+        <button type="submit" class="btn btn-secondary w-100 mb-2">Login</button>
       </form>
 
       <p class="forgot-password-link"><a href="{% url 'password_reset' %}">Forgot password?</a></p>
