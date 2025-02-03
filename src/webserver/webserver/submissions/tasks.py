@@ -65,8 +65,8 @@ def run_submission(submission_id):
         print(f"Running submission {submission_id}")
         print(f"temp dir : {temp_dir}")
 
-        setup_dir(submission_id, temp_dir.name)
-        create_settings_csv(temp_dir.name)
+        setup_dir(submission_id, temp_dir)
+        create_settings_csv(temp_dir)
         
         s: Submission = Submission.objects.get(id=submission_id)
 
@@ -78,7 +78,7 @@ def run_submission(submission_id):
             eng.set(eng.groot(), 'DefaultFigureVisible', 'off', nargout=0)
 
 
-            eng.cd(temp_dir.name, nargout=0)
+            eng.cd(temp_dir, nargout=0)
             eng.eval("try\nMain_SET;\ncatch e\nfprintf('Error: %s\\n', e.message);\nend", nargout=0)
 
 
@@ -86,7 +86,7 @@ def run_submission(submission_id):
 
             # store leaderboard results
 
-            with open(os.path.join(temp_dir.name, "Leaderboard_entry.csv"), newline='') as f:
+            with open(os.path.join(temp_dir, "Leaderboard_entry.csv"), newline='') as f:
                 reader = csv.reader(f)
                 results_list = list(reader)[1]
 
