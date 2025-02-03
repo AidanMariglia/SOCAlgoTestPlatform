@@ -1,49 +1,156 @@
 <style>
-  h1 {
-    text-align: center;
-    padding: 50px;
-    color: black;
+  body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0;
+    box-sizing: border-box;
   }
+
   table {
-    text-align: center;
     width: 100%;
-    color: black;
-    padding: 50px;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    border-spacing: 0;
   }
-  th {
-    text-align: center;
-    padding: 25px;
-  }
+
+  th,
   td {
-    text-align: center;
-    padding: 25px;
+    padding: 10px;
+    text-align: left;
   }
-  tr > td {
-    border: 2px solid black;
+
+  thead {
+    position: sticky;
+    top: 40px;
+    background: #d9d9d9;
+    z-index: 5;
+  }
+
+  tr {
+    border-bottom: 2px solid black;
+  }
+
+  th {
+    font-weight: bold;
+    border-bottom: 3px solid black;
+  }
+
+  td {
+    color: #333;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    position: sticky;
+    background: white;
+    top: 0;
+    z-index: 10;
+    width: calc(100vw + 428px);
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: none;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .btn .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  .btn:hover {
+    background-color: #f9f9f9;
   }
 </style>
 
 {% extends "Webpage_Base.html" %} {% block title %}
 <title>Algorithm Leaderboard</title>
 {% endblock %} {% block content %}
-<div>
-  <h1>Leaderboard</h1>
-  <table>
-    <tr>
-      <th>User</th>
-      <th>Submitted At</th>
-      <th>Result</th>
-    </tr>
-    <tbody>
-      {% for result in results %}
-      <tr>
-        <td>{{ result.user }}</td>
-        <td>{{ result.submitted_at }}</td>
-        <td>{{ result.result }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="button-container">
+  <button class="btn">
+    <img src="/media/images/filter_icon.jpg" alt="Filter" class="icon" /> Filter
+  </button>
+  <button class="btn">
+    <img src="/media/images/sort_icon.png" alt="Sort" class="icon" /> Sort
+  </button>
 </div>
+<table>
+  <thead>
+    <tr>
+      <th>Submission</th>
+      <th>Author</th>
+      <th>Affiliation</th>
+      <th>Model Name</th>
+      <th>Weighted Error</th>
+      <th>All Cells</th>
+      <th>Blind Cells</th>
+      <th>Non-Blinded Cells</th>
+      <th>Charging</th>
+      <th>80kg Payload</th>
+      <th>448kg Payload with HVAC</th>
+      <th>448kg Payload no HVAC</th>
+      <th>1000kg Payload</th>
+      <th>Standard Cycles</th>
+      <th>Custom Cycles</th>
+      <th>n20C</th>
+      <th>n10C</th>
+      <th>0C</th>
+      <th>10C</th>
+      <th>25C</th>
+      <th>40C</th>
+      <th>iSOC Error</th>
+      <th>Current Sensor Error</th>
+      <th>All Drive Cycles Average RMSE</th>
+      <th>All Drive Cycles Average MAE</th>
+      <th>All Drive Cycles Average MAXE</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for submission in submissions %}
+    <tr>
+      <td>Submission ID</td>
+      <td>{{ submission.user.username }}</td>
+      <td>Affiliation</td>
+      <td>{{ submission.model_name }}</td>
+      <td>{{ submission.weighted_error }}</td>
+      <td>{{ submission.t1_all_cells }}</td>
+      <td>{{ submission.t2_blind_cells }}</td>
+      <td>{{ submission.t3_non_blinded_cells }}</td>
+      <td>{{ submission.t4_charging }}</td>
+      <td>{{ submission.t5_80kg_payload }}</td>
+      <td>{{ submission.t5_6_448kg_payload_with_HVAC }}</td>
+      <td>{{ submission.t5_6_448kg_payload }}</td>
+      <td>{{ submission.t5_1000kg_payload }}</td>
+      <td>{{ submission.t7_standard_cycles }}</td>
+      <td>{{ submission.t8_custom_cycles }}</td>
+      <td>{{ submission.t9_n20C }}</td>
+      <td>{{ submission.t9_n10C }}</td>
+      <td>{{ submission.t9_0C }}</td>
+      <td>{{ submission.t9_10C }}</td>
+      <td>{{ submission.t9_25C }}</td>
+      <td>{{ submission.t9_40C }}</td>
+      <td>{{ submission.t10_iSOC_error }}</td>
+      <td>{{ submission.t11_current_sensor_error }}</td>
+      <td>{{ submission.all_drive_cycles_average_RMSE }}</td>
+      <td>{{ submission.all_drive_cycles_average_MAE }}</td>
+      <td>{{ submission.all_drive_cycles_average_MAXE }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="10" style="text-align: center">No submissions yet.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}

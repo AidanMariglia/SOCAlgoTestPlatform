@@ -7,6 +7,6 @@ from submissions.models import Submission
 # Create your views here.
 
 def leaderboard(request: HttpRequest):
-    results = Submission.objects.all().exclude(result="").order_by(Length("result").desc())
+    submissions = Submission.objects.all()
 
-    return render(request, "leaderboard/leaderboard.html", {"results": results})
+    return render(request, "leaderboard/leaderboard.html", {"submissions": submissions})
