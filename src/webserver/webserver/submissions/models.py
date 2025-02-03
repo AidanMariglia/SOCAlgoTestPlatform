@@ -19,7 +19,6 @@ class Submission(models.Model):
     # data into the submissionstatus model yet
     status = models.ForeignKey(SubmissionStatus, null=True, on_delete=models.SET_NULL)
     file = models.FileField(upload_to='uploads/', validators=[validate_file_extension])
-    result = models.TextField(blank=True)
     submitted_at = models.DateTimeField(null=True) #null for now. Giving me issues
     completed_at = models.DateTimeField(null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
