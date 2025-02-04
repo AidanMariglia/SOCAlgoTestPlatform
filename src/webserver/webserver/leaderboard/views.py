@@ -7,6 +7,5 @@ from submissions.models import Submission
 # Create your views here.
 
 def leaderboard(request: HttpRequest):
-    submissions = Submission.objects.all()
-
+    submissions = Submission.objects.all().order_by('-t1_all_cells') #sort by all cells descending
     return render(request, "leaderboard/leaderboard.html", {"submissions": submissions})

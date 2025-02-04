@@ -6,6 +6,10 @@
     box-sizing: border-box;
   }
 
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -21,7 +25,7 @@
 
   thead {
     position: sticky;
-    top: 40px;
+    top: 78px;
     background: #d9d9d9;
     z-index: 5;
   }
@@ -42,12 +46,13 @@
   .button-container {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 19px;
+    margin-top: 19px;
     position: sticky;
     background: white;
-    top: 0;
+    top: 40px;
     z-index: 10;
-    width: calc(100vw + 428px);
+    width: 1882px;
   }
 
   .btn {
