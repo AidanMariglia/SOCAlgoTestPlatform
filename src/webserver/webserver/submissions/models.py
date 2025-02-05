@@ -22,7 +22,7 @@ class Submission(models.Model):
     submitted_at = models.DateTimeField(null=True) #null for now. Giving me issues
     completed_at = models.DateTimeField(null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    model_name = models.TextField(blank=True)
+    model_name = models.TextField(max_length=32)
     weighted_error = models.DecimalField(max_digits=10, decimal_places=3, null=True)
     t1_all_cells = models.DecimalField(max_digits=10, decimal_places=3, null=True)
     t2_blind_cells = models.DecimalField(max_digits=10, decimal_places=3, null=True)
