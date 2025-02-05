@@ -28,6 +28,6 @@ def index(request: HttpRequest):
 
 @login_required
 def submissionsPage(request: HttpRequest):
-    submissions = Submission.objects.filter(user=request.user)
+    submissions = Submission.objects.all().filter(user=request.user)
 
     return render(request, "submissions/submissions.html", {"submissions": submissions})

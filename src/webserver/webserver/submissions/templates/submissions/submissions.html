@@ -1,119 +1,171 @@
 <style>
-  * {
+  body {
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
   }
-  .container {
-    width: 80%;
-    max-width: 800px;
-    margin: 3rem auto;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
-  h1 {
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    color: #333;
-    text-align: center;
+
+  body::-webkit-scrollbar {
+    display: none;
   }
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 2rem;
-    font-size: 1em;
-  }
-  thead tr {
-    background-color: #f8f9fa;
-    color: #333;
+    font-family: Arial, sans-serif;
+    border-spacing: 0;
   }
   th,
   td {
-    padding: 12px 15px;
+    padding: 10px;
     text-align: left;
   }
+
+  thead {
+    position: sticky;
+    top: 78px;
+    background: #d9d9d9;
+    z-index: 5;
+  }
+
+  tr {
+    border-bottom: 2px solid black;
+  }
   th {
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: #555;
-    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+    border-bottom: 3px solid black;
   }
-  tbody tr:nth-child(even) {
-    background-color: #f7f9fa;
-  }
-  tbody tr:hover {
-    background-color: #e9ecef;
-  }
-  tbody td {
-    font-size: 0.9rem;
+
+  td {
     color: #333;
-    border-bottom: 1px solid #dee2e6;
   }
-  a {
-    color: #007bff;
-    text-decoration: none;
+  .button-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 19px;
+    margin-top: 19px;
+    position: sticky;
+    background: white;
+    top: 40px;
+    z-index: 10;
+    width: 1812px;
   }
-  a:hover {
-    text-decoration: underline;
-  }
-  .index-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #3b8d99;
-    color: white;
-    text-decoration: none;
+
+  .btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: none;
+    background-color: #f8f9fa;
     border-radius: 5px;
-    text-align: center;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
   }
-  .index-link:hover {
-    background-color: #2c6d75;
+
+  .btn .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  .btn:hover {
+    background-color: #f9f9f9;
+  }
+
+  .status-completed {
+    color: green;
+  }
+
+  .status-pending {
+    color: orange;
+  }
+
+  .status-error {
+    color: red;
   }
 </style>
 
-{% extends "Webpage_Base.html" %}
-
-{% block title %}
-  <title>Submission and Results</title>
-{% endblock %}
-
-{% block content %}
-  <body>
-    <div class="container">
-      <!-- Link to upload page -->
-      <a href="{% url 'index' %}" class="index-link">Upload New Submission</a>
-
-      <!-- Submissions -->
-      <h1>Previous Submissions</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Submitted at</th>
-            <th>File</th>
-            <th>Status</th>
-            <th>Result</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for submission in submissions %}
-          <tr>
-            <td>{{ submission.submitted_at }}</td>
-            <td>
-              <a href="{{ submission.file.url }}"
-                >{{submission.file.name|slice:"8:"}}</a
-              >
-            </td>
-            <td>{{ submission.status.name }}</td>
-            <td>{{ submission.result|slice:":50" }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </body>
-</html>
+{% extends "Webpage_Base.html" %} {% block title %}
+<title>Submission and Results</title>
+{% endblock %} {% block content %}
+<div class="button-container">
+  <button class="btn">
+    <img src="/media/images/filter_icon.jpg" alt="Filter" class="icon" /> Filter
+  </button>
+  <button class="btn">
+    <img src="/media/images/sort_icon.png" alt="Sort" class="icon" /> Sort
+  </button>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Submission</th>
+      <th>Model Name</th>
+      <th>Status</th>
+      <th>Weighted Error</th>
+      <th>All Cells</th>
+      <th>Blind Cells</th>
+      <th>Non-Blinded Cells</th>
+      <th>Charging</th>
+      <th>80kg Payload</th>
+      <th>448kg Payload with HVAC</th>
+      <th>448kg Payload no HVAC</th>
+      <th>1000kg Payload</th>
+      <th>Standard Cycles</th>
+      <th>Custom Cycles</th>
+      <th>n20C</th>
+      <th>n10C</th>
+      <th>0C</th>
+      <th>10C</th>
+      <th>25C</th>
+      <th>40C</th>
+      <th>iSOC Error</th>
+      <th>Current Sensor Error</th>
+      <th>All Drive Cycles Average RMSE</th>
+      <th>All Drive Cycles Average MAE</th>
+      <th>All Drive Cycles Average MAXE</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for submission in submissions %}
+    <tr>
+      <td>Submission ID</td>
+      <td>{{ submission.model_name }}</td>
+      <td
+        class="{% if submission.status == 'completed' %}status-completed {% elif submission.status == 'pending' %}status-pending {% else %}status-error{% endif %}"
+      >
+        {{ submission.status }}
+      </td>
+      <td>{{ submission.weighted_error }}</td>
+      <td>{{ submission.t1_all_cells }}</td>
+      <td>{{ submission.t2_blind_cells }}</td>
+      <td>{{ submission.t3_non_blinded_cells }}</td>
+      <td>{{ submission.t4_charging }}</td>
+      <td>{{ submission.t5_80kg_payload }}</td>
+      <td>{{ submission.t5_6_448kg_payload_with_HVAC }}</td>
+      <td>{{ submission.t5_6_448kg_payload }}</td>
+      <td>{{ submission.t5_1000kg_payload }}</td>
+      <td>{{ submission.t7_standard_cycles }}</td>
+      <td>{{ submission.t8_custom_cycles }}</td>
+      <td>{{ submission.t9_n20C }}</td>
+      <td>{{ submission.t9_n10C }}</td>
+      <td>{{ submission.t9_0C }}</td>
+      <td>{{ submission.t9_10C }}</td>
+      <td>{{ submission.t9_25C }}</td>
+      <td>{{ submission.t9_40C }}</td>
+      <td>{{ submission.t10_iSOC_error }}</td>
+      <td>{{ submission.t11_current_sensor_error }}</td>
+      <td>{{ submission.all_drive_cycles_average_RMSE }}</td>
+      <td>{{ submission.all_drive_cycles_average_MAE }}</td>
+      <td>{{ submission.all_drive_cycles_average_MAXE }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="10" style="text-align: center">No submissions yet.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}
