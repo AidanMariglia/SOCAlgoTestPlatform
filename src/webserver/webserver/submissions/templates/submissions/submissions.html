@@ -6,9 +6,6 @@
     box-sizing: border-box;
   }
 
-  body::-webkit-scrollbar {
-    display: none;
-  }
   table {
     width: 100%;
     border-collapse: collapse;
@@ -18,7 +15,7 @@
   th,
   td {
     padding: 10px;
-    text-align: left;
+    text-align: center !important;
   }
 
   thead {
@@ -81,7 +78,7 @@
     color: orange;
   }
 
-  .status-error {
+  .status-failed {
     color: red;
   }
 </style>
@@ -103,6 +100,8 @@
       <th>Submission</th>
       <th>Model Name</th>
       <th>Status</th>
+      <th>Submitted at</th>
+      <th>Completed at</th>
       <th>Weighted Error</th>
       <th>All Cells</th>
       <th>Blind Cells</th>
@@ -130,13 +129,17 @@
   <tbody>
     {% for submission in submissions %}
     <tr>
-      <td>Submission ID</td>
+      <td>
+        <a href="{% url 'submission' submission.id %}">{{ submission.id }}</a>
+      </td>
       <td>{{ submission.model_name }}</td>
       <td
-        class="{% if submission.status == 'completed' %}status-completed {% elif submission.status == 'pending' %}status-pending {% else %}status-error{% endif %}"
+        class="{% if submission.status.name == 'completed' %}status-completed{% elif submission.status.name == 'pending' %}status-pending{% else %}status-failed{% endif %}"
       >
         {{ submission.status }}
       </td>
+      <td>{{ submission.submitted_at }}</td>
+      <td>{{ submission.completed_at }}</td>
       <td>{{ submission.weighted_error }}</td>
       <td>{{ submission.t1_all_cells }}</td>
       <td>{{ submission.t2_blind_cells }}</td>
@@ -167,5 +170,18 @@
     {% endfor %}
   </tbody>
 </table>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function matchWidth() {
+      let referenceElement = document.getElementsByTagName("table");
+      let targetElement = document.getElementByClassName("button-container");
 
+      targetElement.style.width = referenceElement.offsetWidth + "px";
+    }
+
+    matchWidth();
+
+    window.addEventListener("resize", matchWidth);
+  });
+</script>
 {% endblock %}
