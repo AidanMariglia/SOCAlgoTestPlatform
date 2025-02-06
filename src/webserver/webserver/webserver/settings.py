@@ -58,9 +58,11 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'webserver.urls'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/submissions/submissionsPage'
+LOGIN_REDIRECT_URL = '/home/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTH_USER_MODEL = 'authentication.CustomUser'
 
 TEMPLATES = [
     {

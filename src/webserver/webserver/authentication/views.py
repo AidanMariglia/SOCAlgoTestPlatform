@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from authentication.models import CustomUser
 
 User = get_user_model()
 
@@ -13,6 +14,7 @@ def register(request: HttpRequest):
         password = request.POST['password']
         first_name = request.POST.get('first_name', '')
         last_name = request.POST.get('last_name', '')
+        academic_affiliation = request.POST.get('academic_affiliation', '')
 
         # Check if the username already exists
         if User.objects.filter(username=username).exists():
@@ -20,14 +22,15 @@ def register(request: HttpRequest):
             return redirect('register')
 
         # Create user and save to the database
-        user = User.objects.create_user(username, email, password)
+        user = CustomUser.objects.create_user(username, email, password)
         
         # Update additional fields
         user.first_name = first_name
         user.last_name = last_name
+        user.academic_affiliation = academic_affiliation
         user.save()
 
         messages.success(request, "Registration successful!")
-        return redirect('login')  # Redirect to the login page after successful registration
+        return redirect('/home')  # Redirect to the home page after successful registration
 
     return render(request, 'registration/register.html')
