@@ -5,6 +5,8 @@ from .forms import FileUploadForm
 from .tasks import run_submission
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 
 @login_required
 def index(request: HttpRequest):
@@ -28,6 +30,16 @@ def index(request: HttpRequest):
 
 @login_required
 def submissionsPage(request: HttpRequest):
-    submissions = Submission.objects.filter(user=request.user)
+    submissions = Submission.objects.all().filter(user=request.user)
 
     return render(request, "submissions/submissions.html", {"submissions": submissions})
+
+@login_required
+def submission_detail(request, submission_id):
+    submission = get_object_or_404(Submission, id=submission_id)
+
+    # Check if the logged-in user is the owner of the submission
+    if submission.user != request.user:
+        raise Http404("You are not authorized to view this submission.")
+
+    return render(request, 'submissions/submission.html', {'submission': submission})
