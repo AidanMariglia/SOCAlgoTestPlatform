@@ -7,6 +7,5 @@ from submissions.models import Submission
 # Create your views here.
 
 def leaderboard(request: HttpRequest):
-    results = Submission.objects.all().exclude(result="").order_by(Length("result").desc())
-
-    return render(request, "leaderboard/leaderboard.html", {"results": results})
+    submissions = Submission.objects.filter(status__name="completed").order_by('weighted_error') #sort by ascending weighted error 
+    return render(request, "leaderboard/leaderboard.html", {"submissions": submissions})
