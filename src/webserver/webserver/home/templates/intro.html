@@ -1,120 +1,208 @@
-<style>
-  .content-wrapper {
-      display: flex;
-      justify-content: left;
-      margin-left: 10%; 
-      height: 100vh;
-      width: calc(100% - 200px); 
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
 
-  .welcome-section {
-      display: flex;
-      align-items: left; 
-      gap: 20px; 
-  }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-  .welcome-text {
-      flex: 1;
-      text-align: center;
-  }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
 
-  .welcome-image img {
-      max-width: 500px;
-      height: auto;
-      margin-left: 60%;
-  }
+        .header h1 {
+            color: #20BEFF;
+            margin: 0;
+            font-size: 2rem;
+        }
 
-  .container {
-      margin-left: 150px;
-      margin-right: 150px;
-  }
+        .button-container {
+            display: flex;
+            gap: 15px;
+        }
 
-  .button-container {
-      text-align: center;
-      margin-top: 20px;
-  }
+        .button-container a {
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
 
-  .button-container .login-btn {
-      text-decoration: none;
-      margin: 10px;
-      padding: 10px 20px;
-      background-color: #4CAF50; 
-      color: white;
-      font-size: 16px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      right: 140px;
-      top: 20px;
-      text-align: right;
-      position: absolute;
-  }
+        .login-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
 
-  .button-container .register-btn {
-      text-decoration: none;
-      margin: 10px;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      font-size: 16px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      right: 20px;
-      top: 20px;
-      text-align: right;
-      position: absolute;
-  }
+        .register-btn {
+            background-color: #007bff;
+            color: white;
+        }
 
-  .button-container .login-btn:hover {
-      background-color: #45a049; 
-  }
+        .login-btn:hover {
+            background-color: #45a049;
+        }
 
-  .button-container .register-btn:hover {
-      background-color: #0056b3;
-  }
-</style>
+        .register-btn:hover {
+            background-color: #0056b3;
+        }
 
-<title>Intro</title>
+        .intro-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 40px 0;
+            flex-wrap: wrap;
+        }
 
-<div class="container">
-  <div class="section" style="display: flex; align-items: center; text-align: left;">
-      <h1 style="color: #20BEFF;">SOCAlgoTestingPlatform</h1>
-  </div>
+        .intro-text {
+            flex: 1;
+            text-align: left;
+        }
 
-  <div class="section" style="display: flex; align-items: center; text-align: left;">
-      <div style="flex: 1;">
-          <h2 style="text-align: center;">
-              A repository for easy visualization, analysis,<br>and comparison of battery data across institutions.
-          </h2>
-      </div>
-      <div>
-          <img src="/media/images/Battery_Home.jpg" alt="Battery Graphic" style="max-width: 500px; height: auto; border-radius: 8px;">
-      </div>
-  </div>
+        .intro-text h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-  <div class="button-container">
-    <a href="/accounts/login" class="login-btn">Login</a>
-  </div>
+        .intro-text p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            text-align: center;
+        }
 
-  <div class="button-container">
-    <a href="/authentication/register" class="register-btn">Register</a>
-  </div>
+        .intro-image img {
+            max-width: 550px;
+            height: auto;
+            border-radius: 8px;
+        }
 
-  <div class="section" style="background-color: #e9f5ff; padding: 2rem; border-radius: 8px; margin: 2rem auto; display: flex; align-items: center; gap: 1rem;">
-      <div class="video-placeholder" style="width: 100%; max-width: 600px; height: 300px; background: #ddd; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-          <p>Video Placeholder</p>
-      </div>
-      <div style="flex: 1; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-          <h2>Take a Tour of our Platform!</h2>
-          <p>Want to learn how to submit your MATLAB models, compete on the leaderboard, and analyze your results? Our step-by-step walkthrough video shows you how it all works!</p>
-      </div>
-  </div>
+        .tour-section {
+            display: flex;
+            align-items: center;
+            background-color: #e9f5ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-  <div class="section" style="text-align: left; padding: 10px">
-      <h2 style="margin-left: 80px;">Frequently Asked Questions</h2>
-      <p><strong>Q: How should I credit the data that I downloaded?</strong></p>
-      <p>A: [Answer goes here]</p>
-      <p><strong>Q: How should I credit the data that I downloaded?</strong></p>
-      <p>A: [Answer goes here]</p>
-  </div>
+        .video-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
 
-</div>
+        .tour-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .tour-text h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .tour-text p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .faq-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .faq-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>SOCAlgoTestingPlatform</h1>
+            <div class="button-container">
+                <a href="/accounts/login" class="login-btn">Login</a>
+                <a href="/authentication/register" class="register-btn">Register</a>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="intro-section">
+            <div class="intro-text">
+                <h2>Repository for easy visualization, analysis, and comparison of battery data across institutions.</h2>
+                <P>Register an account today to gain access to our leaderboard, submit your own algorithms and recieve detailed
+                    feedback including graphs, and see how you rank against the best at other instituions.
+                </P>
+            </div>
+            <div class="intro-image">
+                <img src="/media/images/Battery_Home.png" alt="Battery Graphic">
+            </div>
+        </div>
+
+        <!-- Tour Section -->
+        <div class="tour-section">
+            <div class="video-placeholder">
+                <p>Video Placeholder</p>
+            </div>
+            <div class="tour-text">
+                <h2>Take a Tour of our Platform!</h2>
+                <p>Want to learn how to submit your MATLAB models, compete on the leaderboard, and analyze your results? Our step-by-step walkthrough video shows you how it all works!</p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <p><strong>Q: How should I credit the data that I downloaded?</strong></p>
+                <p>A: [Answer goes here]</p>
+            </div>
+            <div class="faq-item">
+                <p><strong>Q: How should I credit the data that I downloaded?</strong></p>
+                <p>A: [Answer goes here]</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

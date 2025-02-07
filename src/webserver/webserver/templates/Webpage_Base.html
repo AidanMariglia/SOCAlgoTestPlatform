@@ -101,7 +101,10 @@
             <a href="/submissions" class="{% if request.path == '/submissions/' %}active{% endif %}">Submit Model</a>
             <a href="/submissions/submissionsPage" class="{% if request.path == '/submissions/submissionsPage' %}active{% endif %}">View Submissions</a>
         </div>
-        <a href="/home/intro" class="signout">Sign Out</a>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="signout">Sign Out</button>
+        </form>
     </div>
 
     <div class="content-wrapper">
