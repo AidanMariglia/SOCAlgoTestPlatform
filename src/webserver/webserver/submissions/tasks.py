@@ -9,6 +9,9 @@ from django.utils import timezone
 from django.conf import settings
 from workers import task
 from .models import Submission, SubmissionStatus, Figure
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 def setup_dir(submission_id: str, dir_path: os.PathLike):
@@ -33,18 +36,12 @@ def setup_dir(submission_id: str, dir_path: os.PathLike):
     shutil.copytree(static_files_path, dir_path, dirs_exist_ok=True)
 
 
-def create_settings_csv(out_dir: os.PathLike):
-    # get these from submission
-    auth_name="test name"
-    auth_affiliation="test affiliation"
-    auth_email="test email"
-    model_name="test model name"
-
+def create_settings_csv(out_dir: os.PathLike, settings: list[str]):
     data = [
-        ["Author Name", auth_name],
-        ["Author Affiliation", auth_affiliation],
-        ["Author Email", auth_email],
-        ["Model Name", model_name]
+        ["Author Name", settings[0]],
+        ["Author Affiliation", settings[1]],
+        ["Author Email", settings[2]],
+        ["Model Name", settings[3]]
     ]
 
     with open(os.path.join(out_dir, "Settings.csv"), mode="w", newline="") as file:
@@ -66,9 +63,13 @@ def run_submission(submission_id):
         print(f"temp dir : {temp_dir}")
 
         setup_dir(submission_id, temp_dir)
-        create_settings_csv(temp_dir)
         
         s: Submission = Submission.objects.get(id=submission_id)
+        user =  User.objects.get(id=s.user_id)
+
+        setting = [f"{user.first_name} {user.last_name}", user.academic_affiliation, user.email, s.model_name]
+
+        create_settings_csv(temp_dir, setting)
 
 
         # check how to silence warnings
