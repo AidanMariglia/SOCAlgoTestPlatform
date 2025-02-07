@@ -53,13 +53,14 @@
   .btn {
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: 15px 15px;
     border: none;
     background-color: #f8f9fa;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
+    margin-top: 10px;
   }
 
   .arrow {
@@ -107,7 +108,7 @@
         <th><div>Weighted Error</div><button class="arrow" type="submit", name="order_by", value="weighted_error">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-weighted_error">&#x25BC</button></th>
         <th><div>All Cells</div><button class="arrow" type="submit", name="order_by", value="t1_all_cells">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t1_all_cells">&#x25BC</button></th>
         <th><div>Blind Cells</div><button class="arrow" type="submit", name="order_by", value="t2_blind_cells">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t2_blind_cells">&#x25BC</button></th>
-        <th><div>Non-Blinded Cells</div><button class="arrow" type="submit", name="order_by", value="-t3_non_blinded_cells">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t3_non_blinded_cells">&#x25BC</button></th>
+        <th><div>Non-Blinded Cells</div><button class="arrow" type="submit", name="order_by", value="t3_non_blinded_cells">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t3_non_blinded_cells">&#x25BC</button></th>
         <th><div>Charging</div><button class="arrow" type="submit", name="order_by", value="t4_charging">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t4_charging">&#x25BC</button></th>
         <th><div>80kg Payload</div><button class="arrow" type="submit", name="order_by", value="t5_80kg_payload">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t5_80kg_payload">&#x25BC</button></th>
         <th><div>448kg Payload with HVAC</div><button class="arrow" type="submit", name="order_by", value="t5_6_448kg_payload_with_HVAC">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t5_6_448kg_payload_with_HVAC">&#x25BC</button></th>
@@ -122,7 +123,7 @@
       <th><div>25C</div><button class="arrow" type="submit", name="order_by", value="t9_25C">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t9_25C">&#x25BC</button></th>
       <th><div>40C</div><button class="arrow" type="submit", name="order_by", value="t9_40C">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t9_40C">&#x25BC</button></th>
       <th><div>iSOC Error</div><button class="arrow" type="submit", name="order_by", value="t10_iSOC_error">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t10_iSOC_error">&#x25BC</button></th>
-      <th><div>Current Sensor Error</div><button class="arrow" type="submit", name="order_by", value="t11_current_sensor_error">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t11_current_sensor_error"></button>>&#x25BC</button></th>
+      <th><div>Current Sensor Error</div><button class="arrow" type="submit", name="order_by", value="t11_current_sensor_error">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t11_current_sensor_error">&#x25BC</button></th>
       <th><div>All Drive Cycles Average RMSE</div><button class="arrow" type="submit", name="order_by", value="all_drive_cycles_average_RMSE">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-all_drive_cycles_average_RMSE">&#x25BC</button></th>
       <th><div>All Drive Cycles Average MAE</div><button class="arrow" type="submit", name="order_by", value="all_drive_cycles_average_MAE">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-all_drive_cycles_average_MAE">&#x25BC</button></th>
       <th><div>All Drive Cycles Average MAXE</div><button class="arrow" type="submit", name="order_by", value="all_drive_cycles_average_MAXE">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-all_drive_cycles_average_MAXE">&#x25BC</button></th>
