@@ -10,5 +10,5 @@ def leaderboard(request: HttpRequest):
 
     order_by = request.GET.get('order_by', "weighted_error")
 
-    submissions = Submission.objects.filter(status__name="completed").order_by(order_by) #sort by ascending weighted error 
+    submissions = Submission.objects.filter(status__name="completed").order_by(order_by)
     return render(request, "leaderboard/leaderboard.html", {"submissions": submissions})
