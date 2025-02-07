@@ -43,7 +43,10 @@ def submission_detail(request, submission_id):
     submission = get_object_or_404(Submission, id=submission_id)
     figures = submission.figures.filter(file__endswith='.png')
 
-    figure = figures[0]
+    if len(figures) > 0:
+        figure = figures[0]
+    else:
+        figure = None
 
 
     # Check if the logged-in user is the owner of the submission
