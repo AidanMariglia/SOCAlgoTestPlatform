@@ -45,3 +45,12 @@ class Submission(models.Model):
     all_drive_cycles_average_RMSE = models.DecimalField(max_digits=10, decimal_places=3, null=True)
     all_drive_cycles_average_MAE = models.DecimalField(max_digits=10, decimal_places=3, null=True)
     all_drive_cycles_average_MAXE = models.DecimalField(max_digits=10, decimal_places=3, null=True)
+
+class Figure(models.Model):
+    submission = models.ForeignKey(Submission, related_name="figures", on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    file = models.FileField(upload_to="matlab_figures/")
+
+
+    def __str__(self):
+        return f"{self.submission.id} - {self.name}"
