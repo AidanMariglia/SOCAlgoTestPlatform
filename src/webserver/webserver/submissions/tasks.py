@@ -139,12 +139,11 @@ def run_submission(submission_id):
 
                     figure, created = Figure.objects.get_or_create(
                         name=filename,
-                        defaults={"file": relative_path, "submission": s}
+                        submission=s,
                     )
 
-                    if not created:
-                        figure.file.name = relative_path
-                        figure.save()
+                    figure.file.name = relative_path
+                    figure.save()
 
                     print(f"Processed: {filename} -> {relative_path}")
 
