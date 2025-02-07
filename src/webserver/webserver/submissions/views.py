@@ -1,3 +1,5 @@
+import json
+
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from .models import Submission, SubmissionStatus
@@ -7,6 +9,8 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
+from django.core.serializers import serialize
+
 
 @login_required
 def index(request: HttpRequest):
@@ -37,9 +41,13 @@ def submissionsPage(request: HttpRequest):
 @login_required
 def submission_detail(request, submission_id):
     submission = get_object_or_404(Submission, id=submission_id)
+    figures = submission.figures.filter(file__endswith='.png')
+
+    figure = figures[0]
+
 
     # Check if the logged-in user is the owner of the submission
     if submission.user != request.user:
         raise Http404("You are not authorized to view this submission.")
 
-    return render(request, 'submissions/submission.html', {'submission': submission})
+    return render(request, 'submissions/submission.html', {'submission': submission, 'figure': figure })

@@ -8,7 +8,7 @@ import matlab.engine
 from django.utils import timezone
 from django.conf import settings
 from workers import task
-from .models import Submission, SubmissionStatus
+from .models import Submission, SubmissionStatus, Figure
 
 
 def setup_dir(submission_id: str, dir_path: os.PathLike):
@@ -81,6 +81,8 @@ def run_submission(submission_id):
             eng.cd(temp_dir, nargout=0)
             eng.eval("try\nMain_SET;\ncatch e\nfprintf('Error: %s\\n', e.message);\nend", nargout=0)
 
+            eng.eval("try\nconvert_figures;\ncatch e\nfprintf('Error: %s\\n', e.message);\nend", nargout=0)
+
 
             print("matlab completed executing")
 
@@ -119,6 +121,34 @@ def run_submission(submission_id):
 
             s.status = SubmissionStatus.objects.get(name="completed")
             s.completed_at = timezone.now()
+
+            submission_id = str(s.id)
+            # save figures
+            destination_dir = os.path.join(settings.MEDIA_ROOT, "matlab_figures", submission_id)
+            os.makedirs(destination_dir, exist_ok=True)
+
+            
+            for filename in os.listdir(temp_dir):
+                if filename.endswith((".fig", ".png")):
+                    source_path = os.path.join(temp_dir, filename)
+                    destination_path = os.path.join(destination_dir, filename)
+
+                    shutil.move(source_path, destination_path)
+
+                    relative_path = f"matlab_figures/{submission_id}/{filename}"
+
+                    figure, created = Figure.objects.get_or_create(
+                        name=filename,
+                        defaults={"file": relative_path, "submission": s}
+                    )
+
+                    if not created:
+                        figure.file.name = relative_path
+                        figure.save()
+
+                    print(f"Processed: {filename} -> {relative_path}")
+
+            print(f"All files for submission {submission_id} have been moved and registered.")
 
 
             # store files
