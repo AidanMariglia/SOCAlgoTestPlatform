@@ -11,6 +11,8 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{color}
+\usepackage[normalem]{ulem}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -51,6 +53,7 @@
 2024-10-19 & 0.2 & Fix directories \\
 2025-01-04 & 0.3 & Added specific deliverables and deadlines to section 21.1 \\
 2025-01-04 & 0.4 & Fixed non-verifiable requirements in section 11.4  \\
+2025-02-13 & 0.5 & Prune SRS and add rationales to requirements  \\
 \bottomrule
 \end{tabularx}
 
@@ -387,7 +390,8 @@ System receives the new algorithm results and updates the leaderboard table in t
 \textbf{FR-1}
 \begin{itemize}
     \item The system shall allow users to submit algorithms to be tested. \hfill \break
-    Fit criterion: Users should be able to upload an algorithm to the system and receive confirmation of their upload.
+    Fit criterion: Users should be able to upload an algorithm to the system and receive confirmation of their upload. \hfill \break
+    \textcolor{red} {Rationale: Ensures core functionality by allowing users to submit algorithms for testing. Confirmation provides feedback, reducing uncertainty and preventing duplicate uploads.}
 \end{itemize}
 \textbf{FR-2}
 \begin{itemize}
@@ -395,6 +399,8 @@ System receives the new algorithm results and updates the leaderboard table in t
     Fit criterion: Users should be able to view the result of their algorithm somewhere in the interface of the system after it has been completed.
     \break
     Depends on: FR-1
+    \hfill \break
+    \textcolor{red} {Rationale: Provides users with feedback on their algorithm’s performance.}
 \end{itemize}
 \textbf{FR-3}
 \begin{itemize}
@@ -402,56 +408,76 @@ System receives the new algorithm results and updates the leaderboard table in t
     Fit criterion: Users should be able to submit more than one algorithm for testing and see that the execution of all submissions is underway.
     \break
     Depends on: FR-1
+    \hfill \break
+    \textcolor{red} {Rationale: Enables efficient use of system resources and improves user experience by allowing multiple tests to run simultaneously.}
 \end{itemize}
 \textbf{FR-4}
 
 \begin{itemize}
     \item The system shall allow users to make a new account. \hfill \break
     Fit criterion: Users should be able to provide a username and password and in return gain access to a new account corresponding to those values.
+    \hfill \break
+    \textcolor{red} {Rationale: Enables user authentication and personalization, allowing access to submission history and results.}
 \end{itemize}
 \textbf{FR-5}
 \begin{itemize}
     \item The system shall have a user login page. \hfill \break
     Fit criterion: Users should be able to navigate to a page in the system where they can provide a username and password to authenticate under an account.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures secure access to user accounts, protecting submissions and results.}
 \end{itemize}
 \textbf{FR-6}
 \begin{itemize}
     \item The system shall segregate data based on the logged users. \hfill \break
     Fit criterion: Users should not be able to see the private data of users and vice versa. \\
-    Depends on: FR-4
+    Depends on: FR-4 and FR-5
+    \hfill \break
+    \textcolor{red} {Rationale: Protects user privacy and ensures data security by restricting access to personal submissions and results.}
 \end{itemize}
 \textbf{FR-7}
 \begin{itemize}
     \item The system shall save algorithm results in individual user accounts. \hfill \break
     Fit criterion: Users should be able to view their previous submissions anytime in the future. \\
     Depends on: FR-4
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures  accessibility to past submissions, allowing users to track progress and review past results.}
 \end{itemize}
 \textbf{FR-8}
 \begin{itemize}
     \item The system shall have a leaderboard feature that is accessible to all users. \hfill \break
     Fit criterion: Users should be able to view a list of all submissions from other users.
+    \hfill \break
+    \textcolor{red} {Rationale: Encourages competition and engagement by allowing users to compare performance across different users' submissions.}
 \end{itemize}
 \textbf{FR-9}
 \begin{itemize}
     \item The system shall have categorization in its leaderboard based on certain criteria. \hfill \break
     Fit criterion: Users should be able to select the type of algorithm they are interested in and only view results of that type. \\
     Depends on: FR-8
+    \hfill \break
+    \textcolor{red} {Rationale: Enhances user experience making it easier to find results based on specific algorithm categories.}
 \end{itemize}
 \textbf{FR-10}
 \begin{itemize}
     \item The system shall allow users to sort through the leaderboards based on criteria. \hfill \break
     Fit criterion: Users should be able to view results in order of lowest run time to highest or other criteria. \\
     Depends on: FR-8
+    \hfill \break
+    \textcolor{red} {Rationale: Provides flexibility in viewing results, enabling users to focus on specific performance metrics.}
 \end{itemize}
 \textbf{FR-11}
 \begin{itemize}
     \item The system shall display the progress of running algorithms to users. \hfill \break
     Fit criterion: Users should be able to view if a submission is accepted, pending, executed, or finished.
+    \hfill \break
+    \textcolor{red} {Rationale: Keeps users informed about the status of their submissions, reducing uncertainty and enhancing user experience.}
 \end{itemize}
 \textbf{FR-12}
 \begin{itemize}
     \item The system shall notify users in case of an exception in their algorithm. \hfill \break
     Fit criterion: Users should receive a notification if their algorithm fails to execute successfully.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures transparency by informing users of issues with their submissions, enabling them to make necessary corrections.}
 \end{itemize}
 
 \section{Look and Feel Requirements}
@@ -459,14 +485,16 @@ System receives the new algorithm results and updates the leaderboard table in t
 \textbf{LFR-1}
 \begin{itemize}
     \item The system’s appearance should look similar to a website called Kaggle. \hfill \break
-    Fit criterion: Users should recognize similarities between the system and Kaggle.
+    Fit criterion: Users should recognize similarities between the system and Kaggle. \\
+    \textcolor{red} {Rationale: Design preference of primary stakeholder.}
 \end{itemize}
 
-\subsection{Style Requirements}
-\textbf{SR-1}
+\subsection{\sout{Style Requirements}}
+\textbf{\sout{SR-1}}
 \begin{itemize}
-    \item The system should use the same styles i.e. colour, background colour, user-interface structure, etc. as the Kaggle website. \hfill \break
-    Fit criterion: Users should see the same styles as the Kaggle website when using the system.
+    \item \sout{The system should use the same styles i.e. colour, background colour, user-interface structure, etc. as the Kaggle website. \hfill \break
+    Fit criterion: Users should see the same styles as the Kaggle website when using the system. \\
+    Rationale: Design preference of primary stakeholder.}
 \end{itemize}
 
 
@@ -476,6 +504,8 @@ System receives the new algorithm results and updates the leaderboard table in t
 \begin{itemize}
     \item All tasks that can be completed with the system should have a similar workflow.\hfill \break
     Fit criterion: Users should be able to follow the same workflow when viewing a submission in progress or one that is already completed.
+    \hfill \break
+    \textcolor{red} {Rationale: Promotes consistency and simplicity in the user experience, making the system intuitive and easy to navigate.}
 \end{itemize}
 \subsection{Personalization and Internationalization Requirements}
 N/A - No personalization or internationalization was mentioned by the client.
@@ -484,37 +514,41 @@ N/A - No personalization or internationalization was mentioned by the client.
 \begin{itemize}
     \item The system shall have detailed documentation for all core functionality. \hfill \break
     Fit criterion: Users should be able to easily find documentation which walks them through the steps involved in submitting an algorithm and viewing the results.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures users can easily understand and use the system, reducing confusion and improving overall usability.}
 \end{itemize}
 \textbf{LR-2}
 \begin{itemize}
     \item The system shall display hints for new/unused features for a specific user. \hfill \break
     Fit criterion: The user should be able to see a hint indicating how to use a new feature.
+    \hfill \break
+    \textcolor{red} {Rationale: Enhances user experience by guiding users through new features, promoting exploration and efficient use of the platform.}
 \end{itemize}
 
-\subsection{Understandability and Politeness Requirements}
-\textbf{UPR-1}
+\subsection{\sout{Understandability and Politeness Requirements}}
+\textbf{\sout{UPR-1}}
 \begin{itemize}
-    \item The system shall use universally used symbols when appropriate to ease understanding. \\
-    Fit criterion: At least 90\% of users should be able to correctly identify the meaning of all symbols without explanation. 
+    \item \sout{The system shall use universally used symbols when appropriate to ease understanding. \\
+    Fit criterion: At least 90\% of users should be able to correctly identify the meaning of all symbols without explanation. }
 \end{itemize}
-\textbf{UPR-2}
+\textbf{\sout{UPR-2}}
 \begin{itemize}
-    \item The system shall use an intuitive user interface and use consistent terminology. \\
-    Fit criterion: The terminology used on each page should be consistent with each other and at least 80\% of users should be able to navigate through each stage of the system without external assistance. 
+    \item \sout{The system shall use an intuitive user interface and use consistent terminology. \\
+    Fit criterion: The terminology used on each page should be consistent with each other and at least 80\% of users should be able to navigate through each stage of the system without external assistance. }
 \end{itemize}
-\textbf{UPR-3}
+\textbf{\sout{UPR-3}}
 \begin{itemize}
-    \item The system shall provide visual feedback to indicate whether certain actions were successful or not.
+    \item \sout{The system shall provide visual feedback to indicate whether certain actions were successful or not.}
 \end{itemize}
-\textbf{UPR-4}
+\textbf{\sout{UPR-4}}
 \begin{itemize}
-    \item The system shall provide walkthroughs for any complex use cases.
+    \item \sout{The system shall provide walkthroughs for any complex use cases.}
 \end{itemize}
 
-\subsection{Accessibility Requirements}
-\textbf{AR-1}
+\subsection{\sout{Accessibility Requirements}}
+\textbf{\sout{AR-1}}
 \begin{itemize}
-    \item The system shall have a colour-blind mode
+    \item \sout{The system shall have a colour-blind mode}
 \end{itemize}
 
 \section{Performance Requirements}
@@ -522,97 +556,113 @@ N/A - No personalization or internationalization was mentioned by the client.
 \textbf{SLR-1}
 \begin{itemize}
 \item The product shall display the results of algorithms in less than 2 seconds after it is requested \hfill \break
-Fit Criteria: Users should see a result after selecting an algorithm to view in under 2 seconds
+Fit Criteria: Users should see a result after selecting an algorithm to view in under 2 seconds \\
+\textcolor{red} {Rationale: This response time is on the slower side of what is typically observed on the modern web. It should be achievable while leaving room to perform the action faster if possible.}
 \end{itemize}
 \textbf{SLR-2}
 \begin{itemize}
 \item The product shall display the Leaderboards table in less than 3 seconds after it is requested \hfill \break
-Fit Criteria: Users should see the leaderboards after selecting that view in under 3 seconds
+Fit Criteria: Users should see the leaderboards after selecting that view in under 3 seconds \\
+\textcolor{red} {Rationale: This response time is on the slower side of what is typically observed on the modern web. It should be achievable while leaving room to perform the action faster if possible.}
 \end{itemize}
 \textbf{SLR-3}
 \begin{itemize}
 \item Sorting or filtering the leaderboard should not take more than 3 seconds \hfill \break
-Fit Criteria: Users should see leaderboard content change in under 3 seconds after making a change to filtering criteria
+Fit Criteria: Users should see leaderboard content change in under 3 seconds after making a change to filtering criteria \\
+\textcolor{red} {Rationale: This response time is on the slower side of what is typically observed on the modern web. It should be achievable while leaving room to perform the action faster if possible.}
 \end{itemize}
 
 
 \subsection{Safety-Critical Requirements}
 N/A - we are building a web application without any interaction with the physical world
-\subsection{Precision or Accuracy Requirements}
-\textbf{PAR-1}
+\subsection{\sout{Precision or Accuracy Requirements}}
+\textbf{\sout{PAR-1}}
 \begin{itemize}
-    \item Events in the system will be tracked using standard UTC timestamp
+    \item \sout{Events in the system will be tracked using standard UTC timestamp}
 \end{itemize}
 \subsection{Robustness or Fault-Tolerance Requirements}
 \textbf{RR-1}
 \begin{itemize}
-    \item The system should be able to handle any types of errors during run-time.
+    \item The system should be able to handle any types of errors during run-time.\hfill \break
+    \textcolor{red} {Fit criterion: The system should catch and display error messages for any runtime exceptions, allowing users to understand and address issues without system failure.}
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures system stability and reliability by gracefully managing unexpected issues, preventing crashes and maintaining user trust.}
 \end{itemize}
 \textbf{RR-2}
 \begin{itemize}
-    \item Errors arising from one users interactions with the system should be isolated from other users interactions
+    \item Errors arising from one users interactions with the system should be isolated from other users interactions.\hfill \break
+    \textcolor{red} {Fit criterion: Errors caused by one user's actions should not impact the functionality or data of other users, maintaining system integrity.}
+    \hfill \break
+    \textcolor{red} {Rationale: Prevents one user's errors from affecting others, ensuring a stable and reliable experience for all users.}
 \end{itemize}
 
 \subsection{Capacity Requirements}
 \textbf{CR-1}
 \begin{itemize}
     \item The system shall support concurrent requests from a few hundred users \hfill \break
-    Fit criterion: Users should not see a difference in performance when there is one current user or one hundred current users.
+    Fit criterion: Users should not see a difference in performance when there is one current user or one hundred current users. \\
+    \textcolor{red} {Rationale: Typical university lecture sizes at McMaster for engineering range from 100-300 people. Supporting this user capacity is a good starting point and would support live in class useage of the platform.}
 \end{itemize}
 
 \subsection{Scalability or Extensibility Requirements}
 \textbf{SR-1}
 \begin{itemize}
-    \item The system shall automatically scale its execution backend corresponding to the number of user requests
+    \item The system shall automatically scale its execution back-end corresponding to the number of user requests. \hfill \break
+    \textcolor{red} {Fit criterion: The system should dynamically allocate resources to scale up during high traffic and scale down during low traffic, maintaining consistent performance without manual intervention.} \hfill \break
+    \textcolor{red} {Rationale: Allows the system to efficiently handle different loads, ensuring optimal performance regardless of the number of simultaneous user submissions.}
 \end{itemize}
 
-\subsection{Longevity Requirements}
-\textbf{LR-1}
+\subsection{\sout{Longevity Requirements}}
+\textbf{\sout{LR-1}}
 \begin{itemize}
-    \item The system shall be free of memory leaks and uncapped caches so that restarts will not be required
+    \item \sout{The system shall be free of memory leaks and uncapped caches so that restarts will not be required}
 \end{itemize}
 
 \section{Operational and Environmental Requirements}
 \subsection{Expected Physical Environment}
 N/A - The product shall work in any environment with an internet connection.
 
-\subsection{Wider Environment Requirements}
+\subsection{\sout{Wider Environment Requirements}}
 
-\textbf{WER-1}
+\textbf{\sout{WER-1}}
 \begin{itemize}
-    \item The system shall adhere to the best practices in data privacy to protect user information \hfill \break
-    Fit criterion: The system shall have secure login methods and keep any data from being accessed externally.
+    \item \sout{The system shall adhere to the best practices in data privacy to protect user information \hfill \break
+    Fit criterion: The system shall have secure login methods and keep any data from being accessed externally.}
 \end{itemize}
 
-\subsection{Productization Requirements}
-\textbf{PR-1}
+\subsection{\sout{Productization Requirements}}
+\textbf{\sout{PR-1}}
 \begin{itemize}
-    \item The product shall be deployable on AWS and accessible to the users through the web.
+    \item \sout{The product shall be deployable on AWS and accessible to the users through the web.}
 \end{itemize}
 
 \subsection{Release Requirements}
 N/A - there will not be regular releases for this project, and maintenance will be done by an external team.
 
 \section{Maintainability and Support Requirements}
-\subsection{Maintenance Requirements}
-\textbf{MR-1}
+\subsection{\sout{Maintenance Requirements}}
+\textbf{\sout{MR-1}}
 \begin{itemize}
-    \item If a likely change is made to the finished software, it will take at most 10\% of the original development time, assuming the same development resources are available (Example from a lecture that Dr. Smith said we can use if we do not think of anything else)
+    \item \sout{If a likely change is made to the finished software, it will take at most 10\% of the original development time, assuming the same development resources are available (Example from a lecture that Dr. Smith said we can use if we do not think of anything else)}
 \end{itemize}
-\subsection{Supportability Requirements}
-\textbf{SUR-1}
-The product must be self-supporting with all the necessary information provided in the user documentation and/or user guides.
+\subsection{\sout{Supportability Requirements}}
+\textbf{\sout{SUR-1}}
+\sout{The product must be self-supporting with all the necessary information provided in the user documentation and/or user guides.}
 
 \subsection{Adaptability Requirements}
 \textbf{ADR-1}
 \begin{itemize}
     \item The product shall work under all major operating systems such as macOS, Linux and Windows. \hfill \break
     Fit criterion: Users should be able to access the system and its functionality on any of the above-listed operating systems.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures broad accessibility by supporting all major operating systems.}
 \end{itemize}
 \textbf{ADR-2}
 \begin{itemize}
     \item The product shall be compatible with all major browsers like Chrome, Safari, Microsoft Edge, Opera, and Firefox. \hfill \break
     Fit criterion: Users should be able to access the system and its functionality on any of the above browsers.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures a consistent user experience across different browsers, allowing accessibility for all users.}
 \end{itemize}
 
 
@@ -622,70 +672,84 @@ The product must be self-supporting with all the necessary information provided 
 \begin{itemize}
     \item The system shall verify the credentials passed onto the login screen before giving access to the system. \hfill \break
     Fit criterion: A valid email and password combination should be passed in by the user before the user can access the system.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures secure authentication, preventing unauthorized access and protecting user data.}
 \end{itemize}
 \textbf{ACR-2}
 \begin{itemize}
     \item The system shall allow only verified users to view information about other accounts. \hfill \break
     Fit criterion: Non-logged-in users should not be able to view information about other users.
+    \hfill \break
+    \textcolor{red} {Rationale: Protects user privacy by restricting access to account-related information only to authorized users.}
 \end{itemize}
 \textbf{ACR-3}
 \begin{itemize}
     \item The system shall allow only administrators to see the emails of users. \hfill \break
     Fit criterion: Non-admin users should not have access to the emails of other users.
+    \hfill \break
+    \textcolor{red} {Rationale: Maintains user privacy and security by restricting sensitive information to authorized administrators only.}
 \end{itemize}
 
 \subsection{Integrity Requirements}
 \textbf{IR-1}
 \begin{itemize}
     \item The database shall prevent incorrect data from being introduced.
+    \hfill \break
+    \textcolor{red} {Fit criterion: The database should enforce constraints, validations, and data integrity checks to reject invalid or inconsistent data.}
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures data accuracy and reliability, preventing data corruption.}
 \end{itemize}
 \textbf{IR-2}
 \begin{itemize}
     \item The database shall be regularly backed up in case of any failure
+    \hfill \break
+    \textcolor{red} {Fit criterion: The system should automatically create and store database backups at regular intervals to enable data recovery in case of failure.}
+    \hfill \break
+    \textcolor{red} {Rationale: Prevents data loss by allowing restoration in case of unexpected failures.}
 \end{itemize}
 
-\subsection{Privacy Requirements}
-\textbf{PRR-1}
+\subsection{\sout{Privacy Requirements}}
+\textbf{\sout{PRR-1}}
 \begin{itemize}
-    \item The product shall collect, store and use the user’s email address for the login verification process only.
+    \item \sout{The product shall collect, store and use the user’s email address for the login verification process only.}
 \end{itemize}
-\textbf{PRR-2}
+\textbf{\sout{PRR-2}}
 \begin{itemize}
-    \item The product shall not share its users’ email addresses with third parties under any circumstance. 
+    \item \sout{The product shall not share its users’ email addresses with third parties under any circumstance. }
 \end{itemize}
 \subsection{Audit Requirements}
 N/A - The use of the product will not involve any sensitive data. It will also not be subject to any government regulations so auditing requirements are not needed.
 
-\subsection{Immunity Requirements}
-\textbf{IR-1}
+\subsection{\sout{Immunity Requirements}}
+\textbf{\sout{IR-1}}
 \begin{itemize}
-    \item The product shall ensure that only verified users are allowed to submit algorithms
+    \item \sout{The product shall ensure that only verified users are allowed to submit algorithms}
 \end{itemize}
-\textbf{IR-2}
+\textbf{\sout{IR-2}}
 \begin{itemize}
-    \item The product shall ensure that user-submitted algorithms are executed in a secure and isolated environment and prevent malicious actions.
+    \item \sout{The product shall ensure that user-submitted algorithms are executed in a secure and isolated environment and prevent malicious actions.}
 \end{itemize}
 
 \section{Cultural Requirements}
-\subsection{Cultural Requirements}
-\textbf{CUR-1}
+\subsection{\sout{Cultural Requirements}}
+\textbf{\sout{CUR-1}}
 \begin{itemize}
-    \item The product shall not be offensive to any group of people.
+    \item \sout{The product shall not be offensive to any group of people.}
 \end{itemize}
 
 \section{Compliance Requirements}
-\textbf{LGR-1}
-\subsection{Legal Requirements}
+\textbf{\sout{LGR-1}}
+\subsection{\sout{Legal Requirements}}
 \begin{itemize}
-    \item In compliance with the Matlab End-user license agreement. \hfill \break
-    Fit criterion: The system must adhere to the licensing terms and conditions in the Matlab EULA.
+    \item \sout{In compliance with the Matlab End-user license agreement. \hfill \break
+    Fit criterion: The system must adhere to the licensing terms and conditions in the Matlab EULA.}
 
 \end{itemize}
-\subsection{Standards Compliance Requirements}
-\textbf{SCR-1}
+\subsection{\sout{Standards Compliance Requirements}}
+\textbf{\sout{SCR-1}}
 \begin{itemize}
-    \item General Data Protection Regulation compliance should be the target for user data. \hfill \break
-    Fit criteria: The system must ensure only necessary data are collected from users and that the data are processed and stored per GDPR. 
+    \item \sout{General Data Protection Regulation compliance should be the target for user data. \hfill \break
+    Fit criteria: The system must ensure only necessary data are collected from users and that the data are processed and stored per GDPR. }
 
 \end{itemize}
 
