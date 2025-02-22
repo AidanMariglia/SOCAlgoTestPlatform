@@ -19,7 +19,12 @@ def register(request: HttpRequest):
         # Check if the username already exists
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already exists!")
-            return redirect('register')
+            return render(request, 'registration/register.html')
+        
+        # Check if the email already exists
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email is already associated with an account!")
+            return render(request, 'registration/register.html')
 
         # Create user and save to the database
         user = CustomUser.objects.create_user(username, email, password)
