@@ -85,6 +85,7 @@
 {% endblock %} {% block content %}
 
 <h1>{{submission.model_name}}</h1>
+<h2>{{submission.get_model_type_display}}</h2>
 
 <div class="container">
   <div class="table-figure-container">
@@ -186,19 +187,25 @@
 
     <div class="figure-container">
       <h2>Figures</h2>
-      <div class="figure-wrapper" style="width: 150%; height: auto; overflow: hidden;">
-          {% if figure %}
-            <img src="{{ figure.file.url }}" alt="{{ figure.file.name }}" style="max-width: 100%; height: auto;">
+      <div
+        class="figure-wrapper"
+        style="width: 150%; height: auto; overflow: hidden"
+      >
+        {% if figure %}
+        <img
+          src="{{ figure.file.url }}"
+          alt="{{ figure.file.name }}"
+          style="max-width: 100%; height: auto"
+        />
 
-          {% else %}
-          <div class="figure-placeholder">
-            <p>No figures available</p>
-          </div>
+        {% else %}
+        <div class="figure-placeholder">
+          <p>No figures available</p>
+        </div>
         {% endif %}
       </div>
     </div>
   </div>
 </div>
-
 
 {% endblock %}

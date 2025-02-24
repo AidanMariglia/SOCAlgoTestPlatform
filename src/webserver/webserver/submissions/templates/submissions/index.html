@@ -1,4 +1,12 @@
 <style>
+  body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+  }
+
   .form-container {
     background: white;
     padding: 30px;
@@ -64,6 +72,24 @@
     font-size: 12px;
     margin-bottom: 10px;
   }
+
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 14px; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer; 
+    text-align: center;
+    text-align-last: center; 
+  }
+
+  label {
+      color: #333;
+      margin-bottom: 5px;
+      display: block;
+  }
 </style>
 
 
@@ -82,6 +108,13 @@
           {% csrf_token %}
 
           <input type="text" name="model_name" placeholder="Enter model name" required class="model-input">
+
+          <label for="model_type">Model Type:</label>
+          <select id="model_type" name="model_type">
+              <option value="ML">Machine Learning</option>
+              <option value="KF">Kalman Filter</option>
+              <option value="NA">Not Specified</option>
+          </select>
 
           <div id="dropZone" class="upload-box">
               <img src="/media/images/file_icon.png" class="file-icon" alt="File Icon">
