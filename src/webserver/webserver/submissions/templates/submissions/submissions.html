@@ -99,6 +99,7 @@
     <tr>
       <th>Submission</th>
       <th>Model Name</th>
+      <th>Model Type</th>
       <th>Status</th>
       <th>Submitted at</th>
       <th>Completed at</th>
@@ -133,6 +134,7 @@
         <a href="{% url 'submission' submission.id %}">{{ submission.id }}</a>
       </td>
       <td>{{ submission.model_name }}</td>
+      <td>{{ submission.get_model_type_display }}</td>
       <td
         class="{% if submission.status.name == 'completed' %}status-completed{% elif submission.status.name == 'pending' %}status-pending{% else %}status-failed{% endif %}"
       >
