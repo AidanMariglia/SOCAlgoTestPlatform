@@ -153,18 +153,13 @@
             font-size: 1.2rem;
         }
     </style>
-</head>
-<body>
 
+{% extends "Intro_Base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
     <div class="container">
-        <!-- Header Section -->
-        <div class="header">
-            <h1>SOCAlgoTestingPlatform</h1>
-            <div class="button-container">
-                <a href="/accounts/login" class="login-btn">Login</a>
-                <a href="/authentication/register" class="register-btn">Register</a>
-            </div>
-        </div>
 
         <!-- Introduction Section -->
         <div class="intro-section">
@@ -203,6 +198,4 @@
             </div>
         </div>
     </div>
-
-</body>
-</html>
+{% endblock %}
