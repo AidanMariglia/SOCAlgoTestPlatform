@@ -23,6 +23,7 @@ from django.shortcuts import redirect
 urlpatterns = [
     path('', lambda req: redirect('/home')),
     path('home/', include('home.urls')),
+    path('data/', include('data.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path("submissions/", include("submissions.urls")),
     path("authentication/", include("authentication.urls")),
