@@ -1,8 +1,9 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from submissions.models import SubmissionStatus, Submission, Figure
 from submissions.forms import FileUploadForm
 from django.urls import reverse
 from django.core.exceptions import ValidationError
+from django.db import transaction
 
 
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -46,16 +47,19 @@ class SubmissionModelTest(TestCase):
     def test_invalid_submission_creation(self):
         test_file = SimpleUploadedFile("test_file.txt", b"dummy content")
         with self.assertRaises(ValidationError):
-            submission = Submission.objects.create(
-                status=self.status,
-                file=test_file,
-                submitted_at=now(),
-                completed_at=None,
-                user=self.user,
-                model_name="Test Model",
-                weighted_error="error"
-            )
-            submission.save()
+            with transaction.atomic():
+                submission = Submission.objects.create(
+                    status=self.status,
+                    file=test_file,
+                    submitted_at=now(),
+                    completed_at=None,
+                    user=self.user,
+                    model_name="Test Model",
+                    weighted_error="error"
+                )
+                submission.save()
+
+        self.assertEqual(Submission.objects.count(), 0)
 
 class FigureModelTest(TestCase):
     def setUp(self):
