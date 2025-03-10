@@ -2,7 +2,8 @@ from django.test import TestCase, Client
 from submissions.models import SubmissionStatus, Submission, Figure
 from submissions.forms import FileUploadForm
 from django.urls import reverse
-from django.http import Http404
+from django.core.exceptions import ValidationError
+
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils.timezone import now
@@ -41,6 +42,20 @@ class SubmissionModelTest(TestCase):
         self.assertEqual(float(submission.weighted_error), 0.123)
         self.assertIsNotNone(submission.submitted_at)
         self.assertIsNone(submission.completed_at)
+
+    def test_invalid_submission_creation(self):
+        test_file = SimpleUploadedFile("test_file.txt", b"dummy content")
+        with self.assertRaises(ValidationError):
+            submission = Submission.objects.create(
+                status=self.status,
+                file=test_file,
+                submitted_at=now(),
+                completed_at=None,
+                user=self.user,
+                model_name="Test Model",
+                weighted_error="error"
+            )
+            submission.save()
 
 class FigureModelTest(TestCase):
     def setUp(self):
