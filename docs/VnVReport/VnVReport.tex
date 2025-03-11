@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{float}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -30,8 +32,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+March 7, 2025 & 1.0 & VnV results\\
 \bottomrule
 \end{tabularx}
 
@@ -45,10 +46,11 @@ Date 2 & 1.1 & Notes\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  M & Module\\
+  FR & Functional Requirements\\
+  NFR & Non-functional Requirements\\
   \bottomrule
 \end{tabular}\\
-
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
 
 \newpage
 
@@ -62,38 +64,536 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+This Verification and Validation report evaluates the system's functional and non-functional requirements. It also documents the unit tests and the changes made due to testing and feedback. Finally, it outlines the traces to requirements and modules, to ensure the system meets its objectives.
 
 \section{Functional Requirements Evaluation}
+\subsection{Algorithm Submission}
+\begin{enumerate}
+    \item test-FR1-ST1:\label{test-FR1-ST1}
+    
+    Initial State: A logged in user on the algorithm submission page
+    
+    Input: A valid .mat submission
+    
+    Expected Output: Submission appears as 'pending' on submission page
+    
+    Actual Output: Submission appears as 'pending' on submission page. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/submission_pending.png}{Submission in progress}
+    
+    Result: Pass
 
+    \item test-FR1-ST3:\label{test-FR1-ST3}
+    
+    Initial State: A logged in user on the algorithm submission page
+    
+    Input: An algorithm that exceeds the maximum file size
+    
+    Expected Output: Error indicating the submission exceeds the max file size
+    
+    Actual Output: Submission page indicates that the file was submitted successfully 
+    
+    Result: Fail
+     \item test-FR1-ST4:\label{test-FR1-ST4}
+    
+    Initial State: A user is logged-in and on the submit page.
+    
+    Input: A .txt file.
+    
+    Expected Output: An error message indicating an invalid file was submitted.
+    
+    Actual Output: An error message indicating an invalid file was submitted. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/Invalid_file.png}{File Not Supported Error}
+    
+    Result: Pass
+\end{enumerate}
+
+\subsection{Results Reporting}
+\begin{enumerate}
+    \item test-FR2-ST1:\label{test-FR2-ST1}
+    
+    Initial State: A logged in user on the algorithm submission page
+    
+    Input: Submission page indicates that the submission has completed
+    
+    Expected Output: Submission page indicates that the submission has completed. All of the submission statistics are updated.
+    
+    Actual Output: Submission page indicates that the submission has completed. All of the submission statistics are updated. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/submission_completed.png}{Submission completed}
+    
+    Result: Pass
+
+    \item test-FR2-ST2:\label{test-FR2-ST2}
+    
+    Initial State: A logged in user on the algorithm submission page
+    
+    Input: An invalid algorithm
+    
+    Expected Output: Submission page indicates that the submission has failed. None of the submission statistics are updated.
+    
+    Actual Output: Submission page indicates that the submission has failed. None of the submission statistics are updated. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/submission_failed.png}{Submission failed}
+    
+    Result: Pass
+\end{enumerate}
+\subsection{Parallel Execution}
+\begin{enumerate}
+    \item test-FR3-ST1:\label{test-FR3-ST1}
+
+    Initial State: System is executing 1 model with a long runtime
+    
+    Input: A model with a short runtime
+    
+    Expected Output: The model submitted second with a short runtime should finish execution before the long running model submitted first
+    
+    Actual Output: The second model finishes executing second, and takes significantly longer than it does when it is the only model executing.
+    \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/parallel_fail.png}{Parallel execution failed}
+    
+    Result:  Fail
+\end{enumerate}
+\subsection{Account Creation}
+\begin{enumerate}
+    \item test-FR4-ST1:\label{test-FR4-ST1}
+    
+    Initial State: User is on the registration page
+    
+    Input: unique username and email, password, first and last name, and academic affiliation.
+    
+    Expected Output: Redirection to the Intro page.
+    
+    Actual Output: Redirection to the Intro page.
+    
+    Result: Pass
+    \item test-FR4-ST2:\label{test-FR4-ST2}
+    
+    Initial State: User is on the registration page.
+    
+    Input: a username or email that is already in the database, any password, first and last name, and academic affiliation.
+    
+    Expected Output: Account already exists error.
+    
+    Actual Output: Account already exists error. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/Registration.png}{Error Message}
+    
+    Result: Pass
+\end{enumerate}
+\subsection{User Login}
+\begin{enumerate}
+    \item test-FR5-ST1:\label{test-FR5-ST1}
+    
+    Initial State: User is on the login page.
+    
+    Input: A username and password pair that exists in the database.
+    
+    Expected Output: Redirection to the home page.
+    
+    Actual Output: Redirection to the home page with a welcome message for the user logged-in. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/Login_success.png}{Error Message}
+    
+    Result: Pass
+    \item test-FR5-ST2:\label{test-FR5-ST2}
+    
+    Initial State: User is on the login page.
+    
+    Input: A username and password pair that does not exist in the database.
+    
+    Expected Output: An error message indicating invalid credentials. 
+    
+    Actual Output: An error message saying username and password didn't match. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/Login_failed.png}{Error Message}
+    
+    Result: Pass
+\end{enumerate}
+\subsection{Data Segregation}
+\begin{enumerate}
+    \item test-FR6-ST1:\label{test-FR6-ST1}
+    
+    Initial State: User is logged in
+    
+    Input: Id of a submission to retrieve 
+    
+    Expected Output: The submission details corresponding to the id
+    
+    Actual Output: The submission details corresponding to the id \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/submission_retrieval.png}{Submission retrieval}
+    
+    Result: Pass
+    \item test-FR6-ST2:\label{test-FR6-ST2}
+    
+    Initial State: A user is logged-in.
+    
+    Input: The user tries to access a submission from a different user.
+    
+    Expected Output: 404 error. 
+    
+    Actual Output: 404 error. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/404_error.png}{404 Error Message}
+    
+    Result: Pass
+\end{enumerate}
+
+\subsection{Leaderboard Access}
+\begin{enumerate}
+    \item test-FR8-ST1:\label{test-FR8-ST1}
+    
+    Initial State: User is logged in
+    
+    Input: Navigation to leaderboard page
+    
+    Expected Output: Leaderboard is visible, contianing all past mubmissions from all users
+    
+    Actual Output: Leaderboard is visible, contianing all past mubmissions from all users \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/leaderboard.png}{Leaderboard}
+    
+    Result: Pass
+\end{enumerate}
+\subsection{Leaderboard Categorization}
+\begin{enumerate}
+    \item test-FR9-ST1:\label{test-FR9-ST1}
+    
+    Initial State: The user is logged-in and on the leaderboard page.
+    
+    Input: Filter the leaderboard on category model\_type="Kalman Filter"
+    
+    Expected Output: The entries of the leaderboard only contains model submissions with the Kalman Filter model type.
+    
+    Actual Output: The leaderboard entries did not change after applying the filter.
+    
+    Result: Fail
+\end{enumerate}
+\subsection{Sort Leaderboards}
+\begin{enumerate}
+    \item test-FR10-ST1:\label{test-FR10-ST1}
+    
+    Initial State: An unsorted leaderboard with 10 entries. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/Unsorted_leaderboard.png}{Unsorted leaderboard} 
+    
+    Input: Sort by the weighted error column in descending order.
+    
+    Expected Output: A sorted leaderboard table in descending order based on the weighted error.
+    
+    Actual Output: A sorted leaderboard table in descending order based on the weighted error. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/Sorted_leaderboard.png}{Sorted leaderboard} 
+    
+    Result: Pass
+\end{enumerate}
+\subsection{Execution Progress}
+\begin{enumerate}
+    \item test-FR11-ST1:\label{test-FR11-ST1}
+    
+    Initial State: A logged in user on the algorithm submission page
+    
+    Input: A valid algorithm
+    
+    Expected Output: Submission begins in 'pending' state, before eventually reaching a 'completed' state.
+    
+    Actual Output: Submission begins in 'pending' state, before eventually reaching a 'completed' state. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/submission_pending.png}{Submission in progress}; \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/submission_completed.png}{Submission completed} 
+    
+    Result: Pass
+\end{enumerate}
 \section{Nonfunctional Requirements Evaluation}
 
-\subsection{Usability}
+\subsection{Look and Feel}
+\begin{enumerate}
+
+\item{test-NFR1-ST1} \label{test-NFR1-ST1}
+
+Initial State: The website is open in a web browser
+
+Input: User navigates the whole SOCAlgoTestPlatform website and the whole Kaggle website
+
+Output: User information on any similarities and differences that the user notices between websites
+
+Result: After the user had navigated through both websites, they noted that both websites had similar login and registration processes as well as similar headers at the top of the screen that navigated to core functionalities. However, the user also noted that Kaggle had a search feature that the SOCAlgotTestPlatform does not yet currently have. 
+\end{enumerate}
 		
-\subsection{Performance}
+\subsection{Learning}
+\begin{enumerate}
 
-\subsection{etc.}
-	
-\section{Comparison to Existing Implementation}	
+\item{test-NFR2-ST1} \label{test-NFR2-ST1}
 
-This section will not be appropriate for every project.
+Initial State: User is on the intro page of the website and are brand new to the system
 
+Input: User navigates to the walkthrough video and watches this video in full
+
+Output: Walkthrough video successfully plays and the user understands basic functionality
+
+Result: Video successfully played and after the user had finished watching they were able to successfully perform basic functionalities such as submitting an algorithm and viewing the leaderboard. 
+\end{enumerate}
+
+\subsection{Usability}
+\begin{enumerate}
+
+\item{test-NFR3-ST1} \label{test-NFR3-ST1}
+
+Initial State: The website is open in a web browser
+
+Input: The user is asked to navigate the entire SOCAlgoTestPlatform website
+
+Output: A list created by the user of all features or symbols that are unfamiliar to the user or ambiguous
+
+Result: The user navigated the entire system and could not identify any symbols or features that they found to be ambiguous or unfamiliar. 
+\item{test-NFR3-ST2} \label{test-NFR3-ST2}
+
+Initial State: The website is open in a web browser
+
+Input: The user is asked to skim through all terminology used within the website
+
+Output: A list created by the user of all inconsistencies between terminology
+
+Result: The user skimmed through all terminology used on the homepage, the submission screens, and the leaderboard and was unable to find any inconsistencies. 
+\item{test-NFR3-ST3} \label{test-NFR3-ST3}
+
+Initial State: The user is logged into the system
+
+Input: The user goes through all steps to submit an algorithm
+
+Output: The user receives a message after submission that either indicates success or failure
+
+Result: The user first submitted an algorithm through the submissions page that was not a Matlab file and they received a failure message indicating the file needs to be .m or .mat. The user then submitted a Matlab file and they received a pending message indicating the submission was successful. 
+\item{test-NFR3-ST4} \label{test-NFR3-ST4}
+
+Initial State: The user is logged into the system
+
+Input: The user is asked to submit an algorithm to the system with no assistance 
+
+Output: The user successfully submits the algorithm with only the help from documentation
+
+Result: When asked to submit an algorithm, the user first tried to navigate to the submission page however, once they arrived at this page they were unsure what was needed to submit. The user then navigated back to the home page and found the walkthrough video. They proceeded to watch the section in this video on submitting an algorithm. After this, the user was able to successfully submit an algorithm that already existed on the testing computer.
+\end{enumerate}
+
+\subsection{Speed and Latency}
+\begin{enumerate}
+\item{test-NFR4-ST1} \label{test-NFR4-ST1}
+
+Initial State: User is logged in on home page, leaderboard contains entries
+
+Input: User selects leaderboard tab
+
+Output: The leaderboard is displayed nearly instantaneously, well below the 3 second threshold defined in the VnVPlan
+
+Result: Pass
+
+\end{enumerate}
+\subsection{Authentication}
+\begin{enumerate}
+\item{test-NFR5-ST1} \label{test-NFR5-ST1}
+
+Refer to test-FR5-ST\ref{test-FR5-ST1} and test-FR5-ST\ref{test-FR5-ST2}
+\end{enumerate}
+\subsection{Database Integrity}
+\begin{enumerate}
+\item{test-NFR6-ST1} \label{test-NFR6-ST1}
+
+Refer to \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/src/webserver/webserver/submissions/tests.py}{Unit Tests for Models}. Test case: test\_invalid\_submission\_creation() 
+
+\end{enumerate}
+\subsection{Robustness or Fault Tolerance}
+\begin{enumerate}
+\item{test-NFR7-ST1} \label{test-NFR7-ST1}
+
+
+Initial State: Running system, authenticated user
+
+Input: Invalid model which contains syntax error
+
+Output: Model execution fails, second user is still able to submit models and use the system as normal
+
+Result: This test was successful, the system behaved as described in the test case, and the error was isolated.
+
+\end{enumerate}
+\subsection{Adaptability}
+\begin{enumerate}
+\item{test-NFR10-ST1} \label{test-NFR10-ST1}
+
+Initial State: Running system accessed through Firefox and Chrome
+
+Input: Set of tests defined in VnVPlan
+
+Output: Test results unchanged across both browsers. 
+\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/chrome.png}{Chrome} \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/firefox.png}{Firefox} \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/microsoft_edge.png}{Microsoft Edge} 
+
+Result: Pass
+\end{enumerate}
 \section{Unit Testing}
+\subsection{Database Integrity}
+\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/src/webserver/webserver/submissions/tests.py}{Unit Tests for Models}
+
+\subsection{File Submission}
+\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/src/webserver/webserver/submissions/tests.py}{Unit Tests for Forms}
+
+\subsection{Data Segregation}
+\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/src/webserver/webserver/submissions/tests.py}{Unit Tests for Views}
+
+\subsection{Leaderboard Sorting}
+\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/src/webserver/webserver/leaderboard/tests.py}{Unit Tests for Leaderboard}
 
 \section{Changes Due to Testing}
 
-\wss{This section should highlight how feedback from the users and from 
-the supervisor (when one exists) shaped the final product.  In particular 
-the feedback from the Rev 0 demo to the supervisor (or to potential users) 
-should be highlighted.}
+\subsection{Change due to supervisor's feedback}
+During our Rev0 demo with our supervisor, Dr. Phil, he gave our team feedback on several features. Firstly, he wanted the leaderboard to be available to the public, not just logged-in users. Secondly, he pointed out that upon submission, we are supposed to ask users for the type of model they are submitting such as Machine Learning or Kalman Filter models, so that this field could be used for filtering the results. Thirdly, he wanted to add a link to another web page where users could download the data to be used for creating the model. Lastly, we initially set up the system so that after a user registers for an account, Dr. Phil's approval as an admin would be needed before the user could use the system. However, Dr. Phil suggested to scrap this feature and instead just do an email verification upon registration.
+
+\subsection{Change due to survey feedback}
+From the survey feedback, we were able to highlight areas for improvement in the SOCAlgoTestPlatform. Users noted the absence of a search feature, which will be considered for future implementation but is not a current priority. Submission instructions will be clarified to reduce confusion about required file formats and size. To accommodate different learning preferences, step-by-step text guides and FAQs will supplement the walkthrough video. Additionally, minor inconsistencies in error messages will be reviewed for clarity. These changes will improve usability, accessibility, and overall user experience based on direct user input.
+
+\subsection{Change due to failing test case}
+The test for an algorithm that exceeds the maximum file size failed as our system still accepted large file sizes. As a result, we will add a functionality to limit the file size accepted and display an error message to the user. In addition, the test for parallel execution failed, so changes to the model execution module were implemented to allow parallel processing of algorithm submissions. Lastly, the filter for model type was not working properly, so changes were made so that leaderboard entries could be filtered by model type correctly.
 
 \section{Automated Testing}
-		
-\section{Trace to Requirements}
-		
-\section{Trace to Modules}		
+Our team used Django's built-in test framework, which was built on Python's unittest module. It allowed us to test different django components such as models, forms, and views. Test cases are written as classes that inherit TestCase, and assert statements are used to compare the expected and actual outputs. The use of the set-up method also allowed for the reuse of data and automatic set up. Django's client allows for mocking HTTP requests.
 
-\section{Code Coverage Metrics}
+        
+\section{Trace to Requirements}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Test ID & R1 & R2 & R3 & R4 & R5 & R6 & R8 & R9 & R10 & R11 \\
+\hline
+test-FR1-\ref{test-FR1-ST1} & $\times$ & & & & & & & & & \\
+\hline
+test-FR1-\ref{test-FR1-ST3} & $\times$ & & & & & & & & & \\
+\hline
+test-FR1-\ref{test-FR1-ST4} & $\times$ & & & & & & & & & \\
+\hline
+test-FR2-\ref{test-FR2-ST1} & & $\times$ & & & & & & & & \\
+\hline
+test-FR2-\ref{test-FR2-ST2} & & $\times$ & & & & & & & & \\
+\hline
+test-FR3-\ref{test-FR3-ST1} & & & $\times$ & & & & & & & \\
+\hline
+test-FR4-\ref{test-FR4-ST1} & & & & $\times$ & & & & & & \\
+\hline
+test-FR4-\ref{test-FR4-ST2} & & & & $\times$ & & & & & & \\
+\hline
+test-FR5-\ref{test-FR5-ST1} & & & & & $\times$ & & & & & \\
+\hline
+test-FR5-\ref{test-FR5-ST2} & & & & & $\times$ & & & & & \\
+\hline
+test-FR6-\ref{test-FR6-ST1} & & & & & & $\times$ & & & & \\
+\hline
+test-FR6-\ref{test-FR6-ST2} & & & & & & $\times$ & & & & \\
+\hline
+test-FR8-\ref{test-FR8-ST1} & & & & & & & $\times$ & & & \\
+\hline
+test-FR9-\ref{test-FR9-ST1} & & & & & & & & $\times$ & & \\
+\hline
+test-FR10-\ref{test-FR10-ST1} & & & & & & & & & $\times$ & \\
+\hline
+test-FR11-\ref{test-FR11-ST1} & & & & & & & & & & $\times$ \\
+\hline
+\end{tabular}
+\caption{\bf Functional Requirements Traceability}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Test ID & LFR1 & SR1 & LR1 & LR2 & UPR1 & UPR2 & UPR3 & UPR4 & ADR1 \\
+\hline
+test-LFR-\ref{test-NFR1-ST1} & $\times$ & $\times$  & & & & & & & \\
+\hline
+test-LR-\ref{test-NFR2-ST1} & & & $\times$ & & & & & &  \\
+\hline
+test-UPR-\ref{test-NFR3-ST1} & & & & & $\times$ & & & & \\
+\hline
+test-UPR-\ref{test-NFR3-ST2} & & & & & & $\times$ & & & \\
+\hline
+test-UPR-\ref{test-NFR3-ST3} & & & & & & & $\times$ & & \\
+\hline
+test-UPR-\ref{test-NFR3-ST4} & & & & & & & & $\times$ & \\
+\hline
+test-ADR-\ref{test-NFR10-ST1} & & & & & & & & & $\times$\\
+\hline
+\end{tabular}
+\caption{\bf Non-Functional Requirements Traceability Part 1}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Test ID & SLR1 & SLR2 & SLR3 & ACR1 & IR1 & RR1 \\
+\hline 
+test-SLR-\ref{test-NFR4-ST1} & $\times$ & $\times$ & $\times$ & & &\\
+\hline
+test-ACR-\ref{test-NFR5-ST1} & & & & $\times$ & &\\
+\hline
+test-IR-\ref{test-NFR6-ST1} & & & & & $\times$ &\\
+\hline
+test-RR-\ref{test-NFR7-ST1} & & & & & & $\times$\\
+\hline
+\end{tabular}
+\caption{\bf Non-Functional Requirements Traceability Part 2}
+\end{table}
+		
+\section{Trace to Modules}	
+\newgeometry{left=0.25in, right=0.25in}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Test ID & M3 & M4 & M5 & M6 & M8 & M9 & M10 & M11 & M12 & M13 & M14 & M15 & M16 \\
+\hline
+test-FR1-\ref{test-FR1-ST1} & & & & & & & & & & $\times$ & & &\\
+\hline
+test-FR1-\ref{test-FR1-ST3} & & & & & & & & & & $\times$ & & &\\
+\hline
+test-FR1-\ref{test-FR1-ST4} & & & & & & & & & & $\times$ & & &\\
+\hline
+test-FR2-\ref{test-FR2-ST1} & & & & & & & & & & & & & $\times$\\
+\hline
+test-FR2-\ref{test-FR2-ST2} & & & & & & & & & & & & & $\times$\\
+\hline
+test-FR3-\ref{test-FR3-ST1} & & & & & & & $\times$ & $\times$ & $\times$ & & & &\\
+\hline
+test-FR4-\ref{test-FR4-ST1} & & & $\times$ & & & & & & & & & &\\
+\hline
+test-FR4-\ref{test-FR4-ST2} & & & $\times$ & & & & & & & & & &\\
+\hline
+test-FR5-\ref{test-FR5-ST1} & & $\times$ & & & & & & & & & & &\\
+\hline
+test-FR5-\ref{test-FR5-ST2} & & $\times$ & & & & & & & & & & &\\
+\hline
+test-FR6-\ref{test-FR6-ST1} & & & & $\times$ & & & & & & & & &\\
+\hline
+test-FR6-\ref{test-FR6-ST2} & & & & $\times$ & & & & & & & & &\\
+\hline
+test-FR8-\ref{test-FR8-ST1} & & & & & & & & & & & & $\times$ &\\
+\hline
+test-FR9-\ref{test-FR9-ST1} & & & & & & & & & & & & $\times$ &\\
+\hline
+test-FR10-\ref{test-FR10-ST1} & & & & & & & & & & & & $\times$ &\\
+\hline
+test-FR11-\ref{test-FR11-ST1} & & & & & & & & & & $\times$ & & &\\
+\hline
+\end{tabular}
+\caption{\bf Implemented Modules Traceability Part 1}
+\end{table}
+\restoregeometry
+
+\newgeometry{left=0.25in, right=0.25in}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Test ID & M3 & M4 & M5 & M6 & M7 & M8 & M9 & M10 & M11 & M12 & M13 & M14 & M15 & M16 \\
+\hline
+test-LFR-\ref{test-NFR1-ST1} & & $\times$ & $\times$ & & & $\times$ & $\times$ & & & & $\times$ & $\times$ & $\times$ & $\times$\\
+\hline
+test-LR-\ref{test-NFR2-ST1} & & & & & & $\times$ & $\times$ & & & & & & &\\
+\hline
+test-UPR-\ref{test-NFR3-ST1} & & $\times$ & $\times$ & & & $\times$ & $\times$ & & & & $\times$ & $\times$ & $\times$ & $\times$\\
+\hline
+test-UPR-\ref{test-NFR3-ST2} & & $\times$ & $\times$ & & & $\times$ & $\times$ & & & & $\times$ & $\times$ & $\times$ & $\times$\\
+\hline
+test-UPR-\ref{test-NFR3-ST3} & & $\times$ & $\times$ & & & $\times$ & $\times$ & & & & $\times$ & $\times$ & $\times$ & $\times$\\
+\hline
+test-UPR-\ref{test-NFR3-ST4} & & $\times$ & $\times$ & & & $\times$ & $\times$ & & & & $\times$ & $\times$ & $\times$ & $\times$\\
+\hline
+test-ADR-\ref{test-NFR10-ST1} 
+& $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$\\
+\hline
+test-SLR-\ref{test-NFR4-ST1} & & & & & & & & & & & & $\times$ & $\times$ &\\
+\hline
+test-ACR-\ref{test-NFR5-ST1} & & $\times$ & & & & & & & & & & & &\\
+\hline
+test-IR-\ref{test-NFR6-ST1} & & & & $\times$ & & & & & & & & & &\\
+\hline
+test-RR-\ref{test-NFR7-ST1} & & & & & & & & $\times$ & & & & & &\\
+\hline
+\end{tabular}
+\caption{\bf Implemented Modules Traceability Part 2}
+\end{table}
+\restoregeometry
 
 \bibliographystyle{plainnat}
 \bibliography{../../refs/References}
@@ -121,5 +621,46 @@ graduate attribute of Reflection.
   evidence that demonstrates the required quality?  (It is expected that most
   teams will have had to deviate from their original VnV Plan.)
 \end{enumerate}
+
+\subsection*{Nathan Uy}
+
+\begin{enumerate}
+    \item What went well while writing this deliverable was that we did not have to change much of our VnVPlan so it was easy to just test out every scenario and report the output.
+    \item Testing the non-functional requirements was difficult as it is not as objective as the functional requirements where there is one right answer. But, by creating surveys and metrics we were able to measure how well our system performed according to the test plan. 
+
+\end{enumerate}  
+
+\subsection*{Declan Young}
+
+\begin{enumerate}
+    \item During this deliverable running the manual tests went well. This is because we had a good idea of what needed to be tested for our application, and how to do the tests manually, so it was just a matter of executing these tests and documenting the results.
+    \item One pain point we encountered during this deliverable was documenting particular tests that are difficult to show the validation of For example, for a parallel execution, it was difficult o show manually that this feature was actually working in our application. It may have been better to use automated tests for to validate particular features like this to make it more clear how the validation was being done and to have more confidence in the results.
+\end{enumerate}  
+
+\subsection*{Aidan Mariglia}
+
+\begin{enumerate}
+    \item One thing that went well during this deliverable was the system performance. The majority of our tests passed, and the ones which did not were predictable, and did not come as a surprise. This increases confidence that the system is well implemented and matches our mental model.
+    \item One pain point was closing the gap between the VnV plan and the current goals of the system. Time has passed, more of the system has been implemented, and more feedback has been received. As such some of the tests in the VnV plan are no longer applicable, and needed to be modified. 
+
+\end{enumerate}  
+
+\subsection*{Benjamin Dubois}
+
+\begin{enumerate}
+    \item One thing that went well during this deliverable were the usability tests. It can be hard to predict how it will go when you have a completely new user using the system as up to this point the only people that have used it have been developers, but during this testing, the users were able to learn the system very quickly and struggled to find any confusing aspects. 
+    \item One pain point we encountered during this deliverable was sorting through which of our tests from our VnV plan were still viable and which were no longer needed. We have made a lot of changes to the system since we wrote our VnV plan, so there was a significant amount of tests in this VnV that we ended up getting rid of because they were no longer necessary after these changes. This caused a pain point as before each test we had to analyze if the test was still necessary based on the current state of the system. 
+\end{enumerate}  
+
+\subsection*{Team}
+
+\begin{enumerate}
+\setcounter{enumi}{2}
+    \item Section 6 (changes due to testing) primarily came from speaking to Dr. Kollmeyer as well as other proxies that did usability tests on our application. This is because although we, as a group, had a vision for the application, we thought it was very important to get validation, feedback and criticism from other sources, so that we could make the necessary changes to fix or improve the application.
+
+    The other sections in this document, for the most part, did not come from other sources. This is because most of the other sections for example, evaluation of functional requirements, were just a product of executing what we had already outlined in the verification and validation plan we outlined. As a result of this, we tried to follow this plan as closely as possible to have structure when testing, and having confidence in the results of out verification and validation.
+
+    \item One of the major changes to the verification and validation plan we originally outlines was not having as much automated testing as originally anticipated. This required changing the plan to include more manual testing to replace these automated tests, to ensure that all features wer still properly tested. These changes occurred mostly due to time constraints, as the time and effort required to created many of the automated tests originally planned would have taken too much time and prevented thorough validation and verification of the entire application. For future projects, we anticipate these changes by having better estimates for the time different verification and validation tasks will take. This will allow us to budget time better, and ensure all tasks are accounted for properly. Additionally, in the future we can try to allocate more time to validation and verification, so less changes to the plan need to be made due to time constraints.
+\end{enumerate} 
 
 \end{document}
