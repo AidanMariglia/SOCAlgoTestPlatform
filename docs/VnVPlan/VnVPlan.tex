@@ -4,6 +4,8 @@
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{color}
+\usepackage[normalem]{ulem}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -226,19 +228,19 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{How test will be performed:} A valid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the success notification is displayed on the page. If the success notification is displayed, the test passes.
 					
-\item{FR1-ST2\\}
+\item{\sout{FR1-ST2}\\}
 
-\underline{Control:} Manual
+\underline{\sout{Control:}} \sout{Manual}
 
-\underline{Initial State:} The algorithm submission page
+\underline{\sout{Initial State:}} \sout{The algorithm submission page}
 
-\underline{Input:} An invalid algorithm
+\underline{\sout{Input:}} \sout{An invalid algorithm}
 
-\underline{Output:} Error notification from the system
+\underline{\sout{Output:}} \sout{Error notification from the system}
 
-\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was successful, but the algorithm file is invalid. Therefore, this notification is expected when submitting an invalid file.  
+\underline{\sout{Test Case Derivation:}} \sout{The error notification will be output to the screen by the system if the upload of the algorithm was successful, but the algorithm file is invalid. Therefore, this notification is expected when submitting an invalid file.}  
 
-\underline{How test will be performed:} An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+\underline{\sout{How test will be performed:}} \sout{An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.}
 
 \item{FR1-ST3\\}
 
@@ -310,7 +312,7 @@ This section covers all system tests for the functional requirements. The tests 
 					
 \item{FR3-ST1\\}
 
-\underline{Control:} Automatic 
+\underline{Control:} \sout{Automatic}  \textcolor{red} {Manual}
 
 \underline{Initial State:} Running system with no jobs queued
 
@@ -336,7 +338,7 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{Input:} New Username and password
 
-\underline{Output:} Success message
+\underline{Output:} \sout{Success message} \textcolor{red} {Page redirected to the login page}
 
 \underline{Test Case Derivation:} When creating a new account, the user provides the new information. As a result, the system for which the account is being created needs only to respond with confirmation that the creation was successful, the username and password should then function for the system.
 
@@ -364,7 +366,7 @@ This section covers all system tests for the functional requirements. The tests 
 
 \item{FR5-ST1\\}
 
-\underline{Control:} Automatic
+\underline{Control:} \sout{Automatic} \textcolor{red} {Manual}
 
 \underline{Initial State:} Login screen
 
@@ -378,7 +380,7 @@ This section covers all system tests for the functional requirements. The tests 
 					
 \item{FR5-ST2\\}
 
-\underline{Control:} Automatic
+\underline{Control:} \sout{Automatic} \textcolor{red} {Manual}
 
 \underline{Initial State:} Login screen
 
@@ -398,13 +400,13 @@ This section covers all system tests for the functional requirements. The tests 
 
 \item{FR6-ST1\\}
 
-\underline{Control:} Automatic
+\underline{Control:} \sout{Automatic} \textcolor{red} {Manual}
 
 \underline{Initial State:} Algorithm submissions/results
 
 \underline{Input:} Valid user credentials, and the id of a submission corresponding to that user
 
-\underline{Output:} The details of the submission being requested
+\underline{Output:} \sout{The details of the submission being requested} \textcolor{red} {Redirect to a webpage that displays the details of the submission being requested}
 
 \underline{Test Case Derivation:} Since the submission being requested does belong to the user requesting it, the submission’s details should be returned
 
@@ -412,13 +414,13 @@ This section covers all system tests for the functional requirements. The tests 
 					
 \item{FR6-ST2\\}
 
-\underline{Control:} Automatic
+\underline{Control:} \sout{Automatic} \textcolor{red} {Manual}
 
 \underline{Initial State:} Algorithm submissions/result
 
 \underline{Input:} Valid user credentials, and a submission corresponding to a different user
 
-\underline{Output:} None
+\underline{Output:} \sout{None} \textcolor{red} {404 Error}
 
 \underline{Test Case Derivation:} Since the submission being requested does not belong to the user requesting it, no result should be returned (it does not exist for that user).
 
@@ -426,23 +428,23 @@ This section covers all system tests for the functional requirements. The tests 
 
 \end{enumerate}
 
-\paragraph{Save Results}
+\paragraph{\sout{Save Results}}
 
 \begin{enumerate}
 
-\item{FR7-ST1\\}
+\item{\sout{FR7-ST1\\}}
 
-\underline{Control:} Automatic
+\underline{\sout{Control:}} \sout{Automatic} 
 
-\underline{Initial State:} Algorithm result screen
+\underline{\sout{Initial State:}} \sout{Algorithm result screen}
 
-\underline{Input:} The result of an algorithm to save
+\underline{\sout{Input:}} \sout{The result of an algorithm to save}
 
-\underline{Output:} The algorithm has been saved successfully
+\underline{\sout{Output:}} \sout{The algorithm has been saved successfully}
 
-\underline{Test Case Derivation:} If a user saves the result of an algorithm's execution, the system should output that the algorithm has been saved successfully.
+\underline{\sout{Test Case Derivation:}} \sout{If a user saves the result of an algorithm's execution, the system should output that the algorithm has been saved successfully.}
 
-\underline{How test will be performed:} An automatic testing tool will submit an algorithm. Once the execution is completed, it will attempt to save the result. Once saved, the system should respond with that save success message. Additionally, the tool will attempt to retrieve the result and validate the result to ensure that it was saved successfully.
+\underline{\sout{How test will be performed:}} \sout{An automatic testing tool will submit an algorithm. Once the execution is completed, it will attempt to save the result. Once saved, the system should respond with that save success message. Additionally, the tool will attempt to retrieve the result and validate the result to ensure that it was saved successfully.}
 
 \end{enumerate}
 
@@ -454,15 +456,15 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{Control:} Manual
 
-\underline{Initial State:} AThe user logged in on the home screen
+\underline{Initial State:} \sout{The user logged in on the home screen} \textcolor{red}{The webpage is open}
 
 \underline{Input:} The user navigates to the leaderboard screen
 
 \underline{Output:} Leaderboard becomes visible with submissions from other users
 
-\underline{Test Case Derivation:} The leaderboard should be available to all authenticated users, the system should return the relevant data when requested.
+\underline{Test Case Derivation:} The leaderboard should be available to \textcolor{red}{everyone} \sout{all authenticated users}, the system should return the relevant data when requested.
 
-\underline{How test will be performed:} A tester will log in and from the home page navigate to the leaderboard page. From there they will confirm that relevant data is being displayed. If the data is present then the test passes, if there is no relevant data present or errors navigating to the page, the test fails.
+\underline{How test will be performed:} A tester will \sout{log in and from the home page} navigate to the leaderboard page. From there they will confirm that relevant data is being displayed. If the data is present then the test passes, if there is no relevant data present or errors navigating to the page, the test fails.
 
 \end{enumerate}
 
@@ -476,13 +478,13 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{Initial State:} The user logged in on the leaderboard screen
 
-\underline{Input:} User attempts to view the leaderboard for algorithms of type SOC
+\underline{Input:} User attempts to view the leaderboard for algorithms of type \sout{SOC} \textcolor{red}{Kalman Filter}
 
-\underline{Output:} Leaderboard with only the result for algorithms of type SOC
+\underline{Output:} Leaderboard with only the result for algorithms of type \sout{SOC} \textcolor{red}{Kalman Filter}
 
-\underline{Test Case Derivation:} When the user attempts to view the leaderboard for only algorithms of type SOC, only SOC algorithms should be displayed, with algorithms of all other types being filtered out.
+\underline{Test Case Derivation:} When the user attempts to view the leaderboard for only algorithms of type \sout{SOC} \textcolor{red}{Kalman Filter}, only \sout{SOC} \textcolor{red}{Kalman Filter} algorithms should be displayed, with algorithms of all other types being filtered out.
 
-\underline{How test will be performed:} While logged in as a test user, we will navigate to the leaderboard page and apply the filter for algorithms of type SOC. After applying this filter we will ensure that only algorithms of type SOC are displayed.
+\underline{How test will be performed:} While logged in as a test user, we will navigate to the leaderboard page and apply the filter for algorithms of type \sout{SOC} \textcolor{red}{Kalman Filter}. After applying this filter we will ensure that only algorithms of type \sout{SOC} \textcolor{red}{Kalman Filter} are displayed.
 
 \end{enumerate}
 
@@ -492,7 +494,7 @@ This section covers all system tests for the functional requirements. The tests 
 
 \item{FR10-ST1\\}
 
-\underline{Control:} Automatic
+\underline{Control:} \sout{Automatic} \textcolor{red} {Manual}
 
 \underline{Initial State:} A non-empty and unsorted leaderboard exists in the system with at least 10 items.
 
@@ -526,23 +528,23 @@ This section covers all system tests for the functional requirements. The tests 
 
 \end{enumerate}
 
-\paragraph{Error Notification}
+\paragraph{\sout{Error Notification}}
 
 \begin{enumerate}
 
-\item{FR12-ST1\\}
+\item{\sout{FR12-ST1}\\}
 
-\underline{Control:} Manual 
+\underline{\sout{Control:}} \sout{Manual} 
 
-\underline{Initial State:} The algorithm submission page
+\underline{\sout{Initial State:}} \sout{The algorithm submission page}
 
-\underline{Input:} An algorithm that will throw an exception
+\underline{\sout{Input:}} \sout{An algorithm that will throw an exception}
 
-\underline{Output:} Failure notification from the system
+\underline{\sout{Output:}} \sout{Failure notification from the system}
 
-\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the execution of the algorithm is unsuccessful, therefore this notification is expected when a faulty algorithm is submitted.
+\underline{\sout{Test Case Derivation:}} \sout{The error notification will be output to the screen by the system if the execution of the algorithm is unsuccessful, therefore this notification is expected when a faulty algorithm is submitted.}
 
-\underline{How test will be performed:} An algorithm that will throw an exception will be manually submitted through the submission page of our user interface. We will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+\underline{\sout{How test will be performed:}} \sout{An algorithm that will throw an exception will be manually submitted through the submission page of our user interface. We will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.}
 
 \end{enumerate}
 
@@ -586,18 +588,19 @@ A user will load both our website and Kaggle in the same browser. He/she will th
 \underline{How test will be performed:} 
 A new user will use the documentation to search how to use a specific core functionality of the program. The documentation should be sufficient for the user to start using the functionality without needing further assistance.
 
-\item{NFR2-ST2\\}
+\item{\sout{NFR2-ST2\\}}
 
-\underline{Type:} Manual
 
-\underline{Initial State:} The user is logged in to the website
+\sout{\underline{Type:} Manual}
 
-\underline{Input/Condition:} User accesses a feature for the first time
+\sout{\underline{Initial State:} The user is logged in to the website}
 
-\underline{Output/Result:} Tooltips/hints are shown to the user on how to use the feature and the user can proceed with his/her task.
+\sout{\underline{Input/Condition:} User accesses a feature for the first time}
 
-\underline{How test will be performed:} 
-A user of the website will attempt to use a feature he/she has not used before and confirm that the hints allow them to proceed with their task without needing further assistance.
+\sout{\underline{Output/Result:} Tooltips/hints are shown to the user on how to use the feature and the user can proceed with his/her task.}
+
+\sout{\underline{How test will be performed:} 
+A user of the website will attempt to use a feature he/she has not used before and confirm that the hints allow them to proceed with their task without needing further assistance.}
 
 \end{enumerate}
 
@@ -665,15 +668,15 @@ A user will try to follow the walkthrough for a complex use case and confirm tha
 
 \item{NFR4-ST1\\}
 
-\underline{Type: Functional} 
+\underline{Type:} Functional
 
-\underline{Initial State: The user is logged in to the website} 
+\underline{Initial State:} The user is logged in to the website
 
-\underline{Input/Condition:  A request for the leaderboard (sorted/filtered and unsorted/unfiltered)/algorithm submission result is made} 
+\underline{Input/Condition:}  A request for the leaderboard (sorted/filtered and unsorted/unfiltered)/algorithm submission result is made
 
-\underline{Output/Result: The result is returned in less than 3 seconds} 
+\underline{Output/Result:} The result is returned in less than 3 seconds
 
-\underline{How test will be performed: Use a Postman collection to make the specified requests. Use Postman tests to ensure that the response time is less than 3 seconds for each request} 
+\underline{How test will be performed:} Use a Postman collection to make the specified requests. Use Postman tests to ensure that the response time is less than 3 seconds for each request 
 
 \end{enumerate}
 
@@ -694,18 +697,18 @@ A user will try to follow the walkthrough for a complex use case and confirm tha
 \underline{How test will be performed:} 
 Attempt logging in using valid credentials and verify that the user logs in to the account that corresponds to the provided credentials. Also, attempt to log in with an invalid credential and verify that an error message is displayed and the user is not granted access.
 
-\item{NFR5-ST2\\}
+\item{\sout{NFR5-ST2\\}}
 
-\underline{Type:} Manual
+\underline{\sout{Type:}} \sout{Manual}
 
-\underline{Initial State:} The user is logged in
+\underline{\sout{Initial State:}} \sout{The user is logged in}
 
-\underline{Input/Condition:} A user attempts to view another user’s email address
+\underline{\sout{Input/Condition:}} \sout{A user attempts to view another user’s email address}
 
-\underline{Output/Result:} If the user has an admin role, the other user’s email is displayed when viewing their account. If the user does not have an admin role, the other user’s email is not displayed when viewing their account. 
+\underline{\sout{Output/Result:}} \sout{If the user has an admin role, the other user’s email is displayed when viewing their account. If the user does not have an admin role, the other user’s email is not displayed when viewing their account. }
 
-\underline{How test will be performed:}
-Log in as an admin user and check if users’ emails can be viewed. Then, log in as a non-admin user and attempt to view users’ emails and ensure they are not visible.
+\underline{\sout{How test will be performed:}}
+\sout{Log in as an admin user and check if users’ emails can be viewed. Then, log in as a non-admin user and attempt to view users’ emails and ensure they are not visible.}
 
 \end{enumerate}
 
@@ -727,18 +730,18 @@ Log in as an admin user and check if users’ emails can be viewed. Then, log in
 \underline{How test will be performed:} 
 Try to insert to the tables in the database some data that do not follow the tables’ schema. Verify that for each incorrect data input, there is an error message returned and the table does not save any of the incorrect data.
 
-\item{NFR6-ST2\\}
+\item{\sout{NFR6-ST2\\}}
 
-\underline{Type:} Manual 
+\underline{\sout{Type:}} \sout{Manual }
 
-\underline{Initial State:} The database is populated.
+\underline{\sout{Initial State:}} \sout{The database is populated.}
 
-\underline{Input/Condition:} The database has scheduled backups 
+\underline{\sout{Input/Condition:}} \sout{The database has scheduled backups }
 
-\underline{Output/Result:} The backup files are created and stored and can be accessed
+\underline{\sout{Output/Result:}} \sout{The backup files are created and stored and can be accessed}
 
 
-\underline{How test will be performed:} After a backup has been scheduled for the database, ensure that the backup files are complete by attempting to restore from the backup and there are no data loss.
+\underline{\sout{How test will be performed:}} \sout{After a backup has been scheduled for the database, ensure that the backup files are complete by attempting to restore from the backup and there are no data loss.}
 
 
 \end{enumerate}
@@ -766,18 +769,18 @@ Log in to the accounts for two separate users. Submit an algorithm for one of th
 
 \begin{enumerate}
 
-\item{NFR8-ST1\\}
+\item{\sout{NFR8-ST1\\}}
 
-\underline{Type:} Functional
+\underline{\sout{Type:}} \sout{Functional}
 
-\underline{Initial State:} Logged into the website for 500 users
+\underline{\sout{Initial State:}} \sout{Logged into the website for 500 users}
 
-\underline{Input/Condition:} Submit an algorithm for each of the 500 users
+\underline{\sout{Input/Condition:}} \sout{Submit an algorithm for each of the 500 users}
 
-\underline{Output/Result:} The execution of all of the algorithms should be executed concurrently immediately after submission
+\underline{\sout{Output/Result:}} \sout{The execution of all of the algorithms should be executed concurrently immediately after submission}
 
-\underline{How test will be performed:} 
-Use selenium to log into the accounts for 500 users. Submit an algorithm for all 500 users at the same time. The status of the execution for all 500 submissions should be validated to be in progress after submission.
+\underline{\sout{How test will be performed:}} 
+\sout{Use selenium to log into the accounts for 500 users. Submit an algorithm for all 500 users at the same time. The status of the execution for all 500 submissions should be validated to be in progress after submission.}
 
 \end{enumerate}
 
@@ -785,18 +788,18 @@ Use selenium to log into the accounts for 500 users. Submit an algorithm for all
 
 \begin{enumerate}
 
-\item{NFR9-ST1\\}
+\item{\sout{NFR9-ST1\\}}
 
-\underline{Type:} Functinal
+\underline{\sout{Type:}} \sout{Functinal}
 
-\underline{Initial State:} Logged into the website for 500 users
+\underline{\sout{Initial State:}} \sout{Logged into the website for 500 users}
 
-\underline{Input/Condition:} Submit an algorithm for each of the 500 users
+\underline{\sout{Input/Condition:}} \sout{Submit an algorithm for each of the 500 users}
 
-\underline{Output/Result:} The number of resources used of the backend should be 50 times that of when 1 job is submitted (Resources should scale every 10 jobs)
+\underline{\sout{Output/Result:}} \sout{The number of resources used of the backend should be 50 times that of when 1 job is submitted (Resources should scale every 10 jobs)}
 
-\underline{How test will be performed:} 
-Log into the accounts for 500 users. Submit an algorithm for all 500 users at the same time. Monitor the number of resources used in the backend to ensure it has scaled resources correctly.
+\underline{\sout{How test will be performed:}} 
+\sout{Log into the accounts for 500 users. Submit an algorithm for all 500 users at the same time. Monitor the number of resources used in the backend to ensure it has scaled resources correctly.}
 
 \end{enumerate}
 
@@ -810,7 +813,7 @@ Log into the accounts for 500 users. Submit an algorithm for all 500 users at th
 
 \underline{Initial State:} N/A
 
-\underline{Input/Condition:} Run all existing tests, for Safari, Microsoft Edge, Google Chrome and Firefox. 
+\underline{Input/Condition:} Run all existing tests, for \textcolor{red} {Safari} Microsoft Edge, Google Chrome and Firefox. 
 
 \underline{Output/Result:} All tests should pass.
 

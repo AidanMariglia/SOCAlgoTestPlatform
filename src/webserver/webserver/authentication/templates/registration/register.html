@@ -1,6 +1,6 @@
 <style>
   body {
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     background-color: #f9f9f9;
     margin: 0;
     padding: 0;
@@ -54,7 +54,9 @@
     color: #8b8b8b;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-weight: 600;
     color: #333;
   }
@@ -69,14 +71,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 0px; 
+    margin-left: 0px;
     height: 100vh;
-    width: 100%; 
+    width: 100%;
   }
 
   .login-container {
     width: 100%;
-    max-width: 500px; 
+    max-width: 500px;
     background-color: #fff;
     padding: 40px;
     border-radius: 8px;
@@ -94,39 +96,33 @@
   }
 
   .tab-container {
-      display: flex;
-      justify-content: center; 
-      gap: 120px;  
-      color: black; 
-      text-decoration: none; 
-  } 
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    color: black;
+    text-decoration: none;
+  }
 
   .tab-container a.register {
-      font-weight: bold;
-  } 
+    font-weight: bold;
+  }
 
   .tab-container a.login {
-      color: grey
-  } 
+    color: grey;
+  }
 
   h2 {
     color: #333;
     margin-bottom: 20px;
-    font-size: 24px; 
+    font-size: 24px;
   }
 
-  .error-message,
-  .info-message {
-    background-color: #ffdddd;
-    color: #d8000c;
+  .error-message {
+    background-color: #f9f9f9;
+    color: #000000;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
-  }
-
-  .info-message {
-    background-color: #d9edf7;
-    color: #31708f;
   }
 
   .form-group {
@@ -142,8 +138,8 @@
 
   .form-group input {
     width: 100%;
-    padding: 15px; 
-    font-size: 18px; 
+    padding: 15px;
+    font-size: 18px;
     border: 1px solid #ccc;
     border-radius: 6px;
     transition: border-color 0.3s;
@@ -163,19 +159,19 @@
     width: 100%;
     padding: 15px;
     border: none;
-    font-size: 18px;  
+    font-size: 18px;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s;
   }
 
   .form-actions .primary-btn {
-    background-color: #696969; 
-    color: white;  
+    background-color: #696969;
+    color: white;
   }
 
   .form-actions .primary-btn:hover {
-    background-color: #515151;  
+    background-color: #515151;
   }
 
   .forgot-password-link {
@@ -211,46 +207,123 @@
     .btn {
       font-size: 16px;
     }
-
   }
 </style>
 
 {% block content %}
-  <div class="content-wrapper">
-    <div class="login-container">
+<div class="content-wrapper">
+  <div class="login-container">
+    <h2 style="color: #20beff">SOCAlgoTestingPlatform</h2>
+    <h1>Welcome!</h1>
 
-      <h2 style="color: #20BEFF;">SOCAlgoTestingPlatform</h2>
-      <h1>Welcome!</h1>
-
-      <div class="tab-container">
-        <a href="/accounts/login" class="intro">Sign In</a>
-        <a href="/authentication/register" class="register">Register</a>
-      </div>
-
-      <hr style="border: 1px solid black; margin-bottom: 30px;">
-
-      <form method="POST">
-        {% csrf_token %}
-        <div class="input-group" style="margin-bottom: 20px;">
-          <input type="text" name="username" placeholder="Username" required style="width: 100%; height: 50px; font-size: 18px; padding: 10px; text-align: center;">
-        </div>
-        <div class="input-group" style="margin-bottom: 20px;">
-          <input type="email" name="email" placeholder="Email" required style="width: 100%; height: 50px; font-size: 18px; padding: 10px; text-align: center;">
-        </div>
-        <div class="input-group" style="margin-bottom: 20px;">
-          <input type="password" name="password" placeholder="Password" required style="width: 100%; height: 50px; font-size: 18px; padding: 10px; text-align: center;">
-        </div>
-        <div class="input-group" style="margin-bottom: 20px;"> 
-          <input type="text" name="first_name" placeholder="First Name" required style="width: 100%; height: 50px; font-size: 18px; padding: 10px; text-align: center;">
-        </div>
-        <div class="input-group" style="margin-bottom: 20px;">
-          <input type="text" name="last_name" placeholder="Last Name" required style="width: 100%; height: 50px; font-size: 18px; padding: 10px; text-align: center;">
-        </div>
-        <div class="input-group" style="margin-bottom: 20px;">
-          <input type="text" name="academic_affiliation" placeholder="Academic Affiliation" required style="width: 100%; height: 50px; font-size: 18px; padding: 10px; text-align: center;">
-        </div>
-        <button type="submit" class="btn btn-secondary w-100 mb-2">Register</button>
-      </form>
+    <div class="tab-container">
+      <a href="/accounts/login" class="intro">Sign In</a>
+      <a href="/authentication/register" class="register">Register</a>
     </div>
+
+    <hr style="border: 1px solid black; margin-bottom: 30px" />
+
+    {% if messages %} {% for message in messages %}
+
+    <div class="error-message">{{ message }}</div>
+    {% endfor %} {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="input-group" style="margin-bottom: 20px">
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          required
+          style="
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            padding: 10px;
+            text-align: center;
+          "
+        />
+      </div>
+      <div class="input-group" style="margin-bottom: 20px">
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          style="
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            padding: 10px;
+            text-align: center;
+          "
+        />
+      </div>
+      <div class="input-group" style="margin-bottom: 20px">
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          style="
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            padding: 10px;
+            text-align: center;
+          "
+        />
+      </div>
+      <div class="input-group" style="margin-bottom: 20px">
+        <input
+          type="text"
+          name="first_name"
+          placeholder="First Name"
+          required
+          style="
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            padding: 10px;
+            text-align: center;
+          "
+        />
+      </div>
+      <div class="input-group" style="margin-bottom: 20px">
+        <input
+          type="text"
+          name="last_name"
+          placeholder="Last Name"
+          required
+          style="
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            padding: 10px;
+            text-align: center;
+          "
+        />
+      </div>
+      <div class="input-group" style="margin-bottom: 20px">
+        <input
+          type="text"
+          name="academic_affiliation"
+          placeholder="Academic Affiliation"
+          required
+          style="
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            padding: 10px;
+            text-align: center;
+          "
+        />
+      </div>
+      <button type="submit" class="btn btn-secondary w-100 mb-2">
+        Register
+      </button>
+    </form>
   </div>
+</div>
 {% endblock %}

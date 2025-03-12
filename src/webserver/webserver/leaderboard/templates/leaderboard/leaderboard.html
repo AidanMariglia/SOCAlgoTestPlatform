@@ -105,6 +105,7 @@
         <th><div>Author</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
         <th><div>Affiliation</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
         <th><div>Model Name</div><button class="arrow" type="submit", name="order_by", value="model_name">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="model_name">&#x25BC</button></th>
+        <th><div>Model Type</div><button class="arrow" type="submit", name="order_by", value="model_type">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="model_type">&#x25BC</button></th>
         <th><div>Weighted Error</div><button class="arrow" type="submit", name="order_by", value="weighted_error">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-weighted_error">&#x25BC</button></th>
         <th><div>All Cells</div><button class="arrow" type="submit", name="order_by", value="t1_all_cells">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t1_all_cells">&#x25BC</button></th>
         <th><div>Blind Cells</div><button class="arrow" type="submit", name="order_by", value="t2_blind_cells">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-t2_blind_cells">&#x25BC</button></th>
@@ -137,6 +138,7 @@
       <td>{{ submission.user.username }}</td>
       <td>{{ submission.user.academic_affiliation }}</td>
       <td>{{ submission.model_name }}</td>
+      <td>{{ submission.get_model_type_display }}</td>
       <td>{{ submission.weighted_error }}</td>
       <td>{{ submission.t1_all_cells }}</td>
       <td>{{ submission.t2_blind_cells }}</td>
@@ -159,10 +161,6 @@
       <td>{{ submission.all_drive_cycles_average_RMSE }}</td>
       <td>{{ submission.all_drive_cycles_average_MAE }}</td>
       <td>{{ submission.all_drive_cycles_average_MAXE }}</td>
-    </tr>
-    {% empty %}
-    <tr>
-      <td colspan="10" style="text-align: center">No submissions yet.</td>
     </tr>
     {% endfor %}
   </tbody>
