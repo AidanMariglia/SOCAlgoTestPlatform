@@ -185,27 +185,45 @@
       </table>
     </div>
 
-    <div class="figure-container">
-      <h2>Figures</h2>
-      <div
-        class="figure-wrapper"
-        style="width: 150%; height: auto; overflow: hidden"
-      >
-        {% if figure %}
-        <img
-          src="{{ figure.file.url }}"
-          alt="{{ figure.file.name }}"
-          style="max-width: 100%; height: auto"
-        />
-
-        {% else %}
-        <div class="figure-placeholder">
-          <p>No figures available</p>
+    <div class="container mt-4">
+    {% if images %}
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Select an Image:</h5>
+            <select id="imageDropdown" class="form-select">
+                <option value="">-- Choose an image --</option>
+                {% for image in images %}
+                <option value="{{ image.file.url }}">{{ image.display_name }}</option>
+                {% endfor %}
+            </select>
         </div>
+        <div class="col-md-8 text-center mt-3">
+            <h5>Selected Image:</h5>
+            <img id="selectedImage" src="" class="img-fluid" alt="Select an image" style="max-height: 400px; display: none;">
+        </div>
+    </div>
+        {% else %}
+        <p>No images available.</p>
         {% endif %}
-      </div>
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const dropdown = document.getElementById("imageDropdown");
+    const imageDisplay = document.getElementById("selectedImage");
+
+    dropdown.addEventListener("change", function() {
+        const selectedUrl = this.value;
+        if (selectedUrl) {
+            imageDisplay.src = selectedUrl;
+            imageDisplay.style.display = "block";
+        } else {
+            imageDisplay.style.display = "none";
+        }
+    });
+});
+</script>
 
 {% endblock %}
