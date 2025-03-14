@@ -27,9 +27,7 @@ def leaderboard(request: HttpRequest):
     # get all users with at least 1 submission
     users = Users.objects.filter(Exists(Submission.objects.filter(user=OuterRef("id"))))
 
-
-
-    submissions = Submission.objects.filter(status__name="completed").order_by(order_by)
+    submissions = Submission.objects.filter(status__name="completed", visibility="public").order_by(order_by)
 
     if user_id:
         submissions = submissions.filter(user=user_id)

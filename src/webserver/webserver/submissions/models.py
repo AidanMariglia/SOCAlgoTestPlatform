@@ -18,6 +18,10 @@ class Submission(models.Model):
     # and make that default, but im not sure how to preload
     # data into the submissionstatus model yet
     MODEL_TYPE_CHOICES=[("ML","Machine Learning"), ("KF", "Kalman Fitler"), ("NA", "Not Specified")]
+    VISIBILITY_CHOICES = [
+        ('private', 'Private'),
+        ('public', 'Public'),
+    ]
 
     status = models.ForeignKey(SubmissionStatus, null=True, on_delete=models.SET_NULL)
     file = models.FileField(upload_to='uploads/', validators=[validate_file_extension])
@@ -26,6 +30,7 @@ class Submission(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     model_name = models.TextField(max_length=32)
     model_type = models.TextField(max_length=2, choices=MODEL_TYPE_CHOICES, default="NA")
+    visibility = models.CharField(max_length=7, choices=VISIBILITY_CHOICES, default='public')
     weighted_error = models.DecimalField(max_digits=10, decimal_places=3, null=True)
     t1_all_cells = models.DecimalField(max_digits=10, decimal_places=3, null=True)
     t2_blind_cells = models.DecimalField(max_digits=10, decimal_places=3, null=True)
