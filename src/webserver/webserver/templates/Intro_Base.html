@@ -87,17 +87,13 @@
             text-decoration: none;
             color: #20BEFF;
         }
-        .signout-form {
-            display: flex;
-            justify-content: flex-end;
-        }
 
-        .button-container {
+        .switch-container {
             display: flex;
             gap: 15px;
         }
 
-        .button-container a {
+        .switch-container a {
             text-decoration: none;
             padding: 10px 20px;
             font-size: 16px;
@@ -123,6 +119,7 @@
             background-color: #0056b3;
         }
 
+
 </style>
     </style>
 </head>
@@ -137,7 +134,7 @@
             <a href="/submissions" class="{% if request.path == '/submissions/' %}active{% endif %}">Submit Model</a>
             <a href="/submissions/submissionsPage" class="{% if request.path == '/submissions/submissionsPage' %}active{% endif %}">View Submissions</a>
         </div>
-        <div class="button-container">
+        <div class="switch-container">
             <a href="/accounts/login" class="login-btn">Login</a>
             <a href="/authentication/register" class="register-btn">Register</a>
         </div>

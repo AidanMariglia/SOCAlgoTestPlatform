@@ -34,5 +34,8 @@ def leaderboard(request: HttpRequest):
 
     if mt:
         submissions = submissions.filter(model_type=MODEL_TYPE_MAP[mt])
-
+        
+    if not request.user.is_authenticated:
+        return render(request, "leaderboard/logged_out_leaderboard.html", {"submissions": submissions})
+    
     return render(request, "leaderboard/leaderboard.html", {"submissions": submissions, "authors": users, "modeltypes": MODEL_TYPE_CHOICES})

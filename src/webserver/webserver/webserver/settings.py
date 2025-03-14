@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'workers',
+    "verify_email.apps.VerifyEmailConfig",
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,16 @@ ROOT_URLCONF = 'webserver.urls'
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/home/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_DOMAIN = '127.0.0.1:8000'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'socalgotestingplatform@gmail.com' 
+EMAIL_HOST_PASSWORD = "nify eroz qggu uuig"
+
+DEFAULT_FROM_EMAIL = 'socalgotestingplatform@gmail.com'
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
