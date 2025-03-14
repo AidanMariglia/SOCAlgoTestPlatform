@@ -44,14 +44,12 @@ def submission_detail(request, submission_id):
     submission = get_object_or_404(Submission, id=submission_id)
     figures = submission.figures.filter(file__endswith='.png')
 
-    if len(figures) > 0:
-        figure = figures[0]
-    else:
-        figure = None
 
+    for figure in figures:
+        figure.display_name = figure.file.name.split("/")[-1]
 
     # Check if the logged-in user is the owner of the submission
     if submission.user != request.user:
         raise Http404("You are not authorized to view this submission.")
 
-    return render(request, 'submissions/submission.html', {'submission': submission, 'figure': figure })
+    return render(request, 'submissions/submission.html', {'submission': submission, 'images': figures })
