@@ -114,6 +114,11 @@
         }
 </style>
     </style>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
 </head>
 <body>
 
@@ -123,6 +128,7 @@
         </div>
         <div class="links">
             <a href="/leaderboard" class="{% if request.path == '/leaderboard/' %}active{% endif %}">View Leaderboard</a>
+            <a href="https://borealisdata.ca/dataset.xhtml?persistentId=doi:10.5683/SP3/ZVTR4B" target="_blank" {% if request.path == '/data/' %}active{% endif %}">Download Data</a>
             <a href="/submissions" class="{% if request.path == '/submissions/' %}active{% endif %}">Submit Model</a>
             <a href="/submissions/submissionsPage" class="{% if request.path == '/submissions/submissionsPage' %}active{% endif %}">View Submissions</a>
         </div>
