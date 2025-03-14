@@ -89,15 +89,36 @@
 {% extends "Webpage_Base.html" %} {% block title %}
 <title>Algorithm Leaderboard</title>
 {% endblock %} {% block content %}
-<div class="button-container">
-  <button class="btn">
-    <img src="/media/images/filter_icon.jpg" alt="Filter" class="icon" /> Filter
-  </button>
-  <button class="btn">
-    <img src="/media/images/sort_icon.png" alt="Sort" class="icon" /> Sort
-  </button>
+
+<div>
+
+<h1>placeholder</h1>
 </div>
-<table>
+<!-- Filter author Form -->
+<form id="filter-author-form" hx-get="{% url 'leaderboard' %}" hx-target="#lb" hx-push-url="true">
+    <label for="author">Filter by Author:</label>
+    <select id="author" name="author" class="select2" onchange="this.form.submit()">
+        <option value="">All Authors</option>
+        {% for author in authors %}
+            <option value="{{ author.id }}" {% if author.id|stringformat:"s" == request.GET.author %}selected{% endif %}>
+                {{ author.username }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+<!-- Filter model_type Form -->
+<form id="filter-model-type-form" hx-get="{% url 'leaderboard' %}" hx-target="#lb" hx-push-url="true">
+    <label for="modeltype">Filter by Model Type:</label>
+    <select id="modeltype" name="modeltype" class="select2" onchange="this.form.submit()">
+        <option value="">All Model Types</option>
+        {% for modeltype in modeltypes %}
+            <option value="{{ modeltype }}" {% if modeltype|stringformat:"s" == request.GET.modeltype %}selected{% endif %}>
+                {{ modeltype }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+<table id="lb">
   <thead>
     <tr>
       <form>
@@ -179,5 +200,11 @@
 
     window.addEventListener("resize", matchWidth);
   });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $(".select2").select2(); // Initialize Select2
+    });
 </script>
 {% endblock %}
