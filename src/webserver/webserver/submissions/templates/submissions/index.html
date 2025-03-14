@@ -103,6 +103,24 @@
     border-top: 1px solid #ccc;
     left: 0;
     }
+
+  .visibility-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 15px;
+    font-size: 14px; 
+    color: #333;
+  }
+
+  .visibility-container input {
+      margin: 0;
+  }
+
+  .visibility-container label {
+      margin: 0;
+  }
 </style>
 
 
@@ -128,6 +146,15 @@
               <option value="KF">Kalman Filter</option>
               <option value="NA">Not Specified</option>
           </select>
+
+          <label for="visibility">Visibility:</label>
+          <div class="visibility-container">
+              <input type="radio" id="private" name="visibility" value="private" required>
+              <label for="private">Private</label>
+              
+              <input type="radio" id="public" name="visibility" value="public" checked required>
+              <label for="public">Public</label>
+          </div>
 
           <div id="dropZone" class="upload-box">
               <img src="/media/images/file_icon.png" class="file-icon" alt="File Icon">
