@@ -34,7 +34,8 @@ def index(request: HttpRequest):
 
 @login_required
 def submissionsPage(request: HttpRequest):
-    submissions = Submission.objects.all().filter(user=request.user)
+    order_by = request.GET.get('order_by', "weighted_error")
+    submissions = Submission.objects.all().filter(user=request.user).order_by(order_by)
 
     return render(request, "submissions/submissions.html", {"submissions": submissions})
 
