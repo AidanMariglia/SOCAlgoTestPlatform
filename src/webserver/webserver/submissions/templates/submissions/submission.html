@@ -200,7 +200,12 @@
         <div class="col-md-8 text-center mt-3">
             <h5>Selected Image:</h5>
             <img id="selectedImage" src="" class="img-fluid" alt="Select an image" style="max-height: 400px; display: none;">
-        </div>
+          </div>
+          <div class="container">  
+            {% if images %}
+            <a href="{% url 'downloadAllFiles' submission.id %}" class="download-button">Download Output Files</a>
+            {% endif %}
+          </div>
     </div>
         {% else %}
         <p>No images available.</p>

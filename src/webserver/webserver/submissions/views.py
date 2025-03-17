@@ -1,6 +1,4 @@
-import json
-
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from .models import Submission, SubmissionStatus
 from .forms import FileUploadForm
@@ -9,8 +7,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
-from django.core.serializers import serialize
-
+from zipfile import ZipFile
 
 @login_required
 def index(request: HttpRequest):
@@ -53,3 +50,19 @@ def submission_detail(request, submission_id):
         raise Http404("You are not authorized to view this submission.")
 
     return render(request, 'submissions/submission.html', {'submission': submission, 'images': figures })
+
+@login_required
+def download_all_files(request, submission_id):
+    submission = get_object_or_404(Submission, id=submission_id)
+
+    zip_response = HttpResponse()
+
+    figures = submission.figures.filter()
+
+    zip = ZipFile(zip_response,"w")
+    for figure in figures:
+        zip.writestr(figure.file.name, figure.file.open("rb").read())
+
+    zip_response['Content-Type'] = "application/zip"
+    zip_response['Content-Disposition'] = f"attachment; filename=Submission-{submission.id}.zip"
+    return zip_response
