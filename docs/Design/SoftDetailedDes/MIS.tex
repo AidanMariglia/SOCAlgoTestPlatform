@@ -529,7 +529,7 @@ The user must be logged in to submit a model.
 
 \noindent handleSubmit():
 \begin{itemize}
-\item transition: Update the \textit{screen} to display Submission page with new submission $|$ Update the \textit{screen} to display Submit page with an error message
+\item transition: Update the \textit{screen} to display Submission page with new submission $|$ Update the \textit{screen} to display Submit page with an error message. Submissions will begin in a pending state, and will enter the started state once the number of submissions running is less than the maximum number of concurrent submissions allowed.
 \item output: None
 \item exception: None
 
