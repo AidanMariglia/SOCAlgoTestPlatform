@@ -81,6 +81,9 @@
   .status-failed {
     color: red;
   }
+  .status-started {
+    color: blue;
+  }
 
   .arrow {
   /* display: flex; */
@@ -148,7 +151,7 @@
       <td>{{ submission.model_name }}</td>
       <td>{{ submission.get_model_type_display }}</td>
       <td
-        class="{% if submission.status.name == 'completed' %}status-completed{% elif submission.status.name == 'pending' %}status-pending{% else %}status-failed{% endif %}"
+        class="{% if submission.status.name == 'completed' %}status-completed{% elif submission.status.name == 'pending' %}status-pending{% elif submission.status.name == 'started' %}status-started{% else %}status-failed{% endif %}"
       >
         {{ submission.status }}
       </td>
