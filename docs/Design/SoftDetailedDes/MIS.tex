@@ -696,7 +696,7 @@ data := Sorted data based on appliedSort
 \noindent filterData(data: QuerySet, category: str, condition: str):
 \begin{itemize}
 \item output: Filtered data based on category and condition
-\item exception: None
+\item exception: 400 for invalid categories/conditions specified by the user
 \end{itemize}
 
 \noindent sortData(data: QuerySet, category: str, sortBy: str):
