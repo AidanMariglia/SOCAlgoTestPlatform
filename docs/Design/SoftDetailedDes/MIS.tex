@@ -292,7 +292,7 @@ UserAuthentication contains the registration functionality
 \item transition: Update the screen to display Login page $|$ Update the screen to display
 Registration page with an error message.
 \item output: None
-\item exception: None
+\item exception: 400 (if the user input is invalid), 409 (if the specified user already exists)
 
 \end{itemize}
 
