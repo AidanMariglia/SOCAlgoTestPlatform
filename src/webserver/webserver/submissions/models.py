@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from .utils import validate_file_extension
+import uuid
 
 # Create your models here.
 class SubmissionStatus(models.Model):
@@ -12,11 +13,15 @@ class SubmissionStatus(models.Model):
 
 User = get_user_model()
 
+def generate_id():
+    return str(uuid.uuid4())
+
 class Submission(models.Model):
     # todo. I don't want this to be nullable
     # maybe there is a way to setup an "error" status
     # and make that default, but im not sure how to preload
     # data into the submissionstatus model yet
+    id = models.TextField(unique=True, primary_key=True, default=generate_id)
     MODEL_TYPE_CHOICES=[("ML","Machine Learning"), ("KF", "Kalman Fitler"), ("NA", "Not Specified")]
     VISIBILITY_CHOICES = [
         ('private', 'Private'),
@@ -62,3 +67,4 @@ class Figure(models.Model):
 
     def __str__(self):
         return f"{self.submission.id} - {self.name}"
+    
