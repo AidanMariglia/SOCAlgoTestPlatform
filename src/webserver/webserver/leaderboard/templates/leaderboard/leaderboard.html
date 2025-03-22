@@ -122,6 +122,7 @@
   <thead>
     <tr>
       <form>
+        <th>Ranking</th>
         <th><div>Submission</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
         <th><div>Author</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
         <th><div>Affiliation</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
@@ -155,6 +156,7 @@
   <tbody>
     {% for submission in submissions %}
     <tr>
+      <td>{{ forloop.counter }}</td>
       <td>{{ submission.id }}</td>
       <td>{{ submission.user.username }}</td>
       <td>{{ submission.user.academic_affiliation }}</td>

@@ -85,6 +85,14 @@
     color: blue;
   }
 
+  .public {
+    color: green;
+  }
+
+  .private {
+    color: red;
+  }
+
   .arrow {
   /* display: flex; */
   align-items: center;
@@ -115,6 +123,7 @@
         <th><div>Model Name</div><button class="arrow" type="submit", name="order_by", value="model_name">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="model_name">&#x25BC</button></th>
         <th><div>Model Type</div><button class="arrow" type="submit", name="order_by", value="model_type">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="model_type">&#x25BC</button></th>
         <th><div>Status</div><button class="arrow" type="submit", name="order_by", value="status">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="status">&#x25BC</button></th>
+        <th><div>Visibility</div><button class="arrow" type="submit", name="order_by", value="visibility">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="visibility">&#x25BC</button></th>
         <th><div>Submitted at</div><button class="arrow" type="submit", name="order_by", value="submitted_at">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="submitted_at">&#x25BC</button></th>
         <th><div>Completed at</div><button class="arrow" type="submit", name="order_by", value="completed_at">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="completed_at">&#x25BC</button></th>
         <th><div>Weighted Error</div><button class="arrow" type="submit", name="order_by", value="weighted_error">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-weighted_error">&#x25BC</button></th>
@@ -154,6 +163,11 @@
         class="{% if submission.status.name == 'completed' %}status-completed{% elif submission.status.name == 'pending' %}status-pending{% elif submission.status.name == 'started' %}status-started{% else %}status-failed{% endif %}"
       >
         {{ submission.status }}
+      </td>
+      <td
+        class="{% if submission.visibility == 'public' %}public{% else %}private{% endif %}"
+      >
+        {{ submission.get_visibility_display }}
       </td>
       <td>{{ submission.submitted_at }}</td>
       <td>{{ submission.completed_at }}</td>
