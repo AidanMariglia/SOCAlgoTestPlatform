@@ -1,4 +1,5 @@
-from django.http import HttpRequest
+import csv
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.db.models.functions import Length
 from django.db.models import Exists, OuterRef
@@ -39,3 +40,70 @@ def leaderboard(request: HttpRequest):
         return render(request, "leaderboard/logged_out_leaderboard.html", {"submissions": submissions})
     
     return render(request, "leaderboard/leaderboard.html", {"submissions": submissions, "authors": users, "modeltypes": MODEL_TYPE_CHOICES})
+
+def export_leaderboard_csv(request: HttpRequest):
+    user_id = request.GET.get('author')
+    mt = request.GET.get('modeltype')
+    order_by = request.GET.get('order_by', "weighted_error")
+
+    if not user_id:
+        user_id = None
+    if not mt:
+        mt = None
+    if not order_by:
+        order_by = "weighted_error"
+
+    submissions = Submission.objects.filter(status__name="completed", visibility="public").order_by(order_by)
+
+    if user_id:
+        submissions = submissions.filter(user=user_id)
+
+    if mt:
+        submissions = submissions.filter(model_type=MODEL_TYPE_MAP[mt])
+
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = 'attachment; filename="leaderboard.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow([
+        'Ranking', 'Submission ID', 'Author', 'Affiliation', 'Model Name', 'Model Type', 
+        'Weighted Error', 'All Cells', 'Blind Cells', 'Non-Blinded Cells', 'Charging', 
+        '80kg Payload', '448kg Payload with HVAC', '448kg Payload', '1000kg Payload',
+        'Standard Cycles', 'Custom Cycles', 'n20C', 'n10C', '0C', '10C', '25C', '40C',
+        'iSOC Error', 'Current Sensor Error', 'All Drive Cycles Average RMSE', 
+        'All Drive Cycles Average MAE', 'All Drive Cycles Average MAXE'
+    ])
+
+    for idx, submission in enumerate(submissions):
+        writer.writerow([
+            idx + 1,
+            submission.id, 
+            submission.user.username, 
+            submission.user.academic_affiliation, 
+            submission.model_name, 
+            submission.get_model_type_display(),
+            submission.weighted_error,
+            submission.t1_all_cells,
+            submission.t2_blind_cells,
+            submission.t3_non_blinded_cells,
+            submission.t4_charging,
+            submission.t5_80kg_payload,
+            submission.t5_6_448kg_payload_with_HVAC,
+            submission.t5_6_448kg_payload,
+            submission.t5_1000kg_payload,
+            submission.t7_standard_cycles,
+            submission.t8_custom_cycles,
+            submission.t9_n20C,
+            submission.t9_n10C,
+            submission.t9_0C,
+            submission.t9_10C,
+            submission.t9_25C,
+            submission.t9_40C,
+            submission.t10_iSOC_error,
+            submission.t11_current_sensor_error,
+            submission.all_drive_cycles_average_RMSE,
+            submission.all_drive_cycles_average_MAE,
+            submission.all_drive_cycles_average_MAXE
+        ])
+
+    return response
