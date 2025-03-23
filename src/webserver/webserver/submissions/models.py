@@ -62,7 +62,7 @@ class Submission(models.Model):
 class Figure(models.Model):
     submission = models.ForeignKey(Submission, related_name="figures", on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    file = models.FileField(upload_to="matlab_figures/")
+    file = models.FileField(max_length=255, upload_to="matlab_figures/")
 
 
     def __str__(self):
