@@ -94,20 +94,17 @@
 
 <h1>placeholder</h1>
 </div>
-<!-- Filter author Form -->
-<form id="filter-author-form" hx-get="{% url 'leaderboard' %}" hx-target="#lb" hx-push-url="true">
-    <label for="author">Filter by Author:</label>
-    <select id="author" name="author" class="select2" onchange="this.form.submit()">
-        <option value="">All Authors</option>
-        {% for author in authors %}
-            <option value="{{ author.id }}" {% if author.id|stringformat:"s" == request.GET.author %}selected{% endif %}>
-                {{ author.username }}
-            </option>
-        {% endfor %}
-    </select>
-</form>
-<!-- Filter model_type Form -->
-<form id="filter-model-type-form" hx-get="{% url 'leaderboard' %}" hx-target="#lb" hx-push-url="true">
+
+<form id="filter" hx-get="{% url 'leaderboard' %}" hx-target="#lb" hx-push-url="true">
+  <label for="author">Filter by Author:</label>
+  <select id="author" name="author" class="select2" onchange="this.form.submit()">
+      <option value="">All Authors</option>
+      {% for author in authors %}
+          <option value="{{ author.id }}" {% if author.id|stringformat:"s" == request.GET.author %}selected{% endif %}>
+              {{ author.username }}
+          </option>
+      {% endfor %}
+  </select>
     <label for="modeltype">Filter by Model Type:</label>
     <select id="modeltype" name="modeltype" class="select2" onchange="this.form.submit()">
         <option value="">All Model Types</option>
