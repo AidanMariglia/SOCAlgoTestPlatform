@@ -118,7 +118,7 @@
         {% endfor %}
     </select>
 </form>
-<button class="toggle-view"> Detailed View </button>
+<button class="toggle-view" id="toggle_view"> Switch to Detailed View </button>
 
 <form id="csv-export-form" action="{% url 'export_leaderboard_csv' %}" method="get">
   <input type="hidden" name="author" value="{{ request.GET.author }}">
@@ -201,6 +201,7 @@
   <thead>
     <tr>
       <form>
+        <th>Ranking</th>
         <th><div>Submission</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
         <th><div>Author</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
         <th><div>Affiliation</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
@@ -213,6 +214,7 @@
   <tbody>
     {% for submission in submissions %}
     <tr>
+      <td>{{ forloop.counter }}</td>
       <td>{{ submission.id|slice:"32:"}}</td>
       <td>{{ submission.user.username }}</td>
       <td>{{ submission.user.academic_affiliation }}</td>
@@ -242,11 +244,13 @@
 <script>
     $(document).ready(function() {
       detailed_view = localStorage.getItem("detailed-view");
-      if (detailed_view === true || detailed_view === null){
+      if (detailed_view === "true"){
         $(".condensed-view").hide();
+        document.getElementById("toggle_view").textContent = "Switch to Condensed View";
       }
       else{
         $(".detailed-view").hide();
+        document.getElementById("toggle_view").textContent = "Switch to Detailed View";
       }
       $(".select2").select2(); // Initialize Select2
     });
@@ -255,9 +259,16 @@
 <script>
     $(".toggle-view").on("click", function() {
       $(".detailed-view").toggle();
-      $(".condensed-view").toggle()
+      $(".condensed-view").toggle();
       detailed_view = localStorage.getItem("detailed-view");
-      localStorage.setItem("detailed-view", !detailed_view);
+      if (detailed_view === "true"){
+        document.getElementById("toggle_view").textContent = "Switch to Detailed View";
+        localStorage.setItem("detailed-view", "false");
+      }
+      else{
+        document.getElementById("toggle_view").textContent = "Switch to Condensed View";
+        localStorage.setItem("detailed-view", "true");
+      }
     })
 </script>
 {% endblock %}
