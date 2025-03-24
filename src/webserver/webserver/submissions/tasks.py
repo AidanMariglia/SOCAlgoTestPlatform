@@ -65,6 +65,8 @@ def run_submission(submission_id):
         setup_dir(submission_id, temp_dir)
         
         s: Submission = Submission.objects.get(id=submission_id)
+        s.status = SubmissionStatus.objects.get(name="started")
+        s.save()
         user =  User.objects.get(id=s.user_id)
 
         setting = [f"{user.first_name} {user.last_name}", user.academic_affiliation, user.email, s.model_name]

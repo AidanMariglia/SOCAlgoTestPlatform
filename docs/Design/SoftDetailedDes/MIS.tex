@@ -292,7 +292,7 @@ UserAuthentication contains the registration functionality
 \item transition: Update the screen to display Login page $|$ Update the screen to display
 Registration page with an error message.
 \item output: None
-\item exception: None
+\item exception: 400 (if the user input is invalid), 409 (if the specified user already exists)
 
 \end{itemize}
 
@@ -529,7 +529,7 @@ The user must be logged in to submit a model.
 
 \noindent handleSubmit():
 \begin{itemize}
-\item transition: Update the \textit{screen} to display Submission page with new submission $|$ Update the \textit{screen} to display Submit page with an error message
+\item transition: Update the \textit{screen} to display Submission page with new submission $|$ Update the \textit{screen} to display Submit page with an error message. Submissions will begin in a pending state, and will enter the started state once the number of submissions running is less than the maximum number of concurrent submissions allowed.
 \item output: None
 \item exception: None
 
@@ -696,7 +696,7 @@ data := Sorted data based on appliedSort
 \noindent filterData(data: QuerySet, category: str, condition: str):
 \begin{itemize}
 \item output: Filtered data based on category and condition
-\item exception: None
+\item exception: 400 for invalid categories/conditions specified by the user
 \end{itemize}
 
 \noindent sortData(data: QuerySet, category: str, sortBy: str):
