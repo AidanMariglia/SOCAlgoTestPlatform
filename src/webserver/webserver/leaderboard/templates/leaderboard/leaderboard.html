@@ -118,7 +118,8 @@
         {% endfor %}
     </select>
 </form>
-<table id="lb">
+<button class="toggle-view"> Detailed View </button>
+<table class="detailed-view" id="lb">
   <thead>
     <tr>
       <form>
@@ -186,6 +187,32 @@
     {% endfor %}
   </tbody>
 </table>
+<table class="condensed-view" id="lb">
+  <thead>
+    <tr>
+      <form>
+        <th><div>Submission</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
+        <th><div>Author</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
+        <th><div>Affiliation</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
+        <th><div>Model Name</div><button class="arrow" type="submit", name="order_by", value="model_name">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="model_name">&#x25BC</button></th>
+        <th><div>Model Type</div><button class="arrow" type="submit", name="order_by", value="model_type">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="model_type">&#x25BC</button></th>
+        <th><div>Weighted Error</div><button class="arrow" type="submit", name="order_by", value="weighted_error">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-weighted_error">&#x25BC</button></th>
+      </form>
+    </tr>
+  </thead>
+  <tbody>
+    {% for submission in submissions %}
+    <tr>
+      <td>{{ submission.id|slice:"32:"}}</td>
+      <td>{{ submission.user.username }}</td>
+      <td>{{ submission.user.academic_affiliation }}</td>
+      <td>{{ submission.model_name }}</td>
+      <td>{{ submission.get_model_type_display }}</td>
+      <td>{{ submission.weighted_error }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     function matchWidth() {
@@ -204,7 +231,23 @@
 
 <script>
     $(document).ready(function() {
-        $(".select2").select2(); // Initialize Select2
+      detailed_view = localStorage.getItem("detailed-view");
+      if (detailed_view === true || detailed_view === null){
+        $(".condensed-view").hide();
+      }
+      else{
+        $(".detailed-view").hide();
+      }
+      $(".select2").select2(); // Initialize Select2
     });
+</script>
+
+<script>
+    $(".toggle-view").on("click", function() {
+      $(".detailed-view").toggle();
+      $(".condensed-view").toggle()
+      detailed_view = localStorage.getItem("detailed-view");
+      localStorage.setItem("detailed-view", !detailed_view);
+    })
 </script>
 {% endblock %}
