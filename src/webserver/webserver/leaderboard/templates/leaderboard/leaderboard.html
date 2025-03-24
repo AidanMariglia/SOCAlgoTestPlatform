@@ -165,7 +165,7 @@
     {% for submission in submissions %}
     <tr>
       <td>{{ forloop.counter }}</td>
-      <td>{{ submission.id }}</td>
+      <td>{{ submission.id|slice:"32:"}}</td>
       <td>{{ submission.user.username }}</td>
       <td>{{ submission.user.academic_affiliation }}</td>
       <td>{{ submission.model_name }}</td>

@@ -23,7 +23,7 @@ def reverse_func(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('submissions', '0015_submission_visibility'),
+        ('submissions', '0017_alter_figure_file'),
     ]
 
     operations = [

@@ -155,7 +155,7 @@
     {% for submission in submissions %}
     <tr>
       <td>
-        <a href="{% url 'submission' submission.id %}">{{ submission.id }}</a>
+        <a href="{% url 'submission' submission.id %}">{{ submission.id|slice:"32:" }}</a>
       </td>
       <td>{{ submission.model_name }}</td>
       <td>{{ submission.get_model_type_display }}</td>
