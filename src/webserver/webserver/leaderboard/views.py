@@ -13,10 +13,10 @@ Users = get_user_model()
 
 MODEL_TYPE_MAP={
     "Machine Learning": "ML",
-    "Kalman Fitler":    "KF",
+    "Kalman Filter":    "KF",
     "Not Specified":    "NA"
 }
-MODEL_TYPE_CHOICES=["Machine Learning", "Kalman Fitler", "Not Specified"]
+MODEL_TYPE_CHOICES=["Machine Learning", "Kalman Filter", "Not Specified"]
 
 def leaderboard(request: HttpRequest):
 
