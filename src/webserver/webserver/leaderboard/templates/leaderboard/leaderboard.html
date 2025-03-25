@@ -118,15 +118,16 @@
         {% endfor %}
     </select>
 </form>
+<button class="toggle-view" id="toggle_view"> Switch to Detailed View </button>
 
 <form id="csv-export-form" action="{% url 'export_leaderboard_csv' %}" method="get">
-    <input type="hidden" name="author" value="{{ request.GET.author }}">
-    <input type="hidden" name="modeltype" value="{{ request.GET.modeltype }}">
-    <input type="hidden" name="order_by" value="{{ request.GET.order_by }}">
-    <button type="submit" class="btn btn-primary">Export to CSV</button>
+  <input type="hidden" name="author" value="{{ request.GET.author }}">
+  <input type="hidden" name="modeltype" value="{{ request.GET.modeltype }}">
+  <input type="hidden" name="order_by" value="{{ request.GET.order_by }}">
+  <button type="submit" class="btn btn-primary">Export to CSV</button>
 </form>
 
-<table id="lb">
+<table class="detailed-view" id="lb">
   <thead>
     <tr>
       <form>
@@ -196,6 +197,34 @@
     {% endfor %}
   </tbody>
 </table>
+<table class="condensed-view" id="lb">
+  <thead>
+    <tr>
+      <form>
+        <th>Ranking</th>
+        <th><div>Submission</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
+        <th><div>Author</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
+        <th><div>Affiliation</div><button class="arrow" type="submit", name="order_by", value="id">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-id">&#x25BC</button></th>
+        <th><div>Model Name</div><button class="arrow" type="submit", name="order_by", value="model_name">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="model_name">&#x25BC</button></th>
+        <th><div>Model Type</div><button class="arrow" type="submit", name="order_by", value="model_type">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="model_type">&#x25BC</button></th>
+        <th><div>Weighted Error</div><button class="arrow" type="submit", name="order_by", value="weighted_error">&#x25B2</button><button class="arrow" type="submit", name="order_by", value="-weighted_error">&#x25BC</button></th>
+      </form>
+    </tr>
+  </thead>
+  <tbody>
+    {% for submission in submissions %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ submission.id|slice:"32:"}}</td>
+      <td>{{ submission.user.username }}</td>
+      <td>{{ submission.user.academic_affiliation }}</td>
+      <td>{{ submission.model_name }}</td>
+      <td>{{ submission.get_model_type_display }}</td>
+      <td>{{ submission.weighted_error }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     function matchWidth() {
@@ -214,7 +243,32 @@
 
 <script>
     $(document).ready(function() {
-        $(".select2").select2(); // Initialize Select2
+      detailed_view = localStorage.getItem("detailed-view");
+      if (detailed_view === "true"){
+        $(".condensed-view").hide();
+        document.getElementById("toggle_view").textContent = "Switch to Condensed View";
+      }
+      else{
+        $(".detailed-view").hide();
+        document.getElementById("toggle_view").textContent = "Switch to Detailed View";
+      }
+      $(".select2").select2(); // Initialize Select2
     });
+</script>
+
+<script>
+    $(".toggle-view").on("click", function() {
+      $(".detailed-view").toggle();
+      $(".condensed-view").toggle();
+      detailed_view = localStorage.getItem("detailed-view");
+      if (detailed_view === "true"){
+        document.getElementById("toggle_view").textContent = "Switch to Detailed View";
+        localStorage.setItem("detailed-view", "false");
+      }
+      else{
+        document.getElementById("toggle_view").textContent = "Switch to Condensed View";
+        localStorage.setItem("detailed-view", "true");
+      }
+    })
 </script>
 {% endblock %}
