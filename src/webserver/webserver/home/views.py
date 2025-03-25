@@ -14,7 +14,12 @@ def home(request: HttpRequest):
         return render(request, 'intro.html')
     
 def help(request: HttpRequest):
-    return render(request, 'help.html')
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-help.html', {"user": user})
+    else:
+        return render(request, 'intro-help.html')
     
 def logout_view(request):
     logout(request)

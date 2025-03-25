@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+    
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+    
+      .title h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+        padding-top: 20px;
+      }
+    
+      .flex-container {
+        display: flex;
+        justify-content: space-between; 
+        gap: 40px;
+      }
+    
+      .left-section {
+        flex: 1; 
+      }
+    
+      .right-section {
+        display: flex;
+        flex-direction: column; 
+        flex: 0 0 500px; 
+      }
+    
+      .account-section,
+      .view-section {
+        text-align: left;
+      }
+    
+      .header {
+        display: flex;
+        flex-direction: column;
+      }
+    
+      .header h2 {
+        font-size: 1.8rem;
+        font-weight: normal;
+        color: #007bff;
+        cursor: pointer;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        transition: color 0.3s;
+      }
+    
+      .header h2:hover {
+        color: #0056b3;
+      }
+ 
+   </style>
+   {% extends "Intro_Base.html" %}
+
+   {% block title %}Homepage{% endblock %}
+   
+   {% block content %}
+       <div class="container">
+         <div class="flex-container">
+           <div class="left-section">
+             <div class="submission-section">
+               <div class="title">
+                 <h1>Submitting a Model</h1>
+               </div>
+               <div class="header">
+                 <h2>Submission Process</h2>
+                 <h2>Valid Files</h2>
+                 <h2>Code Ownership</h2>
+                 <h2>Public Submission vs Private Submission</h2>
+               </div>
+             </div>
+
+            <div class="account-section">
+              <div class="title">
+                <h1>Account</h1>
+              </div>
+              <div class="header">
+                <h2>Account Verification</h2>
+                <h2>Forgot Username</h2>
+                <h2>Forgot Password</h2>
+                <h2>
+              </div>
+            </div>
+           </div>
+   
+           <div class="right-section">
+            <div class="leaderboard-section">
+              <div class="title">
+                <h1>Leaderboard</h1>
+              </div>
+              <div class="header">
+                <h2>Account Verification</h2>
+                <h2>Forgot Username</h2>
+                <h2>Forgot Password</h2>
+                <h2>Filler<h2>
+              </div>
+            </div>
+   
+             <div class="view-section">
+               <div class="title">
+                 <h1>Viewing Submissions</h1>
+               </div>
+               <div class="header">
+                 <h2>Account Verification</h2>
+                 <h2>Forgot Username</h2>
+                 <h2>Forgot Password</h2>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+   {% endblock %}
