@@ -13,6 +13,9 @@ def home(request: HttpRequest):
     else:
         return render(request, 'intro.html')
     
+def help(request: HttpRequest):
+    return render(request, 'help.html')
+    
 def logout_view(request):
     logout(request)
     return render(request, 'intro.html')

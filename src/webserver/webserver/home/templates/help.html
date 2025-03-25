@@ -95,56 +95,6 @@
         border-radius: 8px;
       }
 
-      .info-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 40px 0;
-        flex-wrap: wrap;
-        gap: 30px;
-      }
-    
-      .info-header h2 {
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-align: center;
-        width: 100%;  /* Make header span full width */
-      }
-    
-      .info-content {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;  /* Ensure the content spans the full width */
-        gap: 30px;
-        flex-wrap: wrap;
-      }
-    
-      .info-text-left,
-      .info-text-right {
-        flex: 1;  /* Each takes half the width */
-        padding: 20px;
-      }
-    
-      .info-text-left p,
-      .info-text-right p {
-        font-size: 1.2rem;
-        line-height: 1.5;
-        text-align: left;  /* Left-aligned text */
-      }
-    
-      .flowchart-image {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-      }
-    
-      .flowchart-image img {
-        max-width: 900px;
-        height: auto;
-        border-radius: 8px;
-      }
-
       .tour-section {
         display: flex;
         align-items: center;
@@ -238,28 +188,21 @@
           </div>
         </div>
 
-      <div class="info-section">
-        <div class="info-header">
-            <h2>What Is The Battery State of Charge (SOC) Estimator Standardized Testing Tool?</h2>
+      <!-- FAQ Section -->
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <p>
+            <strong>Q: How should I credit the data that I downloaded?</strong>
+          </p>
+          <p>A: [Answer goes here]</p>
         </div>
-        <div class="info-content">
-            <div class="info-text-left">
-                <p>There are hundreds of approaches to estimating battery state of charge (SOC), some better suited for 
-                    specific applications, which makes it very hard to fairly compare results reported in different papers. 
-                    SOC estimation techniques such as coulomb counting or OCV vs. SOC relationships can be subject to nuances 
-                    in data and conditions that skew results. Some of these issues include sensor errors, initial value errors, 
-                    or other complex factors affecting battery performance (e.g., cold weather, cell internal resistance).</p>
-            </div>
-            <div class="info-text-right">
-                <p>This standardized model testing tool is an effective method developed to enable a fair comparison of SOC 
-                    estimators from various sources and authors, eliminating bias as a result of human and/or external factors 
-                    by testing models over a wide range of conditions on data which is blinded from the user. The submission 
-                    process is detailed in the Help/FAQ section and submission can be performed through this platform making it 
-                    convenient for students or researchers to access the standardized model testing tool. </p>
-            </div>
+        <div class="faq-item">
+          <p>
+            <strong>Q: How should I credit the data that I downloaded?</strong>
+          </p>
+          <p>A: [Answer goes here]</p>
         </div>
-        <div class="flowchart-image">
-            <img src="/media/images/BlindModeling-Flowchart.jpg" alt="Flowchart Graphic">
-        </div>
+      </div>
     </div>
 {% endblock %}

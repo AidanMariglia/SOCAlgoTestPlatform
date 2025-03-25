@@ -131,6 +131,7 @@
             <a href="https://borealisdata.ca/dataset.xhtml?persistentId=doi:10.5683/SP3/ZVTR4B" target="_blank" {% if request.path == '/data/' %}active{% endif %}">Download Data</a>
             <a href="/submissions" class="{% if request.path == '/submissions/' %}active{% endif %}">Submit Model</a>
             <a href="/submissions/submissionsPage" class="{% if request.path == '/submissions/submissionsPage' %}active{% endif %}">View Submissions</a>
+            <a href="/home/help" class="{% if request.path == '/home/help' %}active{% endif %}">Help/FAQ</a>
         </div>
         <form action="{% url 'logout' %}" method="post" class="signout-form">
             {% csrf_token %}
