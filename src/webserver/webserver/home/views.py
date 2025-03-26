@@ -21,6 +21,22 @@ def help(request: HttpRequest):
     else:
         return render(request, 'intro-help.html')
     
+def valid_files(request: HttpRequest):
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-valid_files.html', {"user": user})
+    else:
+        return render(request, 'intro-valid_files.html')
+    
+def ownership(request: HttpRequest):
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-ownership.html', {"user": user})
+    else:
+        return render(request, 'intro-ownership.html')
+    
 def logout_view(request):
     logout(request)
     return render(request, 'intro.html')
