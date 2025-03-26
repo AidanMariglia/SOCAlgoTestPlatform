@@ -1,102 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Intro</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f8f9fa;
-        color: #333;
-      }
-    
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-    
-      .main-header h1 {
-        font-size: 2.0rem;
-        font-weight: bold;
-        color: #333;
-        padding-top: 20px;
-      }
- 
-      .second-header {
-        display: flex;
-        flex-direction: column;
-      }
-    
-      .second-header h2 {
-        font-size: 1.2rem;
-        font-weight: normal;
-        color: #007bff;
-        cursor: pointer;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        transition: color 0.3s;
-      }
-    
-      .second-header h2:hover {
-        color: #0056b3;
-      }
- 
-   </style>
-   {% extends "Webpage_Base.html" %}
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home-Help</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            padding: 20px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        .main-header {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #222;
+            border-bottom: 3px solid #20beff;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        .second-header h2 {
+            font-size: 1.2rem;
+            color: #000000;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: color 0.3s;
+        }
+        .second-header h2:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+{% extends "Webpage_Base.html" %}
+<body>
    {% block title %}Homepage{% endblock %}
-   
    {% block content %}
        <div class="container">
-            <div class="submission-section">
-               <div class="main-header">
-                 <h1>Submitting a Model</h1>
-               </div>
+           <div class="section">
+               <div class="main-header">Submitting a Model</div>
                <div class="second-header">
-                 <h2>Submission Process</h2>
-                 <h2>Valid Files</h2>
-                 <h2>Code Ownership</h2>
-                 <h2>Public Submission vs Private Submission</h2>
+                   <h2>Submission Process</h2>
+                   <h2>Valid Files</h2>
+                   <h2>Code Ownership</h2>
+                   <h2>Public Submission vs Private Submission</h2>
                </div>
-             </div>
+           </div>
 
-            <div class="account-section">
-              <div class="main-header">
-                <h1>Account</h1>
-              </div>
-              <div class="second-header">
-                <h2>Account Verification</h2>
-                <h2>Forgot Username</h2>
-                <h2>Forgot Password</h2>
-                <h2>
-              </div>
-            </div>
+           <div class="section">
+               <div class="main-header">Account</div>
+               <div class="second-header">
+                   <h2>Account Verification</h2>
+                   <h2>Forgot Username</h2>
+                   <h2>Forgot Password</h2>
+               </div>
+           </div>
 
-           <div class="leaderboard-section">
-            <div class="main-header">
-              <h1>Leaderboard</h1>
-            </div>
-            <div class="second-header">
-              <h2>Account Verification</h2>
-              <h2>Forgot Username</h2>
-              <h2>Forgot Password</h2>
-              <h2>Filler<h2>
-            </div>
-          </div>
- 
-           <div class="view-section">
-             <div class="main-header">
-               <h1>Viewing Submissions</h1>
-             </div>
-             <div class="second-header">
-               <h2>Account Verification</h2>
-               <h2>Forgot Username</h2>
-               <h2>Forgot Password</h2>
-             </div>
+           <div class="section">
+               <div class="main-header">Leaderboard</div>
+               <div class="second-header">
+                   <h2>Ranking System</h2>
+                   <h2>Top Performers</h2>
+                   <h2>Scoring Criteria</h2>
+               </div>
+           </div>
+
+           <div class="section">
+               <div class="main-header">Viewing Submissions</div>
+               <div class="second-header">
+                   <h2>Submission Review</h2>
+                   <h2>Comments and Feedback</h2>
+                   <h2>Version History</h2>
+               </div>
            </div>
        </div>
    {% endblock %}
+</body>
+</html>
