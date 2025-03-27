@@ -23,7 +23,7 @@ def index(request: HttpRequest):
             # once submission is successfulled stored in db,
             # create a task to execute it
 
-            run_submission(submission.id)
+            run_submission.delay(submission.id)
             return redirect('submissionsPage')
     else:
         form = FileUploadForm()

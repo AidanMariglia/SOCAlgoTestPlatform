@@ -165,3 +165,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 WORKERS_CONCURRENCY = 3
 # run tasks for 180 seconds max
 WORKERS_TIMEOUT = 180
+
+# celery settings
+CELERY_BROKER_URL = "redis://localhost:6379/0"
