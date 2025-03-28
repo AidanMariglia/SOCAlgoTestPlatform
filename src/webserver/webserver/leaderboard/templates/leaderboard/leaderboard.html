@@ -220,7 +220,9 @@
     {% for submission in submissions %}
     <tr>
       <td>{{ forloop.counter }}</td>
-      <td>{{ submission.id|slice:"32:"}}</td>
+      <td>
+        <a href="{% url 'submission' submission.id %}">{{ submission.id|slice:"32:" }}</a>
+      </td>
       <td>{{ submission.user.username }}</td>
       <td>{{ submission.user.academic_affiliation }}</td>
       <td>{{ submission.model_name }}</td>
@@ -269,7 +271,9 @@
     {% for submission in submissions %}
     <tr>
       <td>{{ forloop.counter }}</td>
-      <td>{{ submission.id|slice:"32:"}}</td>
+      <td>
+        <a href="{% url 'submission' submission.id %}">{{ submission.id|slice:"32:" }}</a>
+      </td>
       <td>{{ submission.user.username }}</td>
       <td>{{ submission.user.academic_affiliation }}</td>
       <td>{{ submission.model_name }}</td>

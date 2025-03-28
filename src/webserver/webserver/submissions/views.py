@@ -23,7 +23,7 @@ def index(request: HttpRequest):
             # once submission is successfulled stored in db,
             # create a task to execute it
 
-            run_submission(submission.id)
+            run_submission.delay(submission.id)
             return redirect('submissionsPage')
     else:
         form = FileUploadForm()
@@ -36,18 +36,15 @@ def submissionsPage(request: HttpRequest):
 
     return render(request, "submissions/submissions.html", {"submissions": submissions})
 
-@login_required
 def submission_detail(request, submission_id):
     submission = get_object_or_404(Submission, id=submission_id)
     figures = submission.figures.filter(file__endswith='.png')
 
-
     for figure in figures:
         figure.display_name = figure.file.name.split("/")[-1]
 
-    # Check if the logged-in user is the owner of the submission
-    if submission.user != request.user:
-        raise Http404("You are not authorized to view this submission.")
+    if not request.user.is_authenticated:
+        return render(request, "submissions/logged_out_submission.html", {'submission': submission, 'images': figures })
 
     return render(request, 'submissions/submission.html', {'submission': submission, 'images': figures })
 

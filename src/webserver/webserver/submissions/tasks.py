@@ -4,6 +4,7 @@ import tempfile
 import shutil
 import csv
 import matlab.engine
+from celery import shared_task
 
 from django.utils import timezone
 from django.conf import settings
@@ -48,7 +49,7 @@ def create_settings_csv(out_dir: os.PathLike, settings: list[str]):
          writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
          writer.writerows(data)
 
-@task()
+@shared_task
 def run_submission(submission_id):
     # first create new dir
     # call setup_dir funciton
@@ -77,8 +78,10 @@ def run_submission(submission_id):
         # check how to silence warnings
 
         try:
+            print("matlab engine starting")
             eng = matlab.engine.start_matlab()
             eng.set(eng.groot(), 'DefaultFigureVisible', 'off', nargout=0)
+            print("matlab engine started")
 
 
             eng.cd(temp_dir, nargout=0)
