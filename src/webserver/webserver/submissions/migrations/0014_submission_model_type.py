@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='submission',
             name='model_type',
-            field=models.TextField(choices=[('ML', 'Machine Learning'), ('KF', 'Kalman Fitler'), ('NA', 'Not Specified')], default='NA', max_length=2),
+            field=models.TextField(choices=[('ML', 'Machine Learning'), ('KF', 'Kalman Filter'), ('NA', 'Not Specified')], default='NA', max_length=2),
         ),
     ]
