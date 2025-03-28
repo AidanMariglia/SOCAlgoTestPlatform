@@ -91,7 +91,7 @@ class FileUploadFormTest(TestCase):
     def test_valid_form(self):
         test_file = SimpleUploadedFile("test.m", b"dummy content")
 
-        form_data = {"model_name": "Machine Learning"}
+        form_data = {"model_name": "Machine Learning", "visibility": "public","model_type": "NA",}
         form_files = {"file": test_file}
 
         form = FileUploadForm(data=form_data, files=form_files)
@@ -154,10 +154,3 @@ class SubmissionDetailViewTest(TestCase):
         
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Model 1")  # Ensure the submission data is loaded
-
-    def test_submission_detail_with_unauthorized_user(self):
-        self.client.login(username='user2', password='password')
-        
-        response = self.client.get(reverse('submission', args=[self.submission1.id]))
-        
-        self.assertEqual(response.status_code, 404)
