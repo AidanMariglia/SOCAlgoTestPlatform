@@ -78,6 +78,15 @@
   .download-button:hover {
     background-color: #007bff;
   }
+
+  .error-message {
+    color: red;
+    background-color: #ffe6e6;
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
 </style>
 
 {% extends "Webpage_Base.html" %} {% block title %}
@@ -186,49 +195,65 @@
     </div>
 
     <div class="container mt-4">
-    {% if images %}
-    <div class="row">
+      {% if images %}
+      <div class="row">
         <div class="col-md-4">
-            <h5>Select an Image:</h5>
-            <select id="imageDropdown" class="form-select">
-                <option value="">-- Choose an image --</option>
-                {% for image in images %}
-                <option value="{{ image.file.url }}">{{ image.display_name }}</option>
-                {% endfor %}
-            </select>
+          <h5>Select an Image:</h5>
+          <select id="imageDropdown" class="form-select">
+            <option value="">-- Choose an image --</option>
+            {% for image in images %}
+            <option value="{{ image.file.url }}">
+              {{ image.display_name }}
+            </option>
+            {% endfor %}
+          </select>
         </div>
         <div class="col-md-8 text-center mt-3">
-            <h5>Selected Image:</h5>
-            <img id="selectedImage" src="" class="img-fluid" alt="Select an image" style="max-height: 600px; display: none;">
-          </div>
-          <div class="container">  
-            {% if images %}
-            <a href="{% url 'downloadAllFiles' submission.id %}" class="download-button">Download Output Files</a>
-            {% endif %}
-          </div>
-    </div>
-        {% else %}
-        <p>No images available.</p>
-        {% endif %}
+          <h5>Selected Image:</h5>
+          <img
+            id="selectedImage"
+            src=""
+            class="img-fluid"
+            alt="Select an image"
+            style="max-height: 600px; display: none"
+          />
+        </div>
+        <div class="container">
+          {% if images %}
+          <a
+            href="{% url 'downloadAllFiles' submission.id %}"
+            class="download-button"
+            >Download Output Files</a
+          >
+          {% endif %}
+        </div>
+      </div>
+      {% else %}
+      <p>No images available.</p>
+      {% if submission.error_message %}
+      <div class="error-message">
+        <strong>Error:</strong> {{ submission.error_message }}
+      </div>
+      {% endif %} {% endif %}
     </div>
   </div>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     const dropdown = document.getElementById("imageDropdown");
     const imageDisplay = document.getElementById("selectedImage");
 
-    dropdown.addEventListener("change", function() {
-        const selectedUrl = this.value;
-        if (selectedUrl) {
-            imageDisplay.src = selectedUrl;
-            imageDisplay.style.display = "block";
-        } else {
-            imageDisplay.style.display = "none";
-        }
+    dropdown.addEventListener("change", function () {
+      const selectedUrl = this.value;
+      if (selectedUrl) {
+        imageDisplay.src = selectedUrl;
+        imageDisplay.style.display = "block";
+      } else {
+        imageDisplay.style.display = "none";
+      }
     });
-});
+  });
 </script>
 
 {% endblock %}

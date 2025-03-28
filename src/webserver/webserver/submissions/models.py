@@ -36,6 +36,7 @@ class Submission(models.Model):
     model_name = models.TextField(max_length=32)
     model_type = models.TextField(max_length=2, choices=MODEL_TYPE_CHOICES, default="NA")
     visibility = models.CharField(max_length=7, choices=VISIBILITY_CHOICES, default='public')
+    error_message = models.TextField(blank=True, null=True, default=None)
     weighted_error = models.DecimalField(max_digits=10, decimal_places=3, null=True)
     t1_all_cells = models.DecimalField(max_digits=10, decimal_places=3, null=True)
     t2_blind_cells = models.DecimalField(max_digits=10, decimal_places=3, null=True)
