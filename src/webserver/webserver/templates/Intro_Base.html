@@ -97,26 +97,27 @@
             text-decoration: none;
             padding: 10px 20px;
             font-size: 16px;
-            border-radius: 5px;
+            border-radius: 50px;
             transition: 0.3s;
         }
 
-        .login-btn {
-            background-color: #4CAF50;
-            color: white;
+        .register-btn { 
+            background: black; 
+            color: white; 
         }
 
-        .register-btn {
-            background-color: #007bff;
-            color: white;
+        .register-btn:hover { 
+            background: #20BEFF; 
+            color: white; 
         }
 
-        .login-btn:hover {
-            background-color: #45a049;
+        .login-btn { 
+            background: white;  
+            color: black; 
         }
 
-        .register-btn:hover {
-            background-color: #0056b3;
+        .login-btn:hover { 
+            background: #20BEFF; 
         }
 
 
@@ -136,9 +137,10 @@
             <a href="https://borealisdata.ca/dataset.xhtml?persistentId=doi:10.5683/SP3/ZVTR4B" target="_blank" {% if request.path == '/data/' %}active{% endif %}">Download Data</a>
             <a href="/submissions" class="{% if request.path == '/submissions/' %}active{% endif %}">Submit Model</a>
             <a href="/submissions/submissionsPage" class="{% if request.path == '/submissions/submissionsPage' %}active{% endif %}">View Submissions</a>
+            <a href="/home/help" class="{% if request.path == '/home/help' %}active{% endif %}">Help/Getting Started</a>
         </div>
         <div class="switch-container">
-            <a href="/accounts/login" class="login-btn">Login</a>
+            <a href="/accounts/login" class="login-btn">Sign In</a>
             <a href="/authentication/register" class="register-btn">Register</a>
         </div>
     </div>
