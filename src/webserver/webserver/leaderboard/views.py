@@ -22,6 +22,7 @@ def leaderboard(request: HttpRequest):
 
     user_id = request.GET.get('author')
     mt = request.GET.get('modeltype')
+    academic_affiliation = request.GET.get('academic_affiliation')
 
     order_by = request.GET.get('order_by', "weighted_error")
 
@@ -35,6 +36,9 @@ def leaderboard(request: HttpRequest):
 
     if mt:
         submissions = submissions.filter(model_type=MODEL_TYPE_MAP[mt])
+
+    if mt:
+        submissions = submissions.filter(user__academic_affiliation=academic_affiliation)
         
     if not request.user.is_authenticated:
         return render(request, "leaderboard/logged_out_leaderboard.html", {"submissions": submissions, "authors": users, "modeltypes": MODEL_TYPE_CHOICES})
