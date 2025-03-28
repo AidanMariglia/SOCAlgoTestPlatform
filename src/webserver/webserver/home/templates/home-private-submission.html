@@ -33,9 +33,15 @@
             line-height: 1.6;
         }
 
+        .centered-image {
+            display: block;
+            margin: 0 auto;
+            border: 5px solid black;
+        }
+
     </style>
 </head>
-{% extends "Intro_Base.html" %}
+{% extends "Webpage_Base.html" %}
 
 {% block title %}Homepage{% endblock %}
 
@@ -43,11 +49,19 @@
 <body>
 
     <div class="container">
-        <div class="header">Code Ownership Disclaimer</div>
+        <div class="header">Public/Private Submissions</div>
         <div class="content">
-            <p>All code submitted through this platform remains the property of the original author.</p>
-            <p>By submitting code, you confirm that you have the rights to the code and grant us permission to process it for evaluation purposes only.</p>
-            <p>We do not claim ownership of any submitted code.</p>
+            <p>When submitting a model to the system, there are two options for how your submission will be displayed.</p>
+            <h3>Public Submission</h3>
+            <p>This is the default appearance of submissions and will result in the submission being displayed on the leaderboard along with the user's details.</p>
+            <h3>Private Submission</h3>
+            <p>
+                This is an additional setting based on user preference that results in a submission not being displayed on the leaderboard. This submission and all of the stats
+                assoicated with it will only be visible to the user that submitted it. 
+            </p>
+            <h3>Toggle</h3>
+            <p>When making a submission, you will notice a toggle that will allow you to chose between these two options.</p>
+            <img src="/media/images/Toggle.png" alt="Toggle" class="centered-image">
         </div>
     </div>
 
