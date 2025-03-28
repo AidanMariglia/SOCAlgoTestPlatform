@@ -119,7 +119,7 @@
       <option value="">All Academic Affiliations</option>
       {% for author in authors %}
           <option value="{{ author.academic_affiliation }}" {% if author.academic_affiliation|stringformat:"s" == request.GET.academic_affiliation %}selected{% endif %}>
-              {{ author.academic_affiliation }}
+              {% ifchanged %} {{ author.academic_affiliation }} {% endifchanged %}
           </option>
       {% endfor %}
   </select>
