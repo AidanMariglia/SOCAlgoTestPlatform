@@ -44,10 +44,10 @@ jobs:
         env:
           DATABASE_URL: postgres://root:password@localhost:5432/SOC
         run: |
-          python manage.py migrate
+          python src/webserver/webserver/manage.py migrate
 
       - name: Run unit tests
         env:
           DATABASE_URL: postgres://root:password@localhost:5432/SOC
         run: |
-          python manage.py test
+          python src/webserver/webserver/manage.py test
