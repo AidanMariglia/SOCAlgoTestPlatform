@@ -37,7 +37,7 @@ def leaderboard(request: HttpRequest):
     if mt:
         submissions = submissions.filter(model_type=MODEL_TYPE_MAP[mt])
 
-    if mt:
+    if academic_affiliation:
         submissions = submissions.filter(user__academic_affiliation=academic_affiliation)
         
     if not request.user.is_authenticated:
