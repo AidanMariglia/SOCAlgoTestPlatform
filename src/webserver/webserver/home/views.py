@@ -77,6 +77,62 @@ def forgot_username(request: HttpRequest):
     else:
         return render(request, 'intro-forgot-username.html')
     
+def filtering(request: HttpRequest):
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-filtering.html', {"user": user})
+    else:
+        return render(request, 'intro-filtering.html')
+    
+def filtering_submissions(request: HttpRequest):
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-filtering-sub.html', {"user": user})
+    else:
+        return render(request, 'intro-filtering-sub.html')
+    
+def sorting(request: HttpRequest):
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-sorting.html', {"user": user})
+    else:
+        return render(request, 'intro-sorting.html')
+    
+def export(request: HttpRequest):
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-export.html', {"user": user})
+    else:
+        return render(request, 'intro-export.html')
+    
+def detailed(request: HttpRequest):
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-detailed.html', {"user": user})
+    else:
+        return render(request, 'intro-detailed.html')
+    
+def statuses(request: HttpRequest):
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-statuses.html', {"user": user})
+    else:
+        return render(request, 'intro-statuses.html')
+    
+def visibility(request: HttpRequest):
+    user = request.user
+
+    if request.user.is_authenticated:
+        return render(request, 'home-visibility.html', {"user": user})
+    else:
+        return render(request, 'intro-visibility.html')
+    
 def logout_view(request):
     logout(request)
     return render(request, 'intro.html')
