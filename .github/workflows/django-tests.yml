@@ -38,9 +38,9 @@ jobs:
         run: |
           docker pull mathworks/matlab:r2024b
 
-      - name: Run MATLAB with Docker and install dependencies
+      - name: Install dependencies
         run: |
-          docker run --rm -v $(pwd):/workspace mathworks/matlab:r2024b /bin/bash -c "cd /workspace && pip install -r src/requirements.txt"
+          pip install -r src/requirements.txt"
 
       - name: Run migrations
         env:
