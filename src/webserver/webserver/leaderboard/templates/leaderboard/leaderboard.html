@@ -1,89 +1,127 @@
 <style>
-  body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin: 0;
-    box-sizing: border-box;
-  }
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    border-spacing: 0;
-  }
+h1 {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
 
-  th,
-  td {
-    padding: 10px;
-    text-align: center !important;
-  }
+label {
+  margin-left: 20px;
+}
 
-  thead {
-    position: sticky;
-    top: 78px;
-    background: #d9d9d9;
-    z-index: 5;
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  tr {
-    border-bottom: 2px solid black;
-  }
+table th, table td {
+  text-align: center;  
+  vertical-align: middle; 
+}
 
-  th {
-    font-weight: bold;
-    border-bottom: 3px solid black;
-  }
+table th div, table td div {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
 
-  td {
-    color: #333;
-  }
+thead {
+  background-color: #2c3e50;
+  color: black;
+}
 
-  .button-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 19px;
-    margin-top: 19px;
-    position: sticky;
-    background: white;
-    top: 40px;
-    z-index: 10;
-  }
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
 
-  .btn {
-    display: flex;
-    align-items: center;
-    padding: 15px 15px;
-    border: none;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
-  }
+th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
 
-  .arrow {
-    /* display: flex; */
-    align-items: center;
-    padding: 0px 0px;
-    border: none;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-  }
+th div {
+  display: flex;
+  justify-content: center;
+}
 
-  .btn .icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-  }
+tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
 
-  .btn:hover {
-    background-color: #f9f9f9;
-  }
+tbody tr:hover {
+  background-color: #e8f4ff;
+  transition: 0.3s;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #20beff;
+  color: white;
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+small {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+  margin-top: 10px;
+}
+
+.toggle-view {
+  background-color: #20beff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-left: 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-view:hover {
+  background-color: #2980b9; 
+}
 </style>
 
 {% extends "Webpage_Base.html" %} {% block title %}
@@ -101,8 +139,6 @@
   <input type="hidden" name="order_by" value="{{ request.GET.order_by }}">
   <button type="submit" class="btn btn-primary">Export to CSV</button>
 </form>
-
-<button class="toggle-view" id="toggle_view"> Switch to Detailed View </button>
 
 <form id="filter" hx-get="{% url 'leaderboard' %}" hx-target="#lb" hx-push-url="true">
   <label for="author">Filter by Author:</label>
@@ -181,13 +217,14 @@
     </select>
 </form>
 
+<button class="toggle-view" id="toggle_view"> Switch to Detailed View </button>
+
 <small><em>*Note: All units are in percentages (%)</em></small>
 
 <table class="detailed-view" id="lb">
   <thead>
     <tr>
-      <form>
-        <th>Ranking</th>
+        <th><div>Ranking</div></th>
         <th><div>Submission</div></th>
         <th><div>Author</div></th>
         <th><div>Affiliation</div></th>
@@ -215,7 +252,6 @@
         <th><div>All Drive Cycles Average RMSE</div></th>
         <th><div>All Drive Cycles Average MAE</div></th>
         <th><div>All Drive Cycles Average MAXE</div></th>
-      </form>
     </tr>
   </thead>
   <tbody>
@@ -259,7 +295,7 @@
   <thead>
     <tr>
       <form>
-        <th>Ranking</th>
+        <th><div>Ranking</div></th>
         <th><div>Submission</div></th>
         <th><div>Author</div></th>
         <th><div>Affiliation</div></th>
