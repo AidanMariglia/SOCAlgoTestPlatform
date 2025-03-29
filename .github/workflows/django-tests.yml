@@ -37,7 +37,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r src/requirements.txt
+          sed '/matlabengine/d' src/requirements.txt > requirements_no_matlab.txt
+          pip install -r requirements_no_matlab.txt
 
       - name: Run migrations
         env:
