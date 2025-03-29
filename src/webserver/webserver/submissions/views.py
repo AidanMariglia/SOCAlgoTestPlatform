@@ -5,9 +5,20 @@ from .forms import FileUploadForm
 from .tasks import run_submission
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
+from django.db.models import Exists, OuterRef
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from zipfile import ZipFile
+
+Users = get_user_model()
+
+MODEL_TYPE_MAP={
+    "Machine Learning": "ML",
+    "Kalman Filter":    "KF",
+    "Not Specified":    "NA"
+}
+MODEL_TYPE_CHOICES=["Machine Learning", "Kalman Filter", "Not Specified"]
 
 @login_required
 def index(request: HttpRequest):
@@ -32,9 +43,14 @@ def index(request: HttpRequest):
 @login_required
 def submissionsPage(request: HttpRequest):
     order_by = request.GET.get('order_by', "weighted_error")
+    mt = request.GET.get('modeltype')
+
     submissions = Submission.objects.all().filter(user=request.user).order_by(order_by)
 
-    return render(request, "submissions/submissions.html", {"submissions": submissions})
+    if mt:
+        submissions = submissions.filter(model_type=MODEL_TYPE_MAP[mt])
+
+    return render(request, "submissions/submissions.html", {"submissions": submissions, "modeltypes": MODEL_TYPE_CHOICES})
 
 def submission_detail(request, submission_id):
     submission = get_object_or_404(Submission, id=submission_id)
