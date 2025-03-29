@@ -48,7 +48,6 @@ def submission_detail(request, submission_id):
 
     return render(request, 'submissions/submission.html', {'submission': submission, 'images': figures })
 
-@login_required
 def download_all_files(request, submission_id):
     submission = get_object_or_404(Submission, id=submission_id)
 

@@ -87,6 +87,15 @@ def run_submission(submission_id):
             eng.cd(temp_dir, nargout=0)
             eng.eval("try\nMain_SET;\ncatch e\nfprintf('Error: %s\\n', e.message);\nend", nargout=0)
 
+            error_message = eng.workspace['error_message']
+            if error_message != "":
+                error_message = error_message.replace('\\', '/')
+                if 'Model.m' in error_message:
+                    start_index = error_message.find("Model.m")
+                    clean_error_message = error_message[start_index:-1]
+                else:
+                    clean_error_message = error_message
+                s.error_message = clean_error_message
             eng.eval("try\nconvert_figures;\ncatch e\nfprintf('Error: %s\\n', e.message);\nend", nargout=0)
 
 
@@ -161,6 +170,7 @@ def run_submission(submission_id):
         except Exception as e:
             print(f"Error in MATLAB execution: {e}")
             s.status = SubmissionStatus.objects.get(name="failed")
+            s.completed_at = timezone.now()
             
         finally:
             # Ensure the MATLAB engine quits even if there was an error
