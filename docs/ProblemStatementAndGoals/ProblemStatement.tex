@@ -2,6 +2,8 @@
 
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{color}
+\usepackage[normalem]{ulem}
 
 \title{Problem Statement and Goals\\\progname}
 
@@ -22,6 +24,7 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 September 24, 2024 & Declan Benjamin Nathan Aidan & Completed problem statement and goals\\
+April 02, 2025 & Declan Benjamin Nathan Aidan & Revised problem statement and goals\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -30,12 +33,12 @@ September 24, 2024 & Declan Benjamin Nathan Aidan & Completed problem statement 
 
 \subsection{Problem}
 
-Battery state of charge (SOC) estimation is challenging, requiring specialized algorithms. Standardized testing is necessary to determine the accuracy and performance of proposed approaches. Building off of an existing solution for running SOC algorithms against a test suite, a cloud-based platform will be developed to streamline accepting and running user-submitted algorithms. The current solution has a convoluted submission process, which fails regularly, and executes the tests in serial. 
+Battery state of charge (SOC) estimation is challenging, requiring specialized algorithms. Standardized testing is necessary to determine the accuracy and performance of proposed approaches. \sout{Building off of an existing solution for running SOC algorithms against a test suite, a cloud-based platform will be developed to streamline accepting and running user-submitted algorithms}. The current solution \textcolor{red}{that runs SOC algorithms against a test suite} has a convoluted submission process, which fails regularly, and executes the tests in serial. 
 
 \subsection{Inputs and Outputs}
 
 \textbf{Inputs:} \newline
-User developed algorithms, either as matlab or python code. \newline \newline
+User developed algorithms, either as matlab \sout{or python} code. \newline \newline
 \textbf{Outputs:} \newline
 Algorithm performance or resulting error, history of user submissions, rankings of algorithm performance.
 
@@ -50,20 +53,22 @@ Algorithm performance or resulting error, history of user submissions, rankings 
 \end{itemize}
 
 \subsection{Environment}
+\textcolor{red}{The system requires both software and hardware components to function effectively. The following sections describe the specific software and hardware requirements.  }
 
 \subsubsection{Software}
 The software environment of the system will be Docker containers built for each component.
 
 \subsubsection{Hardware}
-The docker containers will be run on AWS, either ECS or EKS. The hardware details of this service are abstracted away from the user.
+The docker containers will be run on \sout{AWS, either ECS or EKS} \textcolor{red}{a local computer}. The hardware details of this service are abstracted away from the user.
 
 \section{Goals}
 
 \begin{itemize}
     \item The final product can test multiple algorithm submissions in parallel - since each algorithm takes approximately an hour to complete, running them in parallel will help reduce the overall time required to run all algorithms.
-    \item The final product generates reports and compares algorithm performance - the reports will summarize the performance of the submitted algorithm and compare it with other submitted algorithms, helping users understand and visualize their results.
+    \item \textcolor{red}{The final product has a user-friendly interface that simplifies the submission process and testing of algorithms.}
+    \item The final product generates reports and compares algorithm performance \sout{- the reports will summarize the performance of the submitted algorithm and compare it with other submitted algorithms}, helping users understand and visualize their results.
     \item The final product can handle any error encountered throughout the algorithm’s runtime - this will minimize the software’s crashes and downtime and overall, it will increase the reliability of the software. It will make debugging much easier and as a result, improve the user experience.
-    \item The final product is secure and prevents malware attacks - secure software is necessary to protect users’ sensitive data as well as keep the software’s integrity and availability.
+    \item The final product is secure and prevents malware attacks - secure software is necessary to protect users’ \sout{sensitive data} \textcolor{red}{submissions and personal information} as well as keep the software’s integrity and availability.
 \end{itemize}
 
 \section{Stretch Goals}
@@ -72,8 +77,8 @@ Python Implementation of SOC Estimation Algorithm Testing Tool: Currently this t
 
 \section{Challenge Level and Extras}
 
-The expected challenge level for this project is general. This challenge level is justified firstly by the fact that the technologies and domain knowledge required based on the expected implementation are relatively simple, especially when considering the experience that our group has with web applications and cloud development. Additionally, the problem being solved is not particularly novel, since although the problem itself isn’t something that is very commonly solved, the requirements/expected solution of a cloud-based web application is something that is a very common solution to problems in the software industry. \newline \newline
-As an extra for the project we will include thorough user guides/walkthroughs as a part of the final webapp, similar to the way github presents their tutorials.
+The expected challenge level for this project is general. This challenge level is justified firstly by the fact that the technologies and domain knowledge required based on the expected implementation are relatively simple, especially when considering the experience that our group has with web applications and cloud development. Additionally, the problem being solved is not particularly novel, since although the problem itself isn’t something that is very commonly solved, the requirements/expected solution of a \sout{cloud-based} web application is something that is a very common solution to problems in the software industry. \newline \newline
+As an extra for the project we will include thorough user guides/walkthroughs as a part of the final webapp, similar to the way github presents their tutorials. \textcolor{red}{Also, a hosting cost analysis will be included that compares different hosting providers.}
 
 
 \newpage{}
