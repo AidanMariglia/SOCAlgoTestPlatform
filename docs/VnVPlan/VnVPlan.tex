@@ -35,7 +35,11 @@
 \midrule
 2024-11-03 & 0.0 & Added initial VnV plan\\
 \midrule
-2025-01-02 & 0.1 & Address peer review\\
+2025-01-03 & 0.1 & Addressed a peer review - added FR1-ST3 and FR1-ST4\\
+\midrule
+2025-01-04 & 0.2 & Address peer review\\
+\midrule
+2025-03-18 & 0.3 & Addressed a peer review\\
 \bottomrule
 \end{tabularx}
 
@@ -242,33 +246,34 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{\sout{How test will be performed:}} \sout{An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.}
 
-\item{FR1-ST3\\}
+\item\textcolor{red}{{FR1-ST3}\\}
 
-\underline{Control:} Manual
+\textcolor{red}{\underline{Control:} Manual}
 
-\underline{Initial State:} The algorithm submission page
+\textcolor{red}{\underline{Initial State:} The algorithm submission page}
 
-\underline{Input:} An algorithm that exceeds the maximum file size
+\textcolor{red}{\underline{Input:} An algorithm that exceeds the maximum file size}
 
-\underline{Output:} Error notification from the system
+\textcolor{red}{\underline{Output:} Error notification from the system}
 
-\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of the size of the file.
+\textcolor{red}{\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of the size of the file.}
 
-\underline{How test will be performed:} A model that exceeds the maximum file size will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+\textcolor{red}{\underline{How test will be performed:} A model that exceeds the maximum file size will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.}
 
-\item{FR1-ST4\\}
 
-\underline{Control:} Manual
+\item{\textcolor{red}{FR1-ST4}\\}
 
-\underline{Initial State:} The algorithm submission page
+\textcolor{red}{\underline{Control:} Manual}
 
-\underline{Input:} An algorithm file with an unsupported file type (not .m)
+\textcolor{red}{\underline{Initial State:} The algorithm submission page}
 
-\underline{Output:} Error notification from the system
+\textcolor{red}{\underline{Input:} An algorithm file with an unsupported file type (not .m)}
 
-\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of an invalid type of file being uploaded.
+\textcolor{red}{\underline{Output:} Error notification from the system}
 
-\underline{How test will be performed:} A model with a .py extension will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+\textcolor{red}{\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of an invalid type of file being uploaded.}
+
+\textcolor{red}{\underline{How test will be performed:} A model with a .py extension will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.}
 
 \end{enumerate}
 
@@ -496,7 +501,7 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{Control:} \sout{Automatic} \textcolor{red} {Manual}
 
-\underline{Initial State:} A non-empty and unsorted leaderboard exists in the system with at least 10 items.
+\underline{Initial State:} A non-empty and unsorted leaderboard exists in the system with at least \textcolor{red}{10} items.
 
 \underline{Input:} A sorting criteria from the user
 
@@ -674,7 +679,7 @@ A user will try to follow the walkthrough for a complex use case and confirm tha
 
 \underline{Input/Condition:}  A request for the leaderboard (sorted/filtered and unsorted/unfiltered)/algorithm submission result is made
 
-\underline{Output/Result:} The result is returned in less than 3 seconds (using realistic latency situations)
+\underline{Output/Result:} The result is returned in less than 3 seconds \textcolor{red}{(using realistic latency situations)}
 
 \underline{How test will be performed:} Use a Postman collection to make the specified requests. Use Postman tests to ensure that the response time is less than 3 seconds for each request 
 
