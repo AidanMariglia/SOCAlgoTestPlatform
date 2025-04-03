@@ -40,6 +40,8 @@
 2025-01-04 & 0.2 & Address peer review\\
 \midrule
 2025-03-18 & 0.3 & Addressed a peer review\\
+\midrule
+2025-04-03 & 0.4 & Addressed TA feedback\\
 \bottomrule
 \end{tabularx}
 
@@ -55,17 +57,17 @@
 
 \pagenumbering{arabic}
 
-This document outlines the plans in place for the validation and verification of the Battery SOC Algorithm testing tool. It will give details regarding the plans that are in place to verify and validate each stage of the development process of the application, from the requirements to the completion of the software. Additionally, detailed descriptions of the necessary tests for both functional and non-functional requirements to be fulfilled by the system are included, to ensure that the final product is both complete and correct.
+This document outlines the plans in place for the validation and verification of the Battery SOC Algorithm \sout{testing tool} \textcolor{red}{Testing Tool}. It will give details regarding the plans that are in place to verify and validate each stage of the development process of the application, from the requirements to the completion of the software. Additionally, detailed descriptions of the necessary tests for both functional and non-functional requirements to be fulfilled by the system are included, to ensure that the final product is both complete and correct.
 
 \section{General Information}
 
 \subsection{Summary}
 
-The Battery SOC Algorithm testing tool will be tested. The tool allows for the submission of user algorithms, attempting to provide battery state of charge estimations. The algorithms will be run against a series of tests, and the results reported back to the user. A leaderboard with various filtering and sorting options will be provided to view the results of different algorithm submissions.
+The Battery SOC Algorithm \sout{testing tool} \textcolor{red}{Testing Tool} will be tested. The tool allows for the submission of user algorithms, attempting to provide battery state of charge estimations. The algorithms will be run against a series of tests, and the results reported back to the user. A leaderboard with various filtering and sorting options will be provided to view the results of different algorithm submissions.
 
 \subsection{Objectives}
 
-The main objective of this verification and validation plan is to ensure that the battery SOC algorithm testing tool can accurately evaluate the correctness and performance of the submitted algorithms and provide a user-friendly experience. In addition, we must ensure that the system is scalable and can handle high concurrent user submissions. \\
+The main objective of this verification and validation plan is to ensure that the \sout{battery} \textcolor{red}{Battery} SOC algorithm \sout{testing tool} \textcolor{red}{Testing Tool} can accurately evaluate the correctness and performance of the submitted algorithms and provide a user-friendly experience. In addition, we must ensure that the system is scalable and can handle high concurrent user submissions. \\
 \newline Due to time constraints, some objectives will be out of scope, namely:
 \begin{itemize}
     \item A comprehensive usability testing - this will require significant time and diverse user demographics. Instead, we will focus on using design best practices and have our primary users provide us with feedback.
@@ -136,7 +138,7 @@ Issues are created by peers with regards to the integrity of the SRS. They will 
 \textbf{Checklist:}\\
 In order for the design of our application to be reviewed by our classmates, we will make a checklist that contains they key considerations and principles that our design should adhere to. The following checklist questions will be used for this step of verification:
 \begin{itemize}
-    \item Does the design follow best practices for design patterns?
+    \item Does the design follow best practices for design patterns \textcolor{red}{specifically, separation of concerns, maintainability and having modular code}?
     \item Are the specifications of the design abstract?
     \item Does the design contain all necessary exception handling?
 \end{itemize}
@@ -658,7 +660,7 @@ A user will submit an algorithm through the algorithm submission page and confir
 
 \underline{Initial State:} The user is logged in to the website
 
-\underline{Input/Condition:} The user encounters a complex use case
+\underline{Input/Condition:} The user encounters a complex use case \textcolor{red}{such as account verification or resetting their password}
 
 \underline{Output/Result:} A walkthrough guide exists for that use case and the user is able to complete his/her task using only the walkthrough successfully.
 
