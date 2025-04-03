@@ -43,6 +43,8 @@
 \midrule
 2025-04-03 & 0.4 & Addressed TA feedback\\
 \bottomrule
+2025-04-03 & 0.5 & Addressed peer reviews\\
+\bottomrule
 \end{tabularx}
 
 ~\\
@@ -170,6 +172,8 @@ To ensure that we have an effective Verification and Validation plan, it is esse
 \subsection{Implementation Verification Plan}
 
 Refer to section 3 of this document for detailed tests for each requirement and section 4 for the unit tests.
+
+\textcolor{red}{Furthermore, section 2.6 mentions specific tools for purposes such as code linting and evaluating memory usage/checking for memory leaks which will be used for additional implementation verification}
 
 \subsection{Automated Testing and Verification Tools}
 
@@ -571,10 +575,12 @@ This section covers all system tests for the non-functional requirements. The te
 
 \underline{Input/Condition:} The user navigates the entire website
 
-\underline{Output/Result:} Summary of appearance, styles and designs that resemble the website Kaggle and those that do not.
+\underline{Output/Result:}
+\sout{Summary of appearance, styles and designs that resemble the website Kaggle and those that do not.}
+\textcolor{red}{The score corresponding to the appearance of all pages on the website. The average of all of these scores should exceed 9/10 for all users.}
 
 \underline{How test will be performed:} 
-A user will load both our website and Kaggle in the same browser. He/she will then compare our website’s look and feel with Kaggle’s and list down all elements that are similar and more importantly, elements that are not similar.
+\sout{A user will load both our website and Kaggle in the same browser. He/she will then compare our website’s look and feel with Kaggle’s and list down all elements that are similar and more importantly, elements that are not similar.}\textcolor{red}{A user will navigate to each page on our website, ranking overall appearance of each page on a scale from 1 to 10.}
 
 \end{enumerate}
 
