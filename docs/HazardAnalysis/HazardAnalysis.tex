@@ -99,7 +99,7 @@ The system will be comprised of four main components, these are:
 
 \section{Critical Assumptions}
 
-The \textcolor{red}{number of assumptions made will be minimized}. \sout{It logically follows that we will assume any libraries or technologies that will be used are reliable and correct.} \textcolor{red}{We will assume any libraries or technologies that will be used behave in the manner specified by their documentation.} Additionally, it is assumed that any network connections between different components of the application will always be successful and reliable.
+The \textcolor{red}{number of assumptions made will be minimized}. \sout{It logically follows that we will assume any libraries or technologies that will be used are reliable and correct.} \textcolor{red}{We will assume any libraries or technologies that will be used behave in the manner specified by their documentation. Additionally, it is assumed that any network connections between different components of the application will always be successful and reliable.}
 
 \section{Failure Mode and Effect Analysis}
 
@@ -188,7 +188,7 @@ The \textcolor{red}{number of assumptions made will be minimized}. \sout{It logi
         \hline
         Saving result & The result is not saved & Data integrity issues & 
         \parbox[t]{2.45cm}{%
-        Server database issues \\ \vspace{4pt}
+        \textcolor{red}{Server} database issues \\ \vspace{4pt}
         Corrupt data
         }
         & 
@@ -212,7 +212,7 @@ The \textcolor{red}{number of assumptions made will be minimized}. \sout{It logi
         \hline
         Retrieving existing results & The result is not retrieved & User frustration & 
         \parbox[t]{2.45cm}{%
-         Server database issues \\ \vspace{4pt}
+         \textcolor{red}{Server} database issues \\ \vspace{4pt}
          \sout{Corrupted data} \\ \vspace{4pt}
          \textcolor{red}{H3-1}
         }
@@ -354,7 +354,7 @@ The \textcolor{red}{number of assumptions made will be minimized}. \sout{It logi
 \subsection*{Benjamin Dubois}
 
 \begin{enumerate}
-    \item Creating the road map for this deliverable went well. When starting this section we already had all of our safety requirements completed, so all we had to do was decide which timeframe each requirement fit in. For this, we considered the importance of the requirements and the magnitude of implementing it and we were all able to agree on which requirement fit in which category fairly easily. 
+    \item Creating the road map for this deliverable went well. When starting this section we already had all of our safety requirements completed, so all we had to do was decide which time frame each requirement fit in. For this, we considered the importance of the requirements and the magnitude of implementing it and we were all able to agree on which requirement fit in which category fairly easily. 
     \item One pain point we encountered while writing this deliverable was ensuring that we had considered all of the necessary safety and security requirements. 
 \end{enumerate}  
 
