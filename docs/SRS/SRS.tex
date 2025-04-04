@@ -11,6 +11,9 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{color}
+\usepackage[normalem]{ulem}
+\usepackage{longtable}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -51,6 +54,8 @@
 2024-10-19 & 0.2 & Fix directories \\
 2025-01-04 & 0.3 & Added specific deliverables and deadlines to section 21.1 \\
 2025-01-04 & 0.4 & Fixed non-verifiable requirements in section 11.4  \\
+2025-02-13 & 0.5 & Prune SRS and add rationales to requirements  \\
+2025-03-04 & 0.6 & Revised SRS  \\
 \bottomrule
 \end{tabularx}
 
@@ -77,7 +82,8 @@ Dr. Phil Kollmeyer
 Dr. Kollmeyer is the client for this project. He is an electrical engineering professor who specializes in battery engineering. An org chart is omitted as there is no existing organization commissioning this product to be built, in this case, we can consider Dr. Kollmeyer as the entire organization. He is responsible for decisions such as the priority of features to be included in the final system and resource allocation; particularly hosting resources.
 
 \subsection{Customer}
-\begin{itemize}
+\textcolor{red}{This product is designed to meet the needs of the following customer groups:}
+\begin{enumerate}
     \item Dr. Philip Kollmeyer
     \begin{itemize} 
         \item As this is in-house development Dr. Kollmeyer is both the Client and a customer. He is responsible for all of the decisions outlined in his client description.
@@ -90,30 +96,32 @@ Dr. Kollmeyer is the client for this project. He is an electrical engineering pr
     \begin{itemize}
         \item Battery Engineering PhD/Masters students may provide feedback but will not be responsible for any of the development decisions of the project
     \end{itemize}
-\end{itemize}
+\end{enumerate}
 
 \subsection{Other Stakeholders}
-
-\begin{itemize}
-    \item Dr. Phil Kollmeyer
+\textcolor{red}{The following stakeholders will be needed to consult on various aspects of the product, providing valuable insights and guidance throughout its development:}
+\begin{enumerate}
+    \item \sout{Dr. Phil Kollmeyer}
     \item Atjen von Liebenstein
     \item Professors and PhD/Master students at educational institutions
     \item Battery engineering research students, Students in battery engineering classes.
     \item Team 1 Developers, Dr. Smith, Yiding Li
-\end{itemize}
+\end{enumerate}
 
 \subsection{Hands-On Users of the Project}
 
-\begin{itemize}
-    \item Battery engineering research students, Students in battery engineering classes.
+\begin{enumerate}
+    \item Battery engineering research students
+    \item Students in battery engineering classes.
     \begin{itemize}
         \item These students are knowledgeable about the subject matter. They have experience using a similar technology and are technology literate. They are at least 18+ years old.
     \end{itemize}
-\end{itemize}
+\end{enumerate}
 
 \subsection{Personas}
 
-\begin{itemize}
+\textcolor{red}{The following personas represent key user groups, each with distinct needs and goals that drive the design and functionality of this product:}
+\begin{enumerate}
     \item Bill
     \begin{itemize}
         \item Bill is a 3rd year Electrical Engineering student in Canada who is taking a battery engineering course. Bill is familiar with programming from an academic point of view, but doesn’t have a lot of time to learn a new tool alongside learning about batteries for his course. Bill is a frequent internet user, and is comfortable using a computer and websites on the modern internet.
@@ -122,10 +130,10 @@ Dr. Kollmeyer is the client for this project. He is an electrical engineering pr
     \begin{itemize}
         \item Steve is an Electrical Engineering professor at McMaster University, who specializes in battery engineering. Steve wants to provide a fun competition to his students, who are learning about battery SOC algorithms. However, as he is a professor, Steve is very busy and does not have time to do manual work, administering the competition.
     \end{itemize}
-\end{itemize}
+\end{enumerate}
 
 \subsection{Priorities Assigned to Users}
-\begin{itemize}
+\begin{enumerate}
     \item Key Users:
     \begin{itemize}
         \item Dr. Phil Kollmeyer
@@ -140,7 +148,7 @@ Dr. Kollmeyer is the client for this project. He is an electrical engineering pr
     \begin{itemize}
         \item Software Testers/Maintainers
     \end{itemize}
-\end{itemize}
+\end{enumerate}
 
 \subsection{User Participation}
 The estimated user participation time from key users is 1 hour weekly. This is to discuss any use cases for the project and the functionalities of the software to be implemented. Knowledge of expected output for certain inputs is also needed for testing purposes.
@@ -149,32 +157,34 @@ Dr. Phil or Atjen von Liebenstein will be responsible for maintaining the produc
 
 \section{Mandated Constraints}
 \subsection{Solution Constraints}
-\begin{itemize}
-    \item 1.
+\textcolor{red}{The following solution constraints outline the key limitations and requirements that must be adhered to during the development of this product:}
+\subsubsection{Programming Language Input}
     \begin{itemize}
         \item Description: The product shall accept user code written in Matlab
         \item Rationale: Matlab is the language of choice for developing battery SOC algorithms
         \item Fit Criterion: Valid Matlab code should be accepted and executed by the system
     \end{itemize}
-    \item 2. 
+    \subsubsection{Browser Support}
     \begin{itemize}
         \item Description: The product shall be useable across multiple modern browsers (chrome, firefox, safari) on multiple modern operating systems (windows, Mac, Linux)
         \item Rationale: The product will be accessed by various users via the web, and the user computers will not be standard
         \item Fit Criterion: The product is tested and is operable on all combinations of the above-listed operating systems and browsers
     \end{itemize}
-\end{itemize}
 \subsection{Implementation Environment of the Current System}
 The current system exists as a Matlab script running on a McMaster server, listening for submissions via a Google form. Responses are sent to the user via email. 
 \subsection{Partner or Collaborative Applications}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{diagrams/partner_applications.png}
+    \caption{Partner Applications}
+    \label{fig:Partner Applications}
 \end{figure}
 \subsection{Off-the-Shelf Software}
+\textcolor{red}{This table outlines the partner applications and their respective usage within the system.}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|1|1|}
+    \begin{tabular}{|l|l|}
          \hline \textbf{Partner Application} & \textbf{Usage} \\
          \hline Matlab & compile/execute user-provided algorithms \\
          \hline Database Server & Persist necessary data \\
@@ -182,11 +192,13 @@ The current system exists as a Matlab script running on a McMaster server, liste
          & functionality (i.e. an SQL driver, web server framework)\\
          \hline
     \end{tabular}
+    \caption{Off-the-Shelf Software}
 \end{table}
 \subsection{Anticipated Workplace Environment}
 As the product is a web application it will be used in any environment that has an internet connection. 
 \subsection{Schedule Constraints}
-\begin{itemize}
+\textcolor{red}{The following schedule constraints outline the deadlines that must be met throughout the project:}
+\begin{enumerate}
     \item Problem Statement, POC Plan, Development Plan - Sep 16
     \item Requirements Document Revision 0 - Oct 11
     \item Hazard Analysis 0 -Oct 23
@@ -198,7 +210,7 @@ As the product is a web application it will be used in any environment that has 
     \item Final Demo Rev 1 - March 24
     \item EXPO Demo - April
     \item Final Doc - Apr 2
-\end{itemize}
+\end{enumerate}
 \subsection{Budget Constraints}
 The budget to create the project is \$750 coming from the team. No hard budget exists to run the system, but a strong emphasis is placed on having the lowest possible operational costs for the running system.
 \subsection{Enterprise Constraints}
@@ -207,12 +219,14 @@ N/A. (As this is an academic project, there is no “Enterprise” sponsoring th
 \section{Naming Conventions and Terminology}
 \subsection{Glossary of All Terms, Including Acronyms, Used by Stakeholders
 involved in the Project}
+\textcolor{red}{The following glossary provides definitions for key terms and concepts used throughout this document:}
 \begin{itemize}
 \item SOC - State of charge
 \item AWS - amazon web service
 \item Leaderboard - a table displaying the results of all algorithms submitted by all users with categories that can be filtered on/sorted. 
 \item Algorithm - algorithms submitted by users to be tested for efficiency and performance.
 \item Performance - quantitative measurement of the algorithm’s performance in different categories
+\item \textcolor{red}{I/O - Input and Output}
 
 \end{itemize}
 
@@ -220,39 +234,37 @@ involved in the Project}
 
 \section{Relevant Facts And Assumptions}
 \subsection{Relevant Facts}
-\begin{itemize}
+\textcolor{red}{The following relevant facts provide necessary background and context for understanding the key aspects of the project:}
+\begin{enumerate}
 \item Running tests on an algorithm typically takes about an hour to complete.
 \item The existing application is only capable of executing tests in serial, no support exists for parallel test execution.
 \item The current application supports executing Matlab algorithms only.
 \item Responses from the current application are handled via email.
-\end{itemize}
+\end{enumerate}
 \subsection{Business Rules}
-\begin{itemize}
-    \item The system must not have excessive hosting costs
-\end{itemize}
+    The system must not have excessive hosting costs
 \subsection{Assumptions}
-\begin{itemize}
-    \item Applicable Matlab licensing is available and affordable.
-	\item Required Cloud resources are available and affordable.
-\end{itemize}
-
+    Applicable Matlab licensing is available and affordable. \sout{Required Cloud resources are available and affordable.}
 \section{The Scope of the Work}
 \subsection{The Current Situation}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{diagrams/currentstate.png}
+    \caption{Current User and System Flow}
 \end{figure}
 
 \subsection{The Context of the Work}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{diagrams/context.png}
+    \caption{Work Context}
 \end{figure}
 \subsection{Work Partitioning}
+\textcolor{red}{The following table outlines the business events, explaining their corresponding input/output (I/O) requirements and providing a summary of the business use case for each event.}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{| 1 | 1 | 1 | 1 |}
+    \begin{tabular}{| c | c | c | c |}
     \hline
          Business Event Number & Business Event Name & Input and Output & Summary of BUC \\
     \hline
@@ -264,7 +276,7 @@ involved in the Project}
           & & & initiate testing \\
          \hline
          3 & Completion of & Results of algorithm & Generate and store \\
-         3 & algorithm testing & performance (out) & the results of \\
+         & algorithm testing & performance (out) & the results of \\
          & & & algorithm \\
          & & & performance \\
          \hline
@@ -274,11 +286,12 @@ involved in the Project}
           & & (out) & comparison\\
  \hline
     \end{tabular}
+    \caption{Business Events, I/O, and Use Case Summaries}
 \end{table}
 
 
 \subsection{Specifying a Business Use Case (BUC)}
-Scenario 1: Process user registration/Login \\
+        Scenario 1: Process user registration/Login \\
 	Actor: user \\
 	Precondition: N/A \\
 	Trigger: user clicks sign up \\
@@ -288,7 +301,7 @@ System does some validation and create the account \\
 User can now login using his/her credentials \\
 	Postcondition: New user is added to DB \\
 
-	Scenario 2: Submission of algorithm \\
+\noindent    Scenario 2: Submission of algorithm \\
 	Actor: user \\
 	Precondition: User is logged into his account \\
 	Trigger: user submits an algorithm \\
@@ -298,7 +311,7 @@ System validates submission and display success/failure to upload \\
 System displays the status of the test \\
 	Postcondition: Algorithm is being tested \\
 
-Scenario 3: Completion of algorithm testing \\
+\noindent  Scenario 3: Completion of algorithm testing \\
 Actor: system \\
 	Precondition: An algorithm was submitted and is being tested \\
 	Trigger: algorithm testing is complete \\
@@ -307,7 +320,7 @@ System calculates and reports the performance of the algorithm \\
 System notifies the user if the testing is done/if any errors was encountered \\
 	Postcondition: performance results are stored in db that can be accessed by user \\
 
-Scenario 4: Leaderboard update \\
+\noindent  Scenario 4: Leaderboard update \\
 Actor: system \\
 	Precondition: An algorithm was tested successfully \\
 	Trigger: algorithm testing is complete \\
@@ -321,11 +334,13 @@ System receives the new algorithm results and updates the leaderboard table in t
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{diagrams/Class.png}
+    \caption{Business Data Model}
 \end{figure}
 \subsection{Data Dictionary}
+\textcolor{red}{The following table provides a detailed data dictionary, including the names, content, and data types of the system components}
 \begin{table}[H]
     \centering
-    \begin{tabular}{|1|1|1|}
+    \begin{tabular}{|c|c|c|}
          \hline \textbf{Name} & \textbf{Content} & \textbf{Type} \\
          \hline Account & Email + Name + Institution + Password & Class \\
          \hline Leaderboard & Compilation of Performances & Class \\
@@ -342,6 +357,7 @@ System receives the new algorithm results and updates the leaderboard table in t
          \hline Tests & String (Name of the script containing tests) & Attribute/Element \\
          \hline
     \end{tabular}
+    \caption{Data Dictionary for System Components}
 \end{table}
 
 \section{The Scope of the Product}
@@ -349,11 +365,13 @@ System receives the new algorithm results and updates the leaderboard table in t
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{diagrams/Use.png}
+    \caption{System Boundaries}
 \end{figure}
 \subsection{Product Use Case Table}
+\textcolor{red}{The following table outlines the important use cases, specifying the actors and the input/output requirements involved for each use case}
 \begin{table}[H]
     \centering
-    \begin{tabular}{|1|1|1|1|}
+    \begin{tabular}{|c|c|c|c|}
          \hline \textbf{PUC No} & \textbf{PUC Name} & \textbf{Actor/s} & \textbf{Inputs \& Outputs}\\
          \hline 1 & Submit An Algorithm & User & Algorithm (In), \\
          & & & Test results (Out)\\
@@ -369,16 +387,17 @@ System receives the new algorithm results and updates the leaderboard table in t
          \hline 7 & Add New Script & Administrator & New script (In)\\
          \hline
     \end{tabular}
+    \caption{Product Use Cases}
 \end{table}
 \subsection{Individual Product Use Cases (PUC's)}
 \begin{enumerate}
-    \item A user creates a battery testing algorithm and wants it to be tested to see how efficient it is. They submit the algorithm to the system and after the system has completed the tests, it outputs the results back to the user.
-    \item A user navigates to the leaderboard screen to check what the current best algorithm for testing batteries is and which user created it. The system outputs the updated leaderboard results to the user.
-    \item A user navigates to their account page and wants to view the results of all algorithms they have submitted previously. The system will display these previous submissions to the user.
-    \item A user navigates to the main page of the website and inputs their information. The system inputs this system and requests an administrator reviews the information for correctness. Once the administrator has verified the information, the system will create the account for the user.
-    \item A user forgets their password and sends a request to the system to reset it. An administrator creates a new temporary password for the user and sets the users current password to this temporary one. The system notifies the user of this new password.
-    \item An administrator wants to delete a user account for violating terms of service. They submit a request to the system to delete this user account and the system ensures it is deleted.
-    \item An administrator discovers new tests that they want to include within the script that the system runs against user algorithms. The administrator uploads this new script within the system and the system now runs the new script.
+    \item \textcolor{red}{Bill} creates a battery testing algorithm and wants it to be tested to see how efficient it is. They submit the algorithm to the system and after the system has completed the tests, it outputs the results back to the user.
+    \item \textcolor{red}{Bill} navigates to the leaderboard screen to check what the current best algorithm for testing batteries is and which user created it. The system outputs the updated leaderboard results to the user.
+    \item \textcolor{red}{Bill} navigates to their account page and wants to view the results of all algorithms they have submitted previously. The system will display these previous submissions to the user.
+    \item \textcolor{red}{Bill} navigates to the main page of the website and inputs their \textcolor{red}{information including the email address}. \sout{The system inputs this system and requests an administrator reviews the information for correctness. Once the administrator} \textcolor{red}{Once Bill} has verified the \textcolor{red}{email address} \sout{information}, the system will create the account for the user.
+    \item \textcolor{red}{Bill} forgets their password and sends a request to the system to reset it. An administrator creates a new temporary password for the user and sets the users current password to this temporary one. The system notifies the user of this new password.
+    \item \textcolor{red}{Steve} wants to delete a user account for violating terms of service. They submit a request to the system to delete this user account and the system ensures it is deleted.
+    \item \textcolor{red}{Steve} discovers new tests that they want to include within the script that the system runs against user algorithms. The administrator uploads this new script within the system and the system now runs the new script.
 \end{enumerate}
 
 
@@ -387,7 +406,8 @@ System receives the new algorithm results and updates the leaderboard table in t
 \textbf{FR-1}
 \begin{itemize}
     \item The system shall allow users to submit algorithms to be tested. \hfill \break
-    Fit criterion: Users should be able to upload an algorithm to the system and receive confirmation of their upload.
+    Fit criterion: Users should be able to upload an algorithm to the system and receive confirmation of their upload. \hfill \break
+    \textcolor{red} {Rationale: Ensures core functionality by allowing users to submit algorithms for testing. Confirmation provides feedback, reducing uncertainty and preventing duplicate uploads.}
 \end{itemize}
 \textbf{FR-2}
 \begin{itemize}
@@ -395,6 +415,8 @@ System receives the new algorithm results and updates the leaderboard table in t
     Fit criterion: Users should be able to view the result of their algorithm somewhere in the interface of the system after it has been completed.
     \break
     Depends on: FR-1
+    \hfill \break
+    \textcolor{red} {Rationale: Provides users with feedback on their algorithm’s performance.}
 \end{itemize}
 \textbf{FR-3}
 \begin{itemize}
@@ -402,56 +424,76 @@ System receives the new algorithm results and updates the leaderboard table in t
     Fit criterion: Users should be able to submit more than one algorithm for testing and see that the execution of all submissions is underway.
     \break
     Depends on: FR-1
+    \hfill \break
+    \textcolor{red} {Rationale: Enables efficient use of system resources and improves user experience by allowing multiple tests to run simultaneously.}
 \end{itemize}
 \textbf{FR-4}
 
 \begin{itemize}
     \item The system shall allow users to make a new account. \hfill \break
     Fit criterion: Users should be able to provide a username and password and in return gain access to a new account corresponding to those values.
+    \hfill \break
+    \textcolor{red} {Rationale: Enables user authentication and personalization, allowing access to submission history and results.}
 \end{itemize}
 \textbf{FR-5}
 \begin{itemize}
     \item The system shall have a user login page. \hfill \break
     Fit criterion: Users should be able to navigate to a page in the system where they can provide a username and password to authenticate under an account.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures secure access to user accounts, protecting submissions and results.}
 \end{itemize}
 \textbf{FR-6}
 \begin{itemize}
     \item The system shall segregate data based on the logged users. \hfill \break
     Fit criterion: Users should not be able to see the private data of users and vice versa. \\
-    Depends on: FR-4
+    Depends on: FR-4 and FR-5
+    \hfill \break
+    \textcolor{red} {Rationale: Protects user privacy and ensures data security by restricting access to personal submissions and results.}
 \end{itemize}
 \textbf{FR-7}
 \begin{itemize}
     \item The system shall save algorithm results in individual user accounts. \hfill \break
     Fit criterion: Users should be able to view their previous submissions anytime in the future. \\
     Depends on: FR-4
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures  accessibility to past submissions, allowing users to track progress and review past results.}
 \end{itemize}
 \textbf{FR-8}
 \begin{itemize}
     \item The system shall have a leaderboard feature that is accessible to all users. \hfill \break
     Fit criterion: Users should be able to view a list of all submissions from other users.
+    \hfill \break
+    \textcolor{red} {Rationale: Encourages competition and engagement by allowing users to compare performance across different users' submissions.}
 \end{itemize}
 \textbf{FR-9}
 \begin{itemize}
-    \item The system shall have categorization in its leaderboard based on certain criteria. \hfill \break
-    Fit criterion: Users should be able to select the type of algorithm they are interested in and only view results of that type. \\
+    \item The system shall have categorization in its leaderboard based on \sout{certain criteria} \textcolor{red}{model type}. \hfill \break
+    Fit criterion: Users should be able to select the type \textcolor{red}{(general method used to implement the SOC estimation algorithm)} of algorithm they are interested in and only view results of that type. \\
     Depends on: FR-8
+    \hfill \break
+    \textcolor{red} {Rationale: Enhances user experience making it easier to find results based on specific algorithm categories.}
 \end{itemize}
 \textbf{FR-10}
 \begin{itemize}
-    \item The system shall allow users to sort through the leaderboards based on criteria. \hfill \break
-    Fit criterion: Users should be able to view results in order of lowest run time to highest or other criteria. \\
+    \item The system shall allow users to sort through the leaderboards based on criteria \textcolor{red}{like error \%}. \hfill \break
+    Fit criterion: Users should be able to view results in order of lowest \sout{run time} \textcolor{red}{error} to highest or other criteria. \\
     Depends on: FR-8
+    \hfill \break
+    \textcolor{red} {Rationale: Provides flexibility in viewing results, enabling users to focus on specific performance metrics.}
 \end{itemize}
 \textbf{FR-11}
 \begin{itemize}
     \item The system shall display the progress of running algorithms to users. \hfill \break
-    Fit criterion: Users should be able to view if a submission is accepted, pending, executed, or finished.
+    Fit criterion: Users should be able to view if a submission is \sout{accepted, pending, executed, or finished} \textcolor{red}{pending, started, completed, failed}.
+    \hfill \break
+    \textcolor{red} {Rationale: Keeps users informed about the status of their submissions, reducing uncertainty and enhancing user experience.}
 \end{itemize}
 \textbf{FR-12}
 \begin{itemize}
     \item The system shall notify users in case of an exception in their algorithm. \hfill \break
     Fit criterion: Users should receive a notification if their algorithm fails to execute successfully.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures transparency by informing users of issues with their submissions, enabling them to make necessary corrections.}
 \end{itemize}
 
 \section{Look and Feel Requirements}
@@ -459,14 +501,18 @@ System receives the new algorithm results and updates the leaderboard table in t
 \textbf{LFR-1}
 \begin{itemize}
     \item The system’s appearance should look similar to a website called Kaggle. \hfill \break
-    Fit criterion: Users should recognize similarities between the system and Kaggle.
+    Fit criterion: Users should recognize \textcolor{red}{design} similarities between the system and Kaggle. \\
+    \textcolor{red} {Rationale: Design preference of primary stakeholder.}
 \end{itemize}
 
-\subsection{Style Requirements}
-\textbf{SR-1}
+\subsection{\sout{Style Requirements}}
+\textbf{\sout{SR-1}}
 \begin{itemize}
-    \item The system should use the same styles i.e. colour, background colour, user-interface structure, etc. as the Kaggle website. \hfill \break
-    Fit criterion: Users should see the same styles as the Kaggle website when using the system.
+    \item \sout{The system should use the same styles i.e. colour, background colour, user-interface structure, etc. as the Kaggle website. \hfill \break
+    Fit criterion: Users should see the same styles as the Kaggle website when using the system. \\
+    Rationale: Design preference of primary stakeholder.}
+    
+    \textcolor{red}{N/A. Style is low priority according to our supervisor}
 \end{itemize}
 
 
@@ -476,45 +522,55 @@ System receives the new algorithm results and updates the leaderboard table in t
 \begin{itemize}
     \item All tasks that can be completed with the system should have a similar workflow.\hfill \break
     Fit criterion: Users should be able to follow the same workflow when viewing a submission in progress or one that is already completed.
+    \hfill \break
+    \textcolor{red} {Rationale: Promotes consistency and simplicity in the user experience, making the system intuitive and easy to navigate.}
 \end{itemize}
 \subsection{Personalization and Internationalization Requirements}
 N/A - No personalization or internationalization was mentioned by the client.
 \subsection{Learning Requirements}
 \textbf{LR-1}
 \begin{itemize}
-    \item The system shall have detailed documentation for all core functionality. \hfill \break
+    \item The system shall have \sout{detailed} \textcolor{red}{step-by-step} documentation for all core functionality. \hfill \break
     Fit criterion: Users should be able to easily find documentation which walks them through the steps involved in submitting an algorithm and viewing the results.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures users can easily understand and use the system, reducing confusion and improving overall usability.}
 \end{itemize}
-\textbf{LR-2}
+\textbf{\sout{LR-2}}
 \begin{itemize}
-    \item The system shall display hints for new/unused features for a specific user. \hfill \break
-    Fit criterion: The user should be able to see a hint indicating how to use a new feature.
-\end{itemize}
-
-\subsection{Understandability and Politeness Requirements}
-\textbf{UPR-1}
-\begin{itemize}
-    \item The system shall use universally used symbols when appropriate to ease understanding. \\
-    Fit criterion: At least 90\% of users should be able to correctly identify the meaning of all symbols without explanation. 
-\end{itemize}
-\textbf{UPR-2}
-\begin{itemize}
-    \item The system shall use an intuitive user interface and use consistent terminology. \\
-    Fit criterion: The terminology used on each page should be consistent with each other and at least 80\% of users should be able to navigate through each stage of the system without external assistance. 
-\end{itemize}
-\textbf{UPR-3}
-\begin{itemize}
-    \item The system shall provide visual feedback to indicate whether certain actions were successful or not.
-\end{itemize}
-\textbf{UPR-4}
-\begin{itemize}
-    \item The system shall provide walkthroughs for any complex use cases.
+    \item \sout{The system shall display hints for new/unused features for a specific user. \hfill \break
+    Fit criterion: The user should be able to see a hint indicating how to use a new feature.}
+    \hfill \break
+    \sout{Rationale: Enhances user experience by guiding users through new features, promoting exploration and efficient use of the platform.}
 \end{itemize}
 
-\subsection{Accessibility Requirements}
-\textbf{AR-1}
+\subsection{\sout{Understandability and Politeness Requirements}}
+\textbf{\sout{UPR-1}}
 \begin{itemize}
-    \item The system shall have a colour-blind mode
+    \item \sout{The system shall use universally used symbols when appropriate to ease understanding. \\
+    Fit criterion: At least 90\% of users should be able to correctly identify the meaning of all symbols without explanation. }
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
+\end{itemize}
+\textbf{\sout{UPR-2}}
+\begin{itemize}
+    \item \sout{The system shall use an intuitive user interface and use consistent terminology. \\
+    Fit criterion: The terminology used on each page should be consistent with each other and at least 80\% of users should be able to navigate through each stage of the system without external assistance. }
+\end{itemize}
+\textbf{\sout{UPR-3}}
+\begin{itemize}
+    \item \sout{The system shall provide visual feedback to indicate whether certain actions were successful or not.}
+\end{itemize}
+\textbf{\sout{UPR-4}}
+\begin{itemize}
+    \item \sout{The system shall provide walkthroughs for any complex use cases.}
+\end{itemize}
+
+\subsection{\sout{Accessibility Requirements}}
+\textbf{\sout{AR-1}}
+\begin{itemize}
+    \item \sout{The system shall have a colour-blind mode}
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 \end{itemize}
 
 \section{Performance Requirements}
@@ -522,97 +578,125 @@ N/A - No personalization or internationalization was mentioned by the client.
 \textbf{SLR-1}
 \begin{itemize}
 \item The product shall display the results of algorithms in less than 2 seconds after it is requested \hfill \break
-Fit Criteria: Users should see a result after selecting an algorithm to view in under 2 seconds
+Fit Criteria: Users should see a result after selecting an algorithm to view in under 2 seconds \\
+\textcolor{red} {Rationale: This response time is on the slower side of what is typically observed on the modern web. It should be achievable while leaving room to perform the action faster if possible.}
 \end{itemize}
 \textbf{SLR-2}
 \begin{itemize}
 \item The product shall display the Leaderboards table in less than 3 seconds after it is requested \hfill \break
-Fit Criteria: Users should see the leaderboards after selecting that view in under 3 seconds
+Fit Criteria: Users should see the leaderboards after selecting that view in under 3 seconds \\
+\textcolor{red} {Rationale: This response time is on the slower side of what is typically observed on the modern web. It should be achievable while leaving room to perform the action faster if possible.}
 \end{itemize}
 \textbf{SLR-3}
 \begin{itemize}
 \item Sorting or filtering the leaderboard should not take more than 3 seconds \hfill \break
-Fit Criteria: Users should see leaderboard content change in under 3 seconds after making a change to filtering criteria
+Fit Criteria: Users should see leaderboard content change in under 3 seconds after making a change to filtering criteria \\
+\textcolor{red} {Rationale: This response time is on the slower side of what is typically observed on the modern web. It should be achievable while leaving room to perform the action faster if possible.}
 \end{itemize}
 
 
 \subsection{Safety-Critical Requirements}
 N/A - we are building a web application without any interaction with the physical world
-\subsection{Precision or Accuracy Requirements}
-\textbf{PAR-1}
+\subsection{\sout{Precision or Accuracy Requirements}}
+\textbf{\sout{PAR-1}}
 \begin{itemize}
-    \item Events in the system will be tracked using standard UTC timestamp
+    \item \sout{Events in the system will be tracked using standard UTC timestamp}
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 \end{itemize}
 \subsection{Robustness or Fault-Tolerance Requirements}
 \textbf{RR-1}
 \begin{itemize}
-    \item The system should be able to handle any types of errors during run-time.
+    \item The system should be able to handle any types of errors during run-time.\hfill \break
+    \textcolor{red} {Fit criterion: The system should catch and display error messages for any runtime exceptions, allowing users to understand and address issues without system failure.}
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures system stability and reliability by gracefully managing unexpected issues, preventing crashes and maintaining user trust.}
 \end{itemize}
 \textbf{RR-2}
 \begin{itemize}
-    \item Errors arising from one users interactions with the system should be isolated from other users interactions
+    \item Errors arising from one users interactions with the system should be isolated from other users interactions.\hfill \break
+    \textcolor{red} {Fit criterion: Errors caused by one user's actions should not impact the functionality or data of other users, maintaining system integrity.}
+    \hfill \break
+    \textcolor{red} {Rationale: Prevents one user's errors from affecting others, ensuring a stable and reliable experience for all users.}
 \end{itemize}
 
 \subsection{Capacity Requirements}
 \textbf{CR-1}
 \begin{itemize}
     \item The system shall support concurrent requests from a few hundred users \hfill \break
-    Fit criterion: Users should not see a difference in performance when there is one current user or one hundred current users.
+    Fit criterion: \sout{Users should not see a difference in performance when there is one current user or one hundred current users} \textcolor{red}{Users should not experience degraded system responsiveness, including UI load times, data retrieval speeds, and test execution times, when the number of concurrent users increases from one to one hundred.} \\
+    \textcolor{red} {Rationale: Typical university lecture sizes at McMaster for engineering range from 100-300 people. Supporting this user capacity is a good starting point and would support live in class useage of the platform.}
 \end{itemize}
 
 \subsection{Scalability or Extensibility Requirements}
 \textbf{SR-1}
 \begin{itemize}
-    \item The system shall automatically scale its execution backend corresponding to the number of user requests
+    \item The system shall automatically scale its execution back-end corresponding to the number of user requests. \hfill \break
+    \textcolor{red} {Fit criterion: The system should dynamically allocate computational resources (e.g., additional worker processes, or containerized execution environments) based on the number of concurrent user requests. During high traffic, the system should scale up by provisioning additional resources to maintain response times. During low traffic, it should release excess resources to optimize cost and efficiency, all without manual intervention.} \hfill \break
+    \textcolor{red} {Rationale: Allows the system to efficiently handle different loads, ensuring optimal performance regardless of the number of simultaneous user submissions.}
 \end{itemize}
 
-\subsection{Longevity Requirements}
-\textbf{LR-1}
+\subsection{\sout{Longevity Requirements}}
+\textbf{\sout{LR-1}}
 \begin{itemize}
-    \item The system shall be free of memory leaks and uncapped caches so that restarts will not be required
+    \item \sout{The system shall be free of memory leaks and uncapped caches so that restarts will not be required}
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 \end{itemize}
 
 \section{Operational and Environmental Requirements}
 \subsection{Expected Physical Environment}
 N/A - The product shall work in any environment with an internet connection.
 
-\subsection{Wider Environment Requirements}
+\subsection{\sout{Wider Environment Requirements}}
 
-\textbf{WER-1}
+\textbf{\sout{WER-1}}
 \begin{itemize}
-    \item The system shall adhere to the best practices in data privacy to protect user information \hfill \break
-    Fit criterion: The system shall have secure login methods and keep any data from being accessed externally.
+    \item \sout{The system shall adhere to the best practices in data privacy to protect user information \hfill \break
+    Fit criterion: The system shall have secure login methods and keep any data from being accessed externally.}
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 \end{itemize}
 
-\subsection{Productization Requirements}
-\textbf{PR-1}
+\subsection{\sout{Productization Requirements}}
+\textbf{\sout{PR-1}}
 \begin{itemize}
-    \item The product shall be deployable on AWS and accessible to the users through the web.
+    \item \sout{The product shall be deployable on AWS and accessible to the users through the web.}
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 \end{itemize}
 
 \subsection{Release Requirements}
 N/A - there will not be regular releases for this project, and maintenance will be done by an external team.
 
 \section{Maintainability and Support Requirements}
-\subsection{Maintenance Requirements}
-\textbf{MR-1}
+\subsection{\sout{Maintenance Requirements}}
+\textbf{\sout{MR-1}}
 \begin{itemize}
-    \item If a likely change is made to the finished software, it will take at most 10\% of the original development time, assuming the same development resources are available (Example from a lecture that Dr. Smith said we can use if we do not think of anything else)
+    \item \sout{If a likely change is made to the finished software, it will take at most 10\% of the original development time, assuming the same development resources are available (Example from a lecture that Dr. Smith said we can use if we do not think of anything else)}
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 \end{itemize}
-\subsection{Supportability Requirements}
-\textbf{SUR-1}
-The product must be self-supporting with all the necessary information provided in the user documentation and/or user guides.
+\subsection{\sout{Supportability Requirements}}
+\textbf{\sout{SUR-1}}
+\sout{The product must be self-supporting with all the necessary information provided in the user documentation and/or user guides.}
+
+\textcolor{red}{N/A. This is low priority according to our supervisor}
 
 \subsection{Adaptability Requirements}
 \textbf{ADR-1}
 \begin{itemize}
     \item The product shall work under all major operating systems such as macOS, Linux and Windows. \hfill \break
     Fit criterion: Users should be able to access the system and its functionality on any of the above-listed operating systems.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures broad accessibility by supporting all major operating systems.}
 \end{itemize}
 \textbf{ADR-2}
 \begin{itemize}
     \item The product shall be compatible with all major browsers like Chrome, Safari, Microsoft Edge, Opera, and Firefox. \hfill \break
     Fit criterion: Users should be able to access the system and its functionality on any of the above browsers.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures a consistent user experience across different browsers, allowing accessibility for all users.}
 \end{itemize}
 
 
@@ -621,78 +705,103 @@ The product must be self-supporting with all the necessary information provided 
 \textbf{ACR-1}
 \begin{itemize}
     \item The system shall verify the credentials passed onto the login screen before giving access to the system. \hfill \break
-    Fit criterion: A valid email and password combination should be passed in by the user before the user can access the system.
+    Fit criterion: A valid \sout{email} \textcolor{red}{username} and password combination should be passed in by the user before the user can access the system.
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures secure authentication, preventing unauthorized access and protecting user data.}
 \end{itemize}
 \textbf{ACR-2}
 \begin{itemize}
     \item The system shall allow only verified users to view information about other accounts. \hfill \break
     Fit criterion: Non-logged-in users should not be able to view information about other users.
+    \hfill \break
+    \textcolor{red} {Rationale: Protects user privacy by restricting access to account-related information only to authorized users.}
 \end{itemize}
 \textbf{ACR-3}
 \begin{itemize}
     \item The system shall allow only administrators to see the emails of users. \hfill \break
     Fit criterion: Non-admin users should not have access to the emails of other users.
+    \hfill \break
+    \textcolor{red} {Rationale: Maintains user privacy and security by restricting sensitive information to authorized administrators only.}
 \end{itemize}
 
 \subsection{Integrity Requirements}
 \textbf{IR-1}
 \begin{itemize}
     \item The database shall prevent incorrect data from being introduced.
+    \hfill \break
+    \textcolor{red} {Fit criterion: The database should enforce constraints, validations, and data integrity checks to reject invalid or inconsistent data.}
+    \hfill \break
+    \textcolor{red} {Rationale: Ensures data accuracy and reliability, preventing data corruption.}
 \end{itemize}
 \textbf{IR-2}
 \begin{itemize}
     \item The database shall be regularly backed up in case of any failure
+    \hfill \break
+    \textcolor{red} {Fit criterion: The system should automatically create and store database backups at regular intervals to enable data recovery in case of failure.}
+    \hfill \break
+    \textcolor{red} {Rationale: Prevents data loss by allowing restoration in case of unexpected failures.}
 \end{itemize}
 
-\subsection{Privacy Requirements}
-\textbf{PRR-1}
+\subsection{\sout{Privacy Requirements}}
+\textbf{\sout{PRR-1}}
 \begin{itemize}
-    \item The product shall collect, store and use the user’s email address for the login verification process only.
+    \item \sout{The product shall collect, store and use the user’s email address for the login verification process only.}
 \end{itemize}
-\textbf{PRR-2}
+\textbf{\sout{PRR-2}}
 \begin{itemize}
-    \item The product shall not share its users’ email addresses with third parties under any circumstance. 
+    \item \sout{The product shall not share its users’ email addresses with third parties under any circumstance. }
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 \end{itemize}
 \subsection{Audit Requirements}
 N/A - The use of the product will not involve any sensitive data. It will also not be subject to any government regulations so auditing requirements are not needed.
 
-\subsection{Immunity Requirements}
-\textbf{IR-1}
+\subsection{\sout{Immunity Requirements}}
+\textbf{\sout{IR-1}}
 \begin{itemize}
-    \item The product shall ensure that only verified users are allowed to submit algorithms
+    \item \sout{The product shall ensure that only verified users are allowed to submit algorithms}
 \end{itemize}
-\textbf{IR-2}
+\textbf{\sout{IR-2}}
 \begin{itemize}
-    \item The product shall ensure that user-submitted algorithms are executed in a secure and isolated environment and prevent malicious actions.
+    \item \sout{The product shall ensure that user-submitted algorithms are executed in a secure and isolated environment and prevent malicious actions.}
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 \end{itemize}
 
 \section{Cultural Requirements}
-\subsection{Cultural Requirements}
-\textbf{CUR-1}
+\subsection{\sout{Cultural Requirements}}
+\textbf{\sout{CUR-1}}
 \begin{itemize}
-    \item The product shall not be offensive to any group of people.
+    \item \sout{The product shall not be offensive to any group of people.}
 \end{itemize}
+
+\textcolor{red}{N/A. This is low priority according to our supervisor}
 
 \section{Compliance Requirements}
-\textbf{LGR-1}
-\subsection{Legal Requirements}
+\textbf{\sout{LGR-1}}
+\subsection{\sout{Legal Requirements}}
 \begin{itemize}
-    \item In compliance with the Matlab End-user license agreement. \hfill \break
-    Fit criterion: The system must adhere to the licensing terms and conditions in the Matlab EULA.
+    \item \sout{In compliance with the Matlab End-user license agreement. \hfill \break
+    Fit criterion: The system must adhere to the licensing terms and conditions in the Matlab EULA.}
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 
 \end{itemize}
-\subsection{Standards Compliance Requirements}
-\textbf{SCR-1}
+\subsection{\sout{Standards Compliance Requirements}}
+\textbf{\sout{SCR-1}}
 \begin{itemize}
-    \item General Data Protection Regulation compliance should be the target for user data. \hfill \break
-    Fit criteria: The system must ensure only necessary data are collected from users and that the data are processed and stored per GDPR. 
+    \item \sout{General Data Protection Regulation compliance should be the target for user data. \hfill \break
+    Fit criteria: The system must ensure only necessary data are collected from users and that the data are processed and stored per GDPR. }
+
+    \textcolor{red}{N/A. This is low priority according to our supervisor}
 
 \end{itemize}
 
 \section{Open Issues}
 \begin{itemize}
-    \item Investigate Matlab licensing and the integration of Matlab submissions with our system.
-    \item Explore different AWS pricing
+    \item \sout{Investigate Matlab licensing and the integration of Matlab submissions with our system.}
+    \item \sout{Explore different AWS pricing}
+    \textcolor{red}{There are no current open issues}
 \end{itemize}
 
 \section{Off-the-Shelf Solutions}
@@ -700,8 +809,9 @@ N/A - The use of the product will not involve any sensitive data. It will also n
 N/A - This system is a rebuild of an existing application (Borealis), for which there are no existing solutions on the market.
 \subsection{Reusable Components}
 \begin{itemize}
-    \item REACT
-    \item AWS
+    \item \sout{REACT}
+    \item \sout{AWS}
+    \textcolor{red}{There are no reusable components for this product}
 \end{itemize}
 
 \subsection{Products That Can Be Copied}
@@ -713,47 +823,52 @@ N/A - This system is a rebuild of an existing application (Borealis), for which 
 \subsection{Effects on the Current Environment}
 Since this is a completely new system, users will have to adapt and learn how to use it and potentially change their workflow. 
 \subsection{Effects on the Installed Systems}
-\begin{itemize}
-    \item In this case, while some software will be reused from the existing system, the new system is intended to replace the existing system, so they will not interact. The old system will be decommissioned after the new system is deployed.
-\end{itemize}
+In this case, while some software will be reused from the existing system, the new system is intended to replace the existing system, so they will not interact. The old system will be decommissioned after the new system is deployed.
 
 \subsection{Potential User Problems}
-It is possible that performance and scaling issues could arise while using the system which could cause users to get frustrated with the system. It is also possible that the submitted algorithms might not work with the system due to different versioning/ if the system is implemented in GnuOctave instead of Matlab and certain libraries or methods fails to work. Other potential issues could be problems with usability and security. To mitigate these concerns, regular feedback from stakeholders should be taken. Also, sufficient performance and security testing will be needed.
+It is possible that performance and scaling issues could arise while using the system which could cause users to get frustrated with the system. 
+
+It is also possible that the submitted algorithms might not work with the system due to different versioning/ if the system is implemented in GnuOctave instead of Matlab and certain libraries or methods fails to work. 
+
+Other potential issues could be problems with usability and security. To mitigate these concerns, regular feedback from stakeholders should be taken. Also, sufficient performance and security testing will be needed.
 
 \subsection{Limitations in the Anticipated Implementation Environment That May
 Inhibit the New Product}
 \begin{itemize}
-    \item Use of Matlab; we need to either run many concurrent instances of a Matlab interpreter or efficiently compile Matlab code repeatedly to execute user submissions. We may encounter issues with either licensing or product performance here
-    \item Cloud Costs: Using AWS for hosting the execution backend may be prohibitively expensive
+    \item \sout{Use of Matlab; we need to either run many concurrent instances of a Matlab interpreter or efficiently compile Matlab code repeatedly to execute user submissions. We may encounter issues with either licensing or product performance here}
+    \item \sout{Cloud Costs: Using AWS for hosting the execution backend may be prohibitively expensive}
 \end{itemize}
+\textcolor{red}{The planned implementation environment may have limitations that could affect the successful deployment of the new product.}
 
+\textcolor{red}{One challenge is the use of MATLAB, where we may need to run multiple concurrent instances of a MATLAB interpreter or efficiently compile MATLAB code repeatedly to handle user submissions. This could potentially lead to issues with licensing or performance. }
+
+\textcolor{red}{Additionally, relying on AWS for hosting the execution backend may result in prohibitively high cloud costs, further complicating the implementation.}
 \subsection{Follow-Up Problems}
-\begin{itemize}
-    \item In the event the product achieves widespread use, the cost of computing may be too high to support the product with a large number of users (1000s of concurrent users)
-\end{itemize}
+In the event the product achieves widespread use, the cost of computing may be too high to support the product with a large number of users (1000s of concurrent users)
 
 \section{Tasks}
 \subsection{Project Planning}
 \textbf{Task List:}
 \begin{itemize}
-    \item Problem Description (Required by September 23, 2024)
-    \item SRS document (Required by October 9, 2024)
-    \item Hazard Analysis (Required by October 23, 2024)
-    \item VnV plan (Required by November 1, 2024)
-    \item Create Django Framework (Required by November 11, 2024)
-    \item Configure Submissions Within Django Framework (Required by November 11, 2024)
-    \item Configure Leaderboard Feature Within Django Framework (Required by November 11, 2024)
-    \item Configure User Accounts and Registration Within Django Framework (Required by November 11, 2024)
-    \item POC (Required by November 11, 2024)
-    \item Design Document (Required by January 15, 2025)
-    \item Design to Look Similar to Kaggle (Required by February 3, 2025)
-    \item Product Revision 0 (Required by February 3, 2025)
-    \item VnV Report (Required by March 7, 2025)
-    \item Create Tutorial Videos (Required by April 2, 2025)
-    \item Final Revision (Required by April 2, 2025)
+    \item Problem Description \textcolor{red}{(Required by September 23, 2024)}
+    \item SRS document \textcolor{red}{(Required by October 9, 2024)}
+    \item Hazard Analysis \textcolor{red}{(Required by October 23, 2024)}
+    \item VnV plan \textcolor{red}{(Required by November 1, 2024)}
+    \item \textcolor{red}{Create Django Framework (Required by November 11, 2024)}
+    \item \textcolor{red}{Configure Submissions Within Django Framework (Required by November 11, 2024)}
+    \item \textcolor{red}{Configure Leaderboard Feature Within Django Framework (Required by November 11, 2024)}
+    \item \textcolor{red}{Configure User Accounts and Registration Within Django Framework (Required by November 11, 2024)}
+    \item POC \textcolor{red}{(Required by November 11, 2024)}
+    \item Design Document \textcolor{red}{(Required by January 15, 2025)}
+    \item \textcolor{red}{Design to Look Similar to Kaggle (Required by February 3, 2025)}
+    \item Product Revision 0 \textcolor{red}{(Required by February 3, 2025)}
+    \item VnV Report \textcolor{red}{(Required by March 7, 2025)}
+    \item \textcolor{red}{Create Tutorial Videos (Required by April 2, 2025)}
+    \item Final Revision \textcolor{red}{(Required by April 2, 2025)}
 \end{itemize}
 
 \subsection{Planning of the Development Phases}
+\textcolor{red}{The following outlines the development phases, including the Proof of Concept (POC), Revision 0, and Revision 1. Each phase is structured to build upon the previous one, with specific goals and deliverables to ensure the project progresses smoothly:}
 \begin{itemize}
 \item Proof of Concept stage:
 This stage aims to provide the basic functionality of the new system, accept an algorithm submission, run it against the existing test script, and report the results back to the user. This stage must be operational by November 11th, 2024. The operational environment components involved are the hosting provider used for the front end, as well as the hosting provider used for the back end (these may not necessarily be the same). The function requirements involved at this stage are
@@ -781,9 +896,7 @@ N/A - The existing system had no accounts/history or storage of results since re
 N/A - Existing results of previously submitted algorithms can be discarded once users switch to the new system.
 
 \section{Costs}
-\begin{itemize}
-    \item During the development and testing phase, the application will not be under heavy load so cloud hosting costs should be less than \$100
-\end{itemize}
+    During the development and testing phase, the application will not be under heavy load so \sout{cloud} hosting costs should be less than \$100
 
 \section{User Documentation and Training}
 \subsection{User Documentation Requirements}
@@ -791,7 +904,7 @@ As part of user documentation, the software will come with a user guide as well 
 
 \subsection{Training Requirements}
 \begin{itemize}
-    \item Hints will be provided for new functionality to help board new users
+    \item \sout{Hints will be provided for new functionality to help board new users}
     \item Video explanations can be added for complex components of the application
 \end{itemize}
 
@@ -801,11 +914,58 @@ As part of user documentation, the software will come with a user guide as well 
 \end{itemize}
 
 \section{Ideas for Solution}
+\textcolor{red}{The following are potential solution ideas to address the project’s requirements, constraints and challenges:}
 \begin{itemize}
     \item SHARCNET
     \item AWS ECS
     \item AWS MATLAB prebuilt machine image
 \end{itemize}
+
+\newpage{}
+\section{\textcolor{red}{Appendix --- Traceability Matrix}}
+
+\textcolor{red}{This section shows the dependencies between functional and non-functional requirements.}
+\begin{longtable}{|c|c|}
+\caption{Traceability Matrix}\\
+\hline
+Requirement ID & Depends on \\
+\hline
+\endfirsthead
+
+\hline
+Requirement ID & Depends on \\
+\hline
+\endhead
+  FR-1 & N/A \\ \hline
+  FR-2 & FR-1 \\ \hline
+  FR-3 & FR-1, CR-1 \\ \hline
+  FR-4 & FR-5, ACR-1 \ \hline
+  FR-5 & ACR-1 \\ \hline
+  FR-6 & FR-4, FR-5, ACR-2 \\ \hline
+  FR-7 & FR-4, IR-1 \\ \hline
+  FR-8 & LR-1 \\ \hline
+  FR-9 & FR-8, LR-1 \\ \hline
+  FR-10 & FR-8, LR-1 \\ \hline
+  FR-11 & FR-1 \\ \hline
+  FR-12 & FR-1, RR-1 \\ \hline
+  LFR-1 & N/A \\ \hline
+  EUR-1 & FR-2, FR-12 \\ \hline
+  LR-1 & N/A \\ \hline
+  SLR-1 & FR-2, FR-6, SR-1 \\ \hline
+  SLR-2 & FR-8, FR-9, SR-1 \\ \hline
+  SLR-3 & FR-8, FR-9, FR-10, SR-1 \\ \hline
+  RR-1 & IR-1 \\ \hline
+  RR-2 & FR-6, FR-12 \\ \hline
+  CR-1 & FR-1, FR3, SR-1 \\ \hline
+  SR-1 & FR-3, SLR-1, SLR-2, SLR-3 \\ \hline
+  ADR-1 & N/A \\ \hline
+  ADR-2 & N/A \\ \hline
+  ACR-1 & FR-4, FR-5 \\ \hline
+  ACR-2 & FR-4, FR-5 \\ \hline
+  ACR-3 & FR-4, FR-5 \\ \hline
+  IR-1 & FR-4, FR-5, FR-6 \\ \hline
+  IR-2 & FR-4, FR-5, FR-6 \\ \hline
+\end{longtable}
 
 
 \newpage{}
