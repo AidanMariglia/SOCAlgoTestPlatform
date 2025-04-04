@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{float}
+\usepackage{color}
+\usepackage[normalem]{ulem}
 
 \title{Development Plan\\\progname}
 
@@ -24,7 +26,7 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 Sep 24th, 2024 & Aidan Mariglia, Declan Young, Benjamin Dubois, Nathan Uy & Adding initial information \\
-... & ... & ...\\
+April 02, 2024 & Aidan Mariglia, Declan Young, Benjamin Dubois, Nathan Uy & Refining Development Plan \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -48,7 +50,9 @@ The project will be licensed under the MIT open-source license. \\
 
 \section{Team Meeting Plan}
 
-The team is expected to meet virtually through Microsoft Teams at least once every week. Progress meetings will be scheduled for 30 minutes and collaboration meetings will be scheduled as needed. The team will meet with Dr. Phil virtually once every other week to update on progress and ask for any clarifications. Meeting agendas will be formed throughout the week leading up to the meeting. Rather than spending time answering non-urgent questions/concerns, these will be collected and addressed at the meeting. Meetings will review current progress, challenges, next steps, task assignments, and any relevant questions. The chair of the meeting will rotate weekly between team members.
+The team is expected to meet virtually through Microsoft Teams at least once every week. Progress meetings will be scheduled for 30 minutes and collaboration meetings will be scheduled as needed. The team will meet with Dr. Phil virtually once every other week to update on progress and ask for any clarifications. 
+
+Meeting agendas will be formed throughout the week leading up to the meeting. Rather than spending time answering non-urgent questions/concerns, these will be collected and addressed at the meeting. Meetings will review current progress, challenges, next steps, task assignments, and any relevant questions. \sout{The chair of the meeting will rotate weekly between team members.}
 
 \section{Team Communication Plan}
 
@@ -61,6 +65,9 @@ Following this communication plan will ensure that the team and supervisor can w
 
 \section{Team Member Roles}
 
+\textcolor{red}{The chair of the meeting will rotate weekly between team members.} \\
+\textcolor{red}{Our approach is adaptable, allowing team members to take on different roles as necessary rather than following rigid role assignments.}
+
 \begin{table}[H]
 \begin{tabular}{|p{3cm}|p{4cm}|p{3cm}|}
 \hline
@@ -70,7 +77,7 @@ Project Lead & Create issues, Review pull requests, Lead meetings, Get progress 
 
 Reviewer & Review all documentation and pull requests to ensure completeness and correctness, Inform the original author if any issues are found, Run/verify code changed in pull requests & Aidan Mariglia, Declan Young, Benjamin Dubois, Nathan Uy \\ \hline
 
-Developer & Create issues, Implement features, Test features, Close issues & Aidan Mariglia,Declan Young,Benjamin Dubois,Nathan Uy \\ \hline
+Developer & Create issues, Implement features, Test features, Close issues & Aidan Mariglia, Declan Young, Benjamin Dubois, Nathan Uy \\ \hline
 \end{tabular}
 \end{table}
 
@@ -80,7 +87,7 @@ Developer & Create issues, Implement features, Test features, Close issues & Aid
 Git will be used for version control for all code, documentation and any other related files for this project.
 
 \subsection*{Issues}
-GitHub issues will be created for tracking various project items, such as meetings, lectures and development tasks. Any issues that are created should be done using the correct template, so that all issues of a certain type follow a standard format, and contain all the necessary details related to the issue, such as a description, deadline and issue size (in the case of a development task). Team members can then assign tickets to themselves when they are available to take on a piece of work, and will keep the ticket updated throughout the duration of the work.
+GitHub issues will be created for tracking various project items, such as meetings, lectures and development tasks. Any issues that are created should be done using the correct template, so that all issues of a certain type follow the standard format \textcolor{red}{as specified here: \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/tree/main/.github/ISSUE_TEMPLATE}{Issue Templates}}, and contain all the necessary details \textcolor{red}{mentioned in the template} \sout{related to the issue}, such as a description, deadline and issue size (in the case of a development task). Team members can then assign tickets to themselves when they are available to take on a piece of work, and will keep the ticket updated throughout the duration of the work.
 
 Issues will have the types the following types:
 \begin{itemize}
@@ -105,7 +112,9 @@ GitHub actions will be used as the CI/CD provider of choice. CI/CD will involve 
 
 \maketitle
 
-The team will be using the backlog feature within the GitHub Project to track the status and priority of development tasks, documentation, and deliverables. When issues are first created by a member of the team, they will be placed in the ‘Backlog’ state. When this new issue has been reviewed by another member of the team and approved, the issue will move to the ‘Ready’ state. Then, when a member of the team picks up the issue and begins working on it, the issue will be moved to the ‘In progress’ state. When the issue has been completed by a member of the team, it will be moved to the ‘In Review’ state to be reviewed by another member before it is complete. Lastly, once the issue has been reviewed, it will move to the ‘Done’ state. 
+The team will be using the backlog feature within the GitHub Project to track the status and priority of development tasks, documentation, and deliverables. When issues are first created by a member of the team, they will be placed in the ‘Backlog’ state. When this new issue has been reviewed by another member of the team and approved, the issue will move to the ‘Ready’ state. 
+
+Then, when a member of the team picks up the issue and begins working on it, the issue will be moved to the ‘In progress’ state. When the issue has been completed by a member of the team, it will be moved to the ‘In Review’ state to be reviewed by another member before it is complete. Lastly, once the issue has been reviewed, it will move to the ‘Done’ state. 
 
 The team will also be using milestones on the issues that are created to sort the issues according to the project deliverable they correspond to. For the project components outlined in the table below, the team has created a new milestone and when issues are created they will be added to the required milestone. For example, for the Proof of Concept Demonstration, the team will need to bootstrap the web server, so a new issue under the ‘Proof of Concept Demonstration’ milestone named ‘Bootstrap Webserver’ is created. This allows tracking the progress of all deliverables easily. \href{https://github.com/users/AidanMariglia/projects/1/views/1}{Github Project.} 
 
@@ -128,18 +137,24 @@ Final Documentation Revision 1        & April 2nd     \\
 
 \section{Proof of Concept Demonstration Plan}
 
-The main risks of our project involve the execution of Matlab code in a cloud environment. More specifically our concerns are that matlab licensing which would allow us to autoscale the number of containers executing user input code does not exist/would be prohibitively expensive. A possible solution to this is to use an open-source alternative, GNU Octave, however, this poses risks as well. GNU Octave seeks to be a superset of the Matlab language, however, that does not mean that it is a replacement with perfect compatibility in every situation. Another risk would be the potential costs of hosting our project using cloud technologies. To show we can overcome these risks with our POC we will demonstrate executing Matlab code on our cloud backend, using either a licensed version of Matlab or GNU Octave, and recording and extrapolating the cloud hosting costs involved.
+The main risks of our project involve the execution of Matlab code in a cloud environment. More specifically our concerns are that matlab licensing which would allow us to autoscale the number of containers executing user input code does not exist/would be prohibitively expensive. 
+
+A possible solution to this is to use an open-source alternative, GNU Octave, however, this poses risks as well. GNU Octave seeks to be a superset of the Matlab language, however, that does not mean that it is a replacement with perfect compatibility in every situation. 
+
+Another risk would be the potential costs of hosting our project using cloud technologies. To show we can overcome these risks with our POC we will demonstrate executing Matlab code on our cloud backend, using either a licensed version of Matlab or GNU Octave, and recording and extrapolating the cloud hosting costs involved.
 
 \section{Expected Technology}
 
 \begin{itemize}
+    \item \textcolor{red}{Django will be used as the web framework for its scalability, built-in features such as ORM and authentication, and rapid development capabilities.}
     \item Python will be the programming language of choice for the project's backend. Python is widely used, and as a result, offers many useful frameworks and community resources. It is very effective for creating website backends and communicating with cloud platforms making use of SDKs.
-    \item Boto3 is the AWS SDK for Python. Making use of this SDK will allow for the required dynamic cloud orchestration and scaling.
-    \item React is a widely used and well-supported front-end framework that allows for the creation of reusable front-end components. It will allow for the creation of a usable and reliable front end.
-    \item AWS is a powerful cloud platform with a large variety of services, it is more than adequate for the use case in mind.
-    \item Fast Api will be the backend framework of choice, it is efficient and barebones, allowing for the flexible creation of web servers.
-    \item Uvicorn is an application server that uses the ASGI protocol, making it compatible with Fastapi. It handles many of the concerns involved with running a web server such as replication, and worker management. It will be an efficient choice for this application
-    \item NGINX is an extremely popular and efficient web server. It will sit in front of Uvicorn and act as a reverse proxy.
+    \item \sout{Boto3 is the AWS SDK for Python. Making use of this SDK will allow for the required dynamic cloud orchestration and scaling.}
+    \item \sout{React is a widely used and well-supported front-end framework that allows for the creation of reusable front-end components. It will allow for the creation of a usable and reliable front end.}
+    \item \sout{AWS is a powerful cloud platform with a large variety of services, it is more than adequate for the use case in mind.}
+    \item \sout{Fast Api will be the backend framework of choice, it is efficient and barebones, allowing for the flexible creation of web servers.}
+    \item \sout{Uvicorn is an application server that uses the ASGI protocol, making it compatible with Fastapi. It handles many of the concerns involved with running a web server such as replication, and worker management. It will be an efficient choice for this application}
+    \item \sout{NGINX is an extremely popular and efficient web server. It will sit in front of Uvicorn and act as a reverse proxy.}
+    \item \textcolor{red}{Celery will be used for task queue processing, enabling asynchronous execution and efficient workload distribution.}
     \item Docker is a product that supports building and executing containers, simplifying development and deployment. It is also a good choice for executing our user input code in the backend, due to the ease of scaling docker containers, and the intrinsic isolation provided by using containers.
     \item Matlab/GNU Octave is required for the execution of user-submitted code. Ideally, Matlab will be used but in the case that licensing/executing headlessly is not possible octave may be used.
     \item Git will be used as the version control software of choice
@@ -147,14 +162,14 @@ The main risks of our project involve the execution of Matlab code in a cloud en
     \item GitHub (actions) will be used as the CI/CD solution of choice.
     \item Make is a useful developer tool, and can be utilized to simplify running tests/linting code
     \item Bash is a common shell/shell language. Scripts written in bash will be utilized throughout the ci/cd pipeline and for developer productivity.
-    \item Pytest is a powerful unit testing framework for the Python language. It will be used for unit testing code
-    \item Postman is an HTTP API platform that can be used for writing API test cases, it will aid in integration testing of the platform
+    \item \sout{Pytest} \textcolor{red}{unittest} is a powerful unit testing framework for the Python language. It will be used for unit testing code
+    \item \sout{Postman is an HTTP API platform that can be used for writing API test cases, it will aid in integration testing of the platform}
 \end{itemize}
 
 
 \section{Coding Standard}
 
-The PEP8 standard for Python will be followed. To ensure that code is implemented following the standard, pre-commit hooks will be utilized to run the autopep8 linter.
+\sout{The PEP8 standard for Python will be followed. To ensure that code is implemented following the standard, pre-commit hooks will be utilized to run the autopep8 linter.}
 
 \newpage{}
 
