@@ -33,6 +33,10 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 March 7, 2025 & 1.0 & VnV results\\
+\midrule
+March 18, 2025 & 2.0 & Addressed peer review\\
+\midrule
+April 4, 2025 & 3.0 & Addressed peer review\\
 \bottomrule
 \end{tabularx}
 
@@ -289,7 +293,7 @@ Initial State: The website is open in a web browser
 
 Input: User navigates the whole SOCAlgoTestPlatform website and the whole Kaggle website
 
-Output: User information on any similarities and differences that the user notices between websites
+\textcolor{red}{Actual} Output: User information on any similarities and differences that the user notices between websites
 
 Result: After the user had navigated through both websites, they noted that both websites had similar login and registration processes as well as similar headers at the top of the screen that navigated to core functionalities. However, the user also noted that Kaggle had a search feature that the SOCAlgotTestPlatform does not yet currently have. 
 \end{enumerate}
@@ -303,7 +307,9 @@ Initial State: User is on the intro page of the website and are brand new to the
 
 Input: User navigates to the walkthrough video and watches this video in full
 
-Output: Walkthrough video successfully plays and the user understands basic functionality
+\textcolor{red}{Expected Output: The video plays, and all of the content in the video is clear to the user.}
+
+\textcolor{red}{Actual} Output: Walkthrough video successfully plays and the user understands basic functionality
 
 Result: Video successfully played and after the user had finished watching they were able to successfully perform basic functionalities such as submitting an algorithm and viewing the leaderboard. 
 \end{enumerate}
@@ -317,7 +323,9 @@ Initial State: The website is open in a web browser
 
 Input: The user is asked to navigate the entire SOCAlgoTestPlatform website
 
-Output: A list created by the user of all features or symbols that are unfamiliar to the user or ambiguous
+\textcolor{red}{Expected Output: At least 90\% of the features and symbols on the application are consistent and clear to the user.}
+
+\textcolor{red}{Actual} Output: A list created by the user of all features or symbols that are unfamiliar to the user or ambiguous
 
 Result: The user navigated the entire system and could not identify any symbols or features that they found to be ambiguous or unfamiliar. 
 \item{test-NFR3-ST2} \label{test-NFR3-ST2}
@@ -326,7 +334,9 @@ Initial State: The website is open in a web browser
 
 Input: The user is asked to skim through all terminology used within the website
 
-Output: A list created by the user of all inconsistencies between terminology
+\textcolor{red}{Expected Output: At least 90\% of the terminology listed on the application is consistent and clear to the user.}
+
+\textcolor{red}{Actual} Output: A list created by the user of all inconsistencies between terminology
 
 Result: The user skimmed through all terminology used on the homepage, the submission screens, and the leaderboard and was unable to find any inconsistencies. 
 \item{test-NFR3-ST3} \label{test-NFR3-ST3}
@@ -335,7 +345,9 @@ Initial State: The user is logged into the system
 
 Input: The user goes through all steps to submit an algorithm
 
-Output: The user receives a message after submission that either indicates success or failure
+\textcolor{red}{Expected Output: The system indicates the result/status of actions made by the user.}
+
+\textcolor{red}{Actual} Output: The user receives a message after submission that either indicates success or failure
 
 Result: The user first submitted an algorithm through the submissions page that was not a Matlab file and they received a failure message indicating the file needs to be .m or .mat. The user then submitted a Matlab file and they received a pending message indicating the submission was successful. 
 \item{test-NFR3-ST4} \label{test-NFR3-ST4}
@@ -344,7 +356,9 @@ Initial State: The user is logged into the system
 
 Input: The user is asked to submit an algorithm to the system with no assistance 
 
-Output: The user successfully submits the algorithm with only the help from documentation
+\textcolor{red}{Expected Output: The user is able to use the submit algorithm functionality of the system, only using information provided on the application.}
+
+\textcolor{red}{Actual} Output: The user successfully submits the algorithm with only the help from documentation
 
 Result: When asked to submit an algorithm, the user first tried to navigate to the submission page however, once they arrived at this page they were unsure what was needed to submit. The user then navigated back to the home page and found the walkthrough video. They proceeded to watch the section in this video on submitting an algorithm. After this, the user was able to successfully submit an algorithm that already existed on the testing computer.
 \end{enumerate}
@@ -357,7 +371,9 @@ Initial State: User is logged in on home page, leaderboard contains entries
 
 Input: User selects leaderboard tab
 
-Output: The leaderboard is displayed nearly instantaneously, well below the 3 second threshold (using realistic latency situations) defined in the VnVPlan
+\textcolor{red}{Expected Output: The leaderboard displays loads and displays entires within 3 seconds.}
+
+\textcolor{red}{Actual} Output: The leaderboard is displayed nearly instantaneously, well below the 3 second threshold \textcolor{red}{(using realistic latency situations)} defined in the VnVPlan
 
 Result: Pass
 
@@ -384,7 +400,9 @@ Initial State: Running system, authenticated user
 
 Input: Invalid model which contains syntax error
 
-Output: Model execution fails, second user is still able to submit models and use the system as normal
+\textcolor{red}{Expected Output: No errors impact the ability to use any of the functionalities of the system.}
+
+\textcolor{red}{Actual} Output: Model execution fails, second user is still able to submit models and use the system as normal
 
 Result: This test was successful, the system behaved as described in the test case, and the error was isolated.
 
@@ -397,7 +415,9 @@ Initial State: Running system accessed through Firefox and Chrome
 
 Input: Set of tests defined in VnVPlan
 
-Output: Test results unchanged across both browsers. 
+\textcolor{red}{Expected Output: All tests have the exact same result, regardless of the web browser used.}
+
+\textcolor{red}{Actual} Output: Test results unchanged across both browsers. 
 \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/chrome.png}{Chrome} \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/firefox.png}{Firefox} \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/blob/main/docs/VnVReport/images/microsoft_edge.png}{Microsoft Edge} 
 
 Result: Pass
