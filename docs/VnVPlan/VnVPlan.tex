@@ -35,7 +35,15 @@
 \midrule
 2024-11-03 & 0.0 & Added initial VnV plan\\
 \midrule
-2025-01-02 & 0.1 & Address peer review\\
+2025-01-03 & 0.1 & Addressed a peer review - added FR1-ST3 and FR1-ST4\\
+\midrule
+2025-01-04 & 0.2 & Address peer review\\
+\midrule
+2025-03-18 & 0.3 & Addressed a peer review\\
+\midrule
+2025-04-03 & 0.4 & Addressed TA feedback\\
+\bottomrule
+2025-04-03 & 0.5 & Addressed peer reviews\\
 \bottomrule
 \end{tabularx}
 
@@ -51,17 +59,17 @@
 
 \pagenumbering{arabic}
 
-This document outlines the plans in place for the validation and verification of the Battery SOC Algorithm testing tool. It will give details regarding the plans that are in place to verify and validate each stage of the development process of the application, from the requirements to the completion of the software. Additionally, detailed descriptions of the necessary tests for both functional and non-functional requirements to be fulfilled by the system are included, to ensure that the final product is both complete and correct.
+This document outlines the plans in place for the validation and verification of the Battery SOC Algorithm \sout{testing tool} \textcolor{red}{Testing Tool}. It will give details regarding the plans that are in place to verify and validate each stage of the development process of the application, from the requirements to the completion of the software. Additionally, detailed descriptions of the necessary tests for both functional and non-functional requirements to be fulfilled by the system are included, to ensure that the final product is both complete and correct.
 
 \section{General Information}
 
 \subsection{Summary}
 
-The Battery SOC Algorithm testing tool will be tested. The tool allows for the submission of user algorithms, attempting to provide battery state of charge estimations. The algorithms will be run against a series of tests, and the results reported back to the user. A leaderboard with various filtering and sorting options will be provided to view the results of different algorithm submissions.
+The Battery SOC Algorithm \sout{testing tool} \textcolor{red}{Testing Tool} will be tested. The tool allows for the submission of user algorithms, attempting to provide battery state of charge estimations. The algorithms will be run against a series of tests, and the results reported back to the user. A leaderboard with various filtering and sorting options will be provided to view the results of different algorithm submissions.
 
 \subsection{Objectives}
 
-The main objective of this verification and validation plan is to ensure that the battery SOC algorithm testing tool can accurately evaluate the correctness and performance of the submitted algorithms and provide a user-friendly experience. In addition, we must ensure that the system is scalable and can handle high concurrent user submissions. \\
+The main objective of this verification and validation plan is to ensure that the \sout{battery} \textcolor{red}{Battery} SOC algorithm \sout{testing tool} \textcolor{red}{Testing Tool} can accurately evaluate the correctness and performance of the submitted algorithms and provide a user-friendly experience. In addition, we must ensure that the system is scalable and can handle high concurrent user submissions. \\
 \newline Due to time constraints, some objectives will be out of scope, namely:
 \begin{itemize}
     \item A comprehensive usability testing - this will require significant time and diverse user demographics. Instead, we will focus on using design best practices and have our primary users provide us with feedback.
@@ -132,7 +140,7 @@ Issues are created by peers with regards to the integrity of the SRS. They will 
 \textbf{Checklist:}\\
 In order for the design of our application to be reviewed by our classmates, we will make a checklist that contains they key considerations and principles that our design should adhere to. The following checklist questions will be used for this step of verification:
 \begin{itemize}
-    \item Does the design follow best practices for design patterns?
+    \item Does the design follow best practices for design patterns \textcolor{red}{specifically, separation of concerns, maintainability and having modular code}?
     \item Are the specifications of the design abstract?
     \item Does the design contain all necessary exception handling?
 \end{itemize}
@@ -164,6 +172,8 @@ To ensure that we have an effective Verification and Validation plan, it is esse
 \subsection{Implementation Verification Plan}
 
 Refer to section 3 of this document for detailed tests for each requirement and section 4 for the unit tests.
+
+\textcolor{red}{Furthermore, section 2.6 mentions specific tools for purposes such as code linting and evaluating memory usage/checking for memory leaks which will be used for additional implementation verification}
 
 \subsection{Automated Testing and Verification Tools}
 
@@ -242,33 +252,34 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{\sout{How test will be performed:}} \sout{An invalid algorithm will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.}
 
-\item{FR1-ST3\\}
+\item\textcolor{red}{{FR1-ST3}\\}
 
-\underline{Control:} Manual
+\textcolor{red}{\underline{Control:} Manual}
 
-\underline{Initial State:} The algorithm submission page
+\textcolor{red}{\underline{Initial State:} The algorithm submission page}
 
-\underline{Input:} An algorithm that exceeds the maximum file size
+\textcolor{red}{\underline{Input:} An algorithm that exceeds the maximum file size}
 
-\underline{Output:} Error notification from the system
+\textcolor{red}{\underline{Output:} Error notification from the system}
 
-\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of the size of the file.
+\textcolor{red}{\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of the size of the file.}
 
-\underline{How test will be performed:} A model that exceeds the maximum file size will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+\textcolor{red}{\underline{How test will be performed:} A model that exceeds the maximum file size will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.}
 
-\item{FR1-ST4\\}
 
-\underline{Control:} Manual
+\item{\textcolor{red}{FR1-ST4}\\}
 
-\underline{Initial State:} The algorithm submission page
+\textcolor{red}{\underline{Control:} Manual}
 
-\underline{Input:} An algorithm file with an unsupported file type (not .m)
+\textcolor{red}{\underline{Initial State:} The algorithm submission page}
 
-\underline{Output:} Error notification from the system
+\textcolor{red}{\underline{Input:} An algorithm file with an unsupported file type (not .m)}
 
-\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of an invalid type of file being uploaded.
+\textcolor{red}{\underline{Output:} Error notification from the system}
 
-\underline{How test will be performed:} A model with a .py extension will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.
+\textcolor{red}{\underline{Test Case Derivation:} The error notification will be output to the screen by the system if the upload of the algorithm was unsuccessful as a result of an invalid type of file being uploaded.}
+
+\textcolor{red}{\underline{How test will be performed:} A model with a .py extension will be manually submitted through the submission page of our user interface and we will wait to see if the error notification is displayed on the page. If the error notification is displayed, the test passes.}
 
 \end{enumerate}
 
@@ -496,7 +507,7 @@ This section covers all system tests for the functional requirements. The tests 
 
 \underline{Control:} \sout{Automatic} \textcolor{red} {Manual}
 
-\underline{Initial State:} A non-empty and unsorted leaderboard exists in the system with at least 10 items.
+\underline{Initial State:} A non-empty and unsorted leaderboard exists in the system with at least \textcolor{red}{10} items.
 
 \underline{Input:} A sorting criteria from the user
 
@@ -564,10 +575,12 @@ This section covers all system tests for the non-functional requirements. The te
 
 \underline{Input/Condition:} The user navigates the entire website
 
-\underline{Output/Result:} Summary of appearance, styles and designs that resemble the website Kaggle and those that do not.
+\underline{Output/Result:}
+\sout{Summary of appearance, styles and designs that resemble the website Kaggle and those that do not.}
+\textcolor{red}{The score corresponding to the appearance of all pages on the website. The average of all of these scores should exceed 9/10 for all users.}
 
 \underline{How test will be performed:} 
-A user will load both our website and Kaggle in the same browser. He/she will then compare our website’s look and feel with Kaggle’s and list down all elements that are similar and more importantly, elements that are not similar.
+\sout{A user will load both our website and Kaggle in the same browser. He/she will then compare our website’s look and feel with Kaggle’s and list down all elements that are similar and more importantly, elements that are not similar.}\textcolor{red}{A user will navigate to each page on our website, ranking overall appearance of each page on a scale from 1 to 10.}
 
 \end{enumerate}
 
@@ -616,10 +629,12 @@ A user of the website will attempt to use a feature he/she has not used before a
 
 \underline{Input/Condition:} The user navigates the entire website
 
-\underline{Output/Result:} The user will list down all unfamiliar symbols encountered on the website or any ambiguous symbols that can cause confusion
+\underline{Output/Result:} 
+\sout{The user will list down all unfamiliar symbols encountered on the website or any ambiguous symbols that can cause confusion}
+\textcolor{red}{The user will rate how clearly each symbol on the website represents its use and purpose, on a scale from 1-10. The average score of all symbols should have a score greater than 9/10.}
 
 \underline{How test will be performed:} 
-A user will explore the entire website and evaluate the clarity of the symbols/icons encountered.
+A user will explore the entire website and evaluate the clarity of the symbols/icons encountered. \textcolor{red}{Each symbol will be given a clarity rank from 1-10.}
 
 \item{NFR3-ST2\\}
 
@@ -653,7 +668,7 @@ A user will submit an algorithm through the algorithm submission page and confir
 
 \underline{Initial State:} The user is logged in to the website
 
-\underline{Input/Condition:} The user encounters a complex use case
+\underline{Input/Condition:} The user encounters a complex use case \textcolor{red}{such as account verification or resetting their password}
 
 \underline{Output/Result:} A walkthrough guide exists for that use case and the user is able to complete his/her task using only the walkthrough successfully.
 
@@ -674,7 +689,7 @@ A user will try to follow the walkthrough for a complex use case and confirm tha
 
 \underline{Input/Condition:}  A request for the leaderboard (sorted/filtered and unsorted/unfiltered)/algorithm submission result is made
 
-\underline{Output/Result:} The result is returned in less than 3 seconds (using realistic latency situations)
+\underline{Output/Result:} The result is returned in less than 3 seconds \textcolor{red}{(using realistic latency situations)}
 
 \underline{How test will be performed:} Use a Postman collection to make the specified requests. Use Postman tests to ensure that the response time is less than 3 seconds for each request 
 
