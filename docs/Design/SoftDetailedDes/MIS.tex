@@ -19,6 +19,7 @@
 \usepackage[section]{placeins}
 \usepackage{caption}
 \usepackage{fullpage}
+\usepackage{ulem}
 
 \hypersetup{
 bookmarks=true,     % show bookmarks bar?
@@ -54,6 +55,7 @@ urlcolor=cyan          % color of external links
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 January 17 2025 & 1.0 & Initial design of the MIS\\
+April 4 2025 & 2.0 & Updated MIS based on feedback and final system\\
 \bottomrule
 \end{tabularx}
 
@@ -292,7 +294,7 @@ UserAuthentication contains the registration functionality
 \item transition: Update the screen to display Login page $|$ Update the screen to display
 Registration page with an error message.
 \item output: None
-\item exception: 400 (if the user input is invalid), 409 (if the specified user already exists)
+\item exception: None
 
 \end{itemize}
 
@@ -499,6 +501,7 @@ None
 \hline
 display & - & - & - \\
 handleSubmit & - & - & - \\
+\textcolor{red}{validateFile} & \textcolor{red}{Model file} & - & \textcolor{red}{invalidFile} \\
 \hline
 \end{tabular}
 \end{center}
@@ -529,9 +532,16 @@ The user must be logged in to submit a model.
 
 \noindent handleSubmit():
 \begin{itemize}
-\item transition: Update the \textit{screen} to display Submission page with new submission $|$ Update the \textit{screen} to display Submit page with an error message. Submissions will begin in a pending state, and will enter the started state once the number of submissions running is less than the maximum number of concurrent submissions allowed.
+\item transition: Update the \textit{screen} to display Submission page with new submission $|$ Update the \textit{screen} to display Submit page with an error message
 \item output: None
 \item exception: None
+\end{itemize}
+
+\noindent \textcolor{red}{validateFile():}
+\begin{itemize}
+\item transition: \textcolor{red}{None}
+\item output: \textcolor{red}{None}
+\item exception: \textcolor{red}{\textit{exc} := invalidFile: file is not a valid MATLAB file}
 
 \end{itemize}
 
@@ -696,7 +706,7 @@ data := Sorted data based on appliedSort
 \noindent filterData(data: QuerySet, category: str, condition: str):
 \begin{itemize}
 \item output: Filtered data based on category and condition
-\item exception: 400 for invalid categories/conditions specified by the user
+\item exception: None
 \end{itemize}
 
 \noindent sortData(data: QuerySet, category: str, sortBy: str):
@@ -809,77 +819,135 @@ data := Sorted data based on appliedSort
 
 \newpage
 
-\section{MIS of AdminControlPanel} \label{AdminControlPanelModule}
+\section{\sout{MIS of AdminControlPanel}} \label{AdminControlPanelModule}
 
-\subsection{Module}
+\subsection{\sout{Module}}
 
-AdminControlPanel
+\sout{AdminControlPanel}
 
-\subsection{Uses}
+\subsection{\sout{Uses}}
 
 
-Database Management (\ref{DatabaseManagementModule})
+\sout{Database Management} (\ref{DatabaseManagementModule})
 
-\subsection{Syntax}
+\subsection{\sout{Syntax}}
 
-\subsubsection{Exported Constants}
+\subsubsection{\sout{Exported Constants}}
 
-None
+\sout{None}
 
-\subsubsection{Exported Access Programs}
+\subsubsection{\sout{Exported Access Programs}}
 
 \begin{center}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-approve\_user\_request & user\_id:str & - & notFound \\
-delete\_user & user\_id:str & - & notFound \\
-delete\_submission & user\_id:str & - & notFound \\
+\sout{approve\_user\_request} & \sout{user\_id:str} & - & \sout{notFound} \\
+\sout{delete\_user} & \sout{user\_id:str} & - & \sout{notFound} \\
+\sout{delete\_submission} & \sout{user\_id:str} & - & \sout{notFound} \\
 \hline
 \end{tabular}
 \end{center}
 
-\subsection{Semantics}
+\subsection{\sout{Semantics}}
 
-\subsubsection{State Variables}
+\subsubsection{\sout{State Variables}}
 
-None
+\sout{None}
 
-\subsubsection{Environment Variables}
+\subsubsection{\sout{Environment Variables}}
 
-None
+\sout{None}
 
-\subsubsection{Assumptions}
+\subsubsection{\sout{Assumptions}}
 
-None
+\sout{None}
 
-\subsubsection{Access Routine Semantics}
+\subsubsection{\sout{Access Routine Semantics}}
 
-\noindent approve\_user\_request(user\_id):
+\noindent \sout{approve\_user\_request(user\_id):}
 \begin{itemize}
-\item transition: User account enters active state
-\item output: None
-\item exception: notFound
+\item \sout{transition: User account enters active state}
+\item \sout{output: None}
+\item \sout{exception: notFound}
 \end{itemize}
 
-\noindent delete\_user(user\_id):
+\noindent \sout{delete\_user(user\_id):}
 \begin{itemize}
-\item transition: User account delete from database
-\item output: None
-\item exception: notFound
+\item \sout{transition: User account delete from database}
+\item \sout{output: None}
+\item \sout{exception: notFound}
 \end{itemize}
 
-\noindent delete\_submission(submission\_id):
+\noindent \sout{delete\_submission(submission\_id):}
 \begin{itemize}
-\item transition: Submission deleted from database
-\item output: None
-\item exception: notFound
+\item \sout{transition: Submission deleted from database}
+\item \sout{output: None}
+\item \sout{exception: notFound}
 \end{itemize}
 
-\subsubsection{Local Functions}
+\subsubsection{\sout{Local Functions}}
 
-None
+\sout{None}
+
+\newpage
+
+\section{\textcolor{red}{MIS of AccountVerification}} \label{AdminControlPanelModule}
+
+\subsection{\textcolor{red}{Module}}
+
+\textcolor{red}{AccountVerification}
+
+\subsection{\textcolor{red}{Uses}}
+
+
+\textcolor{red}{Database Management} (\ref{DatabaseManagementModule})
+
+\subsection{\textcolor{red}{Syntax}}
+
+\subsubsection{\textcolor{red}{Exported Constants}}
+
+\textcolor{red}{None}
+
+\subsubsection{\textcolor{red}{Exported Access Programs}}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\textcolor{red}{verify\_user} & \textcolor{red}{user\_email:str} & - & \textcolor{red}{notFound} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{\textcolor{red}{Semantics}}
+
+\subsubsection{\textcolor{red}{State Variables}}
+
+\textcolor{red}{None}
+
+\subsubsection{\textcolor{red}{Environment Variables}}
+
+\textcolor{red}{None}
+
+\subsubsection{\textcolor{red}{Assumptions}}
+
+\textcolor{red}{None}
+
+\subsubsection{\textcolor{red}{Access Routine Semantics}}
+
+\noindent \textcolor{red}{verify\_user(user\_email):}
+\begin{itemize}
+\item \textcolor{red}{transition: User recieves an email with a verification link}
+\item \textcolor{red}{output: None}
+\item \textcolor{red}{exception: notFound}
+\end{itemize}
+
+\subsubsection{\textcolor{red}{Local Functions}}
+
+\textcolor{red}{None}
 
 \newpage
 
@@ -1303,6 +1371,14 @@ None
 \newpage
 
 \section{Appendix} \label{Appendix}
+
+Add figma screenshots
+
+
+\wss{Extra information if required}
+
+
+\newpage{}
 
 \section*{Appendix --- Reflection}
 
