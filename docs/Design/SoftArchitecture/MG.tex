@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{ulem}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -47,6 +48,7 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 01/07/2025 & 0.1 & revision 0 design\\
+04/04/2025 & 1.1 & Updated MG based on feedback and final system\\
 \bottomrule
 \end{tabularx}
 
@@ -158,8 +160,8 @@ change.
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acTest}:] The tests and test data that the Matlab models are being tested against
 \item[\refstepcounter{acnum} \actheacnum \label{acLeaderboard}:] The categories in the leaderboard
-\item[\refstepcounter{acnum} \actheacnum \label{acDisplay}:] How the models' performance is displayed to the user
-\item[\refstepcounter{acnum} \actheacnum \label{acExecute}:] How the model is executed e.g. execution progress reports, error handling, etc. 
+\item[\refstepcounter{acnum} \actheacnum \label{acDisplay}:] \sout{How the models' performance is displayed to the user} \textcolor{red}{The delivery method of the model's performance data to users including tables, charts, and graphs. }
+\item[\refstepcounter{acnum} \actheacnum \label{acExecute}:] \sout{How the model is executed e.g. execution progress reports, error handling, etc.} \textcolor{red}{User feedback during the execution process of the model including execution progress reports and error handling.}
 \item[\refstepcounter{acnum} \actheacnum \label{acLanguage}:] The programming language of the models submitted by the user
 \end{description}
 
@@ -244,6 +246,7 @@ actually be implemented.
 & \mref{mWS}\\
 & \mref{mME}\\
 & \mref{mTD}\\
+& \mref{mEV}\\
 \bottomrule
 
 \end{tabular}
@@ -293,7 +296,7 @@ to be implemented.
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
-\item[Implemented By:] Software Engineering
+\item[Implemented By:] \sout{Software Engineering}  \textcolor{red}{SOCAlgoTestPlatform}
 \end{description}
 
 \subsubsection{Login Module (\mref{mLI})}
@@ -301,7 +304,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Display logic.
 \item[Services:] Render the login page and authentication messages
-\item[Implemented By:] Login
+\item[Implemented By:] \sout{Login}  \textcolor{red}{SOCAlgoTestPlatform}
 \item[Type of Module:] Abstract Object
 \end{description}
 
@@ -310,7 +313,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Display logic.
 \item[Services:] Render registration page and authentication messages
-\item[Implemented By:] Registration
+\item[Implemented By:] \sout{Registration}  \textcolor{red}{SOCAlgoTestPlatform}
 \item[Type of Module:] Abstract Object
 \end{description}
 
@@ -319,7 +322,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Display logic.
 \item[Services:] Render intro page
-\item[Implemented By:] Intro
+\item[Implemented By:] \sout{Intro}  \textcolor{red}{SOCAlgoTestPlatform}
 \item[Type of Module:] Abstract Object
 \end{description}
 
@@ -328,7 +331,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Display logic.
 \item[Services:] Render home page
-\item[Implemented By:] Home
+\item[Implemented By:] \sout{Home}  \textcolor{red}{SOCAlgoTestPlatform}
 \item[Type of Module:] Abstract Object
 \end{description}
 
@@ -337,7 +340,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The test algorithm
 \item[Services:] Executes tests on the submitted models and evaluates results
-\item[Implemented By:] TestAlgorithm
+\item[Implemented By:] \sout{TestAlgorithm}  \textcolor{red}{SOCAlgoTestPlatform}
 \item[Type of Module:] Abstract Data Type
 \end{description}
 
@@ -346,7 +349,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Display logic and error handling.
 \item[Services:] Render the submit model page and accept only Matlab files
-\item[Implemented By:] Submit
+\item[Implemented By:] \sout{Submit}  \textcolor{red}{SOCAlgoTestPlatform}
 \item[Type of Module:] Abstract Object
 \end{description}
 
@@ -355,7 +358,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Display logic.
 \item[Services:] Render a model's detailed result including graphical representations
-\item[Implemented By:] Submission
+\item[Implemented By:] \sout{Submission}  \textcolor{red}{SOCAlgoTestPlatform}
 \item[Type of Module:] Abstract Object
 \end{description}
 
@@ -364,8 +367,9 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Sorting/Filtering Algorithm choice
 \item[Services:] Displays results of previous submissions, provides sorting and filtering options
-\item[Implemented By:] Leaderboard
+\item[Implemented By:] \sout{Leaderboard} \textcolor{red}{SOCAlgoTestPlatform}
 \item[Type of Module:] library
+\item[Constraints:]  \textcolor{red}{Dataset can not exceed 100,000 rows}
 \end{description}
 
 \subsubsection{Results Module (\mref{mR})}
@@ -373,19 +377,18 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Display logic.
 \item[Services:] Render all user's submission results
-\item[Implemented By:] Result
+\item[Implemented By:] \sout{Result}  \textcolor{red}{SOCAlgoTestPlatform}
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{Admin Control Panel Module (\mref{mACP})}
+\subsubsection{\sout{Admin Control Panel Module (\mref{mACP})}}
 
 \begin{description}
-\item[Secrets:] Admin related logic
-\item[Services:] Authorization and Execution of admin actions, 
-\item[Implemented By:] django.contrib.admin
-\item[Type of Module:] Library
+\item[Secrets:] \sout{Admin related logic}
+\item[Services:] \sout{Authorization and Execution of admin actions}
+\item[Implemented By:] \sout{django.contrib.admin}
+\item[Type of Module:] \sout{Library}
 \end{description}
-
 
 \subsection{Software Decision Module}
 
@@ -413,7 +416,7 @@ to be implemented.
 
 \begin{description}
 \item[Secrets:] Logic for authentication mechanism and password management. 
-\item[Services:] User login/logout, User registration, password recovery/reset.
+\item[Services:] User login/logout, User registration, password recovery/reset, \textcolor{red}{restricting access to submit and submission module without authentication}, \textcolor{red}{verifying emails}.
 \item[Implemented By:] django.contrib.auth
 \item[Type of Module:] Library
 \end{description}
@@ -526,7 +529,7 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{Use_Hierarchy.png}
+\includegraphics[width=1.0\textwidth]{Use_Hierarchy.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
@@ -559,17 +562,17 @@ Refer to the Project Board to view all tasks related to the design described in 
 \subsection{Appendix 1} \label{Appendix 1}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{.//Interface/Intro.png}
+    \includegraphics[width=1\linewidth]{Design/SoftArchitecture/Interface/Intro.png}
 \end{figure}
 \subsection{Appendix 2} \label{Appendix 2}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{.//Interface/Registration.png}
+    \includegraphics[width=1\linewidth]{Design/SoftArchitecture/Interface/Registration.png}
 \end{figure}
 \subsection{Appendix 3} \label{Appendix 3}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{.//Interface/Login.png}
+    \includegraphics[width=1\linewidth]{Design/SoftArchitecture/Interface/Login.png}
 \end{figure}
 \subsection{Appendix 4} \label{Appendix 4}
 \begin{figure}[H]
@@ -579,32 +582,32 @@ Refer to the Project Board to view all tasks related to the design described in 
 \subsection{Appendix 5} \label{Appendix 5}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{.//Interface/Submit.png}
+    \includegraphics[width=1\linewidth]{Design/SoftArchitecture/Interface/Submit.png}
 \end{figure}
 \subsection{Appendix 6} \label{Appendix 6}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{.//Interface/Results.png}
+    \includegraphics[width=1\linewidth]{Design/SoftArchitecture/Interface/Results.png}
 \end{figure}
 \subsection{Appendix 7} \label{Appendix 7}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{.//Interface/Submission.png}
+    \includegraphics[width=1\linewidth]{Design/SoftArchitecture/Interface/Submission.png}
 \end{figure}
 \subsection{Appendix 8} \label{Appendix 8}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{.//Interface/Leaderboard.png}
+    \includegraphics[width=1\linewidth]{Design/SoftArchitecture/Interface/Leaderboard.png}
 \end{figure}
 \subsection{Appendix 9} \label{Appendix 9}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{.//Interface/Sorting.png}
+    \includegraphics[width=1\linewidth]{Design/SoftArchitecture/Interface/Sorting.png}
 \end{figure}
 \subsection{Appendix 10} \label{Appendix 10}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{.//Interface/Filtering.png}
+    \includegraphics[width=1\linewidth]{Design/SoftArchitecture/Interface/Filtering.png}
 \end{figure}
 
 
