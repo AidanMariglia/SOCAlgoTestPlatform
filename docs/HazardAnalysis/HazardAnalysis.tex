@@ -1,5 +1,6 @@
 \documentclass{article}
 
+\usepackage{ulem}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -48,6 +49,8 @@
 2024-10-19 & Benjamin Dubois, Nathan Uy, Aidan Mariglia, Declan Young & Added initial hazard analysis\\
 \midrule
 2025-01-04 & Benjamin Dubois, Nathan Uy, Aidan Mariglia, Declan Young & Fixed a failure mode\\
+\midrule
+2025-04-04 & Benjamin Dubois, Nathan Uy, Aidan Mariglia, Declan Young & Final document revision\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -96,54 +99,60 @@ The system will be comprised of four main components, these are:
 
 \section{Critical Assumptions}
 
-The assumptions made will be minimized, however, like many web-based systems a large number of existing libraries and technologies will be used. It logically follows that we will assume any libraries or technologies that will be used are reliable and correct. Additionally, it is assumed that any network connections between different components of the application will always be successful and reliable.
+The \textcolor{red}{number of assumptions made will be minimized}. \sout{It logically follows that we will assume any libraries or technologies that will be used are reliable and correct.} \textcolor{red}{We will assume any libraries or technologies that will be used behave in the manner specified by their documentation. Additionally, it is assumed that any network connections between different components of the application will always be successful and reliable.}
 
 \section{Failure Mode and Effect Analysis}
 
 \begin{table}[H]
     \centering
     \caption{Failure Mode and Effects Analysis} \label{TblFMEA}
-    \begin{tabularx}{\textwidth}{|P{2cm}|P{2cm}|P{2cm}|P{2cm}|P{3.45cm}|P{1cm}|P{1cm}|}
+    \begin{tabularx}{\textwidth}{|P{2cm}|P{2cm}|P{2cm}|P{2.45cm}|P{3cm}|P{1cm}|P{1cm}|}
         \hline
         Design Function & Failure Modes & Effects of Failure & Causes of Failure & Recommended Action & SR & Ref\\
         \hline
         Submitting Job & The job is not submitted & Result of job not returned to user & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Invalid input data
-            \item Network issues
-            \item Insufficient server resources
-            \item API/DB issues
-        \end{list}
+
+
+        \parbox[t]{2.45cm}{%
+    Invalid input data\\ \vspace{4pt}
+    Network issues\\ \vspace{4pt}
+    Insufficient server resources\\ \vspace{4pt}
+    API/DB issues
+    }
         &
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Implement a retry system with exponential backoff to avoid some network issues
-            \item Persist job details so that they can be resubmitted in the case of a user failure
-            \item Include detailed error reporting to the user in the worst case where the job cannot be resubmitted
-        \end{enumerate}
+        \parbox[t]{3cm}{%
+        Implement a retry system with exponential backoff to avoid some network issues \\ \vspace{4pt}
+        Persist job details so that they can be resubmitted in the case of a user failure \\ \vspace{4pt}
+        Include detailed error reporting to the user in the worst case where the job cannot be resubmitted
+        }
+        \vspace{4pt}
+
         & SR-1 SR-2 SR-3 & H1-1\\
         \hline
         Running Job & The job runs for too long & Significant cost/use of resources & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Insufficient server resources
-            \item Job queuing issues
-            \item Inefficient input algorithm
-        \end{list}
+        \parbox[t]{2.45cm}{%
+         Insufficient server resources \\ \vspace{4pt}
+         Job queuing issues \\ \vspace{4pt}
+         Inefficient input algorithm
+        }
+        \vspace{4pt}
         & 
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Establish a maximum runtime for jobs, periodically check and enforce runtime
-            \item Appropriately scale server resources to service traffic
-        \end{enumerate}
+        \parbox[t]{3cm}{%
+        Establish a maximum runtime for jobs, periodically check and enforce runtime \\ \vspace{4pt}
+        Appropriately scale server resources to service traffic
+        }
+        \vspace{4pt}
         & SR-4 SR-5 & H2-1\\
         \cline{2-7}
         & Job starvation/rejection & Significant cost/use of resources. Some jobs are not processed. & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Insufficient server resources
-            \item High user volume
-        \end{list}
+        \parbox[t]{2.45cm}{%
+        Insufficient server resources \\ \vspace{4pt}
+        High user volume  
+        }
         & 
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Appropriately scale server resources to service traffic
-        \end{enumerate}
+        \parbox[t]{3cm}{%
+         Appropriately scale server resources to service traffic 
+        }
         & SR-5 & H2-2\\
         \hline
     \end{tabularx}
@@ -151,108 +160,95 @@ The assumptions made will be minimized, however, like many web-based systems a l
 
 \begin{table}[H]
     \centering
-    \begin{tabularx}{\textwidth}{|P{2cm}|P{2cm}|P{2cm}|P{2cm}|P{3.45cm}|P{1cm}|P{1cm}|}
+    \begin{tabularx}{\textwidth}{|P{2cm}|P{2cm}|P{2cm}|P{2.45cm}|P{3cm}|P{1cm}|P{1cm}|}
         \cline{1-7}
         & Job never terminated & The result of the job not being returned to the user & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Issues with the input algorithm
-            \item Job queueing issues
-        \end{list}
+        \parbox[t]{2.45cm}{%
+        Issues with the input algorithm \\ \vspace{4pt}
+        Job queueing issues
+        }
         & 
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Establish a maximum runtime for jobs, periodically check and enforce runtime
-        \end{enumerate}
+        \parbox[t]{3cm}{%
+        Establish a maximum runtime for jobs, periodically check and enforce runtime
+        }
         & SR-4 & H2-3\\
         \cline{2-7}
         & The job terminates unexpectedly & The result of the job not being returned to the user & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Issues with the input algorithm
-        \end{list}
+        \parbox[t]{2.45cm}{%
+        Issues with the input algorithm
+        }
         & 
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Add exception handling in the code to manage errors
-            \item Add logging to capture error messages to identify cause
-            \item Implement retry system with exponential backoff to avoid some network issues
-        \end{enumerate}
+        \parbox[t]{3cm}{%
+        Add exception handling in the code to manage errors \\ \vspace{4pt}
+        Add logging to capture error messages to identify cause \\ \vspace{5pt}
+        Implement retry system with exponential backoff to avoid some network issues
+        }
+        \vspace{4pt}
         & SR-6 SR-3 SR-1 & H2-4\\
         \hline
         Saving result & The result is not saved & Data integrity issues & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Server database issues
-            \item Corrupt data
-        \end{list}
+        \parbox[t]{2.45cm}{%
+        \textcolor{red}{Server} database issues \\ \vspace{4pt}
+        Corrupt data
+        }
         & 
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Implement retry system with exponential backoff to avoid some network issues
-        \end{enumerate}
+        Implement retry system with exponential backoff to avoid some network issues
         & SR-1 & H3-1\\
         \cline{2-7}
         & The result is saved for incorrect user & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Incorrect output
-            \item Reduced reliability on the system
-            \item Data integrity issues
-        \end{list}
+        \parbox[t]{2cm}{%
+         Incorrect output \\ \vspace{4pt}
+         Reduced reliability on the system \\ \vspace{4pt}
+         Data integrity issues
+        }
         & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Issues with session management
-            \item Caching issues
-        \end{list}
+        \parbox[t]{2.45cm}{%
+         Issues with session management \\ \vspace{4pt}
+         Caching issues
+        }
         & 
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Ensure a strong authentication process/session management
-        \end{enumerate}
+        Ensure a strong authentication process/session management
         & ACR-1, ACR-2, ACR-3 & H3-2\\
         \hline
-    \end{tabularx}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabularx}{\textwidth}{|P{2cm}|P{2cm}|P{2cm}|P{2cm}|P{3.45cm}|P{1cm}|P{1cm}|}
-        \hline
         Retrieving existing results & The result is not retrieved & User frustration & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Server database issues
-            \item Corrupted data
-        \end{list}
+        \parbox[t]{2.45cm}{%
+         \textcolor{red}{Server} database issues \\ \vspace{4pt}
+         \sout{Corrupted data} \\ \vspace{4pt}
+         \textcolor{red}{H3-1}
+        }
+        \vspace{4pt}
         & 
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Implement data integrity/validation checks regularly
-        \end{enumerate}
+        Implement data integrity/validation checks \sout{regularly}
         & SR-7 & H3-3\\
         \cline{2-7}
         & An incorrect result is retrieved & 
-         \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Incorrect output
-            \item Reduced reliability of the system
-        \end{list}
+        \parbox[t]{2cm}{%
+        Incorrect output \\ \vspace{4pt}
+        Reduced reliability of the system
+        }
         & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Integrity issues with the database
-            \item Incorrect logic
-        \end{list}
+        \parbox[t]{2.45cm}{%
+         Integrity issues with the database \\ \vspace{4pt}
+         Incorrect logic
+        }
         & 
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Implement data integrity/validation checks regularly
-        \end{enumerate}
+        Implement data integrity/validation checks \sout{regularly}
         & SR-7 & H3-4\\
         \hline
         User authentication & An incorrect/invalid credential is accepted & 
-        \begin{list}{$\bullet$}{\leftmargin=0.35em \itemindent=0em}
-            \item Data privacy violation
-            \item Unauthorized user access
-            \item Potential data loss / modification
-        \end{list}
+        \parbox[t]{2cm}{%
+         Data privacy violation \\ \vspace{4pt}
+         Unauthorized user access \\ \vspace{4pt}
+         Potential data loss / modification
+        }
         & 
-        \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-            \item Issues with authentication logic
-            \item Security vulnerabilities
-        \end{list}
+        \parbox[t]{2.45cm}{%
+         Issues with authentication logic \\ \vspace{4pt}
+         Security vulnerabilities
+        }
         & 
-        \begin{enumerate}[label=(\alph*)]{\leftmargin=1em \itemindent=0em}
-            \item Ensure a strong authentication process/session management
-        \end{enumerate}
+            \sout{Ensure a strong authentication process/session management}
+            \textcolor{red}{Implement an authentication process and session management}
         & ACR-1, ACR-2, ACR-3 & H4-1\\
         \hline
     \end{tabularx}
@@ -262,30 +258,32 @@ The assumptions made will be minimized, however, like many web-based systems a l
 
 \begin{enumerate}[label=\textbf{SR-\arabic*:}]{\leftmargin=1em \itemindent=0em}
     \item 
+    \sout{
     The system shall retry jobs that failed to submit on the first attempts, for a maximum 3 attempts \\
     \newline Rationale: The user should not have to re-submit jobs that failed to submit for a reason beyond their control\\
     \newline Fit Criterion: When a job fails to submit the first or second time, the system will automatically retry the submission
-    \item The system shall persist details of unsuccessfully submitted jobs for one week\\
+    }
+    \item \sout{The system shall persist details of unsuccessfully submitted jobs for one week\\
     \newline Rationale: This will allow users to easily resubmit jobs that failed to submit on the first attempt (due to network error/interruptions) without having to re-enter details for the submission \\
-    \newline Fit Criterion: In the event of a network interruption causing job submission to fail, users will not be required to re-enter details in order to re-submit the job.
+    \newline Fit Criterion: In the event of a network interruption causing job submission to fail, users will not be required to re-enter details in order to re-submit the job.}
     \item The system shall provide error reporting for jobs that fail to submit \\
     \newline Rationale: The user must be aware of why a job fails to submit successfully, so that it can be fixed or they can get help, and the job can be submitted successfully. \\
     \newline Fit Criterion:  When a user unsuccessfully attempts to submit a job to the system, the reason for the failed submission should be provided back to the user (e.g invalid input, server error, etc)
-    \item The system shall have a maximum runtime for jobs of 8 hours. \\
+    \item \sout{The system shall have a maximum runtime for jobs of 8 hours. \\
     \newline Rationale: There should be an upper bound on the amount of time a job can run for. This will prevent mistakes or malicious efforts causing jobs to have a significant cost, and to occupy shared resources for long periods. Typical runtime for the algorithms being submitted can stretch for multiple hours, 8 hours is a generous maximum that can be tuned in the future. \\
-    \newline Fit Criterion: If a running job hits the maximum runtime, it will be terminated immediately with an output indicating that the maximum runtime has been reached.
-    \item The system shall scale resources available based on current traffic \\
+    \newline Fit Criterion: If a running job hits the maximum runtime, it will be terminated immediately with an output indicating that the maximum runtime has been reached.}
+    \item \sout{ The system shall scale resources available based on current traffic \\
     \newline Rationale: Since there is no limit on the number of active users, the system must make available enough resources for all users to use the application without significant delay. \\
-    \newline Fit Criterion: There should always be a minimum of the resources needed for 1 active job per active user using the application.
+    \newline Fit Criterion: There should always be a minimum of the resources needed for 1 active job per active user using the application.}
     \item The system shall handle and report input algorithm failures \\
     \newline Rationale: When the user inputs an algorithm to test and it unexpectedly fails/raises an error, the application should output the reason for the error. \\
     \newline Fit Criterion: When an algorithm that causes an error when being tested is input into the system, the user should be alerted that the algorithm has raised an error, and should be informed why.
     \item User authentication requirement. \\
     \newline Rationale: All users must be authenticated before using any of the application’s functionalities. This will ensure that users can only access the data that is related to their account or that their user is permitted to access (in the case of admins). \\
     \newline Fit Criterion: Users should only be able to access their own accounts and not be able to modify others’ accounts.
-    \item The system shall maintain a backup of the application’s data for at least 24 hours in the past. \\
+    \item \sout{The system shall maintain a backup of the application’s data for at least 24 hours in the past. \\
     \newline Rationale: In case of accidental data loss or transformation, a backup should always be available to ensure lost/transformed data can be recovered. \\
-    \newline Fit Criterion: The entire database always has backups of at most 24 hours in the past available.
+    \newline Fit Criterion: The entire database always has backups of at most 24 hours in the past available. }
 \end{enumerate}
 
 \section{Roadmap}
@@ -299,17 +297,17 @@ The assumptions made will be minimized, however, like many web-based systems a l
         \hline
         POC & SR-6 & Error handling for the testing algorithm is a main feature of the system and demonstrates that the system can properly communicate with the testing algorithm and get a response. Therefore, this will help to demonstrate the POC.\\
         \cline{2-3}
-        & SR-3 & Reliably submitting algorithms to be tested is the core functionality of the system, failures in the system when an algorithm is submitted should be reported to the user, so they understand if the issue is a result of their submission, or a transient issue that they can retry.\\
+        & SR-3 & Reliably submitting algorithms to be tested is the core functionality of the system, failures in the system when an algorithm is submitted should be reported to the user, so they understand if the issue is a result of their submission, or a transient issue that they can retry. \\
         \hline
-        End of capstone & SR-5 & Automatic scaling of resources is an important function to ensure a smooth user experience with reasonable response times, however, it is not necessary to provide the core functionality of the system, and this can be addressed later on.\\
+        End of capstone & \sout{SR-5} & \sout{Automatic scaling of resources is an important function to ensure a smooth user experience with reasonable response times, however, it is not necessary to provide the core functionality of the system, and this can be addressed later on.}\\
         \cline{2-3}
-        & SR-4 & Having a maximum runtime for jobs is a feature that can be added to the system without affecting its core functionalities.\\
+        & \sout{SR-4} & \sout{Having a maximum runtime for jobs is a feature that can be added to the system without affecting its core functionalities.}\\
         \cline{2-3}
-        & SR-1 & Retrying requests which fail to reach their intended target is a common technique to improve service stability for end users and will be a good addition to our product. Additionally, it does not have a very high implementation cost.\\
+        & \sout{SR-1} & \sout{Retrying requests which fail to reach their intended target is a common technique to improve service stability for end users and will be a good addition to our product. Additionally, it does not have a very high implementation cost.}\\
         \hline
-        In the future & SR-7 & Maintaining backups is an operational concern and will be addressed after the product is complete and being regularly used, not during the development phase.\\
+        In the future & \sout{SR-7} & \sout{Maintaining backups is an operational concern and will be addressed after the product is complete and being regularly used, not during the development phase.}\\
         \cline{2-3}
-        & SR-2 & Persisting failed submissions is a nice quality-of-life feature, but is not required for the core functionality of the system, and therefore will be addressed later.\\
+        & \sout{SR-2} & \sout{Persisting failed submissions is a nice quality-of-life feature, but is not required for the core functionality of the system, and therefore will be addressed later.}\\
         \hline
     \end{tabularx}
 \end{table}
@@ -356,7 +354,7 @@ The assumptions made will be minimized, however, like many web-based systems a l
 \subsection*{Benjamin Dubois}
 
 \begin{enumerate}
-    \item Creating the road map for this deliverable went well. When starting this section we already had all of our safety requirements completed, so all we had to do was decide which timeframe each requirement fit in. For this, we considered the importance of the requirements and the magnitude of implementing it and we were all able to agree on which requirement fit in which category fairly easily. 
+    \item Creating the road map for this deliverable went well. When starting this section we already had all of our safety requirements completed, so all we had to do was decide which time frame each requirement fit in. For this, we considered the importance of the requirements and the magnitude of implementing it and we were all able to agree on which requirement fit in which category fairly easily. 
     \item One pain point we encountered while writing this deliverable was ensuring that we had considered all of the necessary safety and security requirements. 
 \end{enumerate}  
 
