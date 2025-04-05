@@ -7,7 +7,7 @@
 
 \author{\authname}
 
-\date{}
+\date{April 4, 2025}
 
 \input{../Comments}
 \input{../Common}
@@ -16,129 +16,229 @@
 
 \maketitle
 
-\plt{Reflection is an important component of getting the full benefits from a
-learning experience.  Besides the intrinsic benefits of reflection, this
-document will be used to help the TAs grade how well your team responded to
-feedback.  Therefore, traceability between Revision 0 and Revision 1 is and
-important part of the reflection exercise.  In addition, several CEAB (Canadian
-Engineering Accreditation Board) Learning Outcomes (LOs) will be assessed based
-on your reflections.}
-
 \section{Changes in Response to Feedback}
 
-\plt{Summarize the changes made over the course of the project in response to
-feedback from TAs, the instructor, teammates, other teams, the project
-supervisor (if present), and from user testers.}
+\subsection{Problem Statement, Goals and Development Plan}
+\subsubsection{TA feedback}
+The problem statement was revised not to include the solution and to focus on describing the problem. The goals were also refined to be the main selling point and not focus on specifics. For the development plan, team roles were localised to the team roles section, and a note was added to allow flexibility in team roles. The issue template was also linked to the Issue section of the Git workflow plan. The paragraphs were also broken down to increase readability. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/168}{Commit}
 
-\plt{For those teams with an external supervisor, please highlight how the feedback 
-from the supervisor shaped your project.  In particular, you should highlight the 
-supervisor's response to your Rev 0 demonstration to them.}
+\subsubsection{Supervisor feedback}
+Based on discussions with our client, we decided to scratch the cloud-based solution. In addition, the technologies used were updated based on what were actually used in the project. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/168}{Commit}
 
-\plt{Version control can make the summary relatively easy, if you used issues
-and meaningful commits.  If you feedback is in an issue, and you responded in
-the issue tracker, you can point to the issue as part of explaining your
-changes.  If addressing the issue required changes to code or documentation, you
-can point to the specific commit that made the changes.  Although the links are
-helpful for the details, you should include a label for each item of feedback so
-that the reader has an idea of what each item is about without the need to click
-on everything to find out.}
 
-\plt{If you were not organized with your commits, traceability between feedback
-and commits will not be feasible to capture after the fact.  You will instead
-need to spend time writing down a summary of the changes made in response to
-each item of feedback.}
+\subsection{SRS}
+\subsubsection{TA feedback}
+According to our TA's suggestion, we should prune our SRS and include only the necessary requirements. So, together with our supervisor, we discussed which requirements are essential and which ones are not. Non-essential requirements are then removed. We specified priority and dates in our project planning, mentioned the user persona in our requirements, added a traceability matrix, updated vague requirements, fixed formatting and added lead-ins and captions for tables and images. All the changes are in this \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/174}{commit}
 
-\plt{You should address EVERY item of feedback.  A table or itemized list is
-recommended.  You should record every item of feedback, along with the source of
-that feedback and the change you made in response to that feedback.  The
-response can be a change to your documentation, code, or development process.
-The response can also be the reason why no changes were made in response to the
-feedback.  To make this information manageable, you will record the feedback and
-response separately for each deliverable in the sections that follow.}
+\subsubsection{Supervisor feedback}
+Based on discussions with our supervisor, we decided which requirements were necessary and which ones were not, removing requirements that were not essential. \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/174}{Commit}
 
-\plt{If the feedback is general or incomplete, the TA (or instructor) will not
-be able to grade your response to feedback.  In that case your grade on this
-document, and likely the Revision 1 versions of the other documents will be
-low.} 
+\subsubsection{Peer feedback} 
 
-\subsection{SRS and Hazard Analysis}
+\begin{tabularx}{\textwidth}{X|X}
+    \toprule
+    \textbf{Feedback} & \textbf{Change}\\
+    \midrule
+    Traceability Matrix
+    (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/9}{issue}) & 
+    Added traceability matrix (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/174}{commit}) \\
+    \midrule
+    Rationales
+    (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/10}{issue}) & Added rationales (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/174}{commit}) \\
+    \midrule
+    Vague Functional Requirement (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/11}{issue}) & Added details to functional requirements (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/174}{commit}) \\
+    \midrule
+    Non-Verifiable Non-Functional Requirement (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/12}{issue}) & Update non-functional requirements (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/174}{commit}) \\
+    \midrule
+    Lack of Details in Development Planning (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/13}{issue}) & 
+    Added details and deadlines to development plan (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/174}{commit}) \\
+    \bottomrule
+\end{tabularx}
+
+
+\subsection{Hazard Analysis}
+\subsubsection{TA feedback}
+As suggested in our TA's feedback, we clarified our critical assumptions. Considerable effort was made to improve the design and format of the FMEA table. These changes can be seen here: \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/175}{pull request}.
+\subsubsection{Supervisor feedback}
+After discussions with our supervisor, our list of Safety and Security requirements was pruned, focusing in on the most important requirements relating to error reporting and authentication. These changes can be seen here: \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/175}{pull request}.
+\subsubsection{Peer feedback}
+\begin{tabularx}{\textwidth}{X|X}
+\toprule
+\textbf{Feedback} & \textbf{Change}\\
+\midrule
+Failure cause too broad
+(\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/19}{issue}) &
+Clarified failure cause
+(\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/62}{commit}) \\
+\midrule
+Missing Assumption
+(\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/17}{issue}) &
+Add Assumption
+(\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/61}{commit}) \\
+\midrule
+Failure mode could be a cause of failure
+(\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/18}{issue}) &
+Clarify failure mode
+(\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/65}{commit}) \\
+\midrule
+Missing FMEA Scenario
+(\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/16}{issue}) &
+No change was made for this piece of feedback, as the missing FMEA Scenario was considered a misuse case rather than a failure mode. \\
+\midrule
+Priority Assignment in FMEA
+(\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/20}{issue}) &
+No change was made for this piece of feedback as the overall plan was to address all potential failure modes rather than only high-priority ones. \\
+\bottomrule
+\end{tabularx}
 
 \subsection{Design and Design Documentation}
 
+\subsubsection{TA feedback}
+According to our TA's suggestions, we changed all of the implemented-by fields of our modules to be either our program if it has implemented it or a third-party program if it was implemented this way. As well, we added more detail to some anticipated changes that lacked specificity. Lastly, we added additional detail to modules and included a new diagram of how modules interact with each other to ensure these are clearer. 
+
+\subsubsection{Supervisor feedback}
+Based on discussions with our supervisor, we added a new module to the MG and MIS that is used for account verification as this was a key feature requested by our supervisor for the system. Also, we removed the admin panel module from the MG and MIS, as this was a feature that our supervisor was no longer interested in. 
+
+\subsubsection{Peer feedback}
+\begin{tabularx}{\textwidth}{X|X}
+    \toprule
+    \textbf{Feedback} & \textbf{Change}\\
+    \midrule
+    Local Function Assumption
+    (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/95}{issue}) & 
+    Added exception for filterData function (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/2877284dc71614806dbc69f6d295ecb31135e08d}{commit}) \\
+    \midrule
+    Defining Constraints
+    (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/94}{issue}) & Added constraint to the leaderboard module (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/173/commits/16c6cb7f991c98e8ebbc915e939e17b30310b1ac}{commit}) \\
+    \midrule
+    Access Routine Semantics 1 (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/91}{issue}) & Added exceptions for handleRegistration function (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/9292fefebe491efc49891ff8ae6bb6ead1d43ca8}{commit}) \\
+    \midrule
+    Ambiguous Design Logic (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/92}{issue}) & Added new method to the submit module to validate files (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/pull/173/commits/16c6cb7f991c98e8ebbc915e939e17b30310b1ac}{commit}) \\
+    \midrule
+    Access Routine Semantics 2 (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/93}{issue}) & 
+    Added information related to pending/started state to handleSubmit function (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/c76be99d5e116b6f8c7547b98dd025331c373dd2}{commit}) \\
+    \bottomrule
+\end{tabularx}
+
 \subsection{VnV Plan and Report}
+
+\subsubsection{TA feedback}
+For the VnV Plan, we addressed the TA feedback by ensuring there was sufficient detail for some areas of the VnV Plan that did not have the necessary detail to clearly and completely describe the plan. The changes based on the TA feedback for the VnVPlan can be seen in this \href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/4dd8cc2f49cf7ef66d83593cbfce6ae3db403463}{commit}.\\ \\
+For the VnV Report, we did not receive any feedback by the due date of April 4, 2025, so therefore did not make any changes.
+\subsubsection{Supervisor Feedback}
+For both the VnV Plan and the Vnv Report, no changes were made based on supervisor feedback. This is mostly due to the fact that we never went into the details of our VnV plan or VnV report during our meetings with our supervisor.
+\subsubsection{Peer feedback}
+\begin{tabularx}{\textwidth}{X|X}
+    \toprule
+    \textbf{Feedback} & \textbf{Change}\\
+    \midrule
+    Network conditions not specified for response time test (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/148}{issue}) & Specified network conditions (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/ec457baf842a25adfbe6afd6593c72337a88b924}{commit}) \\
+    \midrule
+    Non-functional requirement test missing metric (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/147}{issue}) & Added metric for test (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/0804fed4010c6e8a2efc4ad89dca797c9b3e6734}{commit}) \\
+    \midrule
+    Clarify static testing plan (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/30}{issue}) & Added details on static testing (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/2cb2cc7b86ce80acf9f0f7ae8ebed7ea63a70457#diff-8d3e9ddbf3d26cf5e2a7027bf962071598c6f3916127fdabcb800f03d22ba969R176}{commit}) \\
+    \midrule
+    Add metric for non-functional requirement test (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/23}{issue}) & Added metric (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/2cb2cc7b86ce80acf9f0f7ae8ebed7ea63a70457#diff-8d3e9ddbf3d26cf5e2a7027bf962071598c6f3916127fdabcb800f03d22ba969L574-R583}{commit}) \\
+    \midrule
+    Missing test pass criteria for usability tests (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/144}{issue}) & Added expected outputs for usability tests (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/3dec507969b2e49a65448feeb9fab293a89bd27c}{commit}) \\
+    \midrule
+    Add additional tests related to invalid algorithm submissions(\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/24}{issue}) & Added additional tests (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/9100d6316e8fa31be4188f90e8e1f911d284663f}{commit}) \\
+    \midrule
+    Inconsistency in terminology used (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/33}{issue}) & Made terminology used clear and consistent (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/34aa07b568b6c7ecb1446de3beaa44f901a2144e}{commit}) \\
+    \midrule
+    Increase the number of items used in sorting test (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/32}{issue}) & Increased number of items used in sorting test (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/09e40e4fdbfa9cf003e199378899914342bd1b66}{commit}) \\
+    \midrule
+    Missing output for functional requirement test (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/31}{issue}) & Updated output from None to 404 Error (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/commit/4ac6e568f2c49912540f10af98601065b64ce01c#diff-8d3e9ddbf3d26cf5e2a7027bf962071598c6f3916127fdabcb800f03d22ba969R423f}{commit}) \\
+    \midrule
+    Increase number of testers for usability tests (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/143}{issue}) & No change was made for this piece of feedback due to time constraints that did not allow us to conduct additional usability testing with a larger number of users. \\
+    \midrule
+    Incorrect error code (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/146}{issue}) & No change was made for this feedback, as we felt the 404 Not Found error code was more suitable than the 403 Unauthorized error code in this case. This is because users should only be aware of the IDs of their own submissions, so if an ID of a submission is specified, it should only be attempted to be retrieved from the list of submissions of the user that is making the request. \\
+    \midrule
+    A specific test scenario was not covered (\href{https://github.com/AidanMariglia/SOCAlgoTestPlatform/issues/145}{issue}) & No change was made for this feedback. \\
+    
+    \bottomrule
+\end{tabularx}
 
 \section{Challenge Level and Extras}
 
 \subsection{Challenge Level}
 
-\plt{State the challenge level (advanced, general, basic) for your project.  Your challenge level should exactly match what is included in your problem statement.  This should be the challenge level agreed on between you and the course instructor.}
+The challenge level for this project is general. This challenge level is justified firstly by the fact that the technologies and domain knowledge required based on the expected implementation are relatively simple, especially when considering the experience that our group has with web applications. Additionally, the problem being solved is not particularly novel, since although the problem itself isn’t something that is very commonly solved, the requirements/expected solution of a web application is something that is a very common solution to problems in the software industry. 
 
 \subsection{Extras}
 
-\plt{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.}
+The extras for this project are video walkthroughs integrated into the web application and hosting cost analysis that will compare different hosting providers.
+
+\subsubsection{Walkthrough}
+The video walkthrough goes through the main functionalities of the web application, namely, how to submit a model, view the results and view the leaderboard. 
+
+\subsubsection{Hosting Cost Analysis}
+The hosting cost analysis includes the required resources for hosting based on experimental data and assumptions, as well as how much it would cost per month and per year on certain hosting providers such as AWS and Hetzner.
 
 \section{Design Iteration (LO11 (PrototypeIterate))}
 
-\plt{Explain how you arrived at your final design and implementation.  How did
-the design evolve from the first version to the final version?} 
 
-\plt{Don't just say what you changed, say why you changed it.  The needs of the
-client should be part of the explanation.  For example, if you made changes in
-response to usability testing, explain what the testing found and what changes
-it led to.}
+After the development of our first revision, several areas of the system were identified as needing changes. The first major change in the design of the system was the addition of a condensed leader board view. The leader board in the first iteration contained all of the results generated from a submission. This resulted in a very crowded visual that was hard to navigate. To address this, a condensed view was added, which reduced the amount of data present and improve the ease of comparing different submissions. \\
+
+The next major change introduced was the addition of model privacy. After demonstrating the first revision of the system to our supervisor, he identified that the ability to submit "private" models, would be valuable. A private model is a model where the results are only visible to the user who submitted them. The final major design change from revision 0 to revision 1 was the removal of the authentication requirement for leader board viewing. Again, after discussions with our supervisor, it was determined that requiring a user to register an account before viewing the leader board may prevent users from taking an interest in the platform and giving it a try. As such, the requirement was removed.
+
 
 \section{Design Decisions (LO12)}
 
-\plt{Reflect and justify your design decisions.  How did limitations,
- assumptions, and constraints influence your decisions?  Discuss each of these
- separately.}
+Due to the tight timeline that we had, we decided to use the Django web framework to simplify the development process. Another limitation is the fact that SOC algorithms take a long time to run, so we had to separate the algorithm execution into background tasks to avoid blocking the main web application.\\
+
+The major assumption we made in the design of the system was that users will not try to abuse the submission process. Individual submissions require a large amount of cpu time, meaning a single malicious user could potentially overwhelm the system, preventing other users submissions from being evaluated. There was no defensive feature designed to prevent this, as users of the system will be researchers and engineering students using the system for academic or professional purposes, so responsible use of the system is assumed.\\
+
+A major system constraint is that the users will submit MATLAB code. Because of this, we had to run MATLAB through Docker containers to have a controlled environment. This ensures the code runs properly, the execution is secure, and the execution environment is isolated.
 
 \section{Economic Considerations (LO23)}
 
-\plt{Is there a market for your product? What would be involved in marketing your 
-product? What is your estimate of the cost to produce a version that you could 
-sell?  What would you charge for your product?  How many units would you have to 
-sell to make money? If your product isn't something that would be sold, like an 
-open source project, how would you go about attracting users?  How many potential 
-users currently exist?}
+There is a market for our product because it is specifically designed for researchers/university students who are working to find the best battery state of charge (SOC) algorithms. These users are typically involved in battery research and optimization, especially in fields like electric vehicles and energy storage systems. \\
+
+Marketing the product would involve targeting academic institutions and research labs where battery SOC algorithms are the main focus. This product could be promoted through research papers or university partnerships. \\
+
+A version that could be sold would likely cost around \$3000 CAD to add more functionalities, for hosting cost and any license fees. A reasonable price to charge would be between \$500-\$1000 per classroom license. To make a profit, the product would need to be sold to 6-8 classes in order to cover the costs, including the marketing costs.\\
+
+Currently, there are no existing users, but occasional battery research students use the system.
 
 \section{Reflection on Project Management (LO24)}
 
-\plt{This question focuses on processes and tools used for project management.}
-
 \subsection{How Does Your Project Management Compare to Your Development Plan}
 
-\plt{Did you follow your Development plan, with respect to the team meeting plan, 
-team communication plan, team member roles and workflow plan.  Did you use the 
-technology you planned on using?}
+No, we did not follow the team meeting plan, team communication plan, team member roles or workflow plan of our development plan very closely. Although we feel like it would have been useful to follow these plans and have more structure regarding how our group functioned, we found it difficult to do so. This is largely a result of our group having worked together in the past on different projects, leading us to fall back to old habits and tendencies (especially when facing deadlines or have big time constraints) that we had when previously working together. \\
+
+In terms of technology, there was a mix between using the technology we planned on using and having/deciding to change plans. 
 
 \subsection{What Went Well?}
 
-\plt{What went well for your project management in terms of processes and 
-technology?}
+In terms of processes, one thing that went very well was having consistent meetings. Whether this was meetings with our supervisor, Dr. Kollmeyer and his RA, Atjen, or just meeting as a group, we felt this helped us stay organized and aware of our project's progress. \\
+
+For technology, most of the different technologies, especially those used to develop web application, such as docker, django went very well. We were quickly able to learn how to use the technologies effectively to have success while working on our project.
 
 \subsection{What Went Wrong?}
 
-\plt{What went wrong in terms of processes and technology?}
+One major thing that went wrong was not following our workflow plan precisely. We feel that although it would have required us to invest some time in the beginning, if we had all spent the time to ensure this was followed from the beginning of the project, we would have been much more organized when the project became increasingly busy.\\
+
+Another thing that went wrong related to technology was the issues we faced when trying to use Matlab with our application. Because of the requirement of licenses for Matlab, we ended up running into many issues related to obtaining a Matlab license that could be used by our hosted application.
 
 \subsection{What Would you Do Differently Next Time?}
 
-\plt{What will you do differently for your next project?}
+Next time, we would be sure to invest time at the beginning of the project to set up better habits and practices related to the processes that we follow while also ensuring that each team member is on the same page regarding these processes. This would keep us organized for the duration of the project and allow us to work more efficiently, especially when we become busier with work. Additionally, we would spend much more time anticipating and planning for potential risks related to technology or other critical aspects of the project. This will ensure that we have plans to manage and mitigate these risks and prevent them for having very large impacts on the project once it starts.
 
 \section{Reflection on Capstone}
 
-\plt{This question focuses on what you learned during the course of the capstone project.}
-
 \subsection{Which Courses Were Relevant}
 
-\plt{Which of the courses you have taken were relevant for the capstone project?}
+\underline{SFWRENG 2AA4}: Introduction to Software Development helped us learn tools like GIT and latex. It also introduced us to writing documentation for our code and general design patterns and testing.
+
+\noindent \underline{SFWRENG 3XA3}: Software Project Management introduced us to the concept of the software life cycle. We also got to work on a small project that has similar deliverables as the Capstone project, but on a smaller scale. This helped us gain experience in software development from start to finish
+
+\noindent \underline{SFWRENG 3RA3}: Software Requirements and Security Considerations taught us how to write and elicit requirements. This helped us in constructing our SRS and eliciting feedback from our supervisors.
+
+\noindent \underline{SFWRENG 3A04}: Software Design III is where we learned software architecture and design patterns. This helped us in designing our code.
 
 \subsection{Knowledge/Skills Outside of Courses}
 
-\plt{What skills/knowledge did you need to acquire for your capstone project
-that was outside of the courses you took?}
+Although a lot of the major concepts that were required to complete this project were taught in courses we have previously taken, there were more specific skills related to our exact project that we had to learn. Most of these were related to the technologies that we used to implement our project. For instance, since our project required running submissions in the background, we needed to learn how to integrate Celery, a task queuing system to handle processes in the background. Using Docker for containerization is another skill we had to learn outside of our courses.
 
 \end{document}
