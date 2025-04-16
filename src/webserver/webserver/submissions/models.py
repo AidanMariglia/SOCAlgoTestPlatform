@@ -22,7 +22,10 @@ class Submission(models.Model):
     # and make that default, but im not sure how to preload
     # data into the submissionstatus model yet
     id = models.TextField(unique=True, primary_key=True, default=generate_id)
-    MODEL_TYPE_CHOICES=[("ML","Machine Learning"), ("KF", "Kalman Filter"), ("NA", "Not Specified")]
+    MODEL_TYPE_CHOICES=[("ML","Machine Learning"), ("KF", "Kalman Filter"), ("NA", "Not Specified"), 
+                        ("EKF", "Extended Kalman Filter"), ("OKF", "Other Kalman Filter"), ("FNN", "FNN"),
+                        ("LSTM", "LSTM"), ("GRU", "GRU"), ("NARX", "NARX"), ("T", "Transformer"),
+                        ("ONN", "Other Neural Network"), ("HM", "Hybrid Model"), ("CC", "Coulomb Counter")]
     VISIBILITY_CHOICES = [
         ('private', 'Private'),
         ('public', 'Public'),
@@ -34,7 +37,7 @@ class Submission(models.Model):
     completed_at = models.DateTimeField(null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     model_name = models.TextField(max_length=32)
-    model_type = models.TextField(max_length=2, choices=MODEL_TYPE_CHOICES, default="NA")
+    model_type = models.TextField(max_length=4, choices=MODEL_TYPE_CHOICES, default="NA")
     visibility = models.CharField(max_length=7, choices=VISIBILITY_CHOICES, default='public')
     error_message = models.TextField(blank=True, null=True, default=None)
     weighted_error = models.DecimalField(max_digits=10, decimal_places=3, null=True)

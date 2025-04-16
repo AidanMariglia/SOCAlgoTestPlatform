@@ -16,9 +16,19 @@ Users = get_user_model()
 MODEL_TYPE_MAP={
     "Machine Learning": "ML",
     "Kalman Filter":    "KF",
+    "Extended Kalman Filter": "EKF",
+    "Other Kalman Filter": "OKF",
+    "FNN": "FNN",
+    "LSTM": "LSTM",
+    "GRU": "GRU",
+    "NARX": "NARX",
+    "Transformer": "T",
+    "Other Neural Network": "ONN",
+    "Hybrid Model": "HM",
+    "Coulomb Counter": "CC",
     "Not Specified":    "NA"
 }
-MODEL_TYPE_CHOICES=["Machine Learning", "Kalman Filter", "Not Specified"]
+MODEL_TYPE_CHOICES=["Machine Learning", "Kalman Filter", "Extended Kalman Filter", "Other Kalman Filter", "FNN", "LSTM", "GRU", "NARX", "Transformer", "Other Neural Network", "Coulomb Counter", "Hybrid Model", "Not Specified"]
 
 @login_required
 def index(request: HttpRequest):
